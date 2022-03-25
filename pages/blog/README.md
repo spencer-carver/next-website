@@ -1,0 +1,1 @@
+My blog is powered by google drive! simply adding a new file to a specified folder will allow posts to appear. Checkout the logic at my [Blog API Repository](https://github.com/spencer-carver/google-drive-blog-api) for more details
