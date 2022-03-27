@@ -40,9 +40,9 @@ async function fetchFromCache(url: string, ttl: number = BROWSER_CACHE_TTL): Pro
     }
 }
 
-export function invalidateExpiredCacheItems() {
+function invalidateFetchCacheItems() {
     const now = (new Date()).getTime();
-    const cachedDataItems = Object.keys(localStorage).filter((name) => name.startsWith(API_URL));
+    const cachedDataItems = Object.keys(localStorage).filter((name) => name.startsWith("https"));
 
     for (let item in cachedDataItems) {
         try {
@@ -56,5 +56,9 @@ export function invalidateExpiredCacheItems() {
         }
     }
 }
+
+export function invalidateExpiredCacheItems() {
+    invalidateFetchCacheItems();
+};
 
 export default fetchFromCache;

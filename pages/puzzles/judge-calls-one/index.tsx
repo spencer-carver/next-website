@@ -9,8 +9,7 @@ const NAME = "judge-calls-one";
 
 const PDFObject = styled("object", {
     width: "100%",
-    minHeight: "calc(100vh - 300px)",
-    marginBottom: "80px"
+    minHeight: "calc(100vh - 300px)"
 });
 
 const FallbackSpan = styled("span", {

@@ -6,50 +6,59 @@ export const {
     getCssText,
     globalCss,
     createTheme,
-    theme: defaultTheme
 } = createStitches({
     media: {
-        xs: "(max-width: 360px)",
-        sm: "(min-width: 361px)",
-        md: "(min-width: 501px)",
-        lg: "(min-width: 761px)",
-        xl: "(min-width: 1240px)"
+        xs: "(max-width: 359px)",
+        sm: "(min-width: 360px)",
+        md: "(min-width: 500px)",
+        lg: "(min-width: 760px)",
+        xl: "(min-width: 1020px)",
+        xxl: "(min-width: 1240px)",
+        xxxl: "(min-width: 1440px)",
+        dark: "(prefers-color-scheme: dark)",
+        light: "(prefers-color-scheme: light)"
+    }
+});
+
+const globalColors = {
+    // vendor colors
+    youtube: "#DE2920",
+    twitch: "#9147FB"
+};
+
+export const darkTheme = createTheme({
+    colors: {
+        ...globalColors,
+        // dark theme colors
+        primary: "#BB86FC",
+        primaryVariant: "#3700B3",
+        secondary: "#9ACD32",
+        secondaryVariant: "#9ACD32",
+        background: "#121212",
+        surface01: "#2C2C2C",
+        surface02: "#454545",
+        surface03: "#5E5E5E",
+        surface04: "#777777",
+        surface05: "#919191",
+        surface06: "#AAAAAA",
+        surface07: "#C3C3C3",
+        surface08: "#DCDCDC",
+        error: "#CF6679",
+        onPrimary: "#000000",
+        onSecondary: "#000000",
+        onBackground: "#FFFFFF",
+        onSurface: "#FFFFFF",
+        onError: "#000000",
+        border: "#121212"
     },
-    theme: {
-        colors: {
-            // vendor colors
-            youtube: "#DE2920",
-            twitch: "#9147FB",
-            // dark theme colors
-            primary: "#BB86FC",
-            primaryVariant: "#3700B3",
-            secondary: "#9ACD32",
-            secondaryVariant: "#9ACD32",
-            background: "#121212",
-            surface01: "#2C2C2C",
-            surface02: "#454545",
-            surface03: "#5E5E5E",
-            surface04: "#7777777",
-            surface05: "#919191",
-            surface06: "#AAAAAA",
-            surface07: "#C3C3C3",
-            surface08: "#DCDCDC",
-            error: "#CF6679",
-            onPrimary: "#000000",
-            onSecondary: "#000000",
-            onBackground: "#FFFFFF",
-            onSurface: "#FFFFFF",
-            onError: "#000000",
-            border: "#121212"
-        },
-        radii: {
-            borderRadius: "20px"
-        }
+    radii: {
+        borderRadius: "20px"
     }
 });
 
 export const lightTheme = createTheme({
     colors: {
+        ...globalColors,
         primary: "#6200EE",
         primaryVariant: "#3700B3",
         secondary: "#03DAC6",
@@ -78,19 +87,20 @@ export const lightTheme = createTheme({
 
 export const yahooGeocitiesTheme = createTheme({
     colors: {
+        ...globalColors,
         primary: "#BB86FC",
         primaryVariant: "#3700B3",
         secondary: "#03DAC6",
         secondaryVariant: "#018786",
-        background: "#121212",
-        surface01: "#2C2C2C",
-        surface02: "#454545",
-        surface03: "#5E5E5E",
-        surface04: "#7777777",
-        surface05: "#919191",
-        surface06: "#AAAAAA",
-        surface07: "#C3C3C3",
-        surface08: "#DCDCDC",
+        background: "transparent",
+        surface01: "rgba(44,44,44,0.6)",
+        surface02: "rgba(69,69,69,0.6)",
+        surface03: "rgba(94,94,94,0.6)",
+        surface04: "rgba(119,119,119,0.6)",
+        surface05: "rgba(145,145,145,0.6)",
+        surface06: "rgba(170,170,170,0.6)",
+        surface07: "rgba(195,195,195,0.6)",
+        surface08: "rgba(220,220,220,0.6)",
         error: "#CF6679",
         onPrimary: "#000000",
         onSecondary: "#000000",
@@ -108,7 +118,12 @@ export const globalStyles = globalCss({
     "body": {
         margin: "0",
         padding: "0",
-        fontFamily: "'Lato', sans-serif"
+        fontFamily: "'Lato', sans-serif",
+        visibility: "hidden",
+        opacity: "0",
+        "@dark": {
+            backgroundColor: "#121212"
+        }
     },
     "a:visited": {
         color: "$onSurface",
@@ -116,6 +131,7 @@ export const globalStyles = globalCss({
     },
     "main": {
         background: "$background",
+        minHeight: "calc(100vh - 101px)",
         [`&.${yahooGeocitiesTheme}`]: {
             background: "url(/geocities.gif)",
             fontFamily: "'Times', 'Times New Roman', serif",
@@ -127,11 +143,13 @@ export const globalStyles = globalCss({
     }
 });
 
-export const DEFAULT_THEME_NAME = "Modern Dark";
+export const DEFAULT_THEME_NAME = "Modern Light";
+export const defaultTheme = lightTheme;
+
 export const THEMES = {
     "Yahoo! Geocities": yahooGeocitiesTheme,
-    "Modern Light": lightTheme,
-    [DEFAULT_THEME_NAME]: defaultTheme
+    "Modern Dark": darkTheme,
+    [DEFAULT_THEME_NAME]: lightTheme
 };
 
 // Themes

@@ -67,7 +67,7 @@ const Resources: FunctionComponent<{ title: string; resources?: Array<Resource> 
                     }
 
                     return (
-                        <ResourceImageWrapperDiv>
+                        <ResourceImageWrapperDiv key={ index }>
                             <Image src={ image } alt={ alt } title={ alt } width="50px" height="50px" />
                         </ResourceImageWrapperDiv>
                     );
@@ -81,17 +81,17 @@ const CardDiv = styled("div", {
     display: "inline-block",
     textAlign: "center",
     margin: "0 auto",
-    padding: "20px 0",
+    padding: "100px 0 20px",
     color: "$onBackground",
     width: "240px",
-    height: "300px",
     "&:last-child": {
         borderBottom: "none"
     },
     "@lg": {
         width: "600px",
         display: "flex",
-        flexDirection: "row"
+        flexDirection: "row",
+        height: "300px"
     },
     [`.${ yahooGeocitiesTheme } &`]: {
         color: "$onSurface"
@@ -117,7 +117,7 @@ const TitleSpan = styled("span", {
 const CardImageWrapperDiv = styled("div", {
     position: "relative",
     padding: "10px 0",
-    width: "80%",
+    height: "100px",
     "@lg": {
         width: "auto",
         height: "200px"

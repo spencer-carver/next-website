@@ -1,41 +1,74 @@
-import Image from "../../components/Image";
+import React, { FunctionComponent } from "react";
+import { PageProps } from "../../@types/global";
+import ConstructionGif from "../../components/ConstructionGif";
+import Link from "../../components/Link";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 
-const P = styled("p", {
-    color: "$onSurface"
+const ContentDiv = styled("div", {
+    margin: "0 auto",
+    padding: "10px 0",
+    maxWidth: "800px",
+    textAlign: "left",
+    "@lg": {
+        paddingTop: "30px"
+    }
 });
 
-const ConstructionDiv = styled ("div", {
-    height: "40px",
-    margin: "10px auto",
-    textAlign: "center"
+const MenuDiv = styled("div", {
+    padding: "0 100px 20px",
+    minHeight: "400px",
+    backgroundColor: "$surface02",
+    marginBottom: "244px",
+    color: "$onSurface",
+    "@lg": {
+        marginTop: "50px",
+        minHeight: "600px",
+        border: "1px solid $onBackground",
+        boxShadow: "5px 5px 5px $onBackground"
+    },
+    [`.${ yahooGeocitiesTheme } &`]: {
+        marginBottom: "30px"
+    }
 });
 
 const Heading = styled("h2", {
-    color: "$onSurface"
+    textAlign: "center"
 });
 
-const List = styled("ul", {});
-const ListItem = styled("li", {
-    color: "$onSurface"
+const SectionHeading = styled("h2", {
+    textAlign: "left",
+    marginLeft: "-40px"
 });
 
-export default ({ theme }) => {
+const LinkAnchor = styled("a", {
+    color: "$onSurface",
+    textDecoration: "none",
+    paddingBottom: "1px",
+    borderBottom: "1px dotted $primary"
+});
+
+const Recipes: FunctionComponent<PageProps> = ({ theme }) => {
     return (
-        <div style={ { maxWidth: "1024px", margin: "0 auto", paddingTop: "10px" } }>
-            { theme === yahooGeocitiesTheme && <ConstructionDiv><Image src="/constr16.gif" width="128px" height="40px" /></ConstructionDiv> }
-            <P>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</P>
-            <P>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</P>
-            <P>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</P>
-            <P>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</P>
-            <P>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</P>
-            <P>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</P>
-            <P>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</P>
-            <P>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</P>
-            <P>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</P>
-            <P>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</P>
-            <P>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</P>
-            <P>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</P>
-        </div>
+        <>
+            <ContentDiv>
+                <MenuDiv>
+                    <Heading>Recipes</Heading>
+                    <SectionHeading>Drinks</SectionHeading>
+                    <Link href="/recipes/cocktails" component={ LinkAnchor }>Cocktails</Link>
+                    <SectionHeading>Small Plates</SectionHeading>
+                    <ConstructionGif theme={ theme } useFallback={ true } />
+                    <SectionHeading>Breakfast</SectionHeading>
+                    <ConstructionGif theme={ theme } useFallback={ true } />
+                    <SectionHeading>Lunch</SectionHeading>
+                    <ConstructionGif theme={ theme } useFallback={ true } />
+                    <SectionHeading>Dinner</SectionHeading>
+                    <ConstructionGif theme={ theme } useFallback={ true } />
+                    <SectionHeading>Dessert</SectionHeading>
+                    <ConstructionGif theme={ theme } useFallback={ true } />
+                </MenuDiv>
+            </ContentDiv>
+        </>
     );
 };
+
+export default Recipes;

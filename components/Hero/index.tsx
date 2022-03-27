@@ -21,6 +21,12 @@ const ContainerDiv = styled("div", {
         textAlign: "center",
         color: "white"
     },
+    [`.${ lightTheme } &`]: {
+        display: "none"
+    },
+    [`.${ yahooGeocitiesTheme } &`]: {
+        display: "none"
+    },
     "@lg": {
         height: "700px",
         "&::before": {
@@ -28,14 +34,12 @@ const ContainerDiv = styled("div", {
         },
         "&::after": {
             display: "none"
+        },
+        [`.${ lightTheme } &`]: {
+            display: "block",
+            backgroundImage: "none",
+            backgroundColor: "$background"
         }
-    },
-    [`.${ lightTheme } &`]: {
-        backgroundImage: "none",
-        backgroundColor: "$background"
-    },
-    [`.${ yahooGeocitiesTheme } &`]: {
-        display: "none"
     }
 });
 
@@ -88,8 +92,9 @@ interface HeroProps {
 const SLIDESHOW_ITEMS = [{
     src: "/seated.jpg",
     alt: "Spencer",
+    priority: true,
     css: {
-        "@xl": {
+        "@xxl": {
             "& img": {
                 objectPosition: "top"
             }
@@ -99,7 +104,7 @@ const SLIDESHOW_ITEMS = [{
     src: "/climbing.jpg",
     alt: "Spencer",
     css: {
-        "@xl": {
+        "@xxl": {
             "& img": {
                 objectPosition: "bottom"
             }

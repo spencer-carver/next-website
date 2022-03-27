@@ -1,7 +1,34 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { PageProps } from "../../@types/global";
+import Link from "../../components/Link";
 import { API_URL } from "../../constants/ExternalUrls";
+import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 import fetchFromCache from "../../utils/cache";
+
+const PageDiv = styled("div", {
+    margin: "20px",
+    padding: "20px",
+    backgroundColor: "$surface01",
+    "@lg": {
+        margin: "20px auto",
+        maxWidth: "690px"
+    },
+    "@xxl": {
+        margin: "20px auto",
+        maxWidth: "1024px"
+    }
+});
+
+const Heading = styled("h1", {
+    color: "$onSurface"
+});
+
+const BlogList = styled("ul", {
+    marginBottom: "calc(100vh - 301px)",
+    [`.${ yahooGeocitiesTheme } &`]: {
+        marginBottom: "calc(100vh - 435px)"
+    }
+});
 
 const BlogIndex: FunctionComponent<PageProps> = ({ setLoading }) => {
     const [ posts, setPosts ] = useState([] as string[]);
@@ -19,9 +46,12 @@ const BlogIndex: FunctionComponent<PageProps> = ({ setLoading }) => {
     }
 
     return (
-        <ul style={ { marginBottom: "calc(100vh - 200px)" } }>
-            { posts.map((post, index) => <a key={ index } href={ `/blog/${ post }` }><li>{ post }</li></a>) }
-        </ul>
+        <PageDiv>
+            <Heading>Blog</Heading>
+        <BlogList>
+            { posts.map((post, index) => <Link key={ index } href={ `/blog/${ post }` }><li>{ post }</li></Link>) }
+        </BlogList>
+        </PageDiv>
     );
 };
 

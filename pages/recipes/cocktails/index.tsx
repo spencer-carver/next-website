@@ -1,4 +1,7 @@
 import React, { FunctionComponent } from "react";
+import BackNavigation from "../../../components/BackNavigation";
+import Link from "../../../components/Link";
+import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
 
 enum Glass {
     lowball = "lowball",
@@ -99,14 +102,39 @@ const COCKTAILS: Cocktail[] = [
     }
 ];
 
-const styles: Record<string, string> = {};
-const Link = ({ linkStyle, to, children }) => children;
+const ContentDiv = styled("div", {
+    margin: "0 auto",
+    padding: "10px 0",
+    maxWidth: "800px",
+    textAlign: "center",
+    "@lg": {
+        paddingTop: "30px"
+    }
+});
+
+const MenuDiv = styled("div", {
+    padding: "0 10px 20px",
+    minHeight: "400px",
+    backgroundColor: "$surface02",
+    marginBottom: "198px",
+    color: "$onSurface",
+    "@lg": {
+        marginTop: "50px",
+        minHeight: "600px",
+        border: "1px solid $onBackground",
+        boxShadow: "5px 5px 5px $onBackground"
+    },
+    [`.${ yahooGeocitiesTheme } &`]: {
+        marginBottom: "84px"
+    }
+});
 
 const Cocktails: FunctionComponent = () => {
     return (
         <>
-            <div className={ styles.content }>
-                <div className={ styles.menu }>
+            <BackNavigation to="/recipes" />
+            <ContentDiv>
+                <MenuDiv>
                     <h1>Cocktail Menu</h1>
                     <span>Some of my favorite cocktails. List and format is currently being revised</span>
                     {
@@ -114,19 +142,35 @@ const Cocktails: FunctionComponent = () => {
                             return <MenuItem key={ index } { ...drink } />;
                         })
                     }
-                </div>
-            </div>
+                </MenuDiv>
+            </ContentDiv>
         </>
     );
 };
 
+const NameHeading = styled("h2", {
+    marginBottom: "10px"
+});
+
+const LinkAnchor = styled("a", {
+    color: "$onSurface",
+    textDecoration: "none",
+    paddingBottom: "1px",
+    borderBottom: "1px dotted $primary"
+});
+
+const IngredientsP = styled("p", {
+    margin: "0",
+    fontStyle: "italic"
+});
+
 const MenuItem: FunctionComponent<Cocktail> = ({ name, ingredients, description, link }) => {
     return (
         <div>
-            <h2 className={ styles.name }>
-                <Link linkStyle={ styles.title } to={ link }>{ name }</Link>
-            </h2>
-            <p className={ styles.ingredients }>{ ingredients.join(", ") }</p>
+            <NameHeading>
+                <Link href={ link } component={ LinkAnchor }>{ name }</Link>
+            </NameHeading>
+            <IngredientsP>{ ingredients.join(", ") }</IngredientsP>
             { description && <p>{ description }</p> }
         </div>
     );
