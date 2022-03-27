@@ -6,10 +6,14 @@ import BackNavigation from "../BackNavigation";
 
 export const PuzzleDiv = styled("div", {
     margin: "0 auto",
-    maxWidth: "800px",
+    padding: "30px 10px 0",
+    maxWidth: "300px",
+    overflowX: "visible",
     textAlign: "center",
-    paddingTop: "30px",
     minHeight: "calc(100vh - 185px)",
+    "@lg": {
+        maxWidth: "800px"
+    }
 });
 
 export const Heading = styled("h1", {

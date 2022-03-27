@@ -1,7 +1,7 @@
 import React, { useState, FunctionComponent, useMemo } from "react";
 import { CSS } from "@stitches/react";
 import { API_URL } from "../../../constants/ExternalUrls";
-import { lightTheme, styled } from "../../../styles/stitches";
+import { lightTheme, styled, yahooGeocitiesTheme } from "../../../styles/stitches";
 
 const AnswerBoxDiv = styled("div", {
     bottom: "0",
@@ -10,8 +10,8 @@ const AnswerBoxDiv = styled("div", {
     minHeight: "50px",
     backgroundColor: "$background",
     border: "1px solid $onBackground",
-    [`.${ lightTheme } &`]: {
-        backgroundColor: "$background"
+    [`.${ yahooGeocitiesTheme } &`]: {
+        backgroundColor: "#121212"
     }
 });
 

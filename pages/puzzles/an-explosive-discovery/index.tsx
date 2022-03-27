@@ -133,9 +133,12 @@ const WORDS = [
 const ContentDiv = styled("div", {
     paddingTop: "10px",
     "&::before": {
-        "content": "It is STRONGLY recommended you solve this puzzle on a device that can fit the entire grid on screen",
+        "content": "\u00a1\u00a1\u00a1WARNING: This puzzle requires a device that fits the entire grid on screen!!!",
         position: "relative",
-        paddingBottom: "10px"
+        paddingBottom: "10px",
+        color: "$onError",
+        backgroundColor: "$error",
+        whiteSpace: "pre-wrap"
     },
     "@lg": {
         paddingTop: "0px",

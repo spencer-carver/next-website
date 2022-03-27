@@ -119,7 +119,7 @@ const CardImageWrapperDiv = styled("div", {
     padding: "10px 0",
     height: "100px",
     "@lg": {
-        width: "auto",
+        width: "150px",
         height: "200px"
     },
     [`.${ lightTheme } &`]: {

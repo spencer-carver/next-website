@@ -9,7 +9,10 @@ const NAME = "travel-diary";
 type Segment = [string, number];
 
 const RowDiv = styled("div", {
-    height: "50px"
+    height: "50px",
+    "&:first-of-type": {
+        marginTop: "50px"
+    }
 });
 
 const SymbolDiv = styled("div", {
@@ -17,7 +20,7 @@ const SymbolDiv = styled("div", {
     width: "40px",
     height: "40px",
     borderRadius: "50%",
-    margin: "0 10px",
+    margin: "0 5px",
     color: "White",
     "&::before": {
         position: "relative",

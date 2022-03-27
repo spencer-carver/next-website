@@ -32,9 +32,13 @@ const ErrorDiv = styled("div", {
 const SadFaceSpan = styled("span", {
     position: "absolute",
     top: "20%",
-    left: "calc(50% - 60px)",
-    fontSize: "200px",
+    left: "calc(50% - 30px)",
+    fontSize: "100px",
     textAlign: "center",
+    "@lg": {
+        left: "calc(50% - 60px)",
+        fontSize: "200px"
+    },
     [`.${ yahooGeocitiesTheme } &`]: {
         top: "15%",
         backgroundColor: "transparent"

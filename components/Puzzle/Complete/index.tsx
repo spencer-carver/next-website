@@ -4,7 +4,7 @@ import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
 const SolvedDiv = styled("div", {
     backgroundColor: "$secondary",
     position: "absolute",
-    top: "5px",
+    top: "55px",
     right: "5px", 
     padding: "4px",
     textAlign: "center",

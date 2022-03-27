@@ -1,4 +1,4 @@
-import { ALEXA_LOGO, AWS_LOGO, GITHUB_LOGO, JS_LOGO, NEXT_JS_LOGO, PYTHON_LOGO, REACT_LOGO, STITCHES_LOGO, TS_LOGO } from "../../constants/Logos";
+import { ALEXA_LOGO, AWS_LOGO, GCP_LOGO, GITHUB_LOGO, JS_LOGO, NEXT_JS_LOGO, PYTHON_LOGO, REACT_LOGO, STITCHES_LOGO, TS_LOGO } from "../../constants/Logos";
 
 export interface Resource {
     image: string;
@@ -70,7 +70,7 @@ const PROJECT_DETAILS: { [key: string]: Project } = {
     },
     mail: {
         title: "Serverless Mail",
-        description: "AWS Setup to route carvers.info emails to my personal gmail.",
+        description: "Routes carvers.info emails to my personal gmail using the free tiers of multiple AWS services.",
         extendedDescription: "Amazon SES recieves all incoming messages to carvers.info, and then dumps the contents into s3. A lambda function picks up the change, rewrites message headers, and reroutes to gmail.",
         imageUrl: "/email.png",
         imageAlt: "an envelope",
@@ -80,6 +80,28 @@ const PROJECT_DETAILS: { [key: string]: Project } = {
         },{
             image: AWS_LOGO,
             alt: "Amazon Web Services"
+        }]
+    },
+    blog: {
+        title: "Headless Blog",
+        description: "Blog CMS utilizing free tiers of AWS and GCP to upload content to the site without deployments",
+        extendedDescription: "A google cloud service role has access to a folder on my Google Drive and looks for '.md' files. An AWS Lambda function is attached to my site API and can utilize this role to fetch posts.",
+        imageUrl: "/blog.png",
+        imageAlt: "a newspaper",
+        utilizes: [{
+            image: JS_LOGO,
+            alt: "Javascript"
+        },{
+            image: AWS_LOGO,
+            alt: "Amazon Web Services"
+        },{
+            image: GCP_LOGO,
+            alt: "Google Cloud Platform"
+        }],
+        resources: [{
+            image: GITHUB_LOGO,
+            alt: "Github",
+            url: "https://github.com/spencer-carver/google-drive-blog-api"
         }]
     }
 };
