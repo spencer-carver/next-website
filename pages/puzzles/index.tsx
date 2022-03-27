@@ -19,19 +19,24 @@ const PuzzleList = styled("ul", {
     listStyle: "none",
     fontSize: "18px",
     lineHeight: "32px",
-    margin: "20px 20px 40px",
+    margin: "20px 0 40px",
     color: "$onBackground",
+    paddingInlineStart: "0",
     "& a": {
         textDecoration: "none",
         "&:hover": {
             borderBottom: "2px dotted $secondary"
         }
+    },
+    "@lg": {
+        paddingInlineStart: "40px",
+        margin: "20px 20px 40px"
     }
 });
 
 const AnswerSpan = styled("span", {
     position: "absolute",
-    left: "250px",
+    left: "240px",
     fontWeight: "bold",
     color: "$secondary",
     "&:hover": {

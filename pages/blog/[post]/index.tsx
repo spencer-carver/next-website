@@ -10,6 +10,35 @@ import fetchFromCache from "../../../utils/cache";
 import ErrorPage from "../../404";
 import BackNavigation from "../../../components/BackNavigation";
 import { styled } from "../../../styles/stitches";
+import { Post } from "..";
+
+function formatName(name: string): string {
+    return name.replace(/-/g, " ");
+}
+
+const HeaderDiv = styled("div", {
+    margin: "20px",
+    paddingTop: "20px",
+    color: "$onBackground",
+    position: "relative",
+    "& h1": {
+        textTransform: "capitalize"
+    },
+    "& span": {
+        display: "block",
+        "&:nth-of-type(2)": {
+            marginTop: "5px"
+        }
+    },
+    "@lg": {
+        margin: "20px auto",
+        maxWidth: "730px"
+    },
+    "@xxl": {
+        margin: "20px auto",
+        maxWidth: "1024px"
+    }
+});
 
 const PageDiv = styled("div", {
     margin: "20px",
@@ -81,40 +110,48 @@ const Image = styled("img", {
 
 const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
     const router = useRouter();
-    const { post } = router.query;
-    const [contents, setContents] = useState("");
+    const { post: postName } = router.query;
+    const [post, setPost] = useState({} as unknown as Post);
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         setLoading(true);
-        if (!post) {
+        if (!postName) {
             return;
         }
 
-        fetchFromCache(`${API_URL}/api/blog/${post}`).then((data) => {
-            if (typeof data === "string") {
-                setContents(data);
+        fetchFromCache(`${API_URL}/api/blog/${ postName }`).then((data) => {
+            if (typeof (data as unknown as Post).content === "string") {
+                setPost(data as unknown as Post);
             }
             setLoading(false);
             setLoaded(true);
         });
-    }, [post]);
+    }, [postName]);
 
     if (!loaded) {
         return null;
     }
 
-    if (loaded && !contents) {
+    if (loaded && !post.content) {
         return <ErrorPage title="Blog post not found" statusCode={404} backLink="/blog" />;
     }
+
+    const publishDate = new Date(post.createdTime).toDateString();
+    const modifyDate = new Date(post.modifiedTime).toDateString();
 
     // eslint-disable-next-line react/no-children-prop
     return (
         <>
             <BackNavigation to="/blog" />
+            <HeaderDiv>
+                <h1>{ formatName(postName as string) }</h1>
+                <span>Published on { publishDate }</span>
+                { publishDate !== modifyDate && <span>Modified on { modifyDate }</span>}
+            </HeaderDiv>
             <PageDiv>
                 <ReactMarkdown
-                    children={contents}
+                    children={post.content}
                     remarkPlugins={[remarkGfm]}
                     components={{
                         table: Table as unknown as NormalComponents["table"],
