@@ -2,7 +2,9 @@ import { FunctionComponent } from "react";
 import NextLink from "next/link";
 import { styled } from "../../styles/stitches";
 
-const DefaultAnchor = styled("a", {});
+const DefaultAnchor = styled("a", {
+    color: "$onBackground"
+});
 
 interface LinkProps {
     href: string;
