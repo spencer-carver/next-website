@@ -35,16 +35,21 @@ const BlogList = styled("ul", {
     }
 });
 
+const PostDiv = styled("div", {
+    "&:not(:first-of-type)": {
+        marginTop: "10px",
+        borderTop: "1px dotted $onSurface",
+        paddingTop: "10px"
+    }
+});
+
 const BlogLink = styled("li", {
     fontSize: "24px",
     textTransform: "capitalize"
 });
 
 const DateSpan = styled("span", {
-    display: "block",
-    "&:not(:first-of-type)": {
-        marginTop: "20px"
-    }
+    display: "block"
 });
 
 const DescriptionSpan = styled("span", {
@@ -80,13 +85,13 @@ const BlogIndex: FunctionComponent<PageProps> = ({ setLoading }) => {
             <Heading>Blog</Heading>
         <BlogList>
             { posts.map((post, index) => (
-                <div key={ index }>
+                <PostDiv key={ index }>
                     <DateSpan>{ new Date(post.createdTime).toDateString() }</DateSpan>
                     <Link href={ `/blog/${ post.name }` }>
                         <BlogLink>{ formatName(post.name) }</BlogLink>
                     </Link>
                     <DescriptionSpan>{ post.description }</DescriptionSpan>
-                </div>
+                </PostDiv>
             )) }
         </BlogList>
         </PageDiv>
