@@ -60,16 +60,18 @@ const FirstTimeVisitor: FunctionComponent<{ lastUpdate: number; }> = ({ lastUpda
         try {
             const hasVisited = localStorage.getItem("visited");
 
-            localStorage.setItem("visited", JSON.stringify({ dismissed: false, time: (new Date()).getTime() }));
-
             if (!hasVisited) {
                 setFirstTime(true);
                 setIsDismissed(false);
+
+                localStorage.setItem("visited", JSON.stringify({ dismissed: false, time: (new Date()).getTime() }));
 
                 return;
             }
 
             const { dismissed, time } = JSON.parse(hasVisited);
+
+            localStorage.setItem("visited", JSON.stringify({ dismissed, time: (new Date()).getTime() }));
 
             if (time > lastUpdate) {
                 setIsDismissed(dismissed);
