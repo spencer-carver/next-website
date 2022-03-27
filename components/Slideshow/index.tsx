@@ -55,11 +55,6 @@ const ImageWrapperDiv = styled("div", {
     top: "0",
     "& img": {
         objectFit: "cover"
-    },
-    "@xxl": {
-        "& img": {
-            objectFit: "none"
-        }
     }
 });
 
