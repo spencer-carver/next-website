@@ -73,7 +73,10 @@ const TableCell = styled("td", {
 const Link = styled("a", {
     color: "$onSurface",
     textDecoration: "none",
-    borderBottom: "2px dotted $secondary"
+    borderBottom: "2px dotted $secondary",
+    "&:hover": {
+        backgroundColor: "$secondary"
+    }
 });
 
 const BlogLink = (props): ReactElement => {
@@ -93,9 +96,9 @@ const Pre = styled("pre", {
 });
 
 const Code = styled("code", {
-    backgroundColor: "$surface02",
+    backgroundColor: "$surface04",
     padding: "0 2px",
-    borderRadius: "2px"
+    borderRadius: "4px"
 });
 
 const BlockQuote = styled("blockquote", {
