@@ -5,8 +5,8 @@ import { CSS } from "@stitches/react";
 
 const SpinnerDiv = styled("div", {
     position: "absolute", 
-    width: "100vw",
-    height: "calc(100vh + 50px)",
+    width: "100%",
+    height: "calc(100% - 50px)",
     backgroundColor: "rgba(0,0,0,0.7)",
     zIndex: "10",
     opacity: "1",

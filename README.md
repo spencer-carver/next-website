@@ -12,4 +12,4 @@ If you're interested in the previous version if this site, it is available [here
 <sub><sup>diagram created with [draw.io](https://www.draw.io/?splash=0&libs=aws3)</sup></sub>
 
 ### Known Issues
-Check the [Issues Tab](https://github.com/spencer-carver/aws-site/issues) to see current issues in need of resolution, and closed items that have been previously addressed.
+Check the [Issues Tab](https://github.com/spencer-carver/next-website/issues) to see current issues in need of resolution, and closed items that have been previously addressed.

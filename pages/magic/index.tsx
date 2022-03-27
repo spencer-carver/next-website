@@ -85,12 +85,12 @@ const Magic: FunctionComponent = () => {
                 <div>
                     <Heading as="h2">Commander</Heading>
                     <ul>
-                        <DeckLink name="Karador" id="Karador" colors="⚪⚫🟢" />
-                        <DeckLink name="Muldrotha" id="Muldrotha" colors="🔵⚫🟢" />
-                        <DeckLink name="Nahiri" id="Nahiri" colors="⚪" />
-                        <DeckLink name="Sasaya" id="Sasaya" colors="🟢" />
+                        <DeckLink name="Karador" id="karador" colors="⚪⚫🟢" />
+                        <DeckLink name="Muldrotha" id="muldrotha" colors="🔵⚫🟢" />
+                        <DeckLink name="Nahiri" id="nahiri" colors="⚪" />
+                        <DeckLink name="Sasaya" id="sasaya" colors="🟢" />
                         <DeckLink name="Sen Triplets" id="sen-triplets" colors="⚪🔵⚫" />
-                        <DeckLink name="Zedruu" id="Zedruu" colors="⚪🔵🔴" />
+                        <DeckLink name="Zedruu" id="zedruu" colors="⚪🔵🔴" />
                         <DeckLink name="Zur" id="zur" colors="⚪🔵⚫" />
                     </ul>
                 </div>

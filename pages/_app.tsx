@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
-import { defaultTheme } from "../styles/stitches";
+import { darkTheme, defaultTheme, lightTheme, THEMES } from "../styles/stitches";
 import { invalidateExpiredCacheItems } from "../utils/cache";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -12,6 +12,24 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
     useEffect(() => {
         invalidateExpiredCacheItems();
+
+        try {
+            const selectedTheme = THEMES[localStorage.getItem("theme")];
+
+            if (selectedTheme) {
+                setTheme(selectedTheme);
+            } else if  (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme(darkTheme);
+            } else if  (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                setTheme(lightTheme);
+            }
+
+            const body = document.getElementsByTagName("body")[0];
+            body.style.visibility = "visible";
+            body.style.opacity = "1";
+        } catch (e) {
+            //do nothing
+        }
     }, []);
 
     return (

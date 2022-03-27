@@ -38,7 +38,7 @@ const ControlsDiv = styled("div", {
 
 const SelectorSpan = styled("span", {
     fontSize: "36px",
-    color: "$surface04",
+    color: "$onSurface",
     backgroundColor: "transparent"
 });
 

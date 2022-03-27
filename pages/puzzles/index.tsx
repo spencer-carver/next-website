@@ -4,8 +4,6 @@ import PuzzleComplete from "../../components/Puzzle/Complete";
 import { styled } from "../../styles/stitches";
 import { DescriptionDiv, Heading, PuzzleDiv } from "../../components/Puzzle/common";
 
-const styles = {};
-
 const PUZZLES = {
     "tutorial": "Tutorial",
     "tetris": "Tetris",
@@ -22,8 +20,8 @@ const PuzzleList = styled("ul", {
     fontSize: "18px",
     lineHeight: "32px",
     margin: "20px 20px 40px",
+    color: "$onBackground",
     "& a": {
-        color: "$onBackground",
         textDecoration: "none",
         "&:hover": {
             borderBottom: "2px dotted $secondary"
@@ -75,6 +73,7 @@ const Puzzles: FunctionComponent = () => {
                     This page is not a puzzle.
                 </DescriptionDiv>
                 <PuzzleList>
+                    <li style={ { position: "relative", textDecoration: "underline" } }>Puzzle<AnswerSpan css={ { color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } } }>Answer</AnswerSpan></li>
                     { Object.keys(PUZZLES).map((puzzleId: string, index: number) => {
                         let puzzleAnswer;
                         try {

@@ -34,7 +34,11 @@ const ThemeButton = styled("button", {
 });
 const selectedThemeButtonStyles: CSS = {
     backgroundColor: "$surface01",
-    color: "$onSurface"
+    color: "$onSurface",
+    [`.${ lightTheme } &`]: {
+        backgroundColor: "$onSurface",
+        color: "$surface01"
+    }
 };
 const kebabMenuStyles: CSS = {
     float: "left",

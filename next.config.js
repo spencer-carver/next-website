@@ -9,5 +9,5 @@ const imgixImageLoader = {
 };
 
 module.exports = withBundleAnalyzer({
-    ...(process.env.IMAGE_OPTIMIZATION_MODE === "imgix" ? { images: imgixImageLoader } : {})
+    ...(process.env.IMAGE_OPTIMIZATION_MODE === "imgix" ? { images: imgixImageLoader } : { images: { domains: [ "c1.scryfall.com" ] } } )
 });

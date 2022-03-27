@@ -17,6 +17,9 @@ export default class MyDocument extends Document {
                 <Head>
                     <meta charSet="utf-8" />
                     <style id="stitches" dangerouslySetInnerHTML={{ __html: getCssText() }} />
+                    <noscript>
+                        <style dangerouslySetInnerHTML={{ __html: "body { visibility: visible; opacity: 1; }" }} />
+                    </noscript>
                     <link href="https://fonts.googleapis.com/css?family=Lato&amp;display=swap" rel="stylesheet" />
                     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&amp;display=swap" rel="stylesheet" />
                     <link rel="shortcut icon" href={ `${ metadata.siteUrl }/favicon.ico` } />

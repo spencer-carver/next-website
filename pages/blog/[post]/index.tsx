@@ -1,46 +1,89 @@
 import { useRouter } from "next/router";
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, ReactElement, useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { HeadingComponent } from "react-markdown/lib/ast-to-react";
-import { NormalComponents } from "react-markdown/lib/complex-types";
 import remarkGfm from "remark-gfm";
+import { NormalComponents } from "react-markdown/lib/complex-types";
+import { TableCellComponent } from "react-markdown/lib/ast-to-react";
 import { PageProps } from "../../../@types/global";
 import { API_URL } from "../../../constants/ExternalUrls";
-import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
 import fetchFromCache from "../../../utils/cache";
+import ErrorPage from "../../404";
+import BackNavigation from "../../../components/BackNavigation";
+import { styled } from "../../../styles/stitches";
 
 const PageDiv = styled("div", {
     margin: "20px",
     padding: "20px",
     backgroundColor: "$surface01",
+    color: "$onSurface",
     "@lg": {
         margin: "20px auto",
         maxWidth: "690px"
     },
-    "@xl": {
+    "@xxl": {
         margin: "20px auto",
         maxWidth: "1024px"
-    },
-    [`.${ yahooGeocitiesTheme } &`]: {
-        backgroundColor: "transparent"
     }
 });
 
-const Header1 = styled("h1", {
-    color: "$onBackground"
+
+const Table = styled("table", {
+    borderCollapse: "collapse"
 });
-const Header2 = styled("h2", {
-    margin: "0",
-    color: "$onBackground"
+
+const TableHeading = styled("th", {
+    border: "1px solid $onSurface",
+    padding: "2px"
 });
-const Paragraph = styled("p", {
-    color: "$onBackground"
+
+const TableCell = styled("td", {
+    border: "1px solid $onSurface",
+    padding: "2px"
+});
+
+const Link = styled("a", {
+    color: "$onSurface",
+    textDecoration: "none",
+    borderBottom: "2px dotted $secondary"
+});
+
+const BlogLink = (props): ReactElement => {
+    if (props.id) {
+        return <span><a id={ props.id } style={ { paddingTop: "50px", pointerEvents: "none" } } /><Link { ...props } id={ undefined } /></span>;
+    }
+
+    return <Link { ...props } />;
+};
+
+const Pre = styled("pre", {
+    backgroundColor: "$surface02",
+    padding: "10px",
+    "& code": {
+        backgroundColor: "unset"
+    }
+});
+
+const Code = styled("code", {
+    backgroundColor: "$surface02",
+    padding: "0 2px",
+    borderRadius: "2px"
+});
+
+const BlockQuote = styled("blockquote", {
+    borderLeft: "5px solid $surface04",
+    paddingLeft: "20px",
+    marginLeft: "0px"
+});
+
+const Image = styled("img", {
+    maxWidth: "100%"
 });
 
 const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
     const router = useRouter();
     const { post } = router.query;
-    const [ contents, setContents ] = useState("");
+    const [contents, setContents] = useState("");
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         setLoading(true);
@@ -48,29 +91,44 @@ const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
             return;
         }
 
-        fetchFromCache(`${ API_URL }/api/blog/${ post }`).then((data) => {
-            setContents(data as unknown as string);
+        fetchFromCache(`${API_URL}/api/blog/${post}`).then((data) => {
+            if (typeof data === "string") {
+                setContents(data);
+            }
             setLoading(false);
+            setLoaded(true);
         });
     }, [post]);
 
-    if (!contents) {
+    if (!loaded) {
         return null;
+    }
+
+    if (loaded && !contents) {
+        return <ErrorPage title="Blog post not found" statusCode={404} backLink="/blog" />;
     }
 
     // eslint-disable-next-line react/no-children-prop
     return (
-        <PageDiv>
-            <ReactMarkdown
-                children={ contents }
-                remarkPlugins={[remarkGfm]}
-                components={{
-                    h1: Header1 as unknown as HeadingComponent,
-                    h2: Header2 as unknown as HeadingComponent,
-                    p: Paragraph as unknown as NormalComponents["p"]
-                }}
-            />
-        </PageDiv>
+        <>
+            <BackNavigation to="/blog" />
+            <PageDiv>
+                <ReactMarkdown
+                    children={contents}
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                        table: Table as unknown as NormalComponents["table"],
+                        th: TableHeading as unknown as TableCellComponent,
+                        td: TableCell as unknown as TableCellComponent,
+                        a: BlogLink as unknown as NormalComponents["a"],
+                        pre: Pre as unknown as NormalComponents["pre"],
+                        code: Code as unknown as NormalComponents["code"],
+                        blockquote: BlockQuote as unknown as NormalComponents["blockquote"],
+                        img: Image as unknown as NormalComponents["img"]
+                    }}
+                />
+            </PageDiv>
+        </>
     );
 };
 

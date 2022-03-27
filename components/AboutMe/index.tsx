@@ -26,7 +26,7 @@ const PersonalBlurbDiv = styled("div", {
 const PhotoContainerWrapper = styled("div", {
     position: "relative",
     margin: "20px auto",
-    "@xl": {
+    "@xxl": {
         flex: "1",
     }
 });
@@ -41,7 +41,7 @@ const PhotoContainerDiv = styled("div", {
         width: "250px",
         height: "250px",
     },
-    "@xl": {
+    "@xxl": {
         width: "350px",
         height: "350px"
     },
@@ -68,7 +68,7 @@ const PersonalDetailsDiv = styled("div", {
         fontSize: "20px",
         lineHeight: "32px"
     },
-    "@xl": {
+    "@xxl": {
         fontSize: "24px",
         lineHeight: "36px",
         flex: "1"

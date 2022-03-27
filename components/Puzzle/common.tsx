@@ -1,24 +1,15 @@
 import React, { FunctionComponent, useCallback, useEffect, useState } from "react";
-import Link from "../Link";
 import PuzzleComplete from "./Complete";
 import PuzzleAnswerSubmission from "./AnswerCheck";
 import { styled } from "../../styles/stitches";
+import BackNavigation from "../BackNavigation";
 
 export const PuzzleDiv = styled("div", {
     margin: "0 auto",
     maxWidth: "800px",
     textAlign: "center",
-    paddingTop: "30px"
-});
-
-const BackAnchor = styled("a", {
-    float: "left",
-    marginTop: "30px",
-    marginLeft: "30px",
-    textDecoration: "none",
-    "&:hover": {
-        textDecoration: "underline"
-    }
+    paddingTop: "30px",
+    minHeight: "calc(100vh - 185px)",
 });
 
 export const Heading = styled("h1", {
@@ -76,7 +67,7 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
     return (
         <>
             { AnswerBanner }
-            <Link href="/puzzles" component={ BackAnchor }>&#10094; Back</Link>
+            <BackNavigation to="/puzzles" />
             <PuzzleDiv>
                 <Heading>{ title }</Heading>
                 { description && <DescriptionDiv>{ description }</DescriptionDiv> }

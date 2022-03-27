@@ -1,4 +1,4 @@
-import { ALEXA_LOGO, AWS_LOGO, GITHUB_LOGO, JS_LOGO, PYTHON_LOGO, REACT_LOGO, TS_LOGO } from "../../constants/Logos";
+import { ALEXA_LOGO, AWS_LOGO, GITHUB_LOGO, JS_LOGO, NEXT_JS_LOGO, PYTHON_LOGO, REACT_LOGO, STITCHES_LOGO, TS_LOGO } from "../../constants/Logos";
 
 export interface Resource {
     image: string;
@@ -32,6 +32,12 @@ const PROJECT_DETAILS: { [key: string]: Project } = {
         }, {
             image: AWS_LOGO,
             alt: "Amazon Web Services"
+        }, {
+            image: NEXT_JS_LOGO,
+            alt: "Next.js"
+        }, {
+            image: STITCHES_LOGO,
+            alt: "Stitches"
         }],
         resources: [{
             image: GITHUB_LOGO,

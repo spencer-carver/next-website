@@ -56,7 +56,7 @@ const ImageWrapperDiv = styled("div", {
     "& img": {
         objectFit: "cover"
     },
-    "@xl": {
+    "@xxl": {
         "& img": {
             objectFit: "none"
         }
@@ -257,14 +257,15 @@ interface ImageSlideProps {
     selected: number;
     src: string;
     alt: string;
+    priority?: boolean;
     css?: CSS;
 }
 
-export const ImageSlide: FunctionComponent<ImageSlideProps> = ({ index, src, alt, selected, css }) => {
+export const ImageSlide: FunctionComponent<ImageSlideProps> = ({ index, src, alt, selected, priority, css }) => {
     return (
         <SlideDiv css={ selected === index ? slideSelectedStyles : {} }>
             <ImageWrapperDiv css={ css }>
-                <Image src={ src } alt={ alt } layout="fill" />
+                <Image src={ src } alt={ alt } layout="fill" priority={ priority } />
             </ImageWrapperDiv>
         </SlideDiv>
     );
