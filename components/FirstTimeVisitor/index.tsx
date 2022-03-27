@@ -71,15 +71,11 @@ const FirstTimeVisitor: FunctionComponent<{ lastUpdate: number; }> = ({ lastUpda
 
             const { dismissed, time } = JSON.parse(hasVisited);
 
-            localStorage.setItem("visited", JSON.stringify({ dismissed, time: (new Date()).getTime() }));
+            const updatedDismissed = time > lastUpdate ? dismissed : false;
 
-            if (time > lastUpdate) {
-                setIsDismissed(dismissed);
+            localStorage.setItem("visited", JSON.stringify({ dismissed: updatedDismissed, time: (new Date()).getTime() }));
 
-                return;
-            }
-
-            setIsDismissed(false);
+            setIsDismissed(updatedDismissed);
         } catch(e) {
             // do nothing
         }
@@ -96,7 +92,16 @@ const FirstTimeVisitor: FunctionComponent<{ lastUpdate: number; }> = ({ lastUpda
     }, []);
 
     if (isDismissed) {
-        return <ContainerDiv />;
+        return (
+            <ContainerDiv>
+                <noscript>
+                    <MessageDiv>
+                        You need Javascript enabled to perform most site navigation! Pages that mostly work without it:&nbsp;
+                        <Link href="/about">About Me</Link>, <Link href="/recipes/cocktails">Cocktails</Link>
+                    </MessageDiv>
+                </noscript>
+            </ContainerDiv>
+        );
     }
 
     return (
