@@ -1,19 +1,7 @@
 import React from "react";
+import Head from "next/head";
 import BackNavigation from "../components/BackNavigation";
-import Link from "../components/Link";
 import { lightTheme, styled, yahooGeocitiesTheme } from "../styles/stitches";
-
-const Back = styled("a", {
-    position: "absolute",
-    top: "80px",
-    left: "30px",
-    textDecoration: "none",
-    color: "$onBackground",
-    zIndex: "1",
-    "&:hover": {
-        textDecoration: "underline"
-    }
-});
 
 const ErrorDiv = styled("div", {
     display: "flex",
@@ -74,11 +62,14 @@ const ErrorMessageHeading = styled("h2", {
     padding: "0px"
 });
 
-export default function Custom404({ title: errorMessage = "Not Found", statusCode = 404, backLink = undefined }) {
+export default function Custom404({ title: errorMessage = "Not Found", statusCode = 404, backLink = "/" }) {
     return (
         <>
+            <Head>
+                <title>{ statusCode } - { errorMessage }</title>
+            </Head>
             <ErrorDiv>
-                <BackNavigation to="/" />
+                <BackNavigation to={ backLink } />
                 <SadFaceSpan>:(</SadFaceSpan>
                 <ErrorCodeHeading>{ statusCode }</ErrorCodeHeading>
                 <MessageWrapperDiv>

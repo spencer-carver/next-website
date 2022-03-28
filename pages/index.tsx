@@ -4,6 +4,13 @@ import FirstTimeVisitor from "../components/FirstTimeVisitor";
 import ConstructionGif from "../components/ConstructionGif";
 import Link from "../components/Link";
 import { TWITCH_URL, YOUTUBE_URL } from "../constants/ExternalUrls";
+import Head from "next/head";
+
+const metadata = {
+    description: "Spencer Carver's personal website. Details about his hobbies, skills, and interests, as well as contact information.",
+    siteName: "Spencer's Personal Website",
+    siteUrl: "https://spencer.carvers.info"
+};
 
 const PageDiv = styled("div", {
     maxWidth: "1024px",
@@ -34,6 +41,20 @@ const A = styled("a", {
 export default ({ theme, lastUpdate }) => {
     return (
         <>
+            <Head>
+                <title>{ metadata.siteName }</title>
+                <link rel="canonical" href={metadata.siteUrl} />
+                <meta name="description" content={metadata.description} />
+                <meta name="homepage" content="true" />
+                <meta property="og:site_name" content={metadata.siteName} />
+                <meta property="og:description" content={metadata.description} />
+                <meta property="og:title" content={metadata.siteName} />
+                <meta property="og:url" content={metadata.siteUrl} />
+                <meta property="og:image" content={`${metadata.siteUrl}/seo.jpg`} />
+                <meta name="twitter:description" content={metadata.description} />
+                <meta name="twitter:title" content={metadata.siteName} />
+                <meta name="twitter:image" content={`${metadata.siteUrl}/seo.jpg`} />
+            </Head>
             <Hero options={{ overlayLogo: true, hideMobile: true }} />
             <PageDiv>
                 <FirstTimeVisitor lastUpdate={lastUpdate} />

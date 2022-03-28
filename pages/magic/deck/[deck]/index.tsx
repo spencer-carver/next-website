@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useState, useCallback } from "react";
 import { CSS } from "@stitches/react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import ErrorPage from "../../../404";
 import { PageProps } from "../../../../@types/global";
 import { API_URL } from "../../../../constants/ExternalUrls";
@@ -331,12 +332,29 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
 
     const isYorion = deck.entries.mainboard.length === 80;
 
+    const TITLE = formatDeckName(deckName as string);
+    const DESCRIPTION = `A ${ deck.format || deck.type } deck by Spencer Carver`;
+
     // eslint-disable-next-line react/no-children-prop
     return (
         <>
+            <Head>
+                <title>{ TITLE }</title>
+                <link rel="canonical" href={ `https://spencer.carvers.info/magic/deck/${ deckName }` } />
+                <meta name="description" content={DESCRIPTION} />
+                <meta name="homepage" content="false" />
+                <meta property="og:site_name" content={TITLE} />
+                <meta property="og:description" content={DESCRIPTION} />
+                <meta property="og:title" content={TITLE} />
+                <meta property="og:url" content={ `https://spencer.carvers.info/magic/deck/${ deckName }` } />
+                <meta property="og:image" content={`https://spencer.carvers.info/seo.jpg`} />
+                <meta name="twitter:description" content={DESCRIPTION} />
+                <meta name="twitter:title" content={TITLE} />
+                <meta name="twitter:image" content={`https://spencer.carvers.info/seo.jpg`} />
+            </Head>
             <BackNavigation to="/magic" />
             <TableDiv>
-                <TitleHeading>{deck.type === "constructed" && <><FormatSpan>{deck.format}</FormatSpan>&nbsp;</>}{formatDeckName(deckName as string)}</TitleHeading>
+                <TitleHeading>{deck.type === "constructed" && <><FormatSpan>{deck.format}</FormatSpan>&nbsp;</>}{TITLE}</TitleHeading>
                 <FeaturedDiv css={deck.type === "constructed" ? { display: "none" } : {}}>
                     {
                         deck.entries.featured.map(({ card_digest: cardDigest }, i) => {
