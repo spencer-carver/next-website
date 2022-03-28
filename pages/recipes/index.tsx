@@ -1,8 +1,12 @@
 import React, { FunctionComponent } from "react";
+import Head from "next/head";
 import { PageProps } from "../../@types/global";
 import ConstructionGif from "../../components/ConstructionGif";
 import Link from "../../components/Link";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
+
+const TITLE = "All Recipes";
+const DESCRIPTION = "Some of my favorite recipes for any time of day or year!";
 
 const ContentDiv = styled("div", {
     margin: "0 auto",
@@ -50,6 +54,20 @@ const LinkAnchor = styled("a", {
 const Recipes: FunctionComponent<PageProps> = ({ theme }) => {
     return (
         <>
+            <Head>
+                <title>{ TITLE }</title>
+                <link rel="canonical" href="https://spencer.carvers.info/recipes" />
+                <meta name="description" content={DESCRIPTION} />
+                <meta name="homepage" content="false" />
+                <meta property="og:site_name" content={TITLE} />
+                <meta property="og:description" content={DESCRIPTION} />
+                <meta property="og:title" content={TITLE} />
+                <meta property="og:url" content="https://spencer.carvers.info/recipes" />
+                <meta property="og:image" content={`https://spencer.carvers.info/seo.jpg`} />
+                <meta name="twitter:description" content={DESCRIPTION} />
+                <meta name="twitter:title" content={TITLE} />
+                <meta name="twitter:image" content={`https://spencer.carvers.info/seo.jpg`} />
+            </Head>
             <ContentDiv>
                 <MenuDiv>
                     <Heading>Recipes</Heading>

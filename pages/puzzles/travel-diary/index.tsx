@@ -4,6 +4,7 @@ import { PuzzleWrapperComponent } from "../../../components/Puzzle/common";
 import { styled } from "../../../styles/stitches";
 
 const TITLE = "Travel Diary";
+const DESCRIPTION = "As if public transit wasn't confusing enough already!";
 const NAME = "travel-diary";
 
 type Segment = [string, number];
@@ -82,7 +83,7 @@ const Subway: FunctionComponent = () => {
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ undefined } name={ NAME }>
+        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME }>
             <Subway />
         </PuzzleWrapperComponent>
     );

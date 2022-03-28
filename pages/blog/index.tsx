@@ -1,9 +1,13 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
+import Head from "next/head";
 import { PageProps } from "../../@types/global";
 import Link from "../../components/Link";
 import { API_URL } from "../../constants/ExternalUrls";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 import fetchFromCache from "../../utils/cache";
+
+const TITLE = "All Blog Posts";
+const DESCRIPTION = "A list of all Spencer's blog postings";
 
 function formatName(name: string): string {
     return name.replace(/-/g, " ");
@@ -81,20 +85,36 @@ const BlogIndex: FunctionComponent<PageProps> = ({ setLoading }) => {
     }
 
     return (
-        <PageDiv>
-            <Heading>Blog</Heading>
-        <BlogList>
-            { posts.map((post, index) => (
-                <PostDiv key={ index }>
-                    <DateSpan>{ new Date(post.createdTime).toDateString() }</DateSpan>
-                    <Link href={ `/blog/${ post.name }` }>
-                        <BlogLink>{ formatName(post.name) }</BlogLink>
-                    </Link>
-                    <DescriptionSpan>{ post.description }</DescriptionSpan>
-                </PostDiv>
-            )) }
-        </BlogList>
-        </PageDiv>
+        <>
+            <Head>
+                <title>{TITLE}</title>
+                <link rel="canonical" href="https://spencer.carvers.info/blog" />
+                <meta name="description" content={DESCRIPTION} />
+                <meta name="homepage" content="false" />
+                <meta property="og:site_name" content={TITLE} />
+                <meta property="og:description" content={DESCRIPTION} />
+                <meta property="og:title" content={TITLE} />
+                <meta property="og:url" content="https://spencer.carvers.info/blog" />
+                <meta property="og:image" content={`https://spencer.carvers.info/seo.jpg`} />
+                <meta name="twitter:description" content={DESCRIPTION} />
+                <meta name="twitter:title" content={TITLE} />
+                <meta name="twitter:image" content={`https://spencer.carvers.info/seo.jpg`} />
+            </Head>
+            <PageDiv>
+                <Heading>Blog</Heading>
+                <BlogList>
+                    {posts.map((post, index) => (
+                        <PostDiv key={index}>
+                            <DateSpan>{new Date(post.createdTime).toDateString()}</DateSpan>
+                            <Link href={`/blog/${post.name}`}>
+                                <BlogLink>{formatName(post.name)}</BlogLink>
+                            </Link>
+                            <DescriptionSpan>{post.description}</DescriptionSpan>
+                        </PostDiv>
+                    ))}
+                </BlogList>
+            </PageDiv>
+        </>
     );
 };
 

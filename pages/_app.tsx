@@ -35,7 +35,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Head>
-                <title>Spencer Carver&apos;s Info</title>
                 <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, target-densitydpi=device-dpi" />
             </Head>
             <main className={ theme }>

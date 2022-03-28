@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useCallback, useEffect, useState } from "react";
+import Head from "next/head";
 import PuzzleComplete from "./Complete";
 import PuzzleAnswerSubmission from "./AnswerCheck";
 import { styled } from "../../styles/stitches";
@@ -70,6 +71,20 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
 
     return (
         <>
+            <Head>
+                <title>{ title }</title>
+                <link rel="canonical" href={`https://spencer.carvers.info/puzzles/${ name }`} />
+                <meta name="description" content={description} />
+                <meta name="homepage" content="false" />
+                <meta property="og:site_name" content={title} />
+                <meta property="og:description" content={description} />
+                <meta property="og:title" content={title} />
+                <meta property="og:url" content={`https://spencer.carvers.info/puzzles/${ name }`} />
+                <meta property="og:image" content={`https://spencer.carvers.info/seo-puzzle.jpg`} />
+                <meta name="twitter:description" content={description} />
+                <meta name="twitter:title" content={title} />
+                <meta name="twitter:image" content={`https://spencer.carvers.info/seo-puzzle.jpg`} />
+            </Head>
             { AnswerBanner }
             <BackNavigation to="/puzzles" />
             <PuzzleDiv>

@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
 import React, { FunctionComponent, ReactElement, useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { NormalComponents } from "react-markdown/lib/complex-types";
-import { TableCellComponent } from "react-markdown/lib/ast-to-react";
+import { HeadingComponent, TableCellComponent } from "react-markdown/lib/ast-to-react";
 import { PageProps } from "../../../@types/global";
 import { API_URL } from "../../../constants/ExternalUrls";
 import fetchFromCache from "../../../utils/cache";
@@ -45,9 +46,13 @@ const PageDiv = styled("div", {
     padding: "20px",
     backgroundColor: "$surface01",
     color: "$onSurface",
+    "& sup span a": {
+        borderBottom: "none"
+    },
     "@lg": {
         margin: "20px auto",
-        maxWidth: "690px"
+        maxWidth: "690px",
+        fontSize: "18px"
     },
     "@xxl": {
         margin: "20px auto",
@@ -55,6 +60,25 @@ const PageDiv = styled("div", {
     }
 });
 
+function headingId(props) {
+    let id = undefined;
+    try {
+        id = props.id || props.children[0].trim().replace(/[^a-zA-Z0-9]+/gi, '-');
+    } catch (e) {
+        // do nothing
+    }
+
+    return id;
+}
+
+const HeadingOne = styled("h1", {});
+const Heading1 = (props) => <HeadingOne { ...props } id={ headingId(props) } />;
+
+const HeadingTwo = styled("h2", {});
+const Heading2 = (props) => <HeadingTwo { ...props } id={ headingId(props) } />;
+
+const HeadingThree = styled("h3", {});
+const Heading3 = (props) => <HeadingThree { ...props } id={ headingId(props) } />;
 
 const Table = styled("table", {
     borderCollapse: "collapse"
@@ -90,8 +114,13 @@ const BlogLink = (props): ReactElement => {
 const Pre = styled("pre", {
     backgroundColor: "$surface02",
     padding: "10px",
+    fontSize: "12px",
+    overflowX: "auto",
     "& code": {
         backgroundColor: "unset"
+    },
+    "@lg": {
+        fontSize: "14px"
     }
 });
 
@@ -143,12 +172,29 @@ const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
     const publishDate = new Date(post.createdTime).toDateString();
     const modifyDate = new Date(post.modifiedTime).toDateString();
 
+    const TITLE = formatName(post.name);
+    const DESCRIPTION = post.description || "A blog post by Spencer Carver";
+
     // eslint-disable-next-line react/no-children-prop
     return (
         <>
+            <Head>
+                <title>{ TITLE }</title>
+                <link rel="canonical" href={ `https://spencer.carvers.info/blog/${ postName }` } />
+                <meta name="description" content={DESCRIPTION} />
+                <meta name="homepage" content="false" />
+                <meta property="og:site_name" content={TITLE} />
+                <meta property="og:description" content={DESCRIPTION} />
+                <meta property="og:title" content={TITLE} />
+                <meta property="og:url" content={ `https://spencer.carvers.info/blog/${ postName }` } />
+                <meta property="og:image" content={`https://spencer.carvers.info/seo.jpg`} />
+                <meta name="twitter:description" content={DESCRIPTION} />
+                <meta name="twitter:title" content={TITLE} />
+                <meta name="twitter:image" content={`https://spencer.carvers.info/seo.jpg`} />
+            </Head>
             <BackNavigation to="/blog" />
             <HeaderDiv>
-                <h1>{ formatName(postName as string) }</h1>
+                <h1>{ TITLE }</h1>
                 <span>Published on { publishDate }</span>
                 { publishDate !== modifyDate && <span>Modified on { modifyDate }</span>}
             </HeaderDiv>
@@ -157,6 +203,9 @@ const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
                     children={post.content}
                     remarkPlugins={[remarkGfm]}
                     components={{
+                        h1: Heading1 as unknown as HeadingComponent,
+                        h2: Heading2 as unknown as HeadingComponent,
+                        h3: Heading3 as unknown as HeadingComponent,
                         table: Table as unknown as NormalComponents["table"],
                         th: TableHeading as unknown as TableCellComponent,
                         td: TableCell as unknown as TableCellComponent,

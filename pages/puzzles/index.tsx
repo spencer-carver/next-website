@@ -3,6 +3,13 @@ import Link from "../../components/Link";
 import PuzzleComplete from "../../components/Puzzle/Complete";
 import { styled } from "../../styles/stitches";
 import { DescriptionDiv, Heading, PuzzleDiv } from "../../components/Puzzle/common";
+import Head from "next/head";
+
+const metadata = {
+    description: "A list of all puzzles available at Spencer Carver's website.",
+    siteName: "All Puzzles",
+    siteUrl: "https://spencer.carvers.info"
+};
 
 const PUZZLES = {
     "tutorial": "Tutorial",
@@ -68,6 +75,20 @@ const Puzzles: FunctionComponent = () => {
 
     return (
         <>
+            <Head>
+                <title>{ metadata.siteName }</title>
+                <link rel="canonical" href={ `${ metadata.siteUrl }/puzzles` } />
+                <meta name="description" content={ metadata.description } />
+                <meta name="homepage" content="false" />
+                <meta property="og:site_name" content={ metadata.siteName } />
+                <meta property="og:description" content={ metadata.description } />
+                <meta property="og:title" content={ metadata.siteName } />
+                <meta property="og:url" content={ metadata.siteUrl } />
+                <meta property="og:image" content={ `${ metadata.siteUrl }/seo-puzzle.jpg` } />
+                <meta name="twitter:description" content={ metadata.description } />
+                <meta name="twitter:title" content={metadata.siteName} />
+                <meta name="twitter:image" content={ `${ metadata.siteUrl }/seo-puzzle.jpg` } />
+            </Head>
             { AnswerBanner }
             <PuzzleDiv css={ { height: "calc(100vh - 131px)" } }>
                 <Heading>Puzzles</Heading>
