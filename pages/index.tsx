@@ -60,6 +60,8 @@ export default ({ theme, lastUpdate }) => {
                 <FirstTimeVisitor lastUpdate={lastUpdate} />
                 <ConstructionGif theme={theme} />
                 <Heading>Site News:</Heading>
+                <SubHeading>March 28, 2022</SubHeading>
+                <P>Nothing notable here aside from a bunch of minor styling updates noticed now that I have a blog post to look at. I also updated the page metadata for unfurling (e.g. when I post pages to Facebook or Twitter, it will now have details about that page rather than just the site) and messed around with a few of the 'noscript' settings, but would be wholely surprised if anyone legitimately encountered those.</P>
                 <SubHeading>March 27, 2022</SubHeading>
                 <List>
                     <ListItem>New Website!</ListItem>

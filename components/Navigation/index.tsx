@@ -135,12 +135,12 @@ const SocialLinks: FunctionComponent = () => <SocialLinksDiv><InstagramIcon /><F
 
 const SiteNavDiv = styled("div", {
     top: "45px",
-    left: "-20px",
-    width: "100px",
     position: "fixed",
-    margin: "5px 30px",
-    padding: "10px 0",
-    zIndex: "1000003"
+    margin: "5px 30px 5px 0",
+    padding: "10px 0 10px 10px",
+    zIndex: "1000003",
+    width: "85px",
+    height: "130px"
 });
 
 const SiteNavContentsDiv = styled("div", {
@@ -171,7 +171,7 @@ interface SiteNavProps {
 const SiteNav: FunctionComponent<SiteNavProps> = ({ expanded }) => {
     return (
         <SiteNavDiv css={ expanded ? {} : { display: "none" } }>
-            <SiteNavContentsDiv>
+            <SiteNavContentsDiv css={ expanded ? { zIndex: "1000003" } : {} }>
                 <Link href="/" component={ SiteNavLinkAnchor }>Home</Link>
                 <Link href="/about" component={ SiteNavLinkAnchor }>About Me</Link>
                 <Link href="/blog" component={ SiteNavLinkAnchor }>Blog</Link>
@@ -212,30 +212,25 @@ const PageNavDiv = styled("div", {
     display: "block",
     textAlign: "center",
     margin: "13px 0 0",
-    paddingBottom: "17px",
+    padding: "0 0 17px 0",
     height: "20px"
 });
 
-const SiteNavBackgroundDiv = styled("div", {});
-
-const navBarExpandedStyles: CSS = {
-    [`& ${ SiteNavBackgroundDiv }`]: {
-        backgroundColor: "$surface01",
-        width: "120px",
-        height: "150px",
-        marginLeft: "-50px",
-        borderBottomRightRadius: "$borderRadius",
+const SiteNavBackgroundDiv = styled("div", {
+    backgroundColor: "$surface01",
+    width: "120px",
+    height: "150px",
+    marginLeft: "-50px",
+    borderBottomRightRadius: "$borderRadius",
+    borderBottom: "1px solid $onBackground",
+    borderRight: "1px solid $onBackground",
+    [`.${ yahooGeocitiesTheme } &`]: {
+        backgroundColor: "$secondary",
         borderBottom: "1px solid transparent",
         borderRight: "1px solid transparent",
-        [`.${ lightTheme } &`]: {
-            borderBottom: "1px solid black",
-            borderRight: "1px solid black"
-        },
-        [`.${ yahooGeocitiesTheme } &`]: {
-            backgroundColor: "$secondary"
-        }
+
     }
-};
+});
 
 interface PageNavProps {
     sections?: Array<string>;
@@ -246,9 +241,13 @@ interface PageNavProps {
 
 const PageNav: FunctionComponent<PageNavProps> = ({ sections = [], selected, setSelected, expanded }) => {
     return (
-        <NavBarDiv id="navBar" css={ expanded ? navBarExpandedStyles : {} }>
+        <NavBarDiv id="navBar">
             <NavContainerDiv>
                 <PageNavDiv>
+                    <noscript>
+                        <style dangerouslySetInnerHTML={ { __html: `${ NavBarDiv } { z-index: 1000003; background-color: transparent; border-bottom: 0 !important; } ${ PageNavDiv } { text-align: left; padding: 0 0 17px 30px; }` } } />
+                        <Link href="/">Home</Link> | <Link href="/about">About</Link>
+                    </noscript>
                     {  
                         sections.map((name, index) => {
                             if (!name) {
@@ -267,7 +266,7 @@ const PageNav: FunctionComponent<PageNavProps> = ({ sections = [], selected, set
                         })
                     }
                 </PageNavDiv>
-                <SiteNavBackgroundDiv />
+                <SiteNavBackgroundDiv css={ expanded ? {} : { display: "none" } } />
             </NavContainerDiv>
         </NavBarDiv>
     );

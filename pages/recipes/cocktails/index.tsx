@@ -117,16 +117,17 @@ const ContentDiv = styled("div", {
 });
 
 const MenuDiv = styled("div", {
-    padding: "0 10px 20px",
+    padding: "20px 10px",
     minHeight: "400px",
-    backgroundColor: "$surface02",
+    backgroundColor: "$background",
     marginBottom: "198px",
     color: "$onSurface",
     "@lg": {
         marginTop: "50px",
         minHeight: "600px",
         border: "1px solid $onBackground",
-        boxShadow: "5px 5px 5px $onBackground"
+        boxShadow: "5px 5px 5px $onBackground",
+        backgroundColor: "$surface02",
     },
     [`.${ yahooGeocitiesTheme } &`]: {
         marginBottom: "84px"

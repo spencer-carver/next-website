@@ -3,11 +3,13 @@ import Head from "next/head";
 import Link from "../../components/Link";
 import { CSS } from "@stitches/react";
 import { styled } from "../../styles/stitches";
+import BackNavigation from "../../components/BackNavigation";
 
 const TITLE = "All Magic: the Gathering Decks";
 const DESCRIPTION = "Magic is one of my favorite hobbies, both playing and collecting! Check out what I like to play.";
 
 const ContentDiv = styled("div", {
+    marginTop: "10px",
     padding: "20px 0"
 });
 
@@ -16,7 +18,6 @@ const Heading = styled("h1", {
 });
 
 const DecksDiv = styled("div", {
-    backgroundColor: "$surface01",
     width: "300px",
     padding: "5px",
     margin: "0 auto",
@@ -51,6 +52,7 @@ const Magic: FunctionComponent = () => {
                 <meta name="twitter:title" content={TITLE} />
                 <meta name="twitter:image" content={`https://spencer.carvers.info/seo.jpg`} />
             </Head>
+            <BackNavigation to="/" />
             <ContentDiv>
                 <Heading css={{ textAlign: "center" }}>
                     My Magic: the Gathering decks

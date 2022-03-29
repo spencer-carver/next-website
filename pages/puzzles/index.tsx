@@ -4,6 +4,7 @@ import PuzzleComplete from "../../components/Puzzle/Complete";
 import { styled } from "../../styles/stitches";
 import { DescriptionDiv, Heading, PuzzleDiv } from "../../components/Puzzle/common";
 import Head from "next/head";
+import BackNavigation from "../../components/BackNavigation";
 
 const metadata = {
     description: "A list of all puzzles available at Spencer Carver's website.",
@@ -43,11 +44,18 @@ const PuzzleList = styled("ul", {
 
 const AnswerSpan = styled("span", {
     position: "absolute",
-    left: "240px",
+    right: "-10px",
     fontWeight: "bold",
     color: "$secondary",
     "&:hover": {
         cursor: "pointer"
+    },
+    "@md": {
+        left: "190px",
+        right: "unset"
+    },
+    "@lg": {
+        left: "240px"
     }
 });
 
@@ -89,6 +97,7 @@ const Puzzles: FunctionComponent = () => {
                 <meta name="twitter:title" content={metadata.siteName} />
                 <meta name="twitter:image" content={ `${ metadata.siteUrl }/seo-puzzle.jpg` } />
             </Head>
+            <BackNavigation to="/" />
             { AnswerBanner }
             <PuzzleDiv css={ { height: "calc(100vh - 131px)" } }>
                 <Heading>Puzzles</Heading>
