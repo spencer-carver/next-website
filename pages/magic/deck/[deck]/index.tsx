@@ -11,8 +11,6 @@ import debounce from "lodash.debounce";
 import { lightTheme, styled, yahooGeocitiesTheme } from "../../../../styles/stitches";
 import BackNavigation from "../../../../components/BackNavigation";
 
-const styles: Record<string, string> = {};
-
 interface Card {
     count: number;
     card_digest: {
@@ -114,6 +112,7 @@ const TableDiv = styled("div", {
     backgroundImage: "linear-gradient(rgba(255,255,255,.20) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,.20) 2px, transparent 2px), linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px)",
     backgroundSize: "100px 100px, 100px 100px, 20px 20px, 20px 20px",
     backgroundPosition: "15px 15px, 15px 15px, 14px 14px, 14px 14px",
+    paddingTop: "40px",
     "&::after": {
         content: "",
         position: "absolute",
@@ -131,6 +130,9 @@ const TableDiv = styled("div", {
     },
     [`.${yahooGeocitiesTheme} &`]: {
         backgroundColor: "transparent"
+    },
+    "@md": {
+        paddingTop: "0"
     }
 });
 
@@ -138,7 +140,11 @@ const PlaymatDiv = styled("div", {
     margin: "0 auto",
     paddingBottom: "30px",
     display: "flex",
-    justifyContent: "center"
+    flexDirection: "column",
+    justifyContent: "center",
+    "@lg": {
+        flexDirection: "row"
+    }
 });
 
 const TitleHeading = styled("h1", {
@@ -214,7 +220,6 @@ const DeckDiv = styled("div", {
     flexDirection: "row",
     alignContent: "center",
     justifyContent: "space-evenly",
-    marginRight: "30px",
     "@lg": {
         ...(sharedDeckAndSideboardStyles["@lg"] as Record<string, string>),
         width: "480px",
@@ -256,10 +261,14 @@ const yorionDeckStyle: CSS = {
 const OverlayDiv = styled("div", {});
 const SideboardDiv = styled("div", {
     ...(Object.keys(sharedDeckAndSideboardStyles).filter((key) => !key.startsWith("@")).reduce((object, key) => { object[key] = sharedDeckAndSideboardStyles[key]; return object; }, {})),
-    flexDirection: "column",
+    paddingTop: "40px",
+    flexDirection: "row",
     alignContent: "end",
+    justifyContent: "space-evenly",
     "@lg": {
         ...(sharedDeckAndSideboardStyles["@lg"] as Record<string, string>),
+        paddingTop: "10px",
+        flexDirection: "column",
         "& div:nth-of-type(2n)": {
             marginLeft: "50px"
         }
@@ -277,11 +286,13 @@ const DECK_TYPE_TO_ADDITIONAL_STYLES: Record<string, CSS> = {
     commander: {
         flexDirection: "row",
         flexFlow: "wrap",
-        margin: "0 auto",
         alignContent: "center",
         justifyContent: "space-evenly",
-        width: "calc(100% - 40px)",
-        height: "auto"
+        height: "auto",
+        "@lg": {
+            margin: "0 auto",
+            width: "calc(100% - 40px)"
+        }
     },
     oathbreaker: {
         margin: "0 auto",

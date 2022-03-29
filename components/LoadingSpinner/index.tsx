@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { logoCBackground, logoSBackground } from "../Icons/SiteLogo";
-import { styled, keyframes, yahooGeocitiesTheme } from "../../styles/stitches";
+import { styled, keyframes, yahooGeocitiesTheme, darkTheme } from "../../styles/stitches";
 import { CSS } from "@stitches/react";
 
 const SpinnerDiv = styled("div", {
@@ -56,6 +56,9 @@ const LogoCDiv = styled("div", {
     animationDuration: "1000ms",
     animationIterationCount: "infinite",
     animationTimingFunction: "linear",
+    [`.${ darkTheme } &`]: {
+        background: logoCBackground(300, 300, "gray")
+    },
     [`.${ yahooGeocitiesTheme } &`]: {
         background: logoCBackground(300, 300, "mediumOrchid")
     }
@@ -70,6 +73,9 @@ const LogoSDiv = styled("div", {
     animationDuration: "4000ms",
     animationIterationCount: "infinite",
     animationTimingFunction: "linear",
+    [`.${ darkTheme } &`]: {
+        background: logoSBackground(300, 300, "gray")
+    },
     [`.${ yahooGeocitiesTheme } &`]: {
         background: logoSBackground(300, 300, "mediumOrchid")
     }

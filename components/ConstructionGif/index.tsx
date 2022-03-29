@@ -9,7 +9,7 @@ const ConstructionDiv = styled("div", {
 
 const ConstructionGif = ({ theme, useFallback = false }) => {
     if (theme === yahooGeocitiesTheme) {
-        return <ConstructionDiv><Image src="/constr16.gif" width="128px" height="40px" /></ConstructionDiv>;
+        return <ConstructionDiv><Image src="/constr16.gif" alt="Under Construction" width="128px" height="40px" /></ConstructionDiv>;
     }
 
     if (useFallback) {

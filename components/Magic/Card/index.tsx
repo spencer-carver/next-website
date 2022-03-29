@@ -167,7 +167,7 @@ const Tooltip: React.FunctionComponent<CardInfo> = ({ name, mana_cost, type_line
 const CardContainerDiv = styled("div", {
     position: "relative",
     height: "44px",
-    width: "125px",
+    width: "100px",
     overflowY: "visible",
     textAlign: "center",
     "& img": {
@@ -181,6 +181,15 @@ const CardContainerDiv = styled("div", {
                 opacity: "1",
             },
         },
+    },
+    "@sm": {
+        width: "110px",
+        "& img": {
+            borderRadius: "6px"
+        }
+    },
+    "@md": {
+        width: "125px"
     },
     "@lg": {
         width: "155px",

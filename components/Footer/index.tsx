@@ -178,11 +178,11 @@ export default ({ theme, setTheme }) => {
             { (theme === yahooGeocitiesTheme) && (
                 <>
                     <GeocitiesBannerDiv>
-                    <div style={{ height: "40px", width: "193px", textAlign: "center" }}><Image src="/constr16.gif" width="128px" height="40px" /></div>
-                    <div style={{ height: "31px", width: "193px", textAlign: "center" }}><Image src="/netscapenow.gif" width="88px" height="31px" /></div>
-                    <GeocitiesCoolPageLink href="https://cameronsworld.net" target="_blank" rel="noreferrer noopener"><Image src="/geocitie.gif" width="193px" height="106px" /></GeocitiesCoolPageLink>
-                    <div style={{ height: "31px", width: "193px", textAlign: "center" }}><Image src="/ie_logo.gif" width="88px" height="31px" /></div>
-                    <div style={{ height: "40px", width: "193px", textAlign: "center" }}><Image src="/constr16.gif" width="128px" height="40px" /></div>
+                    <div style={{ height: "40px", width: "193px", textAlign: "center" }}><Image src="/constr16.gif" alt="Under Construction" width="128px" height="40px" /></div>
+                    <div style={{ height: "31px", width: "193px", textAlign: "center" }}><Image src="/netscapenow.gif" alt="Netscape Now!" width="88px" height="31px" /></div>
+                    <GeocitiesCoolPageLink href="https://cameronsworld.net" target="_blank" rel="noreferrer noopener"><Image src="/geocitie.gif" alt="Cool page of the day" width="193px" height="106px" /></GeocitiesCoolPageLink>
+                    <div style={{ height: "31px", width: "193px", textAlign: "center" }}><Image src="/ie_logo.gif" alt="Free Internet Explorer" width="88px" height="31px" /></div>
+                    <div style={{ height: "40px", width: "193px", textAlign: "center" }}><Image src="/constr16.gif" alt="Under Construction" width="128px" height="40px" /></div>
                     </GeocitiesBannerDiv>
                     <MusicCreditDiv>Music: https://www.bensound.com/royalty-free-music</MusicCreditDiv>
                 </>

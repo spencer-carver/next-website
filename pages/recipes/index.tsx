@@ -4,6 +4,7 @@ import { PageProps } from "../../@types/global";
 import ConstructionGif from "../../components/ConstructionGif";
 import Link from "../../components/Link";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
+import BackNavigation from "../../components/BackNavigation";
 
 const TITLE = "All Recipes";
 const DESCRIPTION = "Some of my favorite recipes for any time of day or year!";
@@ -19,16 +20,17 @@ const ContentDiv = styled("div", {
 });
 
 const MenuDiv = styled("div", {
-    padding: "0 100px 20px",
+    padding: "20px 60px",
     minHeight: "400px",
-    backgroundColor: "$surface02",
     marginBottom: "244px",
     color: "$onSurface",
     "@lg": {
         marginTop: "50px",
         minHeight: "600px",
         border: "1px solid $onBackground",
-        boxShadow: "5px 5px 5px $onBackground"
+        boxShadow: "5px 5px 5px $onBackground",
+        padding: "20px 100px",
+        backgroundColor: "$surface02",
     },
     [`.${ yahooGeocitiesTheme } &`]: {
         marginBottom: "30px"
@@ -68,6 +70,7 @@ const Recipes: FunctionComponent<PageProps> = ({ theme }) => {
                 <meta name="twitter:title" content={TITLE} />
                 <meta name="twitter:image" content={`https://spencer.carvers.info/seo.jpg`} />
             </Head>
+            <BackNavigation to="/" />
             <ContentDiv>
                 <MenuDiv>
                     <Heading>Recipes</Heading>

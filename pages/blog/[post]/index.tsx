@@ -42,15 +42,15 @@ const HeaderDiv = styled("div", {
 });
 
 const PageDiv = styled("div", {
-    margin: "20px",
-    padding: "20px",
-    backgroundColor: "$surface01",
-    color: "$onSurface",
+    padding: "0 20px",
+    backgroundColor: "$background",
+    color: "$onBackground",
     "& sup span a": {
         borderBottom: "none"
     },
     "@lg": {
         margin: "20px auto",
+        border: "1px solid $surface04",
         maxWidth: "690px",
         fontSize: "18px"
     },

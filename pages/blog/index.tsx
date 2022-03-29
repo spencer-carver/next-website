@@ -5,6 +5,7 @@ import Link from "../../components/Link";
 import { API_URL } from "../../constants/ExternalUrls";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 import fetchFromCache from "../../utils/cache";
+import BackNavigation from "../../components/BackNavigation";
 
 const TITLE = "All Blog Posts";
 const DESCRIPTION = "A list of all Spencer's blog postings";
@@ -13,11 +14,31 @@ function formatName(name: string): string {
     return name.replace(/-/g, " ");
 }
 
-const PageDiv = styled("div", {
+const HeaderDiv = styled("div", {
     margin: "20px",
-    padding: "20px",
-    color: "$onSurface",
-    backgroundColor: "$surface01",
+    paddingTop: "20px",
+    color: "$onBackground",
+    position: "relative",
+    "& h1": {
+        textTransform: "capitalize"
+    },
+    "@lg": {
+        margin: "20px auto",
+        maxWidth: "730px"
+    },
+    "@xl": {
+        paddingTop: "0px"
+    },
+    "@xxl": {
+        margin: "20px auto",
+        maxWidth: "1024px"
+    }
+});
+
+const PageDiv = styled("div", {
+    padding: "0 20px",
+    color: "$onBackground",
+    backgroundColor: "$background",
     "@lg": {
         margin: "20px auto",
         maxWidth: "690px"
@@ -26,10 +47,6 @@ const PageDiv = styled("div", {
         margin: "20px auto",
         maxWidth: "1024px"
     }
-});
-
-const Heading = styled("h1", {
-    margin: "0"
 });
 
 const BlogList = styled("ul", {
@@ -100,8 +117,11 @@ const BlogIndex: FunctionComponent<PageProps> = ({ setLoading }) => {
                 <meta name="twitter:title" content={TITLE} />
                 <meta name="twitter:image" content={`https://spencer.carvers.info/seo.jpg`} />
             </Head>
+            <BackNavigation to="/" />
+            <HeaderDiv>
+                <h1>Blog</h1>
+            </HeaderDiv>
             <PageDiv>
-                <Heading>Blog</Heading>
                 <BlogList>
                     {posts.map((post, index) => (
                         <PostDiv key={index}>

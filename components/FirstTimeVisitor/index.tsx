@@ -96,8 +96,7 @@ const FirstTimeVisitor: FunctionComponent<{ lastUpdate: number; }> = ({ lastUpda
             <ContainerDiv>
                 <noscript>
                     <MessageDiv>
-                        You need Javascript enabled to perform most site navigation! Pages that mostly work without it:&nbsp;
-                        <Link href="/about">About Me</Link>, <Link href="/recipes/cocktails">Cocktails</Link>
+                        You need Javascript enabled to do most things on this site.
                     </MessageDiv>
                 </noscript>
             </ContainerDiv>
