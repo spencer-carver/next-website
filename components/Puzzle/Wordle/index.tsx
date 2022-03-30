@@ -85,30 +85,10 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
     const answerChars = atob(answer).split("");
 
     const updateLetter = useCallback((index: number, value: string) => {
-        if (value === "Backspace") {
-            if (index !== 0) {
-                RowRef[index - 1]?.current.focus();
-            }
-
-            const updateIndex = entry[index] ? index : Math.max(index - 1, 0);
-
+        if (value === "") {
             const newEntry = entry.slice();
-            newEntry[updateIndex] = "";
+            newEntry[index] = "";
             setEntry(newEntry);
-
-            return;
-        }
-
-        if (value === "Enter" && index === 4 && entry.find((letter) => !!letter)) {
-            const validatedStyles = validateWord(answerChars, entry);
-
-            setValidationStyles(validatedStyles);
-
-            if (validatedStyles[0] !== invalidWordStyles) {
-                setRowDisabled(true);
-
-                onComplete(rowIndex, entry, validatedStyles);
-            }
 
             return;
         }
@@ -131,6 +111,30 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
         }
     }, [entry, setEntry]);
 
+    const changeTiles = useCallback((index: number, value: string) => {
+        if (value === "Backspace") {
+            if (index !== 0) {
+                RowRef[index - 1]?.current.focus();
+            }
+
+            return;
+        }
+
+        if (value === "Enter" && index === 4 && entry.find((letter) => !!letter)) {
+            const validatedStyles = validateWord(answerChars, entry);
+
+            setValidationStyles(validatedStyles);
+
+            if (validatedStyles[0] !== invalidWordStyles) {
+                setRowDisabled(true);
+
+                onComplete(rowIndex, entry, validatedStyles);
+            }
+
+            return;
+        }
+    }, [entry, setRowDisabled, onComplete]);
+
     useEffect(() => {
         if (existingData.find((letter) => !!letter)) {
             const validatedStyles = validateWord(answerChars, entry);
@@ -149,11 +153,11 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
 
     return (
         <FormRow>
-            <Tile ref={ firstLetter } value={ entry[0] || "" } onKeyDownCapture={ (e) => updateLetter(0, e.key) } onChange={ () => {} } disabled={ disabled } css={ validationStyles[0] } />
-            <Tile ref={ secondLetter } value={ entry[1] || ""  } onKeyDownCapture={ (e) => updateLetter(1, e.key) } onChange={ () => {} } disabled={ disabled } css={ validationStyles[1] } />
-            <Tile ref={ thirdLetter } value={ entry[2] || ""  } onKeyDownCapture={ (e) => updateLetter(2, e.key) } onChange={ () => {} } disabled={ disabled } css={ validationStyles[2] } />
-            <Tile ref={ fourthLetter } value={ entry[3] || ""  } onKeyDownCapture={ (e) => updateLetter(3, e.key) } onChange={ () => {} } disabled={ disabled } css={ validationStyles[3] } />
-            <Tile ref={ fifthLetter } value={ entry[4] || ""  } onKeyDownCapture={ (e) => updateLetter(4, e.key) } onChange={ () => {} } disabled={ disabled } css={ validationStyles[4] } />
+            <Tile ref={ firstLetter } value={ entry[0] || "" } onKeyDown={ (e) => changeTiles(0, e.key) } onChange={ (e) => updateLetter(0, e.target.value) } disabled={ disabled } css={ validationStyles[0] } />
+            <Tile ref={ secondLetter } value={ entry[1] || ""  } onKeyDown={ (e) => changeTiles(1, e.key)  } onChange={ (e) => updateLetter(1, e.target.value) } disabled={ disabled } css={ validationStyles[1] } />
+            <Tile ref={ thirdLetter } value={ entry[2] || ""  } onKeyDown={ (e) => changeTiles(2, e.key)  } onChange={ (e) => updateLetter(2, e.target.value) } disabled={ disabled } css={ validationStyles[2] } />
+            <Tile ref={ fourthLetter } value={ entry[3] || ""  } onKeyDown={ (e) => changeTiles(3, e.key)  } onChange={ (e) => updateLetter(3, e.target.value) } disabled={ disabled } css={ validationStyles[3] } />
+            <Tile ref={ fifthLetter } value={ entry[4] || ""  } onKeyDown={ (e) => changeTiles(4, e.key)  } onChange={ (e) => updateLetter(4, e.target.value) } disabled={ disabled } css={ validationStyles[4] } />
         </FormRow>
     );
 };
