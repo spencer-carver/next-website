@@ -12,6 +12,8 @@ const metadata = {
     siteUrl: "https://spencer.carvers.info"
 };
 
+const NEWEST_PUZZLE = "enigmarch-2022";
+
 const PUZZLES = {
     "tutorial": "Tutorial",
     "tetris": "Tetris",
@@ -19,6 +21,7 @@ const PUZZLES = {
     "an-explosive-discovery": "An Explosive Discovery",
     "yakuza-zero": "Yakuza 0",
     "cheese-sampler": "Cheese Sampler",
+    "enigmarch-2022": "#Enigmarch 2022",
     "judge-calls-one": "Judge Calls"
 };
 
@@ -26,7 +29,7 @@ const PuzzleList = styled("ul", {
     textAlign: "left",
     listStyle: "none",
     fontSize: "18px",
-    lineHeight: "32px",
+    lineHeight: "36px",
     margin: "20px 0 40px",
     color: "$onBackground",
     paddingInlineStart: "0",
@@ -40,6 +43,15 @@ const PuzzleList = styled("ul", {
         paddingInlineStart: "40px",
         margin: "20px 20px 40px"
     }
+});
+
+const NewSpan = styled("span", {
+    position: "absolute",
+    left: "0px",
+    top: "-15px",
+    fontSize: "10px",
+    fontWeight: "bold",
+    color: "$error"
 });
 
 const AnswerSpan = styled("span", {
@@ -121,6 +133,7 @@ const Puzzles: FunctionComponent = () => {
 
                         return (
                             <li key={ index } style={ { position: "relative" } }>
+                                { puzzleId === NEWEST_PUZZLE && <NewSpan>NEW</NewSpan> }
                                 <Link href={ `/puzzles/${ puzzleId }` }>{ PUZZLES[puzzleId] }</Link>
                                 { puzzleAnswer ? (
                                     <AnswerSpan
