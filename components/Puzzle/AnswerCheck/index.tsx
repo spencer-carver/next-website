@@ -24,7 +24,7 @@ interface PuzzleAnswerSubmissionProps {
     onSuccess: Function;
 }
 
-interface PuzzleAnswer {
+export interface PuzzleAnswer {
     correct: boolean;
     intermediate?: boolean;
     hint?: boolean;
@@ -131,7 +131,8 @@ const hintStyle: CSS = {
 };
 
 const incorrectStyle: CSS = {
-    backgroundColor: "$error"
+    backgroundColor: "$error",
+    color: "$onError"
 };
 
 const PastAnswers: FunctionComponent<{ pastAnswers: PuzzleAnswer[] }> = ({ pastAnswers }) => {
@@ -153,6 +154,58 @@ const PastAnswers: FunctionComponent<{ pastAnswers: PuzzleAnswer[] }> = ({ pastA
                 return <AnswerListItem key={ index } css={answerStyle }>{ pastResult.value }<TimeSpan>{ formatTimeDifference(pastResult.time, now) }</TimeSpan></AnswerListItem>;
             }) }
         </PastAnswersList>
+    );
+};
+
+const partialInputOverrideStyles: CSS = {
+    width: "300px",
+    margin: "10px 0 0",
+    "& input": {
+        width: "230px"
+    }
+};
+
+export const PartialAnswerCheck = ({ puzzleName, step, completeStep, placeholderText = "Answer Here" }) => {
+    const [answer, setAnswer] = useState("");
+    const [lastGuess, setLastGuess] = useState({} as PuzzleAnswer);
+
+    function onType(event: React.ChangeEvent<HTMLInputElement>): void {
+        setAnswer((event.target as HTMLInputElement).value);
+    }
+
+    async function submit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
+        event.preventDefault();
+
+        if (!answer) {
+            return;
+        }
+
+        const answerResponse: PuzzleAnswer = await window.fetch(`${API_URL}/api/puzzle/${puzzleName}/submit`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify({ answer: `${step}:${answer}`, hintCount: 0 })
+        }).then(response => response.json());
+
+        if (answerResponse.intermediate) {
+            completeStep(step, answerResponse.value);
+        }
+
+        setLastGuess({ ...answerResponse, value: answer, time: (new Date()).getTime() });
+        setAnswer("");
+    }
+
+    const answerStyle = lastGuess.intermediate
+        ? correctStyle
+        : incorrectStyle;
+
+    return (
+        <>
+            <InputForm css={ partialInputOverrideStyles } onSubmit={submit}>
+                <input type="text" placeholder={ placeholderText } value={answer} onChange={onType}></input>
+                <button type="submit">Submit</button>
+            </InputForm>
+            <AnswerListItem css={answerStyle}>{lastGuess.value}</AnswerListItem>
+        </>
     );
 };
 

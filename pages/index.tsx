@@ -5,6 +5,7 @@ import ConstructionGif from "../components/ConstructionGif";
 import Link from "../components/Link";
 import { TWITCH_URL, YOUTUBE_URL } from "../constants/ExternalUrls";
 import Head from "next/head";
+import Tooltip from "../components/Tooltip";
 
 const metadata = {
     description: "Spencer Carver's personal website. Details about his hobbies, skills, and interests, as well as contact information.",
@@ -60,6 +61,11 @@ export default ({ theme, lastUpdate }) => {
                 <FirstTimeVisitor lastUpdate={lastUpdate} />
                 <ConstructionGif theme={theme} />
                 <Heading>Site News:</Heading>
+                <SubHeading>March 30, 2022</SubHeading>
+                <List>
+                    <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2022" component={A}>#Enigmarch 2022</Link></ListItem>
+                </List>
+                <P>Yesterday I found out from a friend about <Link href="https://enigmarch.com/" component={A}>#Enigmarch</Link>, a month long puzzle creation challenge. Well it's VERY far into March at the moment, but I wanted to participate, and as such have created a single puzzle with the <Tooltip tooltip="Day 30's theme is PHANTOM, so this is close right?">spirit</Tooltip> of a month-long challenge (though I couldn't find a way to work the daily prompts into each of my days unfortunately). Looking forward to tackling it day-by-day next year!</P>
                 <SubHeading>March 28, 2022</SubHeading>
                 <P>Nothing notable here aside from a bunch of minor styling updates noticed now that I have a blog post to look at. I also updated the page metadata for unfurling (e.g. when I post pages to Facebook or Twitter, it will now have details about that page rather than just the site) and messed around with a few of the 'noscript' settings, but would be wholely surprised if anyone legitimately encountered those.</P>
                 <SubHeading>March 27, 2022</SubHeading>
