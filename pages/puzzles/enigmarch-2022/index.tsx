@@ -69,9 +69,8 @@ const Picture: (url: string) => FunctionComponent<PuzzleStepProps> = (url) => ({
         </DailyPuzzleDiv>
     );
 };
-const TBD: FunctionComponent<PuzzleStepProps> = ({ step, completeStep }) => Text("TBD")({ step, completeStep });
 
-const STEP_TO_PUZZLE_TYPE: FunctionComponent[] = [
+const STEP_TO_PUZZLE_TYPE: FunctionComponent<PuzzleStepProps>[] = [
     Text("Click a date to begin"),
     Picture("/puzzles/enigmarch-2022/day1.png"),
     Picture("/puzzles/enigmarch-2022/day2.jpg"),
@@ -244,8 +243,8 @@ const PuzzleComponent: FunctionComponent = () => {
         <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME }>
             <FinalAnswerComponent intermediates={ intermediates } activeDay={ activeStep } onClickDate={ setActiveStep } setIntermediates={ setIntermediates } />
             <div style={ { margin: "10px auto" } }>
-                { STEP_TO_PUZZLE_TYPE.map((PUZZLE, index) => {
-                    return <div key={ index } style={ { display: index === activeStep ? "inline-block" : "none" } }>{ PUZZLE({ step: index, completeStep }) }</div>;
+                { STEP_TO_PUZZLE_TYPE.map((Puzzle, index) => {
+                    return <div key={ index } style={ { display: index === activeStep ? "inline-block" : "none" } }><Puzzle step={ index } completeStep={ completeStep } /></div>;
                 }) }
             </div>
         </PuzzleWrapperComponent>

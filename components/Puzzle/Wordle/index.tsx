@@ -90,7 +90,7 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
                 RowRef[index - 1]?.current.focus();
             }
 
-            const updateIndex = entry[index] ? index : Math.floor(index - 1, 0);
+            const updateIndex = entry[index] ? index : Math.max(index - 1, 0);
 
             const newEntry = entry.slice();
             newEntry[updateIndex] = "";
