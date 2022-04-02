@@ -7,11 +7,8 @@ import { TWITCH_URL, YOUTUBE_URL } from "../constants/ExternalUrls";
 import Head from "next/head";
 import Tooltip from "../components/Tooltip";
 
-const metadata = {
-    description: "Spencer Carver's personal website. Details about his hobbies, skills, and interests, as well as contact information.",
-    siteName: "Spencer's Personal Website",
-    siteUrl: "https://spencer.carvers.info"
-};
+const NAME = "Spencer's Personal Website";
+const DESCRIPTION = "Spencer Carver's personal website. Details about his hobbies, skills, and interests, as well as contact information.";
 
 const PageDiv = styled("div", {
     maxWidth: "1024px",
@@ -43,24 +40,26 @@ export default ({ theme, lastUpdate }) => {
     return (
         <>
             <Head>
-                <title>{ metadata.siteName }</title>
-                <link rel="canonical" href={metadata.siteUrl} />
-                <meta name="description" content={metadata.description} />
+                <title>{ NAME }</title>
+                <link rel="canonical" href="https://spencer.carvers.info" />
+                <meta name="description" content={DESCRIPTION} />
                 <meta name="homepage" content="true" />
-                <meta property="og:site_name" content={metadata.siteName} />
-                <meta property="og:description" content={metadata.description} />
-                <meta property="og:title" content={metadata.siteName} />
-                <meta property="og:url" content={metadata.siteUrl} />
-                <meta property="og:image" content={`${metadata.siteUrl}/seo.jpg`} />
-                <meta name="twitter:description" content={metadata.description} />
-                <meta name="twitter:title" content={metadata.siteName} />
-                <meta name="twitter:image" content={`${metadata.siteUrl}/seo.jpg`} />
+                <meta property="og:site_name" content={NAME} />
+                <meta property="og:description" content={DESCRIPTION} />
+                <meta property="og:title" content={NAME} />
+                <meta property="og:url" content="https://spencer.carvers.info" />
+                <meta property="og:image" content="https://spencer.carvers.info/seo.jpg" />
+                <meta name="twitter:description" content={DESCRIPTION} />
+                <meta name="twitter:title" content={NAME} />
+                <meta name="twitter:image" content="https://spencer.carvers.info/seo.jpg" />
             </Head>
             <Hero options={{ overlayLogo: true, hideMobile: true }} />
             <PageDiv>
                 <FirstTimeVisitor lastUpdate={lastUpdate} />
                 <ConstructionGif theme={theme} />
                 <Heading>Site News:</Heading>
+                <SubHeading>April 2, 2022</SubHeading>
+                <P>Image optimization is here! Site experience should load faster (aside from blog posts as I am not self-hosting most of those images currently).</P>
                 <SubHeading>March 30, 2022</SubHeading>
                 <List>
                     <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2022" component={A}>#Enigmarch 2022</Link></ListItem>

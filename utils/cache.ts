@@ -1,5 +1,3 @@
-import { API_URL } from "../constants/ExternalUrls";
-
 const BROWSER_CACHE_TTL = 14400000; // 4 hours
 
 async function fetchFromCache(url: string, ttl: number = BROWSER_CACHE_TTL): Promise<JSON> {

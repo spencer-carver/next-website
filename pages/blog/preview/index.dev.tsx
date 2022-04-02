@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import Head from "next/head";
 import React, { FunctionComponent, ReactElement, useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -6,12 +5,11 @@ import remarkGfm from "remark-gfm";
 import { NormalComponents } from "react-markdown/lib/complex-types";
 import { HeadingComponent, TableCellComponent } from "react-markdown/lib/ast-to-react";
 import { PageProps } from "../../../@types/global";
-import { API_URL } from "../../../constants/ExternalUrls";
-import fetchFromCache from "../../../utils/cache";
 import ErrorPage from "../../404";
 import BackNavigation from "../../../components/BackNavigation";
 import { styled } from "../../../styles/stitches";
 import { Post } from "..";
+import previewPost from "./post.md";
 import Link from "../../../components/Link";
 
 function formatName(name: string): string {
@@ -142,25 +140,21 @@ const Image = styled("img", {
 });
 
 const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
-    const router = useRouter();
-    const { post: postName } = router.query;
     const [post, setPost] = useState({} as unknown as Post);
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         setLoading(true);
-        if (!postName) {
-            return;
-        }
 
-        fetchFromCache(`${API_URL}/api/blog/${ postName }`).then((data) => {
-            if (typeof (data as unknown as Post).content === "string") {
-                setPost(data as unknown as Post);
-            }
-            setLoading(false);
-            setLoaded(true);
+        setPost({
+            name: "Preview Post",
+            createdTime: (new Date()).getTime(),
+            modifiedTime: (new Date()).getTime(),
+            content: previewPost
         });
-    }, [postName]);
+        setLoading(false);
+        setLoaded(true);
+    }, []);
 
     if (!loaded) {
         return null;
@@ -181,13 +175,13 @@ const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
         <>
             <Head>
                 <title>{ TITLE }</title>
-                <link rel="canonical" href={ `https://spencer.carvers.info/blog/${ postName }` } />
+                <link rel="canonical" href="https://spencer.carvers.info/blog/preview" />
                 <meta name="description" content={DESCRIPTION} />
                 <meta name="homepage" content="false" />
                 <meta property="og:site_name" content={TITLE} />
                 <meta property="og:description" content={DESCRIPTION} />
                 <meta property="og:title" content={TITLE} />
-                <meta property="og:url" content={ `https://spencer.carvers.info/blog/${ postName }` } />
+                <meta property="og:url" content="https://spencer.carvers.info/blog/preview" />
                 <meta property="og:image" content="https://spencer.carvers.info/seo.jpg" />
                 <meta name="twitter:description" content={DESCRIPTION} />
                 <meta name="twitter:title" content={TITLE} />
