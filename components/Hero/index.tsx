@@ -112,7 +112,6 @@ const SLIDESHOW_ITEMS = [{
     }
 }];
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 const Hero: FunctionComponent<HeroProps> = ({ options }) => {
     const {
         overlayLogo = false,
@@ -123,7 +122,7 @@ const Hero: FunctionComponent<HeroProps> = ({ options }) => {
         <>
             <ContainerDiv css={ overlayLogo ? overlayLogoContainerStyles : {} }>
                 <SlideshowWrapperDiv css={ hideMobile ? hideMobileSlideshowStyles : {} }>
-                    <Slideshow items={ SLIDESHOW_ITEMS } options={ { isHero: true } } />
+                    <Slideshow items={ SLIDESHOW_ITEMS } options={{ isHero: true }} />
                 </SlideshowWrapperDiv>
             </ContainerDiv>
         </>

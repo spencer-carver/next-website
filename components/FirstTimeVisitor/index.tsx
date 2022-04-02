@@ -79,7 +79,7 @@ const FirstTimeVisitor: FunctionComponent<{ lastUpdate: number; }> = ({ lastUpda
         } catch(e) {
             // do nothing
         }
-    }, []);
+    }, [lastUpdate]);
 
     const dismissComponent = useCallback(() => {
         try {
@@ -107,7 +107,7 @@ const FirstTimeVisitor: FunctionComponent<{ lastUpdate: number; }> = ({ lastUpda
         <ContainerDiv css={ displayMessageStyles }>
             <MessageDiv>
                 <CloseSpan role="button" aria-label="Previous" tabIndex={ 0 } onClick={ dismissComponent } onKeyPress={ dismissComponent }>&#10006;</CloseSpan>
-                <Line>There's been an update since your last visit! Read below for more information.</Line>
+                <Line>There&apos;s been an update since your last visit! Read below for more information.</Line>
                 { firstTime && <Line>If this is your first time here, be sure to check out the <Link href="/about">About Me</Link> page. Welcome!</Line> }
             </MessageDiv>
         </ContainerDiv>

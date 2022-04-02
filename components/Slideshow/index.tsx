@@ -117,14 +117,11 @@ interface SlideshowOptions {
 }
 
 interface SlideshowProps {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     items: Array<{ [key: string]: any }>;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     component?: FunctionComponent<any>;
     options: SlideshowOptions;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 const Slideshow: FunctionComponent<SlideshowProps> = ({ items, component: Component = ImageSlide, options }) => {
     const {
         isHero = false

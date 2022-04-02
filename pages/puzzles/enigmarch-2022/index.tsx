@@ -32,21 +32,21 @@ const TextBoxDiv = styled("div", {
     }
 });
 
-const Text: (text: string, fontSize?: string) => FunctionComponent<PuzzleStepProps> = (text, fontSize) => ({ step, completeStep }) => {
+const Text: (text: string, fontSize?: string) => FunctionComponent<PuzzleStepProps> = (text, fontSize) => function TextPuzzle({ step, completeStep }) {
     return (
         <DailyPuzzleDiv>
-            <TextBoxDiv><div style={ { ...(fontSize ? { fontSize }: {}) } }>{ text }</div></TextBoxDiv>
+            <TextBoxDiv><div style={{ ...(fontSize ? { fontSize }: {}) }}>{ text }</div></TextBoxDiv>
             { step !== 0 && <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" /> }
         </DailyPuzzleDiv>
     );
 };
 
-const WordleGenerator: (encodedAnswer: string, existingData: string[][]) => FunctionComponent<PuzzleStepProps> = (encodedAnswer, existingData) => ({ step, completeStep }) => {
+const WordleGenerator: (encodedAnswer: string, existingData: string[][]) => FunctionComponent<PuzzleStepProps> = (encodedAnswer, existingData) => function WordlePuzzle({ step, completeStep }) {
     async function submitAnswer(answer) {
-        const answerResponse: PuzzleAnswer = await window.fetch(`${API_URL}/api/puzzle/${NAME}/submit`, {
+        const answerResponse: PuzzleAnswer = await window.fetch(`${ API_URL }/api/puzzle/${ NAME }/submit`, {
             method: "POST",
             credentials: "include",
-            body: JSON.stringify({ answer: `${step}:${answer}`, hintCount: 0 })
+            body: JSON.stringify({ answer: `${ step }:${ answer }`, hintCount: 0 })
         }).then(response => response.json());
     
         if (answerResponse.intermediate) {
@@ -61,10 +61,10 @@ const WordleGenerator: (encodedAnswer: string, existingData: string[][]) => Func
     return <Wordle { ...{ encodedAnswer, existingData, step, submitAnswer } } />;
 };
 
-const Picture: (url: string) => FunctionComponent<PuzzleStepProps> = (url) => ({ step, completeStep }) => {
+const Picture: (url: string) => FunctionComponent<PuzzleStepProps> = (url) => function PicturePuzzle({ step, completeStep }) {
     return (
         <DailyPuzzleDiv>
-            <Image src={ url } width="300px" height="300px" />
+            <Image src={ url } alt="Today&apos;s Image" width="300px" height="300px" />
             <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" />
         </DailyPuzzleDiv>
     );
@@ -178,15 +178,15 @@ const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onCl
                     {
                         MARCH_2022.map((row, rowIndex) => {
                             return (
-                                <tr key={rowIndex}>
+                                <tr key={ rowIndex }>
                                     {
                                         row.map((cell, columnIndex) => {
                                             if (rowIndex === 4 && columnIndex === 6) {
-                                                return <TableCell key={`cell-${rowIndex}-${columnIndex}`} css={ { fontSize: "9px", "&:hover": { cursor: "pointer" } } } onClick={ clearCalendar }>Clear Calendar</TableCell>
+                                                return <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } css={{ fontSize: "9px", "&:hover": { cursor: "pointer" } }} onClick={ clearCalendar }>Clear Calendar</TableCell>
                                             }
 
                                             if (!cell) {
-                                                return <TableCell key={`cell-${rowIndex}-${columnIndex}`} />
+                                                return <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } />
                                             }
 
                                             const additionalStyles = {
@@ -196,7 +196,7 @@ const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onCl
                                             };
 
                                             return (
-                                                <TableCell key={`cell-${rowIndex}-${columnIndex}`} role="button" onClick={() => onClickDate(cell)} title={`March ${cell}`} css={additionalStyles}><DayOfMonth>{cell}</DayOfMonth>{intermediates[cell]}</TableCell>
+                                                <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } role="button" onClick={ () => onClickDate(cell) } title={ `March ${ cell }` } css={ additionalStyles }><DayOfMonth>{cell}</DayOfMonth>{intermediates[cell]}</TableCell>
                                             );
                                         })
                                     }
@@ -242,9 +242,9 @@ const PuzzleComponent: FunctionComponent = () => {
     return (
         <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME }>
             <FinalAnswerComponent intermediates={ intermediates } activeDay={ activeStep } onClickDate={ setActiveStep } setIntermediates={ setIntermediates } />
-            <div style={ { margin: "10px auto" } }>
+            <div style={{ margin: "10px auto" }}>
                 { STEP_TO_PUZZLE_TYPE.map((Puzzle, index) => {
-                    return <div key={ index } style={ { display: index === activeStep ? "inline-block" : "none" } }><Puzzle step={ index } completeStep={ completeStep } /></div>;
+                    return <div key={ index } style={{ display: index === activeStep ? "inline-block" : "none" }}><Puzzle step={ index } completeStep={ completeStep } /></div>;
                 }) }
             </div>
         </PuzzleWrapperComponent>

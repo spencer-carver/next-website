@@ -60,7 +60,7 @@ const Route: FunctionComponent<{ route: Segment[] }> = ({ route }) => {
         <RowDiv>
             { route.map(([ symbol, stops ], index) => (
                 <>
-                    <SymbolDiv key={ index } css={ { ...SYMBOL_TO_CSS[symbol], "&::before": { "content": symbol } } } />
+                    <SymbolDiv key={ index } css={{ ...SYMBOL_TO_CSS[symbol], "&::before": { "content": symbol } }} />
                     { stops !== 0 && <StopsSpan>{ stops }</StopsSpan> }
                 </>
             )) }

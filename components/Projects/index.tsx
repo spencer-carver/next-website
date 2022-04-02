@@ -248,7 +248,7 @@ const Projects: FunctionComponent = () => {
     return (
         <ProjectsDiv>
             <ModuleTitleSpan>Projects</ModuleTitleSpan>
-            <Slideshow items={ projects } component={ ProjectCardContainer } options={ {} } />
+            <Slideshow items={ projects } component={ ProjectCardContainer } options={{}} />
         </ProjectsDiv>
     );
 };

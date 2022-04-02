@@ -30,7 +30,6 @@ function getIdFromDOM(): string | undefined {
     // IE11 does not support the 'elementsFromPoint' method, but does have it's own which isn't
     // categorized by typescript. Additionally, IE11 does not recognize the '<main>' element, so
     // it will return an array that is 1 less element than modern browsers
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     inViewArr = (document as any).msElementsFromPoint(100, 200);
     return (inViewArr[inViewArr.length - 5] || {}).id;
 }
@@ -245,7 +244,7 @@ const PageNav: FunctionComponent<PageNavProps> = ({ sections = [], selected, set
             <NavContainerDiv>
                 <PageNavDiv>
                     <noscript>
-                        <style dangerouslySetInnerHTML={ { __html: `${ NavBarDiv } { z-index: 1000003; background-color: transparent; border-bottom: 0 !important; } ${ PageNavDiv } { text-align: left; padding: 0 0 17px 30px; }` } } />
+                        <style dangerouslySetInnerHTML={{ __html: `${ NavBarDiv } { z-index: 1000003; background-color: transparent; border-bottom: 0 !important; } ${ PageNavDiv } { text-align: left; padding: 0 0 17px 30px; }` }} />
                         <Link href="/">Home</Link> | <Link href="/about">About</Link>
                     </noscript>
                     {  

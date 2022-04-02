@@ -37,4 +37,6 @@ const twitterIconStyles: CSS = {
     }
 };
 
-export default () => <Icon css={ twitterIconStyles } href={ TWITTER_URL } content="Twitter" />;
+const TwitterIcon = () => <Icon css={ twitterIconStyles } href={ TWITTER_URL } content="Twitter" />;
+
+export default TwitterIcon;

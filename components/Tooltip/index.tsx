@@ -30,7 +30,7 @@ const Tooltip = ({ tooltip, children, tooltipWidth = "150px" }) => {
     return (
         <WrapperDiv>
             { children }
-            <TooltipSpan css={ { width: tooltipWidth } }>{ tooltip }</TooltipSpan>
+            <TooltipSpan css={{ width: tooltipWidth }}>{ tooltip }</TooltipSpan>
         </WrapperDiv>
     );
 };

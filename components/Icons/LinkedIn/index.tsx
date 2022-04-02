@@ -23,4 +23,6 @@ const linkedInStyles: CSS = {
     }
 };
 
-export default () => <Icon css={ linkedInStyles } href={ LINKEDIN_URL } content="Linked In" />;
+const LinkedInIcon = () => <Icon css={ linkedInStyles } href={ LINKEDIN_URL } content="Linked In" />;
+
+export default LinkedInIcon;

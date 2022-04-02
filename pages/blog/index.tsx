@@ -95,7 +95,7 @@ const BlogIndex: FunctionComponent<PageProps> = ({ setLoading }) => {
             setPosts(data as unknown as Post[]);
             setLoading(false);
         });
-    }, []);
+    }, [setLoading]);
 
     if (!posts.length) {
         return null;
@@ -106,15 +106,15 @@ const BlogIndex: FunctionComponent<PageProps> = ({ setLoading }) => {
             <Head>
                 <title>{TITLE}</title>
                 <link rel="canonical" href="https://spencer.carvers.info/blog" />
-                <meta name="description" content={DESCRIPTION} />
+                <meta name="description" content={ DESCRIPTION } />
                 <meta name="homepage" content="false" />
-                <meta property="og:site_name" content={TITLE} />
-                <meta property="og:description" content={DESCRIPTION} />
-                <meta property="og:title" content={TITLE} />
+                <meta property="og:site_name" content={ TITLE } />
+                <meta property="og:description" content={ DESCRIPTION } />
+                <meta property="og:title" content={ TITLE } />
                 <meta property="og:url" content="https://spencer.carvers.info/blog" />
                 <meta property="og:image" content="https://spencer.carvers.info/seo.jpg" />
-                <meta name="twitter:description" content={DESCRIPTION} />
-                <meta name="twitter:title" content={TITLE} />
+                <meta name="twitter:description" content={ DESCRIPTION } />
+                <meta name="twitter:title" content={ TITLE } />
                 <meta name="twitter:image" content="https://spencer.carvers.info/seo.jpg" />
             </Head>
             <BackNavigation to="/" />
@@ -124,9 +124,9 @@ const BlogIndex: FunctionComponent<PageProps> = ({ setLoading }) => {
             <PageDiv>
                 <BlogList>
                     {posts.map((post, index) => (
-                        <PostDiv key={index}>
+                        <PostDiv key={ index }>
                             <DateSpan>{new Date(post.createdTime).toDateString()}</DateSpan>
-                            <Link href={`/blog/${post.name}`}>
+                            <Link href={ `/blog/${ post.name }` }>
                                 <BlogLink>{formatName(post.name)}</BlogLink>
                             </Link>
                             <DescriptionSpan>{post.description}</DescriptionSpan>
@@ -137,5 +137,7 @@ const BlogIndex: FunctionComponent<PageProps> = ({ setLoading }) => {
         </>
     );
 };
+
+BlogIndex.displayName = "BlogIndex";
 
 export default BlogIndex;

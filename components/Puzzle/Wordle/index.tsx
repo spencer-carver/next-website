@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CSS } from "@stitches/react";
 import WORDS from "./valid";
 import { styled } from "../../../styles/stitches";
@@ -80,9 +80,9 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
     const fourthLetter = useRef(null);
     const fifthLetter = useRef(null);
 
-    const RowRef = [firstLetter, secondLetter, thirdLetter, fourthLetter, fifthLetter];
+    const RowRef = useMemo(() => [firstLetter, secondLetter, thirdLetter, fourthLetter, fifthLetter], [firstLetter, secondLetter, thirdLetter, fourthLetter, fifthLetter]);
 
-    const answerChars = atob(answer).split("");
+    const answerChars = useMemo(() => atob(answer).split(""), [answer]);
 
     const updateLetter = useCallback((index: number, value: string) => {
         if (value === "") {
@@ -109,7 +109,7 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
 
             return;
         }
-    }, [entry, setEntry]);
+    }, [entry, setEntry, RowRef]);
 
     const changeTiles = useCallback((index: number, value: string) => {
         if (value === "Backspace") {
@@ -133,7 +133,7 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
 
             return;
         }
-    }, [entry, setRowDisabled, onComplete]);
+    }, [entry, setRowDisabled, onComplete, RowRef, answerChars, rowIndex]);
 
     useEffect(() => {
         if (existingData.find((letter) => !!letter)) {
@@ -147,7 +147,7 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
                 onComplete(rowIndex, entry, validatedStyles);
             }
         }
-    }, []);
+    }, [entry, setRowDisabled, onComplete, RowRef, answerChars, rowIndex, existingData]);
 
     const disabled = isCorrect || rowDisabled;
 

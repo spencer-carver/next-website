@@ -18,9 +18,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
             if (selectedTheme) {
                 setTheme(selectedTheme);
-            } else if  (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            } else if  (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
                 setTheme(darkTheme);
-            } else if  (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            } else if  (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
                 setTheme(lightTheme);
             }
 
