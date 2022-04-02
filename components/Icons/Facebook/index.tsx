@@ -39,4 +39,6 @@ const facebookIconStyles: CSS = {
 };
 
 
-export default () => <Icon css={ facebookIconStyles } href={ FACEBOOK_URL } content="Facebook" />;
+const FacebookIcon = () => <Icon css={ facebookIconStyles } href={ FACEBOOK_URL } content="Facebook" />;
+
+export default FacebookIcon;

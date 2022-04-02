@@ -3,6 +3,7 @@ import { CSS } from "@stitches/react";
 import { styled, DEFAULT_THEME_NAME, THEMES, lightTheme, yahooGeocitiesTheme } from "../../styles/stitches";
 import KebabMenu from "../Icons/KebabMenu";
 import Image from "../Image";
+import { PageProps } from "../../@types/global";
 
 const MenuDiv = styled("div", {
     position: "absolute",
@@ -70,7 +71,9 @@ const Theme: FunctionComponent<{ setTheme: Function }> = ({ setTheme }) => {
 
     const onClick = (): void => setShowMenu(!showMenu);
 
-    useEffect(() => { setTheme(THEMES[getSelectedTheme()]) }, []);
+    useEffect(() => {
+        setTheme(THEMES[getSelectedTheme()])
+    }, [setTheme]);
 
     const changeTheme = useCallback((e) => {
         const newTheme = e.target.getAttribute("data-theme");
@@ -82,7 +85,7 @@ const Theme: FunctionComponent<{ setTheme: Function }> = ({ setTheme }) => {
         }
 
         setTheme(THEMES[newTheme]);
-    }, []);
+    }, [setTheme]);
 
     const selectedTheme = getSelectedTheme();
 
@@ -120,7 +123,7 @@ const GeocitiesCoolPageLink = styled ("a", {
     }
 });
 
-const Footer = styled("footer", {
+const FooterElement = styled("footer", {
     position: "relative",
     bottom: "0",
     backgroundColor: "$surface01",
@@ -145,7 +148,7 @@ const CopyrightNotice = styled ("p", {
 
 const SONG = "https://www.bensound.com/bensound-music/bensound-house.mp3";
 
-export default ({ theme, setTheme }) => {
+const Footer: FunctionComponent<PageProps & { setTheme: Function }> = ({ theme, setTheme }) => {
     useEffect(() => {
         if (theme !== yahooGeocitiesTheme) {
             return;
@@ -187,10 +190,12 @@ export default ({ theme, setTheme }) => {
                     <MusicCreditDiv>Music: https://www.bensound.com/royalty-free-music</MusicCreditDiv>
                 </>
             ) }
-            <Footer>
+            <FooterElement>
                 <Theme setTheme={ setTheme } />
                 <CopyrightNotice>&#169; 2019-{ (new Date()).getFullYear() } Spencer Carver</CopyrightNotice>
-            </Footer>
+            </FooterElement>
         </>
     );
 };
+
+export default Footer;

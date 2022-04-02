@@ -151,7 +151,7 @@ const PastAnswers: FunctionComponent<{ pastAnswers: PuzzleAnswer[] }> = ({ pastA
                         )
                     );
 
-                return <AnswerListItem key={ index } css={answerStyle }>{ pastResult.value }<TimeSpan>{ formatTimeDifference(pastResult.time, now) }</TimeSpan></AnswerListItem>;
+                return <AnswerListItem key={ index } css={ answerStyle }>{ pastResult.value }<TimeSpan>{ formatTimeDifference(pastResult.time, now) }</TimeSpan></AnswerListItem>;
             }) }
         </PastAnswersList>
     );
@@ -180,10 +180,10 @@ export const PartialAnswerCheck = ({ puzzleName, step, completeStep, placeholder
             return;
         }
 
-        const answerResponse: PuzzleAnswer = await window.fetch(`${API_URL}/api/puzzle/${puzzleName}/submit`, {
+        const answerResponse: PuzzleAnswer = await window.fetch(`${ API_URL }/api/puzzle/${ puzzleName }/submit`, {
             method: "POST",
             credentials: "include",
-            body: JSON.stringify({ answer: `${step}:${answer}`, hintCount: 0 })
+            body: JSON.stringify({ answer: `${ step }:${ answer }`, hintCount: 0 })
         }).then(response => response.json());
 
         if (answerResponse.intermediate) {
@@ -200,11 +200,11 @@ export const PartialAnswerCheck = ({ puzzleName, step, completeStep, placeholder
 
     return (
         <>
-            <InputForm css={ partialInputOverrideStyles } onSubmit={submit}>
-                <input type="text" placeholder={ placeholderText } value={answer} onChange={onType}></input>
+            <InputForm css={ partialInputOverrideStyles } onSubmit={ submit }>
+                <input type="text" placeholder={ placeholderText } value={ answer } onChange={ onType }></input>
                 <button type="submit">Submit</button>
             </InputForm>
-            <AnswerListItem css={answerStyle}>{lastGuess.value}</AnswerListItem>
+            <AnswerListItem css={ answerStyle }>{lastGuess.value}</AnswerListItem>
         </>
     );
 };

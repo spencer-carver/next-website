@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CSS } from "@stitches/react";
 import WORDS from "./valid";
 import { styled } from "../../../styles/stitches";
@@ -71,7 +71,7 @@ const Tile = styled("input", {
 
 const FormRow = styled("form", {});
 
-const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, isCorrect, setIsCorrect }) => {
+const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, isCorrect }) => {
     const [ entry, setEntry ] = useState(existingData);
     const [ validationStyles, setValidationStyles ] = useState([{},{},{},{},{}]);
     const [ rowDisabled, setRowDisabled ] = useState(isCorrect);
@@ -80,23 +80,18 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
     const fourthLetter = useRef(null);
     const fifthLetter = useRef(null);
 
-    const RowRef = [firstLetter, secondLetter, thirdLetter, fourthLetter, fifthLetter];
+    const RowRef = useMemo(() => [firstLetter, secondLetter, thirdLetter, fourthLetter, fifthLetter], [firstLetter, secondLetter, thirdLetter, fourthLetter, fifthLetter]);
 
-    const answerChars = atob(answer).split("");
+    const answerChars = useMemo(() => atob(answer).split(""), [answer]);
 
     const updateLetter = useCallback((index: number, value: string) => {
-        if (value === "") {
-            const newEntry = entry.slice();
-            newEntry[index] = "";
-            setEntry(newEntry);
-
+        if (value.length === 0) {
             return;
         }
 
-        const massagedValue = value.toUpperCase();
-        
+        const massagedValue = value.toUpperCase().charAt(value.length - 1);
 
-        if(!/[A-Z]/.test(massagedValue) || massagedValue.length !== 1) {
+        if(!/[A-Z]/.test(massagedValue)) {
             return;
         }
 
@@ -105,17 +100,28 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
         setEntry(newEntry);
 
         if (index !== 4) {
-            RowRef[index + 1]?.current.focus();
+            RowRef[index + 1]?.current?.focus();
 
             return;
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [entry, setEntry]);
 
     const changeTiles = useCallback((index: number, value: string) => {
         if (value === "Backspace") {
+            const newEntry = entry.slice();
+
             if (index !== 0) {
-                RowRef[index - 1]?.current.focus();
+                RowRef[index - 1]?.current?.focus();
             }
+
+            if (entry[index] === "") {
+                newEntry[index - 1] = "";
+            } else {
+                newEntry[index] = "";
+            }
+
+            setEntry(newEntry);
 
             return;
         }
@@ -133,6 +139,7 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
 
             return;
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [entry, setRowDisabled, onComplete]);
 
     useEffect(() => {
@@ -147,6 +154,7 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
                 onComplete(rowIndex, entry, validatedStyles);
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const disabled = isCorrect || rowDisabled;
@@ -212,7 +220,7 @@ const Keyboard = ({ letters }) => {
     );
 };
 
-const Wordle = ({ encodedAnswer, existingData, step, submitAnswer }) => {
+const Wordle = ({ encodedAnswer, existingData, submitAnswer }) => {
     const [ usedLetters, setUsedLetters ] = useState({});
     const [ isCorrect, setIsCorrect ] = useState(false);
     const [ nextRef, setNextRef ] = useState(null);
@@ -246,7 +254,7 @@ const Wordle = ({ encodedAnswer, existingData, step, submitAnswer }) => {
 
         const rowRefs = [firstRow, secondRow, thirdRow, fourthRow, fifthRow, sixthRow];
 
-        rowRefs[index+1]?.current.focus();
+        rowRefs[index+1]?.current?.focus();
 
         setNextRef(rowRefs[index+1]);
     }
@@ -256,13 +264,13 @@ const Wordle = ({ encodedAnswer, existingData, step, submitAnswer }) => {
     }, []);
 
     return (
-        <DailyPuzzleDiv onClick={ () => nextRef?.current.focus() }>
-            <Row index={ 0 } answer={ encodedAnswer } existingData={ existingData[0] } onComplete={ onComplete } firstLetter={ firstRow } isCorrect={ isCorrect } setIsCorrect={ setIsCorrect } />
-            <Row index={ 1 } answer={ encodedAnswer } existingData={ existingData[1] } onComplete={ onComplete } firstLetter={ secondRow } isCorrect={ isCorrect } setIsCorrect={ setIsCorrect } />
-            <Row index={ 2 } answer={ encodedAnswer } existingData={ existingData[2] } onComplete={ onComplete } firstLetter={ thirdRow } isCorrect={ isCorrect } setIsCorrect={ setIsCorrect } />
-            <Row index={ 3 } answer={ encodedAnswer } existingData={ existingData[3] } onComplete={ onComplete } firstLetter={ fourthRow } isCorrect={ isCorrect } setIsCorrect={ setIsCorrect } />
-            <Row index={ 4 } answer={ encodedAnswer } existingData={ existingData[4] } onComplete={ onComplete } firstLetter={ fifthRow } isCorrect={ isCorrect } setIsCorrect={ setIsCorrect } />
-            <Row index={ 5 } answer={ encodedAnswer } existingData={ existingData[5] } onComplete={ onComplete } firstLetter={ sixthRow } isCorrect={ isCorrect } setIsCorrect={ setIsCorrect } />
+        <DailyPuzzleDiv onClick={ () => nextRef?.current?.focus() }>
+            <Row index={ 0 } answer={ encodedAnswer } existingData={ existingData[0] } onComplete={ onComplete } firstLetter={ firstRow } isCorrect={ isCorrect } />
+            <Row index={ 1 } answer={ encodedAnswer } existingData={ existingData[1] } onComplete={ onComplete } firstLetter={ secondRow } isCorrect={ isCorrect } />
+            <Row index={ 2 } answer={ encodedAnswer } existingData={ existingData[2] } onComplete={ onComplete } firstLetter={ thirdRow } isCorrect={ isCorrect } />
+            <Row index={ 3 } answer={ encodedAnswer } existingData={ existingData[3] } onComplete={ onComplete } firstLetter={ fourthRow } isCorrect={ isCorrect } />
+            <Row index={ 4 } answer={ encodedAnswer } existingData={ existingData[4] } onComplete={ onComplete } firstLetter={ fifthRow } isCorrect={ isCorrect } />
+            <Row index={ 5 } answer={ encodedAnswer } existingData={ existingData[5] } onComplete={ onComplete } firstLetter={ sixthRow } isCorrect={ isCorrect } />
             <Keyboard letters={ usedLetters } />
         </DailyPuzzleDiv>
     );

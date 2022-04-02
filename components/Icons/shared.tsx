@@ -17,8 +17,10 @@ const Icon = styled("a", {
     }
 });
 
-export default ({ css, href, onClick, content }: { css: CSS; onClick?: MouseEventHandler; href?: string; content: string }) => {
+const GenericIcon = ({ css, href, onClick, content }: { css: CSS; onClick?: MouseEventHandler; href?: string; content: string }) => {
     if (href) return <Icon css={ css } href={ href } target="_blank" rel="noopener noreferrer">{ content }</Icon>;
 
     return <Icon css={ css } as="button" onClick={ onClick }>{ content }</Icon>;
 };
+
+export default GenericIcon;

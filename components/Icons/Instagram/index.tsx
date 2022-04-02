@@ -43,4 +43,6 @@ const darkInstagramIconStyles: CSS = {
     borderRadius: "8px"
 };
 
-export default ({ theme }: { theme?: "light" | "dark" }) => <Icon css={ theme === "dark" ? darkInstagramIconStyles : instagramIconStyles } href={ INSTAGRAM_URL } content="Instagram" />;
+const InstagramIcon = ({ theme }: { theme?: "light" | "dark" }) => <Icon css={ theme === "dark" ? darkInstagramIconStyles : instagramIconStyles } href={ INSTAGRAM_URL } content="Instagram" />;
+
+export default InstagramIcon;

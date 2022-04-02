@@ -13,4 +13,6 @@ const kebabMenuStyles: CSS = {
     }
 };
 
-export default ({ css, onClick }) => <Icon css={ { ...kebabMenuStyles, ...css } } onClick={ onClick } content="Menu" />;
+const KebabMenu = ({ css, onClick }) => <Icon css={{ ...kebabMenuStyles, ...css }} onClick={ onClick } content="Menu" />;
+
+export default KebabMenu;

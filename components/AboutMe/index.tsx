@@ -105,7 +105,7 @@ const AboutMe: FunctionComponent = () => {
                 <PersonalBlurbDiv>
                     <PhotoContainerWrapper>
                         <PhotoContainerDiv>
-                            <Image src="/thinking.jpg" layout="intrinsic" objectFit="cover" height="350px" width="350px" />
+                            <Image src="/thinking.jpg" alt="Spencer Thinking" layout="intrinsic" objectFit="cover" height="350px" width="350px" />
                         </PhotoContainerDiv>
                     </PhotoContainerWrapper>
                     <PersonalDetailsDiv>

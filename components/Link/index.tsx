@@ -8,7 +8,6 @@ const DefaultAnchor = styled("a", {
 
 interface LinkProps {
     href: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     component?: FunctionComponent<any>;
 }
 

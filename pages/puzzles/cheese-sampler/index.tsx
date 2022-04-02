@@ -64,7 +64,7 @@ const CheeseSampler: FunctionComponent = () => {
 
     return (
         <ContentDiv>
-            <ImagesDiv>{ Object.keys(CHEESES).map((cheese, index) => (<Image key={ index } cheese={ cheese } />)) }</ImagesDiv>
+            <ImagesDiv>{ Object.keys(CHEESES).map((cheese, index) => (<Image key={ index } cheese={ cheese } alt="cheese" />)) }</ImagesDiv>
             <SongsDiv>{ Object.keys(CHEESES).sort().map((cheese, index) => (<Song key={ index } cheese={ cheese } />)) }</SongsDiv>
         </ContentDiv>
     );
@@ -86,12 +86,13 @@ const LabelSpan = styled("span", {
 
 interface CheeseProp {
     cheese: string;
+    alt?: string;
 }
 
-const Image: FunctionComponent<CheeseProp> = ({ cheese }) => {
+const Image: FunctionComponent<CheeseProp> = ({ cheese, alt }) => {
     return (
         <ImageContainerDiv>
-            <ImageComponent src={ `/puzzles/cheese-sampler/${ cheese }.jpg` } alt="cheese" width="200px" height="200px" />
+            <ImageComponent src={ `/puzzles/cheese-sampler/${ cheese }.jpg` } alt={ alt } width="200px" height="200px" />
             <LabelSpan>{ CHEESES[cheese] }</LabelSpan>
         </ImageContainerDiv>
     );

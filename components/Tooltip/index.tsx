@@ -11,7 +11,7 @@ const TooltipSpan = styled("span", {
     padding: "5px"
 });
 
-const WrapperDiv = styled("div", {
+const Wrapper = styled("span", {
     position: "relative",
     display: "inline-block",
     borderBottom: "2px dotted $secondary",
@@ -28,10 +28,10 @@ const WrapperDiv = styled("div", {
 
 const Tooltip = ({ tooltip, children, tooltipWidth = "150px" }) => {
     return (
-        <WrapperDiv>
+        <Wrapper>
             { children }
-            <TooltipSpan css={ { width: tooltipWidth } }>{ tooltip }</TooltipSpan>
-        </WrapperDiv>
+            <TooltipSpan css={{ width: tooltipWidth }}>{ tooltip }</TooltipSpan>
+        </Wrapper>
     );
 };
 

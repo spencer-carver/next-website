@@ -67,6 +67,38 @@ const AnswerSpan = styled("span", {
     }
 });
 
+const RowEntry: FunctionComponent<{ puzzleId: string; index: number; clearAnswer: Function; }> = ({ puzzleId, index, clearAnswer }) => {
+    const [ puzzleAnswer, setPuzzleAnswer ] = useState(null);
+
+    useEffect(() => {
+        try {
+            setPuzzleAnswer(localStorage.getItem(puzzleId));
+        } catch (e) {
+            //do nothing
+        }
+    }, [puzzleId]);
+
+    const clearPuzzleAnswer = (): void => clearAnswer(puzzleId);
+
+    return (
+        <li style={{ position: "relative" }}>
+            { puzzleId === NEWEST_PUZZLE && <NewSpan>NEW</NewSpan> }
+            <Link href={ `/puzzles/${ puzzleId }` }>{ PUZZLES[puzzleId] }</Link>
+            { puzzleAnswer ? (
+                <AnswerSpan
+                    role="button"
+                    tabIndex={ 0 }
+                    title="Clear Answer"
+                    onKeyPress={ clearPuzzleAnswer }
+                    onClick={ clearPuzzleAnswer }
+                >
+                    { puzzleAnswer }
+                </AnswerSpan>
+            ) : <AnswerSpan css={{ "color": "$onBackground", "&:hover": { cursor: "unset" } }}>???</AnswerSpan> }
+        </li>
+    );
+}
+
 const Puzzles: FunctionComponent = () => {
     const [ numberAnswered, setNumberAnswered ] = useState(0);
     const [ AnswerBanner, setAnswerBanner ] = useState(null);
@@ -94,20 +126,20 @@ const Puzzles: FunctionComponent = () => {
             <Head>
                 <title>{ NAME }</title>
                 <link rel="canonical" href="https://spencer.carvers.info/puzzles" />
-                <meta name="description" content={DESCRIPTION} />
+                <meta name="description" content={ DESCRIPTION } />
                 <meta name="homepage" content="false" />
-                <meta property="og:site_name" content={NAME} />
-                <meta property="og:description" content={DESCRIPTION} />
-                <meta property="og:title" content={NAME} />
+                <meta property="og:site_name" content={ NAME } />
+                <meta property="og:description" content={ DESCRIPTION } />
+                <meta property="og:title" content={ NAME } />
                 <meta property="og:url" content="https://spencer.carvers.info/puzzles" />
                 <meta property="og:image" content="https://spencer.carvers.info/seo-puzzle.jpg" />
-                <meta name="twitter:description" content={DESCRIPTION} />
-                <meta name="twitter:title" content={NAME} />
+                <meta name="twitter:description" content={ DESCRIPTION } />
+                <meta name="twitter:title" content={ NAME } />
                 <meta name="twitter:image" content="https://spencer.carvers.info/seo-puzzle.jpg" />
             </Head>
             <BackNavigation to="/" />
             { AnswerBanner }
-            <PuzzleDiv css={ { height: "calc(100vh - 131px)" } }>
+            <PuzzleDiv css={{ height: "calc(100vh - 131px)" }}>
                 <Heading>Puzzles</Heading>
                 <DescriptionDiv as="p">
                     I&apos;m trying to make puzzles! Here are all of my attempts in percieved order of difficulty.
@@ -116,35 +148,8 @@ const Puzzles: FunctionComponent = () => {
                     This page is not a puzzle.
                 </DescriptionDiv>
                 <PuzzleList>
-                    <li style={ { position: "relative", textDecoration: "underline" } }>Puzzle<AnswerSpan css={ { color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } } }>Answer</AnswerSpan></li>
-                    { Object.keys(PUZZLES).map((puzzleId: string, index: number) => {
-                        let puzzleAnswer;
-                        try {
-                            puzzleAnswer = localStorage.getItem(puzzleId);
-                        } catch (e) {
-                            //do nothing
-                        }
-
-                        const clearPuzzleAnswer = (): void => clearAnswer(puzzleId);
-
-                        return (
-                            <li key={ index } style={ { position: "relative" } }>
-                                { puzzleId === NEWEST_PUZZLE && <NewSpan>NEW</NewSpan> }
-                                <Link href={ `/puzzles/${ puzzleId }` }>{ PUZZLES[puzzleId] }</Link>
-                                { puzzleAnswer ? (
-                                    <AnswerSpan
-                                        role="button"
-                                        tabIndex={ 0 }
-                                        title="Clear Answer"
-                                        onKeyPress={ clearPuzzleAnswer }
-                                        onClick={ clearPuzzleAnswer }
-                                    >
-                                        { puzzleAnswer }
-                                    </AnswerSpan>
-                                ) : <AnswerSpan css={ { "color": "$onBackground", "&:hover": { cursor: "unset" } } }>???</AnswerSpan> }
-                            </li>
-                        );
-                    }) }
+                    <li style={{ position: "relative", textDecoration: "underline" }}>Puzzle<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Answer</AnswerSpan></li>
+                    { Object.keys(PUZZLES).map((puzzleId: string, index: number) => <RowEntry key={ index } puzzleId={ puzzleId } index={ index } clearAnswer={ clearAnswer } />) }
                 </PuzzleList>
                 { numberAnswered > 0 && (
                     <DescriptionDiv as="p">

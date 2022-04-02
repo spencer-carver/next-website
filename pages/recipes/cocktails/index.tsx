@@ -140,15 +140,15 @@ const Cocktails: FunctionComponent = () => {
             <Head>
                 <title>{ TITLE }</title>
                 <link rel="canonical" href="https://spencer.carvers.info/recipes/cocktails" />
-                <meta name="description" content={DESCRIPTION} />
+                <meta name="description" content={ DESCRIPTION } />
                 <meta name="homepage" content="false" />
-                <meta property="og:site_name" content={TITLE} />
-                <meta property="og:description" content={DESCRIPTION} />
-                <meta property="og:title" content={TITLE} />
+                <meta property="og:site_name" content={ TITLE } />
+                <meta property="og:description" content={ DESCRIPTION } />
+                <meta property="og:title" content={ TITLE } />
                 <meta property="og:url" content="https://spencer.carvers.info/recipes/cocktails" />
                 <meta property="og:image" content="https://spencer.carvers.info/seo.jpg" />
-                <meta name="twitter:description" content={DESCRIPTION} />
-                <meta name="twitter:title" content={TITLE} />
+                <meta name="twitter:description" content={ DESCRIPTION } />
+                <meta name="twitter:title" content={ TITLE } />
                 <meta name="twitter:image" content="https://spencer.carvers.info/seo.jpg" />
             </Head>
             <BackNavigation to="/recipes" />

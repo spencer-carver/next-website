@@ -13,4 +13,6 @@ const githubStyles: CSS = {
     borderRadius: "15px"
 };
 
-export default () => <Icon css={ githubStyles } href={ GITHUB_URL } content="Github" />;
+const GithubIcon = () => <Icon css={ githubStyles } href={ GITHUB_URL } content="Github" />;
+
+export default GithubIcon;

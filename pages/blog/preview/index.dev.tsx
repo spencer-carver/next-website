@@ -62,7 +62,7 @@ const PageDiv = styled("div", {
 function headingId(props) {
     let id = undefined;
     try {
-        id = props.id || props.children[0].trim().replace(/[^a-zA-Z0-9]+/gi, '-');
+        id = props.id || props.children[0].trim().replace(/[^a-zA-Z0-9]+/gi, "-");
     } catch (e) {
         // do nothing
     }
@@ -104,7 +104,7 @@ const LinkTag = styled("a", {
 
 const BlogLink = (props): ReactElement => {
     if (props.id) {
-        return <span><a id={ props.id } style={ { paddingTop: "50px", pointerEvents: "none" } } /><Link { ...props } id={ undefined } component={ LinkTag } /></span>;
+        return <span><a id={ props.id } style={{ paddingTop: "50px", pointerEvents: "none" }} /><Link { ...props } id={ undefined } component={ LinkTag } /></span>;
     }
 
     return <Link { ...props } component={ LinkTag } />;
@@ -154,14 +154,14 @@ const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
         });
         setLoading(false);
         setLoaded(true);
-    }, []);
+    }, [setLoading]);
 
     if (!loaded) {
         return null;
     }
 
     if (loaded && !post.content) {
-        return <ErrorPage title="Blog post not found" statusCode={404} backLink="/blog" />;
+        return <ErrorPage title="Blog post not found" statusCode={ 404 } backLink="/blog" />;
     }
 
     const publishDate = new Date(post.createdTime).toDateString();
@@ -176,15 +176,15 @@ const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
             <Head>
                 <title>{ TITLE }</title>
                 <link rel="canonical" href="https://spencer.carvers.info/blog/preview" />
-                <meta name="description" content={DESCRIPTION} />
+                <meta name="description" content={ DESCRIPTION } />
                 <meta name="homepage" content="false" />
-                <meta property="og:site_name" content={TITLE} />
-                <meta property="og:description" content={DESCRIPTION} />
-                <meta property="og:title" content={TITLE} />
+                <meta property="og:site_name" content={ TITLE } />
+                <meta property="og:description" content={ DESCRIPTION } />
+                <meta property="og:title" content={ TITLE } />
                 <meta property="og:url" content="https://spencer.carvers.info/blog/preview" />
                 <meta property="og:image" content="https://spencer.carvers.info/seo.jpg" />
-                <meta name="twitter:description" content={DESCRIPTION} />
-                <meta name="twitter:title" content={TITLE} />
+                <meta name="twitter:description" content={ DESCRIPTION } />
+                <meta name="twitter:title" content={ TITLE } />
                 <meta name="twitter:image" content="https://spencer.carvers.info/seo.jpg" />
             </Head>
             <BackNavigation to="/blog" />
@@ -195,8 +195,7 @@ const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
             </HeaderDiv>
             <PageDiv>
                 <ReactMarkdown
-                    children={post.content}
-                    remarkPlugins={[remarkGfm]}
+                    remarkPlugins={ [remarkGfm] }
                     components={{
                         h1: Heading1 as unknown as HeadingComponent,
                         h2: Heading2 as unknown as HeadingComponent,
@@ -209,8 +208,9 @@ const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
                         code: Code as unknown as NormalComponents["code"],
                         blockquote: BlockQuote as unknown as NormalComponents["blockquote"],
                         img: Image as unknown as NormalComponents["img"]
-                    }}
-                />
+                    }}>
+                        { post.content }
+                    </ReactMarkdown>
             </PageDiv>
         </>
     );

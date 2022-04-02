@@ -123,12 +123,12 @@ const TableDiv = styled("div", {
         overflow: "hidden",
         backgroundImage: "radial-gradient(circle at center, rgba(255,255,255,0.2) 0, rgba(255,255,255,0.1) 20%, transparent 100%)"
     },
-    [`.${lightTheme} &`]: {
+    [`.${ lightTheme } &`]: {
         backgroundColor: "$background",
         backgroundImage: "linear-gradient(rgba(0,0,0,.20) 2px, transparent 2px), linear-gradient(90deg, rgba(0,0,0,.20) 2px, transparent 2px), linear-gradient(rgba(0,0,0,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,.15) 1px, transparent 1px)",
 
     },
-    [`.${yahooGeocitiesTheme} &`]: {
+    [`.${ yahooGeocitiesTheme } &`]: {
         backgroundColor: "transparent"
     },
     "@md": {
@@ -318,6 +318,7 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
     const [deck, setDeck] = useState(null as unknown as FormattedDeck);
     const [loaded, setLoaded] = useState(false);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const debouncedSetLoaded = useCallback(debounce((value: boolean) => setLoading(false), 500), []);
 
     useEffect(() => {
@@ -326,19 +327,19 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
             return;
         }
 
-        fetchFromCache(`${API_URL}/api/mtg/${deckName}`).then((data) => {
+        fetchFromCache(`${ API_URL }/api/mtg/${ deckName }`).then((data) => {
             setDeck(massageDeck(data as unknown as MTGDeck));
             setLoaded(true);
             debouncedSetLoaded(false);
         });
-    }, [deckName]);
+    }, [deckName, debouncedSetLoaded, setLoading]);
 
     if (!loaded) {
         return null;
     }
 
     if (loaded && !deck) {
-        return <ErrorPage title="Deck not found" statusCode={404} backLink="/magic" />;
+        return <ErrorPage title="Deck not found" statusCode={ 404 } backLink="/magic" />;
     }
 
     const isYorion = deck.entries.mainboard.length === 80;
@@ -352,24 +353,24 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
             <Head>
                 <title>{ TITLE }</title>
                 <link rel="canonical" href={ `https://spencer.carvers.info/magic/deck/${ deckName }` } />
-                <meta name="description" content={DESCRIPTION} />
+                <meta name="description" content={ DESCRIPTION } />
                 <meta name="homepage" content="false" />
-                <meta property="og:site_name" content={TITLE} />
-                <meta property="og:description" content={DESCRIPTION} />
-                <meta property="og:title" content={TITLE} />
+                <meta property="og:site_name" content={ TITLE } />
+                <meta property="og:description" content={ DESCRIPTION } />
+                <meta property="og:title" content={ TITLE } />
                 <meta property="og:url" content={ `https://spencer.carvers.info/magic/deck/${ deckName }` } />
                 <meta property="og:image" content="https://spencer.carvers.info/seo.jpg" />
-                <meta name="twitter:description" content={DESCRIPTION} />
-                <meta name="twitter:title" content={TITLE} />
+                <meta name="twitter:description" content={ DESCRIPTION } />
+                <meta name="twitter:title" content={ TITLE } />
                 <meta name="twitter:image" content="https://spencer.carvers.info/seo.jpg" />
             </Head>
             <BackNavigation to="/magic" />
             <TableDiv>
                 <TitleHeading>{deck.type === "constructed" && <><FormatSpan>{deck.format}</FormatSpan>&nbsp;</>}{TITLE}</TitleHeading>
-                <FeaturedDiv css={deck.type === "constructed" ? { display: "none" } : {}}>
+                <FeaturedDiv css={ deck.type === "constructed" ? { display: "none" } : {} }>
                     {
                         deck.entries.featured.map(({ card_digest: cardDigest }, i) => {
-                            return <CardComponent key={`${cardDigest.name}-${i}`} {...cardDigest} image={cardDigest.image_uris.front} index={i} type="featured" setLoaded={debouncedSetLoaded} />;
+                            return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } image={ cardDigest.image_uris.front } index={ i } type="featured" setLoaded={ debouncedSetLoaded } />;
                         })
                     }
                     {deck.description && <DescriptionDiv>{deck.description}</DescriptionDiv>}
@@ -378,15 +379,15 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
                     <DeckDiv css={{ ...(DECK_TYPE_TO_ADDITIONAL_STYLES[deck.type] || {}), ...(isYorion ? yorionDeckStyle : {}) }}>
                         {
                             deck.entries.mainboard.map(({ card_digest: cardDigest }, i) => {
-                                return <CardComponent key={`${cardDigest.name}-${i}`} {...cardDigest} image={cardDigest.image_uris.front} index={i} type={deck.type} setLoaded={debouncedSetLoaded} />;
+                                return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } image={ cardDigest.image_uris.front } index={ i } type={ deck.type } setLoaded={ debouncedSetLoaded } />;
                             })
                         }
                         <OverlayDiv />
                     </DeckDiv>
-                    <SideboardDiv css={SIDEBOARD_TYPE_TO_ADDITIONAL_STYLES[deck.type] || {}}>
+                    <SideboardDiv css={ SIDEBOARD_TYPE_TO_ADDITIONAL_STYLES[deck.type] || {} }>
                         {
                             deck.entries.sideboard.map(({ card_digest: cardDigest }, i) => {
-                                return <CardComponent key={`${cardDigest.name}-${i}`} {...cardDigest} image={cardDigest.image_uris.front} index={i} type="sideboard" setLoaded={debouncedSetLoaded} />;
+                                return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } image={ cardDigest.image_uris.front } index={ i } type="sideboard" setLoaded={ debouncedSetLoaded } />;
                             })
                         }
                         <OverlayDiv />
