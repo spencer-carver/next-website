@@ -46,6 +46,4 @@ const About: FunctionComponent<PageProps> =  ({ theme }) => {
     );
 };
 
-About.displayName = "About";
-
 export default About;

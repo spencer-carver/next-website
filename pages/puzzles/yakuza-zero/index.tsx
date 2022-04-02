@@ -60,22 +60,24 @@ const YakuzaZero: FunctionComponent = () => {
                 </ul>
             </div>
             <DanceFloorTable>
-                {
-                    DANCE_FLOOR.map((row, rowIndex) => {
-                        return (
-                            <tr key={ rowIndex }>
-                                {
-                                    row.map((cell, columnIndex) => {
-                                        const isCorner = (rowIndex === 0 || rowIndex === 4) && (columnIndex === 0 || columnIndex === 4);
-                                        return (
-                                            <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } css={ isCorner ? cornerCellStyles : {} }>{ cell }</TableCell>
-                                        );
-                                    })
-                                }
-                            </tr>
-                        );
-                    })
-                }
+                <tbody>
+                    {
+                        DANCE_FLOOR.map((row, rowIndex) => {
+                            return (
+                                <tr key={ rowIndex }>
+                                    {
+                                        row.map((cell, columnIndex) => {
+                                            const isCorner = (rowIndex === 0 || rowIndex === 4) && (columnIndex === 0 || columnIndex === 4);
+                                            return (
+                                                <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } css={ isCorner ? cornerCellStyles : {} }>{cell}</TableCell>
+                                            );
+                                        })
+                                    }
+                                </tr>
+                            );
+                        })
+                    }
+                </tbody>
             </DanceFloorTable>
             <VideoIframe
                 title="part 1"

@@ -105,7 +105,7 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
         setEntry(newEntry);
 
         if (index !== 4) {
-            RowRef[index + 1]?.current.focus();
+            RowRef[index + 1]?.current?.focus();
 
             return;
         }
@@ -114,7 +114,7 @@ const Row = ({ index: rowIndex, answer, onComplete, existingData, firstLetter, i
     const changeTiles = useCallback((index: number, value: string) => {
         if (value === "Backspace") {
             if (index !== 0) {
-                RowRef[index - 1]?.current.focus();
+                RowRef[index - 1]?.current?.focus();
             }
 
             return;
@@ -246,7 +246,7 @@ const Wordle = ({ encodedAnswer, existingData, step, submitAnswer }) => {
 
         const rowRefs = [firstRow, secondRow, thirdRow, fourthRow, fifthRow, sixthRow];
 
-        rowRefs[index+1]?.current.focus();
+        rowRefs[index+1]?.current?.focus();
 
         setNextRef(rowRefs[index+1]);
     }
@@ -256,7 +256,7 @@ const Wordle = ({ encodedAnswer, existingData, step, submitAnswer }) => {
     }, []);
 
     return (
-        <DailyPuzzleDiv onClick={ () => nextRef?.current.focus() }>
+        <DailyPuzzleDiv onClick={ () => nextRef?.current?.focus() }>
             <Row index={ 0 } answer={ encodedAnswer } existingData={ existingData[0] } onComplete={ onComplete } firstLetter={ firstRow } isCorrect={ isCorrect } setIsCorrect={ setIsCorrect } />
             <Row index={ 1 } answer={ encodedAnswer } existingData={ existingData[1] } onComplete={ onComplete } firstLetter={ secondRow } isCorrect={ isCorrect } setIsCorrect={ setIsCorrect } />
             <Row index={ 2 } answer={ encodedAnswer } existingData={ existingData[2] } onComplete={ onComplete } firstLetter={ thirdRow } isCorrect={ isCorrect } setIsCorrect={ setIsCorrect } />

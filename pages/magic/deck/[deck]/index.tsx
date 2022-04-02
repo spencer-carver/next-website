@@ -318,7 +318,8 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
     const [deck, setDeck] = useState(null as unknown as FormattedDeck);
     const [loaded, setLoaded] = useState(false);
 
-    const debouncedSetLoaded = debounce((value: boolean) => setLoading(false), 500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const debouncedSetLoaded = useCallback(debounce((value: boolean) => setLoading(false), 500), []);
 
     useEffect(() => {
         setLoading(true);
@@ -396,7 +397,5 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
         </>
     );
 };
-
-Deck.displayName = "Deck";
 
 export default Deck;

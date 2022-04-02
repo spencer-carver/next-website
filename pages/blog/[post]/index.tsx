@@ -222,6 +222,4 @@ const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
     );
 };
 
-BlogPost.displayName = "BlogPost";
-
 export default BlogPost;

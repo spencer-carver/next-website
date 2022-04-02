@@ -51,7 +51,7 @@ const SYMBOL_TO_CSS: Record<string, CSS> = {
     R: { color: "black", backgroundColor: "yellow" },
     S: { backgroundColor: "gray" },
     W: { color: "black", backgroundColor: "yellow" },
-    "⮍": { margin: "0" },
+    "⮍": { color: "$onBackground", margin: "0" },
     "🚶": { margin: "0" }
 };
 
@@ -59,10 +59,10 @@ const Route: FunctionComponent<{ route: Segment[] }> = ({ route }) => {
     return (
         <RowDiv>
             { route.map(([ symbol, stops ], index) => (
-                <>
-                    <SymbolDiv key={ index } css={{ ...SYMBOL_TO_CSS[symbol], "&::before": { "content": symbol } }} />
+                <span key={ index }>
+                    <SymbolDiv css={{ ...SYMBOL_TO_CSS[symbol], "&::before": { "content": symbol } }} />
                     { stops !== 0 && <StopsSpan>{ stops }</StopsSpan> }
-                </>
+                </span>
             )) }
         </RowDiv>
     );

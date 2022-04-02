@@ -67,6 +67,38 @@ const AnswerSpan = styled("span", {
     }
 });
 
+const RowEntry: FunctionComponent<{ puzzleId: string; index: number; clearAnswer: Function; }> = ({ puzzleId, index, clearAnswer }) => {
+    const [ puzzleAnswer, setPuzzleAnswer ] = useState(null);
+
+    useEffect(() => {
+        try {
+            setPuzzleAnswer(localStorage.getItem(puzzleId));
+        } catch (e) {
+            //do nothing
+        }
+    }, [puzzleId]);
+
+    const clearPuzzleAnswer = (): void => clearAnswer(puzzleId);
+
+    return (
+        <li style={{ position: "relative" }}>
+            { puzzleId === NEWEST_PUZZLE && <NewSpan>NEW</NewSpan> }
+            <Link href={ `/puzzles/${ puzzleId }` }>{ PUZZLES[puzzleId] }</Link>
+            { puzzleAnswer ? (
+                <AnswerSpan
+                    role="button"
+                    tabIndex={ 0 }
+                    title="Clear Answer"
+                    onKeyPress={ clearPuzzleAnswer }
+                    onClick={ clearPuzzleAnswer }
+                >
+                    { puzzleAnswer }
+                </AnswerSpan>
+            ) : <AnswerSpan css={{ "color": "$onBackground", "&:hover": { cursor: "unset" } }}>???</AnswerSpan> }
+        </li>
+    );
+}
+
 const Puzzles: FunctionComponent = () => {
     const [ numberAnswered, setNumberAnswered ] = useState(0);
     const [ AnswerBanner, setAnswerBanner ] = useState(null);
@@ -117,34 +149,7 @@ const Puzzles: FunctionComponent = () => {
                 </DescriptionDiv>
                 <PuzzleList>
                     <li style={{ position: "relative", textDecoration: "underline" }}>Puzzle<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Answer</AnswerSpan></li>
-                    { Object.keys(PUZZLES).map((puzzleId: string, index: number) => {
-                        let puzzleAnswer;
-                        try {
-                            puzzleAnswer = localStorage.getItem(puzzleId);
-                        } catch (e) {
-                            //do nothing
-                        }
-
-                        const clearPuzzleAnswer = (): void => clearAnswer(puzzleId);
-
-                        return (
-                            <li key={ index } style={{ position: "relative" }}>
-                                { puzzleId === NEWEST_PUZZLE && <NewSpan>NEW</NewSpan> }
-                                <Link href={ `/puzzles/${ puzzleId }` }>{ PUZZLES[puzzleId] }</Link>
-                                { puzzleAnswer ? (
-                                    <AnswerSpan
-                                        role="button"
-                                        tabIndex={ 0 }
-                                        title="Clear Answer"
-                                        onKeyPress={ clearPuzzleAnswer }
-                                        onClick={ clearPuzzleAnswer }
-                                    >
-                                        { puzzleAnswer }
-                                    </AnswerSpan>
-                                ) : <AnswerSpan css={{ "color": "$onBackground", "&:hover": { cursor: "unset" } }}>???</AnswerSpan> }
-                            </li>
-                        );
-                    }) }
+                    { Object.keys(PUZZLES).map((puzzleId: string, index: number) => <RowEntry key={ index } puzzleId={ puzzleId } index={ index } clearAnswer={ clearAnswer } />) }
                 </PuzzleList>
                 { numberAnswered > 0 && (
                     <DescriptionDiv as="p">

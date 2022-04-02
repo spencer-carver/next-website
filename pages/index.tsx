@@ -92,8 +92,6 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
     );
 };
 
-Homepage.displayName = "Homepage";
-
 export default Homepage;
 
 export async function getStaticProps() {

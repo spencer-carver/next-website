@@ -138,6 +138,4 @@ const BlogIndex: FunctionComponent<PageProps> = ({ setLoading }) => {
     );
 };
 
-BlogIndex.displayName = "BlogIndex";
-
 export default BlogIndex;
