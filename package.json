@@ -1,12 +1,12 @@
 {
   "name": "next-website",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Personal website leveraging Next.js",
   "private": true,
   "main": "index.js",
   "scripts": {
     "start": "next",
-    "build": "(IMAGE_OPTIMIZATION_MODE=imgix; export IMAGE_OPTIMIZATION_MODE; next build && next export)",
+    "build": "next build && next export",
     "deploy": "npm run deploy:static && npm run deploy:assets",
     "deploy:assets": "aws s3 cp out s3://spencerrc-website/ --metadata-directive REPLACE --recursive --cache-control max-age=21600 --exclude '*.jpg' --exclude '*.png' --exclude '*.webp'",
     "deploy:static": "aws s3 cp out s3://spencerrc-website/ --metadata-directive REPLACE --recursive --cache-control max-age=31536000 --exclude '*' --include '*.jpg' --include '*.png' --include '*.webp'",

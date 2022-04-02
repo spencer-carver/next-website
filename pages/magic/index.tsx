@@ -47,10 +47,10 @@ const Magic: FunctionComponent = () => {
                 <meta property="og:description" content={DESCRIPTION} />
                 <meta property="og:title" content={TITLE} />
                 <meta property="og:url" content="https://spencer.carvers.info/magic" />
-                <meta property="og:image" content={`https://spencer.carvers.info/seo.jpg`} />
+                <meta property="og:image" content="https://spencer.carvers.info/seo.jpg" />
                 <meta name="twitter:description" content={DESCRIPTION} />
                 <meta name="twitter:title" content={TITLE} />
-                <meta name="twitter:image" content={`https://spencer.carvers.info/seo.jpg`} />
+                <meta name="twitter:image" content="https://spencer.carvers.info/seo.jpg" />
             </Head>
             <BackNavigation to="/" />
             <ContentDiv>

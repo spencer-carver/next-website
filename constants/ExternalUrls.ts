@@ -1,4 +1,4 @@
-export const API_URL = "https://carvers.info";
+export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // Social URLs
 export const TWITTER_URL = "https://twitter.com/spencerrc";
