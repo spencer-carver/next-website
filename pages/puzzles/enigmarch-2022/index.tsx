@@ -58,7 +58,7 @@ const WordleGenerator: (encodedAnswer: string, existingData: string[][]) => Func
         return false;
     }
 
-    return <Wordle { ...{ encodedAnswer, existingData, step, submitAnswer } } />;
+    return <Wordle encodedAnswer={ encodedAnswer } existingData={ existingData } submitAnswer={ submitAnswer } />;
 };
 
 const Picture: (url: string) => FunctionComponent<PuzzleStepProps> = (url) => function PicturePuzzle({ step, completeStep }) {
