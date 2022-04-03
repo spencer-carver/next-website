@@ -92,7 +92,7 @@ const Theme: FunctionComponent<{ setTheme: Function }> = ({ setTheme }) => {
     return (
         <>
             { showMenu && (
-                <MenuDiv>
+                <MenuDiv onClick={ () => setShowMenu(false) }>
                     Theme:&nbsp;
                     { Object.keys(THEMES).map((themeName) => <ThemeButton key={ themeName } css={ themeName === selectedTheme ? selectedThemeButtonStyles : {} } data-theme={ themeName } onClick={ changeTheme }>{ themeName }</ThemeButton>) }
                 </MenuDiv>
