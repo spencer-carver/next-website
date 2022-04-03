@@ -1,10 +1,15 @@
-import { useCallback } from "react";
+import { FunctionComponent, SyntheticEvent, useCallback, useState } from "react";
+import { CSS } from "@stitches/react";
 import Image from "../../Image";
 import { styled } from "../../../styles/stitches";
 
 interface CardComponentProps {
     name: string;
     image?: string;
+    image_uris: {
+        front: string;
+        back?: string;
+    };
     id: string;
     type?: "constructed" | "commander" | "oathbreaker" | "sideboard" | "featured";
     index: number;
@@ -52,8 +57,25 @@ const CardContainerDiv = styled("div", {
     }
 });
 
-const CardComponent: React.FunctionComponent<CardComponentProps> = ({ name, image, setLoaded }) => {
+const DualFacedCardComponent: FunctionComponent<{ name: string; frontFace?: string; backFace?: string; cardLoaded: (e: SyntheticEvent<HTMLImageElement, Event>) => void; }> = ({ name, frontFace, backFace, cardLoaded }) => {
+    const [showBack, setShowBack] = useState(false);
+
+    const image = showBack ? backFace : frontFace;
+
+    return (
+        <CardContainerDiv>
+            <Image src={ image?.replace("large", "normal") } alt={ name } title="Click to Transform" width="250px" height="349px" onLoad={ cardLoaded } onClick={ () => setShowBack(!showBack) } />
+        </CardContainerDiv>
+    );
+};
+
+const CardComponent: FunctionComponent<CardComponentProps> = (props) => {
+    const { name, image, image_uris, setLoaded } = props;
     const cardLoaded = useCallback(() => setLoaded(true), [setLoaded]);
+
+    if (image_uris.front && image_uris.back) {
+        return <DualFacedCardComponent name={ name } frontFace={ image_uris.front } backFace={ image_uris.back } cardLoaded={ cardLoaded } />;
+    }
 
     return (
         <CardContainerDiv>

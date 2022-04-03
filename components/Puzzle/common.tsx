@@ -2,8 +2,8 @@ import React, { FunctionComponent, useCallback, useEffect, useState } from "reac
 import Head from "next/head";
 import PuzzleComplete from "./Complete";
 import PuzzleAnswerSubmission from "./AnswerCheck";
-import { styled } from "../../styles/stitches";
 import BackNavigation from "../BackNavigation";
+import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 
 export const PuzzleDiv = styled("div", {
     margin: "0 auto",
@@ -14,6 +14,9 @@ export const PuzzleDiv = styled("div", {
     minHeight: "calc(100vh - 185px)",
     "@lg": {
         maxWidth: "800px"
+    },
+    [`.${ yahooGeocitiesTheme } &`]: {
+        minHeight: "calc(100vh - 322px)"
     }
 });
 

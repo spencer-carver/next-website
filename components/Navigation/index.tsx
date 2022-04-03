@@ -106,7 +106,7 @@ const Navigation: FunctionComponent<NavigationProps> = ({ isLoading = false, chi
             <NavigationElement>
                 <SiteLogo expanded={ expanded } onClick={ toggleMenu } />
                 <SocialLinks />
-                <SiteNav expanded={ expanded } />
+                <SiteNav expanded={ expanded } toggleMenu={ toggleMenu } />
                 <PageNav sections={ sectionNames } selected={ focus } setSelected={ setFocus } expanded={ expanded } />
             </NavigationElement>
             { loading && <LoadingSpinner fadeOut={ !stillLoading } /> }
@@ -165,12 +165,13 @@ const SiteNavLinkAnchor = styled("a", {
 
 interface SiteNavProps {
     expanded: boolean;
+    toggleMenu: Function;
 }
 
-const SiteNav: FunctionComponent<SiteNavProps> = ({ expanded }) => {
+const SiteNav: FunctionComponent<SiteNavProps> = ({ expanded, toggleMenu }) => {
     return (
         <SiteNavDiv css={ expanded ? {} : { display: "none" } }>
-            <SiteNavContentsDiv css={ expanded ? { zIndex: "1000003" } : {} }>
+            <SiteNavContentsDiv css={ expanded ? { zIndex: "1000003" } : {} } onClick={ () => toggleMenu() }>
                 <Link href="/" component={ SiteNavLinkAnchor }>Home</Link>
                 <Link href="/about" component={ SiteNavLinkAnchor }>About Me</Link>
                 <Link href="/blog" component={ SiteNavLinkAnchor }>Blog</Link>

@@ -1,10 +1,11 @@
 import React, { useState, FunctionComponent, useEffect } from "react";
+import Head from "next/head";
+import { CSS } from "@stitches/react";
 import Link from "../../components/Link";
 import PuzzleComplete from "../../components/Puzzle/Complete";
-import { styled } from "../../styles/stitches";
 import { DescriptionDiv, Heading, PuzzleDiv } from "../../components/Puzzle/common";
-import Head from "next/head";
 import BackNavigation from "../../components/BackNavigation";
+import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 
 const NAME = "All Puzzles";
 const DESCRIPTION = "A list of all puzzles available at Spencer Carver's website.";
@@ -19,6 +20,13 @@ const PUZZLES = {
     "cheese-sampler": "Cheese Sampler",
     "enigmarch-2022": "#Enigmarch 2022",
     "judge-calls-one": "Judge Calls"
+};
+
+const puzzleDivOverrides: CSS = {
+    height: "calc(100vh - 131px)",
+    [`.${ yahooGeocitiesTheme } &`]: {
+        height: "calc(100vh - 269px)"
+    }
 };
 
 const PuzzleList = styled("ul", {
@@ -139,7 +147,7 @@ const Puzzles: FunctionComponent = () => {
             </Head>
             <BackNavigation to="/" />
             { AnswerBanner }
-            <PuzzleDiv css={{ height: "calc(100vh - 131px)" }}>
+            <PuzzleDiv css={ puzzleDivOverrides }>
                 <Heading>Puzzles</Heading>
                 <DescriptionDiv as="p">
                     I&apos;m trying to make puzzles! Here are all of my attempts in percieved order of difficulty.
