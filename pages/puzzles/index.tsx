@@ -23,9 +23,9 @@ const PUZZLES = {
 };
 
 const puzzleDivOverrides: CSS = {
-    height: "calc(100vh - 131px)",
+    minHeight: "calc(100vh - 131px)",
     [`.${ yahooGeocitiesTheme } &`]: {
-        height: "calc(100vh - 269px)"
+        minHeight: "calc(100vh - 269px)"
     }
 };
 

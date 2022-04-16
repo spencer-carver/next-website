@@ -10,8 +10,10 @@ import CardComponent from "../../../../components/Magic/Card";
 import debounce from "lodash.debounce";
 import { lightTheme, styled, yahooGeocitiesTheme } from "../../../../styles/stitches";
 import BackNavigation from "../../../../components/BackNavigation";
+import Guidance from "../../../../components/Magic/Guidance";
 
-interface Card {
+export interface Card {
+    instance?: number;
     count: number;
     card_digest: {
         name: string;
@@ -33,6 +35,7 @@ interface MTGDeck {
         nonlands?: Card[];
         lands?: Card[];
         sideboard?: Card[];
+        maybeboard?: Card[];
     };
 }
 
@@ -45,7 +48,9 @@ interface FormattedDeck {
         featured: Card[];
         mainboard: Card[];
         sideboard: Card[];
+        maybeboard: Card[];
     };
+    cards: Record<string, Card["card_digest"]>;
 }
 
 function massageList(data?: Card[]): Card[] {
@@ -61,8 +66,7 @@ function massageList(data?: Card[]): Card[] {
         }
 
         for (let i = 0; i < card.count; ++i) {
-
-            output.push({ count: 1, card_digest: card.card_digest });
+            output.push({ instance: i + 1, count: card.count, card_digest: card.card_digest });
         }
 
         return output;
@@ -79,23 +83,40 @@ function massageDeck(data: MTGDeck): FormattedDeck | undefined {
                 ? "oathbreaker"
                 : "constructed";
 
+        const deckEntries = {
+            featured: ([] as Card[]).concat(
+                massageList(data.entries.commanders),
+                massageList(data.entries.oathbreakers),
+            ),
+            mainboard: ([] as Card[]).concat(
+                massageList(data.entries.mainboard),
+                massageList(data.entries.nonlands),
+                massageList(data.entries.lands)
+            ),
+            sideboard: massageList(data.entries.sideboard),
+            maybeboard: massageList(data.entries.maybeboard)
+        };
+
+        const cards = ([] as Card[]).concat(deckEntries.featured, deckEntries.mainboard, deckEntries.sideboard, deckEntries.maybeboard).reduce((cardMap, entry) => {
+            const name = entry.card_digest.name.split(" // ")[0];
+
+            if (cardMap[name]) {
+                return cardMap;
+            }
+
+            return {
+                ...cardMap,
+                [name]: entry.card_digest
+            };
+        }, {});
+
         return {
             name: data.name,
             description: data.description,
             type,
             format: data.format as string,
-            entries: {
-                featured: ([] as Card[]).concat(
-                    massageList(data.entries.commanders),
-                    massageList(data.entries.oathbreakers),
-                ),
-                mainboard: ([] as Card[]).concat(
-                    massageList(data.entries.mainboard),
-                    massageList(data.entries.nonlands),
-                    massageList(data.entries.lands)
-                ),
-                sideboard: massageList(data.entries.sideboard)
-            }
+            entries: deckEntries,
+            cards
         };
     } catch (e) {
         return undefined;
@@ -103,7 +124,7 @@ function massageDeck(data: MTGDeck): FormattedDeck | undefined {
 }
 
 function formatDeckName(name: string): string {
-    return name.replace(/-/g, " ");
+    return name.split("-").map((word) => `${ word[0].toUpperCase() }${ word.substring(1) }`).join(" ");
 }
 
 const TableDiv = styled("div", {
@@ -113,6 +134,8 @@ const TableDiv = styled("div", {
     backgroundSize: "100px 100px, 100px 100px, 20px 20px, 20px 20px",
     backgroundPosition: "15px 15px, 15px 15px, 14px 14px, 14px 14px",
     paddingTop: "40px",
+    borderBottom: "1px solid $onBackground",
+    zIndex: "1",
     "&::after": {
         content: "",
         position: "absolute",
@@ -369,8 +392,19 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
                 <TitleHeading>{deck.type === "constructed" && <><FormatSpan>{deck.format}</FormatSpan>&nbsp;</>}{TITLE}</TitleHeading>
                 <FeaturedDiv css={ deck.type === "constructed" ? { display: "none" } : {} }>
                     {
-                        deck.entries.featured.map(({ card_digest: cardDigest }, i) => {
-                            return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } image={ cardDigest.image_uris.front } index={ i } type="featured" setLoaded={ debouncedSetLoaded } />;
+                        deck.entries.featured.map(({ instance, count, card_digest: cardDigest }, i) => {
+                            return (
+                                <CardComponent
+                                    key={ `${ cardDigest.name }-${ i }` }
+                                    { ...cardDigest }
+                                    image={ cardDigest.image_uris.front }
+                                    index={ i }
+                                    instance={ instance }
+                                    count={ count }
+                                    type="featured"
+                                    setLoaded={ debouncedSetLoaded }
+                                />
+                            );
                         })
                     }
                     {deck.description && <DescriptionDiv>{deck.description}</DescriptionDiv>}
@@ -378,22 +412,45 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
                 <PlaymatDiv>
                     <DeckDiv css={{ ...(DECK_TYPE_TO_ADDITIONAL_STYLES[deck.type] || {}), ...(isYorion ? yorionDeckStyle : {}) }}>
                         {
-                            deck.entries.mainboard.map(({ card_digest: cardDigest }, i) => {
-                                return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } image={ cardDigest.image_uris.front } index={ i } type={ deck.type } setLoaded={ debouncedSetLoaded } />;
+                            deck.entries.mainboard.map(({ instance, count, card_digest: cardDigest }, i) => {
+                                return (
+                                    <CardComponent
+                                        key={ `${ cardDigest.name }-${ i }` }
+                                        { ...cardDigest }
+                                        image={ cardDigest.image_uris.front }
+                                        index={ i }
+                                        instance={ instance }
+                                        count={ count }
+                                        type={ deck.type }
+                                        setLoaded={ debouncedSetLoaded }
+                                    />
+                                );
                             })
                         }
                         <OverlayDiv />
                     </DeckDiv>
                     <SideboardDiv css={ SIDEBOARD_TYPE_TO_ADDITIONAL_STYLES[deck.type] || {} }>
                         {
-                            deck.entries.sideboard.map(({ card_digest: cardDigest }, i) => {
-                                return <CardComponent key={ `${ cardDigest.name }-${ i }` } { ...cardDigest } image={ cardDigest.image_uris.front } index={ i } type="sideboard" setLoaded={ debouncedSetLoaded } />;
+                            deck.entries.sideboard.map(({ instance, count, card_digest: cardDigest }, i) => {
+                                return (
+                                    <CardComponent
+                                        key={ `${ cardDigest.name }-${ i }` }
+                                        { ...cardDigest }
+                                        image={ cardDigest.image_uris.front }
+                                        index={ i }
+                                        instance={ instance }
+                                        count={ count }
+                                        type="sideboard"
+                                        setLoaded={ debouncedSetLoaded }
+                                    />
+                                );
                             })
                         }
                         <OverlayDiv />
                     </SideboardDiv>
                 </PlaymatDiv>
             </TableDiv>
+            <Guidance deckName={ deckName as string } cards={ deck.cards } hasLoaded={ debouncedSetLoaded } />
         </>
     );
 };

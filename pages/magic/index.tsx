@@ -61,8 +61,8 @@ const Magic: FunctionComponent = () => {
                     <div>
                         <Heading as="h2">Pioneer</Heading>
                         <ul>
-                            <DeckLink name="Lotus Field Combo" id="lotus-field-combo" colors="⚪🔵⚫🔴🟢" />
-                            <DeckLink name="5-Color Humans" id="pyre-of-humans" colors="⚪🔵⚫🔴🟢" />
+                            <DeckLink name="Lotus Field Combo" id="lotus-field-combo" colors="⚪🔵⚫🟢" />
+                            <DeckLink name="5-Color Humans" id="party-pyre" colors="⚪🔵⚫🔴🟢" />
                         </ul>
                     </div>
                     <div>

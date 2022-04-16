@@ -12,8 +12,11 @@ interface CardComponentProps {
     };
     id: string;
     type?: "constructed" | "commander" | "oathbreaker" | "sideboard" | "featured";
+    instance?: number;
+    count: number;
     index: number;
     setLoaded?: (boolean) => void;
+    css?: CSS;
 }
 
 const CardContainerDiv = styled("div", {
@@ -57,28 +60,28 @@ const CardContainerDiv = styled("div", {
     }
 });
 
-const DualFacedCardComponent: FunctionComponent<{ name: string; frontFace?: string; backFace?: string; cardLoaded: (e: SyntheticEvent<HTMLImageElement, Event>) => void; }> = ({ name, frontFace, backFace, cardLoaded }) => {
+const DualFacedCardComponent: FunctionComponent<{ css: CSS; name: string; frontFace?: string; backFace?: string; cardLoaded: (e: SyntheticEvent<HTMLImageElement, Event>) => void; }> = ({ css, name, frontFace, backFace, cardLoaded }) => {
     const [showBack, setShowBack] = useState(false);
 
     const image = showBack ? backFace : frontFace;
 
     return (
-        <CardContainerDiv>
+        <CardContainerDiv css={ css }>
             <Image src={ image?.replace("large", "normal") } alt={ name } title="Click to Transform" width="250px" height="349px" onLoad={ cardLoaded } onClick={ () => setShowBack(!showBack) } />
         </CardContainerDiv>
     );
 };
 
 const CardComponent: FunctionComponent<CardComponentProps> = (props) => {
-    const { name, image, image_uris, setLoaded } = props;
+    const { name, image, image_uris, setLoaded, css = {} } = props;
     const cardLoaded = useCallback(() => setLoaded(true), [setLoaded]);
 
     if (image_uris.front && image_uris.back) {
-        return <DualFacedCardComponent name={ name } frontFace={ image_uris.front } backFace={ image_uris.back } cardLoaded={ cardLoaded } />;
+        return <DualFacedCardComponent css={ css } name={ name } frontFace={ image_uris.front } backFace={ image_uris.back } cardLoaded={ cardLoaded } />;
     }
 
     return (
-        <CardContainerDiv>
+        <CardContainerDiv css={ css }>
             <Image src={ image?.replace("large", "normal") } alt={ name } width="250px" height="349px" onLoad={ cardLoaded } />
         </CardContainerDiv>
     );
