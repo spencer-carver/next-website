@@ -8,7 +8,7 @@ const BackAnchor = styled("a", {
     left: "30px",
     textDecoration: "none",
     color: "$onBackground",
-    zIndex: "1",
+    zIndex: "2",
     "&:hover": {
         textDecoration: "underline"
     }

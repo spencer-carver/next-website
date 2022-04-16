@@ -22,7 +22,7 @@ function skipOptimization(props): boolean {
 
 const Image: FunctionComponent<ImageProps> = (props) => {
     if (skipOptimization(props)) {
-        return <NextImage { ...props } loader={ ({ src }) => src } unoptimized={ true } />;
+        return <NextImage { ...props } loader={ ({ src }) => src } unoptimized={ true } referrerPolicy="no-referrer" />;
     }
 
     return <NextImage { ...props } />;

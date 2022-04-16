@@ -7,6 +7,7 @@ const TooltipSpan = styled("span", {
     borderRadius: "6px",
     position: "absolute",
     zIndex: "1",
+    left: "0px",
     bottom: "10px",
     padding: "5px"
 });
@@ -26,11 +27,11 @@ const Wrapper = styled("span", {
     }
 });
 
-const Tooltip = ({ tooltip, children, tooltipWidth = "150px" }) => {
+const Tooltip = ({ tooltip, children, css = {}, tooltipCss = {} }) => {
     return (
-        <Wrapper>
+        <Wrapper css={ css }>
             { children }
-            <TooltipSpan css={{ width: tooltipWidth }}>{ tooltip }</TooltipSpan>
+            <TooltipSpan css={ tooltipCss }>{ tooltip }</TooltipSpan>
         </Wrapper>
     );
 };
