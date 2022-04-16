@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent, useEffect } from "react";
+import React, { useState, FunctionComponent, useEffect, useCallback } from "react";
 import Head from "next/head";
 import { CSS } from "@stitches/react";
 import Link from "../../components/Link";
@@ -86,7 +86,10 @@ const RowEntry: FunctionComponent<{ puzzleId: string; index: number; clearAnswer
         }
     }, [puzzleId]);
 
-    const clearPuzzleAnswer = (): void => clearAnswer(puzzleId);
+    const clearPuzzleAnswer = useCallback((): void => {
+        clearAnswer(puzzleId);
+        setPuzzleAnswer(null);
+    }, [clearAnswer, puzzleId]);
 
     return (
         <li style={{ position: "relative" }}>
