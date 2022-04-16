@@ -12,7 +12,7 @@ import { lightTheme, styled, yahooGeocitiesTheme } from "../../../../styles/stit
 import BackNavigation from "../../../../components/BackNavigation";
 import Guidance from "../../../../components/Magic/Guidance";
 
-interface Card {
+export interface Card {
     instance?: number;
     count: number;
     card_digest: {
@@ -35,6 +35,7 @@ interface MTGDeck {
         nonlands?: Card[];
         lands?: Card[];
         sideboard?: Card[];
+        maybeboard?: Card[];
     };
 }
 
@@ -47,8 +48,9 @@ interface FormattedDeck {
         featured: Card[];
         mainboard: Card[];
         sideboard: Card[];
+        maybeboard: Card[];
     };
-    cards: Record<string, Card>;
+    cards: Record<string, Card["card_digest"]>;
 }
 
 function massageList(data?: Card[]): Card[] {
@@ -91,10 +93,11 @@ function massageDeck(data: MTGDeck): FormattedDeck | undefined {
                 massageList(data.entries.nonlands),
                 massageList(data.entries.lands)
             ),
-            sideboard: massageList(data.entries.sideboard)
+            sideboard: massageList(data.entries.sideboard),
+            maybeboard: massageList(data.entries.maybeboard)
         };
 
-        const cards = ([] as Card[]).concat(deckEntries.featured, deckEntries.mainboard, deckEntries.sideboard, massageList(data.entries.maybeboard)).reduce((cardMap, entry) => {
+        const cards = ([] as Card[]).concat(deckEntries.featured, deckEntries.mainboard, deckEntries.sideboard, deckEntries.maybeboard).reduce((cardMap, entry) => {
             const name = entry.card_digest.name.split(" // ")[0];
 
             if (cardMap[name]) {
@@ -447,7 +450,7 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
                     </SideboardDiv>
                 </PlaymatDiv>
             </TableDiv>
-            <Guidance deckName={ deckName } cards={ deck.cards } hasLoaded={ debouncedSetLoaded } />
+            <Guidance deckName={ deckName as string } cards={ deck.cards } hasLoaded={ debouncedSetLoaded } />
         </>
     );
 };

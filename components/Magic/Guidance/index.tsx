@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useCallback, useState } from "react";
+import React, { FunctionComponent, useEffect, useCallback, useState, ReactElement } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { CSS } from "@stitches/react";
@@ -10,8 +10,11 @@ import CardComponent from "../Card";
 import { CodeComponent } from "react-markdown/lib/ast-to-react";
 import fetchFromCache from "../../../utils/cache";
 import { API_URL } from "../../../constants/ExternalUrls";
+import { Card } from "../../../pages/magic/deck/[deck]";
 
-const { a: Link, code: Code } = MarkdownComponents;
+const { a, code } = MarkdownComponents;
+const Link = a as unknown as FunctionComponent<{ href: string; children: ReactElement | string }>;
+const Code = code as unknown as FunctionComponent<{ css?: CSS; children: ReactElement | string }>;
 
 const PageDiv = styled("div", {
     padding: "0 20px",
@@ -79,14 +82,7 @@ const cardTooltipStyles: CSS = {
 
 interface GuidanceProps {
     deckName: string;
-    cards: Record<string, {
-        name: string;
-        id: string;
-        image_uris: {
-            front: string;
-            back?: string;
-        };
-    }>;
+    cards: Record<string, Card["card_digest"]>;
     hasLoaded: Function;
 }
 
