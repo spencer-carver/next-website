@@ -113,6 +113,7 @@ const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
             </Head>
             <BackNavigation to="/blog" />
             <HeaderDiv>
+                <p>All opinions expressed here are my own.</p>
                 <h1>{ TITLE }</h1>
                 <span>Published on { publishDate }</span>
                 { publishDate !== modifyDate && <span>Modified on { modifyDate }</span>}

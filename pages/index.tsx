@@ -60,6 +60,8 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>June 13, 2022</SubHeading>
+                <P>I&apos;ve been preoccupied with other things and a lovely vacation, but hoping to resume some entries in the coming weeks. Added a disclaimer indicating that all my opinions are my own, because all my opinions are my own.</P>
                 <SubHeading>April 16, 2022</SubHeading>
                 <P>The Magic deck details pages have been updated to support philosophy and sideboarding guidance for select decks. Currently only <Link href="/magic/deck/amulet-titan" component={ A }>Amulet Titan</Link> has any details added (and even that is a work-in-progress), but more to come over time! I&apos;ve also began tracking match results, and will look to see how I can integrate statistics of this regard cleanly into the page as well, or if I will need to update that section manually.</P>
                 <SubHeading>April 2, 2022</SubHeading>
