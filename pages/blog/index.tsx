@@ -119,6 +119,7 @@ const BlogIndex: FunctionComponent<PageProps> = ({ setLoading }) => {
             </Head>
             <BackNavigation to="/" />
             <HeaderDiv>
+                <p>All opinions expressed here are my own.</p>
                 <h1>Blog</h1>
             </HeaderDiv>
             <PageDiv>
