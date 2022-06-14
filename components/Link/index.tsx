@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, ReactNode } from "react";
 import NextLink from "next/link";
 import { styled } from "../../styles/stitches";
 
@@ -9,6 +9,7 @@ const DefaultAnchor = styled("a", {
 interface LinkProps {
     href: string;
     component?: FunctionComponent<any>;
+    children?: ReactNode;
 }
 
 const Link: FunctionComponent<LinkProps> = ({ href, component: Component = DefaultAnchor, children }) => {
