@@ -118,8 +118,8 @@ const AboutMe: FunctionComponent = () => {
                             and <Link href="/recipes/cocktails" component={ LinkTag }>Cocktails</Link>; though I wouldn&apos;t recommend combining them into a single activity.
                         </p>
                         <p>
-                            I&apos;m also a fan of <Link href="/puzzles" component={ LinkTag }>Puzzles</Link>&nbsp;
-                            and <Link href={ GOODREADS_URL } component={ LinkTag }>Science Fiction and Fantasy novels</Link>.
+                            I&apos;m also a fan of <Link href="/puzzles" component={ LinkTag }>Puzzles</Link>
+                            &nbsp;and <Link href={ GOODREADS_URL } component={ LinkTag }>Science Fiction and Fantasy novels</Link>.
                         </p>
                     </PersonalDetailsDiv>
                 </PersonalBlurbDiv>

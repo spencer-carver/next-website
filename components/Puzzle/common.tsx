@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback, useEffect, useState } from "react";
+import React, { FunctionComponent, ReactNode, useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 import PuzzleComplete from "./Complete";
 import PuzzleAnswerSubmission from "./AnswerCheck";
@@ -44,6 +44,7 @@ interface PuzzleWrapperProps {
     name: string;
     title: string;
     description: string;
+    children?: ReactNode;
 }
 
 export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ name, title, description, children }) => {
