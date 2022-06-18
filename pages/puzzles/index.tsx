@@ -9,7 +9,7 @@ import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 
 const NAME = "All Puzzles";
 const DESCRIPTION = "A list of all puzzles available at Spencer Carver's website.";
-const NEWEST_PUZZLE = "enigmarch-2022";
+const NEWEST_PUZZLE = "x-marks-the-spot";
 
 const PUZZLES = {
     "tutorial": "Tutorial",
@@ -18,6 +18,7 @@ const PUZZLES = {
     "an-explosive-discovery": "An Explosive Discovery",
     "yakuza-zero": "Yakuza 0",
     "cheese-sampler": "Cheese Sampler",
+    "x-marks-the-spot": "X Marks the Spot",
     "enigmarch-2022": "#Enigmarch 2022",
     "judge-calls-one": "Judge Calls"
 };
