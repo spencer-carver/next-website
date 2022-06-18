@@ -60,6 +60,11 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>June 17, 2022</SubHeading>
+                <List>
+                    <ListItem>New Puzzle: <Link href="/puzzles/x-marks-the-spot" component={ A }>X Marks the Spot</Link></ListItem>
+                </List>
+                <P>This idea came together pretty quickly! While it ended in a different format than what I originally had in mind, I quite like it! Hopefully you do too!</P>
                 <SubHeading>June 13, 2022</SubHeading>
                 <P>I&apos;ve been preoccupied with other things and a lovely vacation, but hoping to resume some entries in the coming weeks. Added a disclaimer indicating that all my opinions are my own, because all my opinions are my own.</P>
                 <SubHeading>April 16, 2022</SubHeading>
