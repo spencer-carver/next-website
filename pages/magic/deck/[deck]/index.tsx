@@ -274,10 +274,18 @@ const DeckDiv = styled("div", {
 
 const yorionDeckStyle: CSS = {
     "@lg": {
-        height: "680px"
+        height: "1188px",
+        marginRight: "20px"
+    },
+    "@xl": {
+        height: "880px",
+        marginRight: "70px"
     },
     "@xxl": {
-        height: "1200px"
+        height: "1188px",
+    },
+    "@xxxl": {
+        height: "880px"
     }
 };
 
