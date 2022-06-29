@@ -35,6 +35,16 @@ const Description = styled("p", {
     margin: "0 40px"
 });
 
+const PrimaryDeck = styled("span", {
+    position: "relative",
+    "&::before": {
+        content: "⭐",
+        color: "$onBackground",
+        position: "absolute",
+        marginLeft: "-25px"
+    }
+});
+
 const Magic: FunctionComponent = () => {
     return (
         <>
@@ -57,42 +67,46 @@ const Magic: FunctionComponent = () => {
                 <Heading css={{ textAlign: "center" }}>
                     My Magic: the Gathering decks
                 </Heading>
+                <Description  css={{ textAlign: "center" }}>
+                    ⭐ indicates my primary deck for the format
+                </Description>
                 <DecksDiv>
                     <div>
                         <Heading as="h2">Pioneer</Heading>
                         <ul>
-                            <DeckLink name="Lotus Field Combo" id="lotus-field-combo" colors="⚪🔵⚫🟢" />
                             <DeckLink name="5-Color Humans" id="party-pyre" colors="⚪🔵⚫🔴🟢" />
+                            <PrimaryDeck><DeckLink name="Lotus Field Combo" id="lotus-field-combo" colors="⚪🔵⚫🟢" /></PrimaryDeck>
                         </ul>
                     </div>
                     <div>
                         <Heading as="h2">Modern</Heading>
                         <ul>
-                            <DeckLink name="Amulet Titan" id="amulet-titan" colors="🟢" />
+                            <PrimaryDeck><DeckLink name="Amulet Titan" id="amulet-titan" colors="🟢" /></PrimaryDeck>
                             <DeckLink name="Bogles" id="bogles" colors="⚪🟢" />
                             <DeckLink name="Eldrazi Tron" id="eldrazi-tron" colors="" />
-                            <DeckLink name="Merfolk" id="merfolk" colors="🔵" />
                             <DeckLink name="Gifts Storm" id="gifts-storm" colors="🔵🔴" />
+                            <DeckLink name="Merfolk" id="merfolk" colors="🔵" />
                         </ul>
                     </div>
                     <div>
                         <Heading as="h2">Legacy</Heading>
                         <Description>
-                            I have a Legacy Battlebox with 10 decks designed to play against each other.
+                            I have a Legacy Battlebox with 11 decks designed to play against each other.
                             Each deck is playable in a general Legacy metagame, but will not be the most
                             up-to-date or tuned.
                         </Description>
                         <ul>
+                            <DeckLink name="Burn" id="burn" colors="🔴" />
                             <DeckLink name="Death &amp; Taxes" id="death-and-taxes" colors="⚪" />
+                            <DeckLink name="Delver" id="izzet-delver" colors="🔵🔴" />
                             <DeckLink name="Enchantress" id="enchantress" colors="⚪⚫🟢" />
-                            <DeckLink name="Lands" id="lands" colors="🔴🟢" />
+                            <PrimaryDeck><DeckLink name="Lands" id="lands" colors="🔴🟢" /></PrimaryDeck>
                             <DeckLink name="Manaless Dredge" id="manaless-dredge" colors="🔵⚫🔴🟢" />
                             <DeckLink name="Miracles" id="miracles" colors="⚪🔵🟢" />
                             <DeckLink name="Omnitell" id="omnitell" colors="🔵" />
                             <DeckLink name="Painter" id="strawberry-shortcake" colors="⚪🔴" />
                             <DeckLink name="Reanimator" id="reanimator" colors="⚪⚫🔴" />
                             <DeckLink name="Storm" id="storm" colors="🔵⚫🔴" />
-                            <DeckLink name="Izzet Delver" id="izzet-delver" colors="🔵🔴" />
                         </ul>
                     </div>
                     <div>
@@ -141,7 +155,7 @@ const pipStyles: CSS = {
     borderRadius: "50%",
     display: "inline-block",
     marginLeft: "2px",
-    border: "1px solid black"
+    border: "1px solid $onBackground"
 };
 
 const WhitePip = styled("span", {
