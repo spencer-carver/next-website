@@ -60,6 +60,9 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>July XX, 2022</SubHeading>
+                <P>Continuing to round out my battlebox, with what I think is the last new deck, <Link href="/magic/deck/elves" component={ A }>Elves!</Link></P>
+                <P>I have also revamped the main deck-hub page.</P>
                 <SubHeading>June 28, 2022</SubHeading>
                 <P>I have gotten a chance to play some more magic recently! Working on fleshing out the deck details for my Legacy decks, and picked up an 11th deck for the battlebox (<Link href="/magic/deck/burn" component={ A }>Burn</Link>)!</P>
                 <SubHeading>June 17, 2022</SubHeading>
