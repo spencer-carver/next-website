@@ -5,8 +5,22 @@ import { CSS } from "@stitches/react";
 import { styled } from "../../styles/stitches";
 import BackNavigation from "../../components/BackNavigation";
 import Image from "../../components/Image";
-
-const ART_CROP_URL_PREFIX = "https://c1.scryfall.com/file/scryfall-cards/art_crop/front";
+import {
+    WHITE_MANA,
+    BLUE_MANA,
+    BLACK_MANA,
+    RED_MANA,
+    GREEN_MANA,
+    COLORLESS_MANA,
+    PIONEER_DECKS,
+    MODERN_DECKS,
+    LEGACY_DECKS,
+    PAUPER_DECKS,
+    COMMANDER_DECKS,
+    OATHBREAKER_DECKS,
+    OTHER_DECKS,
+    DeckLinkProps
+} from "../../constants/Magic";
 
 const TITLE = "All Magic: the Gathering Decks";
 const DESCRIPTION = "Magic is one of my favorite hobbies, both playing and collecting! Check out what I like to play.";
@@ -21,15 +35,24 @@ const Heading = styled("h1", {
 });
 
 const DecksDiv = styled("div", {
-    width: "300px",
+    width: "245px",
     padding: "5px",
     margin: "0 auto",
     borderRadius: "@border",
     "h2:first-of-type": {
         marginTop: "0"
     },
+    "@md": {
+        width: "480px"
+    },
     "@lg": {
         width: "740px"
+    },
+    "@xl": {
+        width: "1000px"
+    },
+    "@xxl": {
+        width: "1220px"
     }
 });
 
@@ -38,15 +61,27 @@ const Description = styled("p", {
     margin: "0 40px"
 });
 
-const PrimaryDeck = styled("span", {
-    position: "relative",
-    "&::before": {
-        content: "⭐",
-        color: "$onBackground",
-        position: "absolute",
-        marginLeft: "-25px"
-    }
+const ListContainer = styled("ul", {
+    display: "flex",
+    flexWrap: "wrap",
+    paddingInlineStart: "0px"
 });
+
+interface FormatGroupProps {
+    name: string;
+    decks?: DeckLinkProps[];
+}
+
+const FormatGroup: FunctionComponent<FormatGroupProps> = ({ name, decks }) => {
+    return (
+        <div>
+            <Heading as="h2">{ name }</Heading>
+            <ListContainer>
+                { decks.map((deck) => <DeckLink key={ deck.id } { ...deck } />) }
+            </ListContainer>
+        </div>
+    );
+};
 
 const Magic: FunctionComponent = () => {
     return (
@@ -74,251 +109,13 @@ const Magic: FunctionComponent = () => {
                     ⭐ indicates my primary deck for the format
                 </Description>
                 <DecksDiv>
-                    <div>
-                        <Heading as="h2">Pioneer</Heading>
-                        <ul>
-                            <DeckLink
-                                name="5-Color Humans"
-                                id="party-pyre"
-                                colors="⚪🔵⚫🔴🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/9/0/90bad312-80e3-45b0-9556-60ce06808a47.jpg` }
-                            />
-                            <PrimaryDeck>
-                                <DeckLink
-                                    name="Lotus Field Combo"
-                                    id="lotus-field-combo"
-                                    colors="⚪🔵⚫🟢"
-                                    imageUrl={ `${ ART_CROP_URL_PREFIX }/0/e/0e013033-3995-4ba8-b0c3-0614c79aaaab.jpg` }
-                                />
-                            </PrimaryDeck>
-                        </ul>
-                    </div>
-                    <div>
-                        <Heading as="h2">Modern</Heading>
-                        <ul>
-                            <PrimaryDeck>
-                                <DeckLink
-                                    name="Amulet Titan"
-                                    id="amulet-titan"
-                                    colors="🟢"
-                                    imageUrl={ `${ ART_CROP_URL_PREFIX }/4/5/4550b26a-3a73-4724-99d5-1e0a52c36701.jpg` }
-                                />
-                            </PrimaryDeck>
-                            <DeckLink
-                                name="Bogles"
-                                id="bogles"
-                                colors="⚪🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/1/9/19714d6c-2bfa-4ee0-aa2f-5ccc196bc5d8.jpg` }
-                            />
-                            <DeckLink
-                                name="Eldrazi Tron"
-                                id="eldrazi-tron"
-                                colors=""
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/8/c/8cf632ef-70e3-46f2-af21-14ea7ef30237.jpg` }
-                            />
-                            <DeckLink
-                                name="Gifts Storm"
-                                id="gifts-storm"
-                                colors="🔵🔴"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/f/0/f079df56-60f9-46e5-8f2e-032e62b6a5f1.jpg` }
-                            />
-                            <DeckLink
-                                name="Merfolk"
-                                id="merfolk"
-                                colors="🔵"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/2/f/2ff414bc-6736-428b-bb60-9d62793a5ae5.jpg` }
-                            />
-                        </ul>
-                    </div>
-                    <div>
-                        <Heading as="h2">Legacy</Heading>
-                        <Description>
-                            I have a Legacy Battlebox with 12 decks designed to play against each other.
-                            Each deck is playable in a general Legacy metagame, but will not be the most
-                            up-to-date or tuned.
-                        </Description>
-                        <ul>
-                            <DeckLink
-                                name="Burn"
-                                id="burn"
-                                colors="🔴"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/8/9/89af0f45-c11c-4f13-9950-b1489440ee5b.jpg` }
-                            />
-                            <DeckLink
-                                name="Death &amp; Taxes"
-                                id="death-and-taxes"
-                                colors="⚪"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/8/2/824423ff-6441-4be6-b754-810adf9ca6a2.jpg` }
-                            />
-                            <DeckLink
-                                name="Delver"
-                                id="izzet-delver"
-                                colors="🔵🔴"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/1/1/11bf83bb-c95b-4b4f-9a56-ce7a1816307a.jpg` }
-                            />
-                            <DeckLink
-                                name="Elves"
-                                id="elves"
-                                colors="⚫🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/5/7/57948c65-4324-42bc-97ae-7cc700eb3817.jpg` }
-                            />
-                            <DeckLink
-                                name="Enchantress"
-                                id="enchantress"
-                                colors="⚪⚫🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/0/b/0babfe00-9bad-48fc-b3b1-df8280242fd2.jpg` }
-                            />
-                            <PrimaryDeck>
-                                <DeckLink
-                                    name="Lands"
-                                    id="lands"
-                                    colors="🔴🟢"
-                                    imageUrl={ `${ ART_CROP_URL_PREFIX }/1/5/15c34f32-49d9-4a0d-83b2-28172f54fdd1.jpg` }
-                                />
-                            </PrimaryDeck>
-                            <DeckLink
-                                name="Manaless Dredge"
-                                id="manaless-dredge"
-                                colors="🔵⚫🔴🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/0/4/04628d6f-8985-4e4b-a746-fbb2ef631694.jpg` }
-                            />
-                            <DeckLink
-                                name="Miracles"
-                                id="miracles"
-                                colors="⚪🔵🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/0/9/0982ea7e-05a4-4e40-98ab-ea9aa6c7342e.jpg` }
-                            />
-                            <DeckLink
-                                name="Omnitell"
-                                id="omnitell"
-                                colors="🔵"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/4/b/4b851c17-55ed-4671-b471-dc7b34944432.jpg` }
-                            />
-                            <DeckLink
-                                name="Painter"
-                                id="strawberry-shortcake"
-                                colors="⚪🔴"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/1/7/17cd920a-de09-454a-a9da-c84512e3aff1.jpg` }
-                            />
-                            <DeckLink
-                                name="Reanimator"
-                                id="reanimator"
-                                colors="⚪⚫🔴"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/b/e/bee3dad4-88d8-424c-b3f8-d089b6891fb8.jpg` }
-                            />
-                            <DeckLink
-                                name="Storm"
-                                id="storm"
-                                colors="🔵⚫🔴"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/7/8/78f5ebe1-4ee2-4719-b897-9e829f8f87d9.jpg` }
-                            />
-                        </ul>
-                    </div>
-                    <div>
-                        <Heading as="h2">Pauper</Heading>
-                        <ul>
-                            <DeckLink
-                                name="Mono-Green Land Destruction"
-                                id="mono-g-ponza"
-                                colors="🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/0/0/00ae906b-2c4d-48e9-9f2d-217777e22292.jpg` }
-                            />
-                            <DeckLink
-                                name="Tortured Existance"
-                                id="tortured-existance"
-                                colors="⚪⚫🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/1/7/1754b92b-d6f9-4503-af01-dee03f72a048.jpg` }
-                            />
-                            <DeckLink
-                                name="Teachings Control"
-                                id="teachings-control"
-                                colors="⚪🔵⚫🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/f/7/f7cb51cd-8418-43ee-bf4f-6b959cc5b131.jpg` }
-                            />
-                        </ul>
-                    </div>
-                    <div>
-                        <Heading as="h2">Commander</Heading>
-                        <ul>
-                            <DeckLink
-                                name="Karador"
-                                id="karador"
-                                colors="⚪⚫🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/6/2/6200ac79-b166-43d0-9a0b-5b547625ed57.jpg` }
-                            />
-                            <DeckLink
-                                name="Muldrotha"
-                                id="muldrotha"
-                                colors="🔵⚫🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/c/6/c654737d-34ac-42ff-ae27-3a3bbb930fc1.jpg` }
-                            />
-                            <DeckLink
-                                name="Nahiri"
-                                id="nahiri"
-                                colors="⚪"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/9/a/9a226eae-1c77-45a9-9115-f846b76681a3.jpg` }
-                            />
-                            <DeckLink
-                                name="Sasaya"
-                                id="sasaya"
-                                colors="🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/d/2/d224c50f-8146-4c91-9401-04e5bd306d02.jpg` }
-                            />
-                            <DeckLink
-                                name="Sen Triplets"
-                                id="sen-triplets"
-                                colors="⚪🔵⚫"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/4/1/418f8ecb-544b-430c-8ae9-61aaaf2dfba6.jpg` }
-                            />
-                            <DeckLink
-                                name="Zedruu"
-                                id="zedruu"
-                                colors="⚪🔵🔴"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/e/9/e9ea2a6b-5aaf-4178-b945-f409fe83c41a.jpg` }
-                            />
-                            <DeckLink
-                                name="Zur"
-                                id="zur"
-                                colors="⚪🔵⚫"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/2/5/253e19db-28a1-4909-b235-e02631a38c35.jpg` }
-                            />
-                        </ul>
-                    </div>
-                    <div>
-                        <Heading as="h2">Oathbreaker</Heading>
-                        <ul>
-                            <DeckLink
-                                name="Wrenn &amp; Six"
-                                id="wrenn-and-six"
-                                colors="🔴🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/4/a/4a706ecf-3277-40e3-871c-4ba4ead16e20.jpg` }
-                            />
-                            <DeckLink
-                                name="Calix, Destiny&apos;s Hand"
-                                id="calix-enchantress"
-                                colors="⚪🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/8/6/86458929-ea21-4de8-84d8-a07398ed3bc0.jpg` }
-                            />
-                        </ul>
-                    </div>
-                    <div>
-                        <Heading as="h2">Other</Heading>
-                        <ul>
-                            <DeckLink
-                                name="Pre-Modern: Astral Slide"
-                                id="astral-slide"
-                                colors="⚪🔴"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/d/1/d14993b6-ed8d-4b9b-b54c-2837b343a61e.jpg` }
-                            />
-                            <DeckLink
-                                name="Proxy Vintage: Oath of Druids"
-                                id="oath-of-druids"
-                                colors="⚪🔵⚫🔴🟢"
-                                imageUrl={ `${ ART_CROP_URL_PREFIX }/9/d/9dad6b50-c415-4c55-8eac-bbc9d656c2fc.jpg` }
-                            />
-                            <Link href="https://cubecobra.com/cube/overview/2ec8o"><Heading as="h3">Cube</Heading></Link>
-                        </ul>
-                    </div>
+                    <FormatGroup name="Pioneer" decks={ PIONEER_DECKS } />
+                    <FormatGroup name="Modern" decks={ MODERN_DECKS } />
+                    <FormatGroup name="Legacy" decks={ LEGACY_DECKS } />
+                    <FormatGroup name="Pauper" decks={ PAUPER_DECKS } />
+                    <FormatGroup name="Commander" decks={ COMMANDER_DECKS } />
+                    <FormatGroup name="Oathbreaker" decks={ OATHBREAKER_DECKS } />
+                    <FormatGroup name="Other" decks={ OTHER_DECKS } />
                 </DecksDiv>
             </ContentDiv>
         </>
@@ -330,60 +127,100 @@ const pipStyles: CSS = {
     height: "20px",
     borderRadius: "50%",
     display: "inline-block",
-    marginLeft: "2px",
-    border: "1px solid $onBackground"
+    marginLeft: "1px",
+    marginBottom: "2px",
+    border: "1px solid transparent"
 };
 
 const WhitePip = styled("span", {
     ...pipStyles,
-    backgroundColor: "white"
+    backgroundColor: "#F7F6D8",
+    backgroundImage: `url("${ WHITE_MANA }")`
 });
 
 const BluePip = styled("span", {
     ...pipStyles,
-    backgroundColor: "blue"
+    backgroundColor: "#C2D7E9",
+    backgroundImage: `url("${ BLUE_MANA }")`
+
 });
 
 const BlackPip = styled("span", {
     ...pipStyles,
-    backgroundColor: "black"
+    backgroundColor: "#BAB1AB",
+    backgroundImage: `url("${ BLACK_MANA }")`
 });
 
 const RedPip = styled("span", {
     ...pipStyles,
-    backgroundColor: "red"
+    backgroundColor: "#E49977",
+    backgroundImage: `url("${ RED_MANA }")`
 });
 
 const GreenPip = styled("span", {
     ...pipStyles,
-    backgroundColor: "green"
+    backgroundColor: "#A4C095",
+    backgroundImage: `url("${ GREEN_MANA }")`
 });
 
-const DeckLinkAnchor = styled("a", {
-    color: "$primary",
-    "&:hover": {
-        color: "$primaryVariant"
-    }
+const ColorlessPip = styled("span", {
+    ...pipStyles,
+    backgroundColor: "#C9C5C0",
+    backgroundImage: `url("${ COLORLESS_MANA }")`
 });
 
 const DeckListItem = styled("li", {
     position: "relative",
     listStyle: "none",
-    display: "block"
+    display: "inline-block"
 });
 
-const DeckNameHeader = styled("h3", {});
+const DeckNameHeader = styled("h3", {
+    width: "211px",
+    color: "$primary"
+});
 
-const DeckColorSpan = styled("span", {
-    display: "none",
-    float: "right",
-    position: "absolute",
-    top: "0",
-    right: "0",
-    "@lg": {
-        display: "inline"
+const DeckLinkAnchor = styled("a", {
+    marginLeft: "16px",
+    marginBottom: "10px",
+    "&:hover": {
+        backgroundColor: "$surface02"
+    },
+    [`&:hover ${ DeckNameHeader }`]: {
+        color: "$onSurface"
     }
 });
+
+
+const DeckColorSpan = styled("span", {
+    display: "flex",
+    flexDirection: "column",
+    position: "absolute",
+    top: "0",
+    left: "-12px",
+    height: "152px",
+    paddingTop: "2px",
+});
+
+const PrimaryDeckSpan = styled("span", {
+    display: "inline",
+    position: "absolute",
+    top: "0",
+    right: "2px",
+    fontSize: "20px"
+});
+
+const UnderConstructionSpan = styled("span", {
+    color: "white",
+    backgroundColor: "black",
+    transform: "rotate(-30deg)",
+    display: "inline",
+    position: "absolute",
+    top: "60px",
+    right: "30px",
+    fontWeight: "bold",
+    padding: "0 3px 1px"
+})
 
 const ImageWrapper = styled("div", {
     position: "relative",
@@ -391,30 +228,43 @@ const ImageWrapper = styled("div", {
     height: "156px"
 });
 
-interface DeckLinkProps {
-    name: string;
-    id: string;
-    colors?: string;
-    imageUrl?: string;
-}
+const underConstructionStyles: CSS = {
+    border: "10px solid transparent",
+    borderImage: "repeating-linear-gradient(-55deg, #000000, #000000 20px, #FFE031 20px, #FFE031 40px) 10",
+    width: "191px",
+    height: "136px"
+};
 
-const DeckLink: React.FunctionComponent<DeckLinkProps> = ({ name, id, colors, imageUrl }) => {
+const DeckLink: React.FunctionComponent<DeckLinkProps> = ({ name, id, colors, imageUrl, link, isPrimary, isUnderConstruction }) => {
     const colorEl = colors && (
         <>
-            { colors.includes("⚪") && <WhitePip /> }
-            { colors.includes("🔵") && <BluePip /> }
-            { colors.includes("⚫") && <BlackPip /> }
-            { colors.includes("🔴") && <RedPip /> }
-            { colors.includes("🟢") && <GreenPip /> }
+            { colors.includes("W") && <WhitePip /> }
+            { colors.includes("U") && <BluePip /> }
+            { colors.includes("B") && <BlackPip /> }
+            { colors.includes("R") && <RedPip /> }
+            { colors.includes("G") && <GreenPip /> }
+            { colors.includes("C") && <ColorlessPip /> }
         </>
     );
 
-    return (
-        <Link href={ `/magic/deck/${ id }` } component={ DeckLinkAnchor }>
-            <DeckListItem>
+    if (isUnderConstruction) {
+        return (
+            <DeckListItem css={{ marginLeft: "16px", marginBottom: "10px" }}>
+                {imageUrl && <ImageWrapper css={ underConstructionStyles }><Image src={ imageUrl } alt="name" layout="fill" /></ImageWrapper>}
                 <DeckNameHeader>{name}</DeckNameHeader>
-                {colorEl && <DeckColorSpan>{ colorEl }</DeckColorSpan>}
+                <UnderConstructionSpan>Under Construction</UnderConstructionSpan>
+                <DeckColorSpan>{ colorEl }</DeckColorSpan>
+            </DeckListItem>
+        );
+    }
+
+    return (
+        <Link href={ link || `/magic/deck/${ id }` } component={ DeckLinkAnchor }>
+            <DeckListItem>
                 {imageUrl && <ImageWrapper><Image src={ imageUrl } alt="name" layout="fill" /></ImageWrapper>}
+                <DeckNameHeader>{name}</DeckNameHeader>
+                {isPrimary && <PrimaryDeckSpan>⭐</PrimaryDeckSpan>}
+                <DeckColorSpan>{ colorEl }</DeckColorSpan>
             </DeckListItem>
         </Link>
     );
