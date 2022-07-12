@@ -60,8 +60,18 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>July 11, 2022</SubHeading>
+                <List>
+                    <ListItem>Updated Page: <Link href="/magic" component={ A }>Magic landing page</Link></ListItem>
+                </List>
+                <P>I have redone the main landing page and added stubs for decks that are in progress. In the coming weeks I am looking to add at least a short philosophy blurb under each completed deck, and those updates should come without a full site enhancement.</P>
+                <P>On the puzzle front, I have captured some ideas for my first round, but am still ways away from both finalizing that idea, and finding a way to represent it here.</P>
+                <P>And finally the blog is... a struggle. But if I come up with something worthwhile I will definitely keep at it!</P>
                 <SubHeading>June 28, 2022</SubHeading>
-                <P>I have gotten a chance to play some more magic recently! Working on fleshing out the deck details for my Legacy decks, and picked up an 11th deck for the battlebox (<Link href="/magic/deck/burn" component={ A }>Burn</Link>)!</P>
+                <List>
+                    <ListItem>New Legacy Deck: <Link href="/magic/deck/burn" component={ A }>Burn</Link></ListItem>
+                </List>
+                <P>I have gotten a chance to play some more magic recently! Working on fleshing out the deck details for my Legacy decks, and picked up the 11th deck for my battlebox!</P>
                 <SubHeading>June 17, 2022</SubHeading>
                 <List>
                     <ListItem>New Puzzle: <Link href="/puzzles/x-marks-the-spot" component={ A }>X Marks the Spot</Link></ListItem>

@@ -4,6 +4,23 @@ import Link from "../../components/Link";
 import { CSS } from "@stitches/react";
 import { styled } from "../../styles/stitches";
 import BackNavigation from "../../components/BackNavigation";
+import Image from "../../components/Image";
+import {
+    WHITE_MANA,
+    BLUE_MANA,
+    BLACK_MANA,
+    RED_MANA,
+    GREEN_MANA,
+    COLORLESS_MANA,
+    PIONEER_DECKS,
+    MODERN_DECKS,
+    LEGACY_DECKS,
+    PAUPER_DECKS,
+    COMMANDER_DECKS,
+    OATHBREAKER_DECKS,
+    OTHER_DECKS,
+    DeckLinkProps
+} from "../../constants/Magic";
 
 const TITLE = "All Magic: the Gathering Decks";
 const DESCRIPTION = "Magic is one of my favorite hobbies, both playing and collecting! Check out what I like to play.";
@@ -18,15 +35,24 @@ const Heading = styled("h1", {
 });
 
 const DecksDiv = styled("div", {
-    width: "300px",
+    width: "245px",
     padding: "5px",
     margin: "0 auto",
     borderRadius: "@border",
     "h2:first-of-type": {
         marginTop: "0"
     },
+    "@md": {
+        width: "480px"
+    },
     "@lg": {
         width: "740px"
+    },
+    "@xl": {
+        width: "1000px"
+    },
+    "@xxl": {
+        width: "1220px"
     }
 });
 
@@ -35,15 +61,27 @@ const Description = styled("p", {
     margin: "0 40px"
 });
 
-const PrimaryDeck = styled("span", {
-    position: "relative",
-    "&::before": {
-        content: "⭐",
-        color: "$onBackground",
-        position: "absolute",
-        marginLeft: "-25px"
-    }
+const ListContainer = styled("ul", {
+    display: "flex",
+    flexWrap: "wrap",
+    paddingInlineStart: "0px"
 });
+
+interface FormatGroupProps {
+    name: string;
+    decks?: DeckLinkProps[];
+}
+
+const FormatGroup: FunctionComponent<FormatGroupProps> = ({ name, decks }) => {
+    return (
+        <div>
+            <Heading as="h2">{ name }</Heading>
+            <ListContainer>
+                { decks.map((deck) => <DeckLink key={ deck.id } { ...deck } />) }
+            </ListContainer>
+        </div>
+    );
+};
 
 const Magic: FunctionComponent = () => {
     return (
@@ -71,78 +109,13 @@ const Magic: FunctionComponent = () => {
                     ⭐ indicates my primary deck for the format
                 </Description>
                 <DecksDiv>
-                    <div>
-                        <Heading as="h2">Pioneer</Heading>
-                        <ul>
-                            <DeckLink name="5-Color Humans" id="party-pyre" colors="⚪🔵⚫🔴🟢" />
-                            <PrimaryDeck><DeckLink name="Lotus Field Combo" id="lotus-field-combo" colors="⚪🔵⚫🟢" /></PrimaryDeck>
-                        </ul>
-                    </div>
-                    <div>
-                        <Heading as="h2">Modern</Heading>
-                        <ul>
-                            <PrimaryDeck><DeckLink name="Amulet Titan" id="amulet-titan" colors="🟢" /></PrimaryDeck>
-                            <DeckLink name="Bogles" id="bogles" colors="⚪🟢" />
-                            <DeckLink name="Eldrazi Tron" id="eldrazi-tron" colors="" />
-                            <DeckLink name="Gifts Storm" id="gifts-storm" colors="🔵🔴" />
-                            <DeckLink name="Merfolk" id="merfolk" colors="🔵" />
-                        </ul>
-                    </div>
-                    <div>
-                        <Heading as="h2">Legacy</Heading>
-                        <Description>
-                            I have a Legacy Battlebox with 11 decks designed to play against each other.
-                            Each deck is playable in a general Legacy metagame, but will not be the most
-                            up-to-date or tuned.
-                        </Description>
-                        <ul>
-                            <DeckLink name="Burn" id="burn" colors="🔴" />
-                            <DeckLink name="Death &amp; Taxes" id="death-and-taxes" colors="⚪" />
-                            <DeckLink name="Delver" id="izzet-delver" colors="🔵🔴" />
-                            <DeckLink name="Enchantress" id="enchantress" colors="⚪⚫🟢" />
-                            <PrimaryDeck><DeckLink name="Lands" id="lands" colors="🔴🟢" /></PrimaryDeck>
-                            <DeckLink name="Manaless Dredge" id="manaless-dredge" colors="🔵⚫🔴🟢" />
-                            <DeckLink name="Miracles" id="miracles" colors="⚪🔵🟢" />
-                            <DeckLink name="Omnitell" id="omnitell" colors="🔵" />
-                            <DeckLink name="Painter" id="strawberry-shortcake" colors="⚪🔴" />
-                            <DeckLink name="Reanimator" id="reanimator" colors="⚪⚫🔴" />
-                            <DeckLink name="Storm" id="storm" colors="🔵⚫🔴" />
-                        </ul>
-                    </div>
-                    <div>
-                        <Heading as="h2">Pauper</Heading>
-                        <ul>
-                            <DeckLink name="Mono-Green Land Destruction" id="mono-g-ponza" colors="🟢" />
-                            <DeckLink name="Tortured Existance" id="tortured-existance" colors="⚪⚫🟢" />
-                            <DeckLink name="Teachings Control" id="teachings-control" colors="⚪🔵⚫🟢" />
-                        </ul>
-                    </div>
-                    <div>
-                        <Heading as="h2">Commander</Heading>
-                        <ul>
-                            <DeckLink name="Karador" id="karador" colors="⚪⚫🟢" />
-                            <DeckLink name="Muldrotha" id="muldrotha" colors="🔵⚫🟢" />
-                            <DeckLink name="Nahiri" id="nahiri" colors="⚪" />
-                            <DeckLink name="Sasaya" id="sasaya" colors="🟢" />
-                            <DeckLink name="Sen Triplets" id="sen-triplets" colors="⚪🔵⚫" />
-                            <DeckLink name="Zedruu" id="zedruu" colors="⚪🔵🔴" />
-                            <DeckLink name="Zur" id="zur" colors="⚪🔵⚫" />
-                        </ul>
-                    </div>
-                    <div>
-                        <Heading as="h2">Oathbreaker</Heading>
-                        <ul>
-                            <DeckLink name="Wrenn &amp; Six" id="wrenn-and-six" colors="🔴🟢" />
-                            <DeckLink name="Calix, Destiny&apos;s Hand" id="calix-enchantress" colors="⚪🟢" />
-                        </ul>
-                    </div>
-                    <div>
-                        <Heading as="h2">Other</Heading>
-                        <ul>
-                            <DeckLink name="Pre-Modern: Astral Slide" id="astral-slide" colors="⚪🔴" />
-                            <DeckLink name="Proxy Vintage: Oath of Druids" id="oath-of-druids" colors="⚪🔵⚫🔴🟢" />
-                        </ul>
-                    </div>
+                    <FormatGroup name="Pioneer" decks={ PIONEER_DECKS } />
+                    <FormatGroup name="Modern" decks={ MODERN_DECKS } />
+                    <FormatGroup name="Legacy" decks={ LEGACY_DECKS } />
+                    <FormatGroup name="Pauper" decks={ PAUPER_DECKS } />
+                    <FormatGroup name="Commander" decks={ COMMANDER_DECKS } />
+                    <FormatGroup name="Oathbreaker" decks={ OATHBREAKER_DECKS } />
+                    <FormatGroup name="Other" decks={ OTHER_DECKS } />
                 </DecksDiv>
             </ContentDiv>
         </>
@@ -154,83 +127,144 @@ const pipStyles: CSS = {
     height: "20px",
     borderRadius: "50%",
     display: "inline-block",
-    marginLeft: "2px",
-    border: "1px solid $onBackground"
+    marginLeft: "1px",
+    marginBottom: "2px",
+    border: "1px solid transparent"
 };
 
 const WhitePip = styled("span", {
     ...pipStyles,
-    backgroundColor: "white"
+    backgroundColor: "#F7F6D8",
+    backgroundImage: `url("${ WHITE_MANA }")`
 });
 
 const BluePip = styled("span", {
     ...pipStyles,
-    backgroundColor: "blue"
+    backgroundColor: "#C2D7E9",
+    backgroundImage: `url("${ BLUE_MANA }")`
+
 });
 
 const BlackPip = styled("span", {
     ...pipStyles,
-    backgroundColor: "black"
+    backgroundColor: "#BAB1AB",
+    backgroundImage: `url("${ BLACK_MANA }")`
 });
 
 const RedPip = styled("span", {
     ...pipStyles,
-    backgroundColor: "red"
+    backgroundColor: "#E49977",
+    backgroundImage: `url("${ RED_MANA }")`
 });
 
 const GreenPip = styled("span", {
     ...pipStyles,
-    backgroundColor: "green"
+    backgroundColor: "#A4C095",
+    backgroundImage: `url("${ GREEN_MANA }")`
 });
 
-const DeckLinkAnchor = styled("a", {
-    color: "$primary",
-    "&:hover": {
-        color: "$primaryVariant"
-    }
+const ColorlessPip = styled("span", {
+    ...pipStyles,
+    backgroundColor: "#C9C5C0",
+    backgroundImage: `url("${ COLORLESS_MANA }")`
 });
 
 const DeckListItem = styled("li", {
     position: "relative",
     listStyle: "none",
-    display: "block"
+    display: "inline-block"
 });
 
-const DeckNameHeader = styled("h3", {});
+const DeckNameHeader = styled("h3", {
+    width: "211px",
+    color: "$primary"
+});
 
-const DeckColorSpan = styled("span", {
-    display: "none",
-    float: "right",
-    position: "absolute",
-    top: "0",
-    right: "0",
-    "@lg": {
-        display: "inline"
+const DeckLinkAnchor = styled("a", {
+    marginLeft: "16px",
+    marginBottom: "10px",
+    "&:hover": {
+        backgroundColor: "$surface02"
+    },
+    [`&:hover ${ DeckNameHeader }`]: {
+        color: "$onSurface"
     }
 });
 
-interface DeckLinkProps {
-    name: string;
-    id: string;
-    colors?: string;
-}
 
-const DeckLink: React.FunctionComponent<DeckLinkProps> = ({ name, id, colors }) => {
+const DeckColorSpan = styled("span", {
+    display: "flex",
+    flexDirection: "column",
+    position: "absolute",
+    top: "0",
+    left: "-12px",
+    height: "152px",
+    paddingTop: "2px",
+});
+
+const PrimaryDeckSpan = styled("span", {
+    display: "inline",
+    position: "absolute",
+    top: "0",
+    right: "2px",
+    fontSize: "20px"
+});
+
+const UnderConstructionSpan = styled("span", {
+    color: "white",
+    backgroundColor: "black",
+    transform: "rotate(-30deg)",
+    display: "inline",
+    position: "absolute",
+    top: "60px",
+    right: "30px",
+    fontWeight: "bold",
+    padding: "0 3px 1px"
+})
+
+const ImageWrapper = styled("div", {
+    position: "relative",
+    width: "211px",
+    height: "156px"
+});
+
+const underConstructionStyles: CSS = {
+    border: "10px solid transparent",
+    borderImage: "repeating-linear-gradient(-55deg, #000000, #000000 20px, #FFE031 20px, #FFE031 40px) 10",
+    width: "191px",
+    height: "136px"
+};
+
+const DeckLink: React.FunctionComponent<DeckLinkProps> = ({ name, id, colors, imageUrl, link, isPrimary, isUnderConstruction }) => {
     const colorEl = colors && (
         <>
-            { colors.includes("⚪") && <WhitePip /> }
-            { colors.includes("🔵") && <BluePip /> }
-            { colors.includes("⚫") && <BlackPip /> }
-            { colors.includes("🔴") && <RedPip /> }
-            { colors.includes("🟢") && <GreenPip /> }
+            { colors.includes("W") && <WhitePip /> }
+            { colors.includes("U") && <BluePip /> }
+            { colors.includes("B") && <BlackPip /> }
+            { colors.includes("R") && <RedPip /> }
+            { colors.includes("G") && <GreenPip /> }
+            { colors.includes("C") && <ColorlessPip /> }
         </>
     );
 
-    return (
-        <Link href={ `/magic/deck/${ id }` } component={ DeckLinkAnchor }>
-            <DeckListItem>
+    if (isUnderConstruction) {
+        return (
+            <DeckListItem css={{ marginLeft: "16px", marginBottom: "10px" }}>
+                {imageUrl && <ImageWrapper css={ underConstructionStyles }><Image src={ imageUrl } alt="name" layout="fill" /></ImageWrapper>}
                 <DeckNameHeader>{name}</DeckNameHeader>
-                {colorEl && <DeckColorSpan>{ colorEl }</DeckColorSpan>}
+                <UnderConstructionSpan>Under Construction</UnderConstructionSpan>
+                <DeckColorSpan>{ colorEl }</DeckColorSpan>
+            </DeckListItem>
+        );
+    }
+
+    return (
+        <Link href={ link || `/magic/deck/${ id }` } component={ DeckLinkAnchor }>
+            <DeckListItem>
+                {imageUrl && <ImageWrapper><Image src={ imageUrl } alt="name" layout="fill" /></ImageWrapper>}
+                <DeckNameHeader>{name}</DeckNameHeader>
+                {isPrimary && <PrimaryDeckSpan>⭐</PrimaryDeckSpan>}
+                <DeckColorSpan>{ colorEl }</DeckColorSpan>
             </DeckListItem>
         </Link>
     );
