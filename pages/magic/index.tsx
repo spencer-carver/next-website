@@ -19,6 +19,7 @@ import {
     COMMANDER_DECKS,
     OATHBREAKER_DECKS,
     OTHER_DECKS,
+    SPECIAL_DECKS,
     DeckLinkProps
 } from "../../constants/Magic";
 
@@ -115,7 +116,8 @@ const Magic: FunctionComponent = () => {
                     <FormatGroup name="Pauper" decks={ PAUPER_DECKS } />
                     <FormatGroup name="Commander" decks={ COMMANDER_DECKS } />
                     <FormatGroup name="Oathbreaker" decks={ OATHBREAKER_DECKS } />
-                    <FormatGroup name="Other" decks={ OTHER_DECKS } />
+                    <FormatGroup name="Other Constructed Formats" decks={ OTHER_DECKS } />
+                    <FormatGroup name="Special Formats" decks={ SPECIAL_DECKS } />
                 </DecksDiv>
             </ContentDiv>
         </>

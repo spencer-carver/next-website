@@ -21,7 +21,8 @@ export const PIONEER_DECKS: DeckLinkProps[] = [{
     name: "5-Color Humans",
     id: "party-pyre",
     colors: "WUBRG",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/9/0/90bad312-80e3-45b0-9556-60ce06808a47.jpg`
+    imageUrl: `${ ART_CROP_URL_PREFIX }/9/c/9c2000ef-3e6b-4f44-8bd6-ed8119336d5a.jpg`,
+    isUnderConstruction: true
 },{
     name: "Lotus Field Combo",
     id: "lotus-field-combo",
@@ -140,10 +141,22 @@ export const PAUPER_DECKS: DeckLinkProps[] = [{
 }];
 
 export const COMMANDER_DECKS: DeckLinkProps[] = [{
+    name: "Hanna, Ship's Navigator",
+    id: "hanna",
+    colors: "WU",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/e/3/e34e53fc-0c11-4594-b4ca-eaac663040ae.jpg`,
+    isUnderConstruction: true
+},{
     name: "Karador, Ghost Chieftain",
     id: "karador",
     colors: "WBG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/6/2/6200ac79-b166-43d0-9a0b-5b547625ed57.jpg`
+},{
+    name: "Karona, False God",
+    id: "karona",
+    colors: "WUBRG",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/d/e/de53d083-251e-42a4-9e2e-c2978c80615b.jpg`,
+    isUnderConstruction: true
 },{
     name: "Lord Windgrace",
     id: "lord-windgrace",
@@ -176,6 +189,12 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     id: "sen-triplets",
     colors: "WUB",
     imageUrl: `${ ART_CROP_URL_PREFIX }/4/1/418f8ecb-544b-430c-8ae9-61aaaf2dfba6.jpg`
+},{
+    name: "Trostani, Selesnya's Voice",
+    id: "trostani",
+    colors: "GW",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/9/d/9d1d9d86-5666-4e59-9766-137657b4e040.jpg`,
+    isUnderConstruction: true
 },{
     name: "Yuriko, the Tiger's Shadow",
     id: "yuriko",
@@ -222,15 +241,22 @@ export const OTHER_DECKS: DeckLinkProps[] = [{
     id: "oath-of-druids",
     colors: "WUBRG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/9/d/9dad6b50-c415-4c55-8eac-bbc9d656c2fc.jpg`
-},{
+}];
+
+export const SPECIAL_DECKS: DeckLinkProps[] = [{
     name: "Innistrad Anthology Cube",
     id: "cube",
     link: "https://cubecobra.com/cube/overview/2ec8o",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/1/5/155ae16c-f32b-421d-a92a-bf13d9f32891.jpg`
+    imageUrl: `${ ART_CROP_URL_PREFIX }/7/4/74d53774-f654-4c86-9261-b676d332e41e.jpg`
 },{
     name: "Judge Tower",
     id: "judge-tower",
     link: "https://cubecobra.com/cube/overview/bgj0",
     imageUrl: `${ ART_CROP_URL_PREFIX }/2/5/25d9500e-a536-4f8e-bfdd-6cb08f709890.jpg`,
+    isUnderConstruction: true
+},{
+    name: "Zombie Horde",
+    id: "zombie-horde",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/f/e/fe662a08-a8b1-4f25-b7c0-dca1c7ad7271.jpg`,
     isUnderConstruction: true
 }];
