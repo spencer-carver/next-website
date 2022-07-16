@@ -82,11 +82,12 @@ const cardTooltipStyles: CSS = {
 
 interface GuidanceProps {
     deckName: string;
+    format?: string;
     cards: Record<string, Card["card_digest"]>;
     hasLoaded: Function;
 }
 
-const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, cards, hasLoaded }) => {
+const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, hasLoaded }) => {
     const [post, setPost] = useState({} as unknown as Post);
     const [loaded, setLoaded] = useState(false);
 
@@ -156,7 +157,7 @@ const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, cards, hasLoaded
                         { post.content }
                     </ReactMarkdown>
             </PageDiv>
-            <BackToTopSpan><Link href="#Matchups">to Matchups</Link></BackToTopSpan>
+            { format && <BackToTopSpan><Link href="#Matchups">to Matchups</Link></BackToTopSpan> }
         </>
     );
 };

@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { HeadingComponent, TableCellComponent, TableRowComponent } from "react-markdown/lib/ast-to-react";
+import { HeadingComponent, TableCellComponent } from "react-markdown/lib/ast-to-react";
 import { NormalComponents } from "react-markdown/lib/complex-types";
 import { styled } from "../../styles/stitches";
 import Link from "../Link";

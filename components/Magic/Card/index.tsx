@@ -19,7 +19,8 @@ interface CardComponentProps {
     css?: CSS;
 }
 
-const CardContainerDiv = styled("div", {
+const CardContainerDiv = styled("span", {
+    display: "block",
     position: "relative",
     height: "44px",
     width: "100px",

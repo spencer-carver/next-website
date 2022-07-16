@@ -41,9 +41,8 @@ interface MTGDeck {
 
 interface FormattedDeck {
     name: string;
-    description?: string;
     type: "commander" | "oathbreaker" | "constructed";
-    format: string;
+    format?: string;
     entries: {
         featured: Card[];
         mainboard: Card[];
@@ -112,9 +111,8 @@ function massageDeck(data: MTGDeck): FormattedDeck | undefined {
 
         return {
             name: data.name,
-            description: data.description,
             type,
-            format: data.format as string,
+            format: data.format,
             entries: deckEntries,
             cards
         };
@@ -213,18 +211,6 @@ const FeaturedDiv = styled("div", {
     }
 });
 
-const DescriptionDiv = styled("div", {
-    margin: "30px 0",
-    borderRadius: "5px",
-    padding: "0 10px",
-    color: "$onBackground",
-    verticalAlign: "top",
-    width: "150px",
-    "@lg": {
-        width: "400px"
-    }
-});
-
 const sharedDeckAndSideboardStyles: CSS = {
     display: "inline-flex",
     flexWrap: "wrap",
@@ -289,7 +275,6 @@ const yorionDeckStyle: CSS = {
     }
 };
 
-const OverlayDiv = styled("div", {});
 const SideboardDiv = styled("div", {
     ...(Object.keys(sharedDeckAndSideboardStyles).filter((key) => !key.startsWith("@")).reduce((object, key) => { object[key] = sharedDeckAndSideboardStyles[key]; return object; }, {})),
     paddingTop: "40px",
@@ -318,7 +303,6 @@ const DECK_TYPE_TO_ADDITIONAL_STYLES: Record<string, CSS> = {
         flexDirection: "row",
         flexFlow: "wrap",
         alignContent: "center",
-        justifyContent: "space-evenly",
         height: "auto",
         "@lg": {
             margin: "0 auto",
@@ -373,7 +357,17 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
         return <ErrorPage title="Deck not found" statusCode={ 404 } backLink="/magic" />;
     }
 
-    const isYorion = deck.entries.mainboard.length === 80;
+    let additionalDeckStyles: CSS = {};
+    if (deck.entries.mainboard.length > 60 && deck.entries.mainboard.length <= 80) {
+        additionalDeckStyles = yorionDeckStyle;
+    } else if (deck.entries.mainboard.length > 80) {
+        additionalDeckStyles = DECK_TYPE_TO_ADDITIONAL_STYLES.commander;
+    }
+
+    let additionalSideboardStyles: CSS = {};
+    if (deck.entries.sideboard.length === 0) {
+        additionalSideboardStyles = { display: "none" };
+    }
 
     const TITLE = formatDeckName(deckName as string);
     const DESCRIPTION = `A ${ deck.format || deck.type } deck by Spencer Carver`;
@@ -415,10 +409,9 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
                             );
                         })
                     }
-                    {deck.description && <DescriptionDiv>{deck.description}</DescriptionDiv>}
                 </FeaturedDiv>
                 <PlaymatDiv>
-                    <DeckDiv css={{ ...(DECK_TYPE_TO_ADDITIONAL_STYLES[deck.type] || {}), ...(isYorion ? yorionDeckStyle : {}) }}>
+                    <DeckDiv css={ DECK_TYPE_TO_ADDITIONAL_STYLES[deck.type] || additionalDeckStyles }>
                         {
                             deck.entries.mainboard.map(({ instance, count, card_digest: cardDigest }, i) => {
                                 return (
@@ -435,9 +428,8 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
                                 );
                             })
                         }
-                        <OverlayDiv />
                     </DeckDiv>
-                    <SideboardDiv css={ SIDEBOARD_TYPE_TO_ADDITIONAL_STYLES[deck.type] || {} }>
+                    <SideboardDiv css={ SIDEBOARD_TYPE_TO_ADDITIONAL_STYLES[deck.type] || additionalSideboardStyles }>
                         {
                             deck.entries.sideboard.map(({ instance, count, card_digest: cardDigest }, i) => {
                                 return (
@@ -454,11 +446,10 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
                                 );
                             })
                         }
-                        <OverlayDiv />
                     </SideboardDiv>
                 </PlaymatDiv>
             </TableDiv>
-            <Guidance deckName={ deckName as string } cards={ deck.cards } hasLoaded={ debouncedSetLoaded } />
+            <Guidance deckName={ deckName as string } format={ deck.format } cards={ deck.cards } hasLoaded={ debouncedSetLoaded } />
         </>
     );
 };
