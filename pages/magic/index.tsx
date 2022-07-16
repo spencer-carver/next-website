@@ -20,7 +20,8 @@ import {
     OATHBREAKER_DECKS,
     OTHER_DECKS,
     SPECIAL_DECKS,
-    DeckLinkProps
+    DeckLinkProps,
+    DeckClassification
 } from "../../constants/Magic";
 
 const TITLE = "All Magic: the Gathering Decks";
@@ -107,7 +108,7 @@ const Magic: FunctionComponent = () => {
                     My Magic: the Gathering decks
                 </Heading>
                 <Description  css={{ textAlign: "center" }}>
-                    ⭐ indicates my primary deck for the format
+                    ⭐: primary deck, ❤️: my wife&apos;s deck
                 </Description>
                 <DecksDiv>
                     <FormatGroup name="Pioneer" decks={ PIONEER_DECKS } />
@@ -204,7 +205,7 @@ const DeckColorSpan = styled("span", {
     paddingTop: "2px",
 });
 
-const PrimaryDeckSpan = styled("span", {
+const ClassificationSpan = styled("span", {
     display: "inline",
     position: "absolute",
     top: "0",
@@ -237,7 +238,7 @@ const underConstructionStyles: CSS = {
     height: "136px"
 };
 
-const DeckLink: React.FunctionComponent<DeckLinkProps> = ({ name, id, colors, imageUrl, link, isPrimary, isUnderConstruction }) => {
+const DeckLink: FunctionComponent<DeckLinkProps> = ({ name, id, colors, imageUrl, link, classification, isUnderConstruction }) => {
     const colorEl = colors && (
         <>
             { colors.includes("W") && <WhitePip /> }
@@ -249,26 +250,31 @@ const DeckLink: React.FunctionComponent<DeckLinkProps> = ({ name, id, colors, im
         </>
     );
 
-    if (isUnderConstruction) {
+    const DeckElement: FunctionComponent = () => (
+        <>
+            {imageUrl && <ImageWrapper css={ isUnderConstruction ? underConstructionStyles : {} }><Image src={ imageUrl } alt="name" layout="fill" /></ImageWrapper>}
+            <DeckNameHeader>{name}</DeckNameHeader>
+            {classification === DeckClassification.PRIMARY && <ClassificationSpan>⭐</ClassificationSpan>}
+            {classification === DeckClassification.KATHYS && <ClassificationSpan>❤️</ClassificationSpan>}
+            {isUnderConstruction && <UnderConstructionSpan>Under Construction</UnderConstructionSpan>}
+            <DeckColorSpan>{ colorEl }</DeckColorSpan>
+        </>
+    );
+
+    if (link || !isUnderConstruction) {
         return (
-            <DeckListItem css={{ marginLeft: "16px", marginBottom: "10px" }}>
-                {imageUrl && <ImageWrapper css={ underConstructionStyles }><Image src={ imageUrl } alt="name" layout="fill" /></ImageWrapper>}
-                <DeckNameHeader>{name}</DeckNameHeader>
-                <UnderConstructionSpan>Under Construction</UnderConstructionSpan>
-                <DeckColorSpan>{ colorEl }</DeckColorSpan>
-            </DeckListItem>
+            <Link href={ link || `/magic/deck/${ id }` } component={ DeckLinkAnchor }>
+                <DeckListItem>
+                    <DeckElement />
+                </DeckListItem>
+            </Link>
         );
     }
 
     return (
-        <Link href={ link || `/magic/deck/${ id }` } component={ DeckLinkAnchor }>
-            <DeckListItem>
-                {imageUrl && <ImageWrapper><Image src={ imageUrl } alt="name" layout="fill" /></ImageWrapper>}
-                <DeckNameHeader>{name}</DeckNameHeader>
-                {isPrimary && <PrimaryDeckSpan>⭐</PrimaryDeckSpan>}
-                <DeckColorSpan>{ colorEl }</DeckColorSpan>
-            </DeckListItem>
-        </Link>
+        <DeckListItem css={{ marginLeft: "16px", marginBottom: "10px" }}>
+            <DeckElement />
+        </DeckListItem>
     );
 };
 

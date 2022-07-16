@@ -5,13 +5,18 @@ export const RED_MANA = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3d
 export const GREEN_MANA = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdC b3g9JzAgMCAxMDAgMTAwJz48ZyBmaWxsPSdub25lJz48cGF0aCBkPSdNMTAw IDQ5Ljk5OGMwIDI3LjYxNS0yMi4zODUgNTAuMDAyLTUwLjAwMiA1MC4wMDIt MjcuNjEzIDAtNDkuOTk4LTIyLjM4Ny00OS45OTgtNTAuMDAyIDAtMjcuNjEz IDIyLjM4NS00OS45OTggNDkuOTk4LTQ5Ljk5OCAyNy42MTcgMCA1MC4wMDIg MjIuMzg1IDUwLjAwMiA0OS45OTh6JyBpZD0nU2hhcGUnIGZpbGw9JyNBM0Mw OTUnLz48cGF0aCBkPSdNOTMuNzYyIDU2LjIyNWMwIDEuNjY4LS42NDUgMy4x NjQtMS45MzYgNC40OTgtMS4yODkgMS4zMzItMi43NyAxLjk5OC00LjQzNiAx Ljk5OC0yLjY2MiAwLTQuNjIzLTEuMjUtNS44NjktMy43NDhsLTUuODcxLS4y NWMtMS4yNTIgMC0zLjcwOS41NDMtNy4zNzEgMS42MjUtMy45MTQgMS4wODIt Ni4xNjQgMS45NTctNi43NDYgMi42MjMtLjkxNi45OTgtMS42NjQgMy4zMzIt Mi4yNDggNi45OTYtLjUwMiAyLjk5OC0uNzQ4IDUuMjA1LS43NDggNi42MjEg MCAyLjI0Ni4zNTIgMy44OTMgMS4wNjEgNC45MzQuNzA5IDEuMDQxIDIuMTY2 IDEuOTE2IDQuMzcxIDIuNjIzIDIuMjA1LjcwNyAzLjU2MSAxLjEwNCA0LjA2 MSAxLjE4Ny4zMzIgMCAuODczLS4wNDEgMS42MjUtLjEyNWgxLjQ5OGMxLjA4 IDAgMi4yMDUuMTcgMy4zNzMuNSAxLjY2Ni41IDIuMzc1IDEuMTY2IDIuMTI1 IDItMS4xNjgtLjE2Ni0zLjIwNy4wODQtNi4xMjEuNzVsMy40OTYgMS43NDhj MCAxLTEuNDE2IDEuNDk4LTQuMjQ2IDEuNDk4LS43NTIgMC0xLjc3MS0uMTY2 LTMuMDYzLS40OTgtMS4yOTEtLjMzNi0yLjE0NS0uNS0yLjU1OS0uNWgtMS42 MjVjLS4wODIuODMyLS4zMzQgMi4wOC0uNzUgMy43NDYtMS40MTgtLjA4NC0z LjA4LS45MTgtNC45OTYtMi40OTgtMS45MTgtMS41OC0zLjEyMy0yLjM3My0z LjYyMS0yLjM3My0uNTAyIDAtMS4yMTEuNzkzLTIuMTI1IDIuMzczLS45MTgg MS41OC0xLjM3NSAyLjY2NC0xLjM3NSAzLjI0OC0xLjA4Mi0uNTg0LTEuOTk2 LTEuNjY4LTIuNzUtMy4yNDgtLjMzMi0xLjA4NC0uNzA3LTIuMTY2LTEuMTIx LTMuMjQ4LS44MzIuMDg0LTIuMzc1IDEuODM0LTQuNjIxIDUuMjQ4aC0uNjI3 Yy0uMTY2LS4yNTItLjc5NS0yLTEuODczLTUuMjQ4LTIuNTgyLS44MzItNC45 OTYtMS4yNDgtNy4yNDYtMS4yNDgtMS4wODIgMC0yLjc0OC4yNS00Ljk5Ni43 NDhsLTMuNDk2LS4yNDhjLjQ5OC0uNSAxLjk1NS0xLjQ1NyA0LjM3MS0yLjg3 MyAyLjgzLTEuNjY2IDQuOTk2LTIuNSA2LjQ5Ni0yLjUuMjQ2IDAgLjU3OC4w NDMgMSAuMTI1LjQxNC4wODYuNzUuMTI1IDEgLjEyNS41NzggMCAxLjUxOC0u MzEyIDIuODA5LS45MzggMS4yOTEtLjYyMyAyLjAzOS0xLjE4NiAyLjI0Ni0x LjY4NC4yMTEtLjUwNC4zMTYtMS43OTMuMzE2LTMuODc1IDAtNC43NDYtMS4y NS04LjI4NS0zLjc1LTEwLjYxNy0yLjE2OC0yLjA4Mi01Ljc0Ni0zLjU4LTEw Ljc0NC00LjQ5OC0xLjMzMiA0Ljc0Ni01LjA4IDcuMTIzLTExLjI0IDcuMTIz LTIgMC0zLjk5OC0xLjIwNy01Ljk5Ni0zLjYyMy0xLjk5Ni0yLjQxNi0yLjk5 Ni00LjYyMy0yLjk5Ni02LjYyMSAwLTMuMDgyIDEuMjg3LTUuNjIxIDMuODY5 LTcuNjIzLTIuMDgtMi4xNjItMy4xMjEtNC4zNjktMy4xMjEtNi42MTcgMC0y LjA4NC42NDMtMy45MTQgMS45MzYtNS41IDEuMjkxLTEuNTc4IDIuOTc3LTIu NDk2IDUuMDU5LTIuNzQ4LS4xNjYtMi42NjIuNzA3LTQuNDk2IDIuNjIzLTUu NDk2LS45MTYtLjkxNC0xLjM3My0yLjUzNy0xLjM3My00Ljg2OSAwLTIuNzQ4 LjkxNi01LjAzOSAyLjc0OC02Ljg3MSAxLjgzLTEuODMyIDQuMTIxLTIuNzUg Ni44NjktMi43NSAzIDAgNS40NTcgMS4wNDUgNy4zNzEgMy4xMjUgMi40MTYt OC4yNDQgNy42MjEtMTIuMzY3IDE1LjYxMy0xMi4zNjcgNC4xNjQgMCA3Ljgy OCAxLjY2NiAxMC45OTQgNC45OTggMS4xNjYgMS4yNDggMS43NDggMS45MTYg MS43NDggMS45OTYtMSAwLS40OTgtLjE4OCAxLjUtLjU2MSAxLjk5Ni0uMzc1 IDMuNDUzLS41NjMgNC4zNzMtLjU2MyAzLjI0NiAwIDYuMTE5IDEuMjA3IDgu NjE5IDMuNjIzIDIuMTY0IDIuMTY2IDMuNjY0IDQuOTEyIDQuNDk4IDguMjQ0 LjU4LjA4NCAxLjQ5OC4zMzIgMi43NDguNzQ4IDEuODMuOTIgMi43NDggMi40 OTggMi43NDggNC43NDggMCAuNDE4LS4zMzYgMS4yMDktMSAyLjM3MyA1LjMy OCAyLjk5OCA3Ljk5NCA3LjE2MiA3Ljk5NCAxMi40OTIgMCAxLjQ5OC0uNTgy IDMuNTg0LTEuNzQ4IDYuMjQ3IDIuMTY2IDEuMjQ3IDMuMjQ2IDMuMDgxIDMu MjQ2IDUuNDk1em0tNTEuNDY3IDUuNDk2di0xLjYyM2MwLTEuOTE0LS45MzYt My42NjQtMi44MDktNS4yNDYtMS44NzUtMS41ODItMy43Ny0yLjM3My01LjY4 NC0yLjM3My0yLjMzNCAwLTQuNDk2LjU0MS02LjQ5NiAxLjYyMSA0LjQxMy0u MjQ4IDkuNDExIDIuMjkzIDE0Ljk4OSA3LjYyMXptLTIuMjQ2LTE1LjQ4OWMt MS4yNS0xLjQxOC0yLjMzMi0yLjg3NS0zLjI1LTQuMzczLTMuNDk4LjkxNi01 LjI0NiAxLjk1Ny01LjI0NiAzLjEyMSAxLS4wOCAyLjQ1Ny4xMDUgNC4zNzEu NTY0IDEuOTE0LjQ1OSAzLjI5MS42ODggNC4xMjUuNjg4em03LjYyMS0zLjg3 M3YtNS40OTZjLTItLjMzMi0zLjIxMS0uNS0zLjYyMy0uNXYxLjg3M2wzLjYy MyA0LjEyM3ptMTYuMjM4LTMuNDk4Yy0xLS40MTYtMi44NzUtMS4yNS01LjYy MS0yLjQ5OHYxMC43NDJjMy45MTItMi4yNSA1Ljc4NS00Ljk5OCA1LjYyMS04 LjI0NHptNi44NjcgMTQuNzQxbC0yLjc0Ni0zLjM3M2MtMS42NjQgMS4xNjct My4zNTIgMi4zNTQtNS4wNjEgMy41NjEtMS43MDkgMS4yMDctMy4xODYgMi41 NjMtNC40MzIgNC4wNiAzLjc0Ny0yLjAwMiA3LjgyOS0zLjQxNCAxMi4yMzkt NC4yNDh6JyBmaWxsPScjMEQwRjBGJy8+PC9nPjwvc3ZnPgo=";
 export const COLORLESS_MANA = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdC b3g9JzAgMCAxMDAgMTAwJz48ZyBmaWxsPSdub25lJz48cGF0aCBkPSdNMTAw IDUwYzAgMjcuNjA5LTIyLjM4MiA1MC01MCA1MHMtNTAtMjIuMzkxLTUwLTUw IDIyLjM4Mi01MCA1MC01MCA1MCAyMi4zOTEgNTAgNTB6JyBpZD0nU2hhcGUn IGZpbGw9JyNDQUM1QzAnLz48cGF0aCBkPSdNNDkuNjg3IDEyLjAyNmMyLjQ3 NSA0Ljk2OCA1LjUwNCA5Ljc5MyA5LjA5NiAxNC40NzUgMS41MjggMS45NjYg My4yNzkgNC4wMjEgNS4yNTQgNi4xNDcgMS45NDggMi4xMjYgNC4xMSA0LjI1 MyA2LjQ1MSA2LjM0NCAyLjM1OSAyLjA5MSA0Ljk0MSA0LjA3NCA3Ljc1NiA1 Ljk1MSAyLjgxNSAxLjg3NiA1Ljg0MyAzLjU5MiA5LjA5NiA1LjEyOS00Ljc4 IDIuNTU2LTkuNTE2IDUuNjY1LTE0LjIyNSA5LjM0Ni0xLjk1NiAxLjUzNy00 LjAwMyAzLjMwNi02LjE0NyA1LjMyNS0yLjEyNiAyLjAwMi00LjIxNyA0LjIt Ni4yNjMgNi41NzYtMi4wNDYgMi40MTItNC4wMTIgNS4wMDQtNS44OTcgNy44 MjctMS44NzcgMi44MDYtMy41ODMgNS43OS01LjEyIDguOTUzLTIuMzk1LTQu Ny01LjM3OS05LjM0Ni04Ljk2Mi0xMy45NTYtMy4wNzQtMy45MzEtNi45Ni04 LjA1OS0xMS42Ni0xMi40Mi00LjY5MS00LjM2LTEwLjM3My04LjIzOC0xNy4w My0xMS42NTEgNC43ODktMi40ODQgOS41MjUtNS41NTcgMTQuMjI0LTkuMjIx IDQuMDEyLTMuMTYzIDguMTQ5LTcuMTEyIDEyLjQxMS0xMS44NDggNC4yNy00 LjczNiA3LjkzMy0xMC4zODMgMTEuMDE2LTE2Ljk3N3ptLTUuNTA0IDUyLjg5 NWMyLjIyNSAyLjgyNCA0LjA1NiA1LjY4MyA1LjUwNCA4LjU3OCAxLjg4NS00 LjAyMSA0LjE0Ni03LjQ3IDYuNzgxLTEwLjM2NSAyLjY0NS0yLjkxMyA1LjIx OC01LjM0MyA3LjY5My03LjMwOSAyLjgxNC0yLjE5OCA1Ljc1NC00LjEyOCA4 LjgzNy01Ljc3Mi00LjEwMS0xLjg1OS03LjU4Ni00LjEyOC0xMC40MzYtNi43 NzMtMi44NjgtMi42NDUtNS4yODEtNS4yLTcuMjM3LTcuNjg0LTIuMjI1LTIu ODA1LTQuMTEtNS43OS01LjYzOC04Ljk1My0xLjg3NiA0LjA5Mi00LjEyOCA3 LjU5NS02LjcxOSAxMC40OS0yLjYwOSAyLjkxMy01LjE0NiA1LjMyNS03LjYy MiA3LjMwOS0yLjgyMyAyLjIxNi01Ljc2MyA0LjA3NC04LjgzNyA1LjYyOSA0 LjEwMSAyLjEyNyA3LjU5NSA0LjUyMSAxMC40OTkgNy4xNjYgMi45MDQgMi42 NDUgNS4yOTkgNS4yMTggNy4xNzUgNy42ODR6JyBmaWxsPScjMDAwJy8+PC9n Pjwvc3ZnPgo=";
 
+export const enum DeckClassification {
+    PRIMARY = "primary",
+    KATHYS = "kathys"
+}
+
 export interface DeckLinkProps {
     name: string;
     id: string;
     colors?: string;
     imageUrl?: string;
     link?: string;
-    isPrimary?: boolean;
+    classification?: DeckClassification;
     isUnderConstruction?: boolean;
 }
 
@@ -28,7 +33,7 @@ export const PIONEER_DECKS: DeckLinkProps[] = [{
     id: "lotus-field-combo",
     colors: "WUBG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/0/e/0e013033-3995-4ba8-b0c3-0614c79aaaab.jpg`,
-    isPrimary: true
+    classification: DeckClassification.PRIMARY
 }];
 
 export const MODERN_DECKS: DeckLinkProps[] = [{
@@ -36,12 +41,13 @@ export const MODERN_DECKS: DeckLinkProps[] = [{
     id: "amulet-titan",
     colors: "G",
     imageUrl: `${ ART_CROP_URL_PREFIX }/f/d/fd6ddbca-b943-49d6-b341-509bb72dd5a6.jpg`,
-    isPrimary: true
+    classification: DeckClassification.PRIMARY
 },{
     name: "Bogles",
     id: "bogles",
     colors: "WG",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/1/9/19714d6c-2bfa-4ee0-aa2f-5ccc196bc5d8.jpg`
+    imageUrl: `${ ART_CROP_URL_PREFIX }/1/9/19714d6c-2bfa-4ee0-aa2f-5ccc196bc5d8.jpg`,
+    classification: DeckClassification.KATHYS
 },{
     name: "Eldrazi Tron",
     id: "eldrazi-tron",
@@ -79,18 +85,20 @@ export const LEGACY_DECKS: DeckLinkProps[] = [{
     id: "elves",
     colors: "BG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/5/7/57948c65-4324-42bc-97ae-7cc700eb3817.jpg`,
-    isUnderConstruction: true
+    isUnderConstruction: true,
+    link: "/magic/deck/elves"
 },{
     name: "Enchantress",
     id: "enchantress",
     colors: "WBG",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/0/b/0babfe00-9bad-48fc-b3b1-df8280242fd2.jpg`
+    imageUrl: `${ ART_CROP_URL_PREFIX }/0/b/0babfe00-9bad-48fc-b3b1-df8280242fd2.jpg`,
+    classification: DeckClassification.KATHYS
 },{
     name: "Lands",
     id: "lands",
     colors: "RG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/1/5/15c34f32-49d9-4a0d-83b2-28172f54fdd1.jpg`,
-    isPrimary: true
+    classification: DeckClassification.PRIMARY
 },{
     name: "Manaless Dredge",
     id: "manaless-dredge",
@@ -145,7 +153,9 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     id: "hanna",
     colors: "WU",
     imageUrl: `${ ART_CROP_URL_PREFIX }/e/3/e34e53fc-0c11-4594-b4ca-eaac663040ae.jpg`,
-    isUnderConstruction: true
+    isUnderConstruction: true,
+    classification: DeckClassification.KATHYS,
+    link: "/magic/deck/hanna"
 },{
     name: "Karador, Ghost Chieftain",
     id: "karador",
@@ -156,7 +166,7 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     id: "karona",
     colors: "WUBRG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/d/e/de53d083-251e-42a4-9e2e-c2978c80615b.jpg`,
-    isUnderConstruction: true
+    classification: DeckClassification.KATHYS
 },{
     name: "Lord Windgrace",
     id: "lord-windgrace",
@@ -194,7 +204,7 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     id: "trostani",
     colors: "GW",
     imageUrl: `${ ART_CROP_URL_PREFIX }/9/d/9d1d9d86-5666-4e59-9766-137657b4e040.jpg`,
-    isUnderConstruction: true
+    classification: DeckClassification.KATHYS
 },{
     name: "Yuriko, the Tiger's Shadow",
     id: "yuriko",
@@ -222,13 +232,15 @@ export const OATHBREAKER_DECKS: DeckLinkProps[] = [{
     name: "Calix, Destiny's Hand",
     id: "calix-enchantress",
     colors: "WG",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/8/6/86458929-ea21-4de8-84d8-a07398ed3bc0.jpg`
+    imageUrl: `${ ART_CROP_URL_PREFIX }/8/6/86458929-ea21-4de8-84d8-a07398ed3bc0.jpg`,
+    classification: DeckClassification.KATHYS
 },{
     name: "Geyadrone Dihada",
     id: "corruption-control",
     colors: "UBR",
     imageUrl: `${ ART_CROP_URL_PREFIX }/3/d/3d228005-91f1-451e-ab6f-1f86316708a7.jpg`,
-    isUnderConstruction: true
+    isUnderConstruction: true,
+    link: "/magic/deck/corruption-control"
 }];
 
 export const OTHER_DECKS: DeckLinkProps[] = [{
@@ -258,5 +270,5 @@ export const SPECIAL_DECKS: DeckLinkProps[] = [{
     name: "Zombie Horde",
     id: "zombie-horde",
     imageUrl: `${ ART_CROP_URL_PREFIX }/f/e/fe662a08-a8b1-4f25-b7c0-dca1c7ad7271.jpg`,
-    isUnderConstruction: true
+    link: "/magic/deck/zombie-horde"
 }];
