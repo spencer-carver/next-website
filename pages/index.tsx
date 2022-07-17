@@ -60,6 +60,20 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>August XX, 2022</SubHeading>
+                <List>
+                    <ListItem>Updated Page: <Link href="/puzzles" component={ A }>Puzzle landing page</Link></ListItem>
+                    <ListItem>
+                        New Puzzle Round: <Link href="/puzzles/alchemy" component={ A }>Alchemy</Link>
+                        <List>
+                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/four-elements" component={ A }>Four Elements</Link></ListItem>
+                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/five-elements" component={ A }>Five Elements</Link></ListItem>
+                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/six-elements" component={ A }>Six Elements</Link></ListItem>
+                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/seven-elements" component={ A }>Seven Elements</Link></ListItem>
+                        </List>
+                    </ListItem>
+                </List>
+                <P>I have finally created a meta puzzle! To facilitate the concept of round and meta puzzle, I have added to the main puzzle landing page.</P>
                 <SubHeading>July 11, 2022</SubHeading>
                 <List>
                     <ListItem>Updated Page: <Link href="/magic" component={ A }>Magic landing page</Link></ListItem>
