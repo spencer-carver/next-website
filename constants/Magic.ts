@@ -270,5 +270,5 @@ export const SPECIAL_DECKS: DeckLinkProps[] = [{
     name: "Zombie Horde",
     id: "zombie-horde",
     imageUrl: `${ ART_CROP_URL_PREFIX }/f/e/fe662a08-a8b1-4f25-b7c0-dca1c7ad7271.jpg`,
-    link: "/magic/deck/zombie-horde"
+    link: "https://cubecobra.com/cube/overview/3zxsq"
 }];
