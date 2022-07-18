@@ -7,6 +7,7 @@ import RowEntry from "../../components/Puzzle/RowEntry";
 import BackNavigation from "../../components/BackNavigation";
 import { PuzzleRounds, PUZZLES } from "../../constants/Puzzle";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
+import RoundEntry from "../../components/Puzzle/RoundEntry";
 
 const NAME = "All Puzzles";
 const DESCRIPTION = "A list of all puzzles available at Spencer Carver's website.";
@@ -117,8 +118,8 @@ const Puzzles: FunctionComponent = () => {
                     Rounds comprise a set of puzzles that all connect together into a &apos;meta puzzle&apos;, which uses the answers from the other puzzles to reach a final answer.
                 </DescriptionDiv>
                 <PuzzleList>
-                    <li style={{ position: "relative", textDecoration: "underline" }}>Round<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Answer</AnswerSpan></li>
-                    { [PuzzleRounds.ALCHEMY].map((puzzleId: string, index: number) => <RowEntry key={ index } puzzleId={ puzzleId.toLowerCase() } title={ puzzleId } clearAnswer={ clearAnswer } />) }
+                    <li style={{ position: "relative", textDecoration: "underline" }}>Round<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Solved</AnswerSpan></li>
+                    { [PuzzleRounds.ALCHEMY].map((puzzleId: string, index: number) => <RoundEntry key={ index } puzzleId={ puzzleId.toLowerCase() } title={ puzzleId } round={ PuzzleRounds.ALCHEMY } />) }
                 </PuzzleList>
                 { numberAnswered > 0 && (
                     <DescriptionDiv as="p">

@@ -1,13 +1,14 @@
 import React, { useState, FunctionComponent, useEffect, useCallback } from "react";
 import Head from "next/head";
 import { CSS } from "@stitches/react";
-import Link from "../../../components/Link";
 import PuzzleComplete from "../../../components/Puzzle/Complete";
 import { DescriptionDiv, Heading, PuzzleDiv } from "../../../components/Puzzle/common";
 import BackNavigation from "../../../components/BackNavigation";
 import { PuzzleDetails, PuzzleRounds, PUZZLES } from "../../../constants/Puzzle";
 import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
 import { Background, CircleFour, CircleFive, CircleSix, CircleSeven, Meta } from "./circles";
+import RowEntry from "../../../components/Puzzle/RowEntry";
+import Link from "../../../components/Link";
 
 const NAME = "Puzzle Round: Alchemy";
 const DESCRIPTION = "A puzzle round themed around Alchemy?";
@@ -56,45 +57,6 @@ const AnswerSpan = styled("span", {
     }
 });
 
-interface RowEntryProps extends PuzzleDetails {
-    puzzleId: string;
-    clearAnswer: Function;
-}
-
-const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, clearAnswer }) => {
-    const [ puzzleAnswer, setPuzzleAnswer ] = useState(null);
-
-    useEffect(() => {
-        try {
-            setPuzzleAnswer(localStorage.getItem(puzzleId));
-        } catch (e) {
-            //do nothing
-        }
-    }, [puzzleId]);
-
-    const clearPuzzleAnswer = useCallback((): void => {
-        clearAnswer(puzzleId);
-        setPuzzleAnswer(null);
-    }, [clearAnswer, puzzleId]);
-
-    return (
-        <li style={{ position: "relative" }}>
-            <Link href={ `/puzzles/${ puzzleId }` }>{ isMeta ? <b>{title}</b>: title }</Link>
-            { puzzleAnswer ? (
-                <AnswerSpan
-                    role="button"
-                    tabIndex={ 0 }
-                    title="Clear Answer"
-                    onKeyPress={ clearPuzzleAnswer }
-                    onClick={ clearPuzzleAnswer }
-                >
-                    { puzzleAnswer }
-                </AnswerSpan>
-            ) : <AnswerSpan css={{ "color": "$onBackground", "&:hover": { cursor: "unset" } }}>???</AnswerSpan> }
-        </li>
-    );
-}
-
 const Puzzles: FunctionComponent = () => {
     const [ roundPuzzles ] = useState(Object.keys(PUZZLES).filter((puzzleId: string) => PUZZLES[puzzleId].round === PuzzleRounds.ALCHEMY && !PUZZLES[puzzleId].isMeta));
     const [ numberAnswered, setNumberAnswered ] = useState(0);
@@ -110,17 +72,37 @@ const Puzzles: FunctionComponent = () => {
     }, [numberAnswered]);
 
     useEffect(() => {
-        setNumberAnswered(roundPuzzles.reduce((count: number, puzzleId: string): number => count + (localStorage.getItem(puzzleId) ? 1 : 0), 0));
-        setFourElementsAnswered(!!localStorage.getItem("alchemy/four-elements"));
-        setFiveElementsAnswered(!!localStorage.getItem("alchemy/five-elements"));
-        setSixElementsAnswered(!!localStorage.getItem("alchemy/six-elements"));
-        setSevenElementsAnswered(!!localStorage.getItem("alchemy/seven-elements"));
-        setMetaAnswered(!!localStorage.getItem("alchemy/alchemy"));
-    }, []);
+        setNumberAnswered(
+            roundPuzzles.reduce((count: number, puzzleId: string): number => count + (localStorage.getItem(puzzleId.replaceAll("/", ":")) ? 1 : 0), 0)
+            + (localStorage.getItem("alchemy:alchemy") ? 1 : 0)
+        );
+        setFourElementsAnswered(!!localStorage.getItem("alchemy:four-elements"));
+        setFiveElementsAnswered(!!localStorage.getItem("alchemy:five-elements"));
+        setSixElementsAnswered(!!localStorage.getItem("alchemy:six-elements"));
+        setSevenElementsAnswered(!!localStorage.getItem("alchemy:seven-elements"));
+        setMetaAnswered(!!localStorage.getItem("alchemy:alchemy"));
+    }, [roundPuzzles]);
 
     const clearAnswer = (puzzleId: string): void => {
         try {
-            localStorage.removeItem(puzzleId);
+            localStorage.removeItem(puzzleId.replaceAll("/", ":"));
+
+            switch (puzzleId) {
+                case "alchemy/four-elements":
+                    setFourElementsAnswered(false);
+                    break;
+                case "alchemy/five-elements":
+                    setFiveElementsAnswered(false);
+                    break;
+                case "alchemy/six-elements":
+                    setSixElementsAnswered(false);
+                    break;
+                case "alchemy/seven-elements":
+                    setSevenElementsAnswered(false);
+                    break;
+                case "alchemy/alchemy":
+                    setMetaAnswered(false);
+            }
         } catch (e) {
             //do nothing
         }
@@ -155,16 +137,16 @@ const Puzzles: FunctionComponent = () => {
                 </DescriptionDiv>
                 <div style={{ position: "relative", maxWidth: "740px", paddingLeft: "10px" }}>
                     <Background />
-                    <CircleFour isComplete={ fourElementsAnswered } />
-                    <CircleFive isComplete={ fiveElementsAnswered } />
-                    <CircleSix isComplete={ sixElementsAnswered } />
-                    <CircleSeven isComplete={ sevenElementsAnswered } />
-                    { metaUnlocked && <Meta isComplete={ metaAnswered } /> }
+                    <Link href="/puzzles/alchemy/four-elements"><CircleFour isComplete={ fourElementsAnswered } /></Link>
+                    <Link href="/puzzles/alchemy/five-elements"><CircleFive isComplete={ fiveElementsAnswered } /></Link>
+                    <Link href="/puzzles/alchemy/six-elements"><CircleSix isComplete={ sixElementsAnswered } /></Link>
+                    <Link href="/puzzles/alchemy/seven-elements"><CircleSeven isComplete={ sevenElementsAnswered } /></Link>
+                    { metaUnlocked || metaAnswered && <Link href="/puzzles/alchemy/alchemy"><Meta isComplete={ metaAnswered } /></Link> }
                 </div>
                 <PuzzleList>
                     <li style={{ position: "relative", textDecoration: "underline" }}>Puzzle<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Answer</AnswerSpan></li>
                     { roundPuzzles.map((puzzleId: string, index: number) => <RowEntry key={ index } puzzleId={ puzzleId } { ...PUZZLES[puzzleId] } clearAnswer={ clearAnswer } />) }
-                    { metaUnlocked && <RowEntry puzzleId="alchemy/alchemy" { ...PUZZLES["alchemy/alchemy"] } clearAnswer={ clearAnswer } /> }
+                    { metaUnlocked || metaAnswered && <RowEntry puzzleId="alchemy/alchemy" { ...PUZZLES["alchemy/alchemy"] } clearAnswer={ clearAnswer } /> }
                 </PuzzleList>
                 { numberAnswered > 0 && (
                     <DescriptionDiv as="p">

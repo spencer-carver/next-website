@@ -39,9 +39,10 @@ const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, c
 
     useEffect(() => {
         try {
-            setPuzzleAnswer(localStorage.getItem(puzzleId));
+            setPuzzleAnswer(localStorage.getItem(puzzleId.replaceAll("/", ":")));
         } catch (e) {
             //do nothing
+            console.error(e);
         }
     }, [puzzleId]);
 
