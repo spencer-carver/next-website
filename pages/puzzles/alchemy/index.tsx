@@ -141,12 +141,12 @@ const Puzzles: FunctionComponent = () => {
                     <Link href="/puzzles/alchemy/five-elements"><CircleFive isComplete={ fiveElementsAnswered } /></Link>
                     <Link href="/puzzles/alchemy/six-elements"><CircleSix isComplete={ sixElementsAnswered } /></Link>
                     <Link href="/puzzles/alchemy/seven-elements"><CircleSeven isComplete={ sevenElementsAnswered } /></Link>
-                    { metaUnlocked || metaAnswered && <Link href="/puzzles/alchemy/alchemy"><Meta isComplete={ metaAnswered } /></Link> }
+                    { (metaUnlocked || metaAnswered) && <Link href="/puzzles/alchemy/alchemy"><Meta isComplete={ metaAnswered } /></Link> }
                 </div>
                 <PuzzleList>
                     <li style={{ position: "relative", textDecoration: "underline" }}>Puzzle<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Answer</AnswerSpan></li>
                     { roundPuzzles.map((puzzleId: string, index: number) => <RowEntry key={ index } puzzleId={ puzzleId } { ...PUZZLES[puzzleId] } clearAnswer={ clearAnswer } />) }
-                    { metaUnlocked || metaAnswered && <RowEntry puzzleId="alchemy/alchemy" { ...PUZZLES["alchemy/alchemy"] } clearAnswer={ clearAnswer } /> }
+                    { (metaUnlocked || metaAnswered) && <RowEntry puzzleId="alchemy/alchemy" { ...PUZZLES["alchemy/alchemy"] } clearAnswer={ clearAnswer } /> }
                 </PuzzleList>
                 { numberAnswered > 0 && (
                     <DescriptionDiv as="p">

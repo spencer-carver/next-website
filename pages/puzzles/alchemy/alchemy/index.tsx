@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { CSS } from "@stitches/react";
 import { styled } from "../../../../styles/stitches";
@@ -48,10 +48,31 @@ const Datum = styled("td", {
     }
 });
 
+const FeederList = styled("ul", {
+    position: "absolute",
+    bottom: "0",
+    listStyle: "none",
+    color: "$onBackground",
+    textTransform: "uppercase",
+    textAlign: "left"
+});
+
 const PuzzleComponent: FunctionComponent = () => {
+    const [ fourElementsAnswer, setFourElementsAnswer ] = useState("");
+    const [ fiveElementsAnswer, setFiveElementsAnswer ] = useState("");
+    const [ sixElementsAnswer, setSixElementsAnswer ] = useState("");
+    const [ sevenElementsAnswer, setSevenElementsAnswer ] = useState("");
+
+    useEffect(() => {
+        setFourElementsAnswer(localStorage.getItem("alchemy:four-elements"));
+        setFiveElementsAnswer(localStorage.getItem("alchemy:five-elements"));
+        setSixElementsAnswer(localStorage.getItem("alchemy:six-elements"));
+        setSevenElementsAnswer(localStorage.getItem("alchemy:seven-elements"));
+    }, []);
+
     return (
         <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME } round={ PuzzleRounds.ALCHEMY }>
-            <div style={{ position: "relative" }}>
+            <div style={{ position: "relative", height: "60vh" }}>
                 <Meta css={ metaStyles } />
                 <Table>
                     <tbody>
@@ -62,6 +83,13 @@ const PuzzleComponent: FunctionComponent = () => {
                         <tr><Datum>C</Datum><Datum css={{ borderBottom: "1px solid transparent", borderRight: "1px solid transparent" }} /><Datum css={{ borderBottom: "1px solid transparent", borderRight: "1px solid transparent" }} /><Datum css={{ borderBottom: "1px solid transparent", borderRight: "1px solid transparent" }} /><Datum css={{ borderBottom: "1px solid transparent", borderRight: "1px solid transparent" }} /><Datum css={{ borderBottom: "1px solid transparent", borderRight: "1px solid transparent" }} /><Datum css={{ borderBottom: "1px solid transparent", borderRight: "1px solid transparent" }} /><Datum css={{ borderBottom: "1px solid transparent" }} /><Datum>T</Datum><Datum css={{ border: "1px solid transparent" }} /></tr>
                     </tbody>
                 </Table>
+                <FeederList>
+                    <span style={{ textDecoration: "underline", textTransform: "capitalize" }}>Transformation Results</span>
+                    <li>{ fourElementsAnswer }</li>
+                    <li>{ fiveElementsAnswer }</li>
+                    <li>{ sixElementsAnswer }</li>
+                    <li>{ sevenElementsAnswer }</li>
+                </FeederList>
             </div>
         </PuzzleWrapperComponent>
     );
