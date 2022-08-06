@@ -84,11 +84,12 @@ const PuzzleComponent: FunctionComponent = () => {
                     </tbody>
                 </Table>
                 <FeederList>
-                    <span style={{ textDecoration: "underline", textTransform: "capitalize" }}>Transformation Results</span>
                     <li>{ fourElementsAnswer }</li>
                     <li>{ fiveElementsAnswer }</li>
                     <li>{ sixElementsAnswer }</li>
                     <li>{ sevenElementsAnswer }</li>
+                    <br />
+                    <span style={{ textTransform: "initial" }}>Each alchemist reached their namesake creature.</span>
                 </FeederList>
             </div>
         </PuzzleWrapperComponent>
