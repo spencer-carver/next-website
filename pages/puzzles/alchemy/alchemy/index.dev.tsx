@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { CSS } from "@stitches/react";
 import { styled } from "../../../../styles/stitches";
-import { Meta } from "../circles";
+import { Meta } from "../../../../components/Puzzle/circles";
 import { PuzzleRounds } from "../../../../constants/Puzzle";
 
 const TITLE = "Alchemy";

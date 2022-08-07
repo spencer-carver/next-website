@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { styled } from "../../../styles/stitches";
+import { styled } from "../../styles/stitches";
 import { CSS } from "@stitches/react";
 
 const BackgroundSvg = styled("svg", {

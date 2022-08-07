@@ -6,7 +6,7 @@ import { DescriptionDiv, Heading, PuzzleDiv } from "../../../components/Puzzle/c
 import BackNavigation from "../../../components/BackNavigation";
 import { PuzzleRounds, PUZZLES } from "../../../constants/Puzzle";
 import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
-import { Background, CircleFour, CircleFive, CircleSix, CircleSeven, Meta } from "./circles";
+import { Background, CircleFour, CircleFive, CircleSix, CircleSeven, Meta } from "../../../components/Puzzle/circles";
 import RowEntry from "../../../components/Puzzle/RowEntry";
 import Link from "../../../components/Link";
 
