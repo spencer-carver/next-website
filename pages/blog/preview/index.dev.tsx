@@ -1,9 +1,7 @@
 import Head from "next/head";
-import React, { FunctionComponent, ReactElement, useEffect, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { NormalComponents } from "react-markdown/lib/complex-types";
-import { HeadingComponent, TableCellComponent } from "react-markdown/lib/ast-to-react";
 import { PageProps } from "../../../@types/global";
 import ErrorPage from "../../404";
 import BackNavigation from "../../../components/BackNavigation";

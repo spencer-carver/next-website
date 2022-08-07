@@ -4,7 +4,7 @@ import { CSS } from "@stitches/react";
 import PuzzleComplete from "../../../components/Puzzle/Complete";
 import { DescriptionDiv, Heading, PuzzleDiv } from "../../../components/Puzzle/common";
 import BackNavigation from "../../../components/BackNavigation";
-import { PuzzleDetails, PuzzleRounds, PUZZLES } from "../../../constants/Puzzle";
+import { PuzzleRounds, PUZZLES } from "../../../constants/Puzzle";
 import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
 import { Background, CircleFour, CircleFive, CircleSix, CircleSeven, Meta } from "./circles";
 import RowEntry from "../../../components/Puzzle/RowEntry";
@@ -19,6 +19,15 @@ const puzzleDivOverrides: CSS = {
         minHeight: "calc(100vh - 269px)"
     }
 };
+
+const PuzzleTextDiv = styled("div", {
+    position: "absolute",
+    color: "$onBackground",
+    textShadow: "0 0 8px $background, 0 0 8px $background, 0 0 8px $background, 0 0 8px $background, 0 0 8px $background, 0 0 8px $background, 0 0 8px $background, 0 0 8px $background",
+    "@lg": {
+        position: "unset"
+    }
+});
 
 const PuzzleList = styled("ul", {
     textAlign: "left",
@@ -137,11 +146,27 @@ const Puzzles: FunctionComponent = () => {
                 </DescriptionDiv>
                 <div style={{ position: "relative", maxWidth: "740px", paddingLeft: "10px" }}>
                     <Background />
-                    <Link href="/puzzles/alchemy/four-elements"><CircleFour isComplete={ fourElementsAnswered } /></Link>
-                    <Link href="/puzzles/alchemy/five-elements"><CircleFive isComplete={ fiveElementsAnswered } /></Link>
-                    <Link href="/puzzles/alchemy/six-elements"><CircleSix isComplete={ sixElementsAnswered } /></Link>
-                    <Link href="/puzzles/alchemy/seven-elements"><CircleSeven isComplete={ sevenElementsAnswered } /></Link>
-                    { (metaUnlocked || metaAnswered) && <Link href="/puzzles/alchemy/alchemy"><Meta isComplete={ metaAnswered } /></Link> }
+                    <CircleFour isComplete={ fourElementsAnswered }>
+                        <PuzzleTextDiv>Coming Soon</PuzzleTextDiv>
+                    </CircleFour>
+                    <Link href="/puzzles/alchemy/five-elements">
+                        <CircleFive isComplete={ fiveElementsAnswered }>
+                            <PuzzleTextDiv>Five Elements</PuzzleTextDiv>
+                        </CircleFive>
+                    </Link>
+                    <CircleSix isComplete={ sixElementsAnswered }>
+                        <PuzzleTextDiv>Coming Soon</PuzzleTextDiv>
+                    </CircleSix>
+                    <CircleSeven isComplete={ sevenElementsAnswered }>
+                        <PuzzleTextDiv>Coming Soon</PuzzleTextDiv>
+                    </CircleSeven>
+                    { (metaUnlocked || metaAnswered) && (
+                        <Link href="/puzzles/alchemy/alchemy">
+                            <Meta isComplete={ metaAnswered }>
+                                <PuzzleTextDiv>Alchemy</PuzzleTextDiv>
+                            </Meta>
+                        </Link>
+                    ) }
                 </div>
                 <PuzzleList>
                     <li style={{ position: "relative", textDecoration: "underline" }}>Puzzle<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Answer</AnswerSpan></li>

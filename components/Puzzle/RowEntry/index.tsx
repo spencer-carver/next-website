@@ -34,7 +34,7 @@ interface RowEntryProps extends PuzzleDetails {
     clearAnswer: Function;
 }
 
-const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, clearAnswer }) => {
+const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, comingSoon, clearAnswer }) => {
     const [ puzzleAnswer, setPuzzleAnswer ] = useState(null);
 
     useEffect(() => {
@@ -50,6 +50,10 @@ const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, c
         clearAnswer(puzzleId);
         setPuzzleAnswer(null);
     }, [clearAnswer, puzzleId]);
+
+    if (comingSoon) {
+        return;
+    }
 
     return (
         <li style={{ position: "relative" }}>

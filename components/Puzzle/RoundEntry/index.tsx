@@ -30,13 +30,13 @@ interface RoundEntryProps extends PuzzleDetails {
     puzzleId: string;
 }
 
-const RoundEntry: FunctionComponent<RoundEntryProps> = ({ puzzleId, title, isMeta, round }) => {
+const RoundEntry: FunctionComponent<RoundEntryProps> = ({ puzzleId: roundId, title, isMeta, round }) => {
     const [ solved, setSolved ] = useState(null);
     const [ total, setTotal ] = useState(null);
 
     useEffect(() => {
         try {
-            const total = Object.keys(PUZZLES).filter((puzzleId: string) => PUZZLES[puzzleId].round === round).length;
+            const total = Object.keys(PUZZLES).filter((puzzleId: string) => PUZZLES[puzzleId].round === round && !PUZZLES[puzzleId].comingSoon).length;
             const solved = Object.keys(PUZZLES).filter((puzzleId: string) => PUZZLES[puzzleId].round === round).reduce((acc: number, puzzleId: string) => {
                 try {
                     return acc + (localStorage.getItem(puzzleId.replaceAll("/", ":")) ? 1 : 0);
@@ -50,12 +50,14 @@ const RoundEntry: FunctionComponent<RoundEntryProps> = ({ puzzleId, title, isMet
             //do nothing
             console.error(e);
         }
-    }, [puzzleId, round]);
+    }, [roundId, round]);
+
+    const ROUND_OF_NEWEST_PUZZLE = NEWEST_PUZZLE.split("/")[0];
 
     return (
         <li style={{ position: "relative" }}>
-            { puzzleId === NEWEST_PUZZLE && <NewSpan>NEW</NewSpan> }
-            <Link href={ `/puzzles/${ puzzleId }` }>{ isMeta ? <b>{title}</b>: title }</Link>
+            { roundId === ROUND_OF_NEWEST_PUZZLE && <NewSpan>NEW</NewSpan> }
+            <Link href={ `/puzzles/${ roundId }` }>{ isMeta ? <b>{title}</b>: title }</Link>
             { solved === total
                 ? <AnswerSpan>{ solved }/{ total }</AnswerSpan>
                 : <AnswerSpan css={{ "color": "$onBackground", "&:hover": { cursor: "unset" } }}>{ solved }/{ total }</AnswerSpan>

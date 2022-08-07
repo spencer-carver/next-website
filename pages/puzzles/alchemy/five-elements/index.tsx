@@ -6,7 +6,7 @@ import { PuzzleRounds } from "../../../../constants/Puzzle";
 import Draggable, { ControlPosition } from "react-draggable";
 
 const TITLE = "Five Elements";
-const DESCRIPTION = "Wheeler's Elemental Ring has been stolen! Help the others find what's missing in order to save the day. The power is yours!";
+const DESCRIPTION = "Wheeler has been robbed! Help search for suspects and find the missing ring!";
 const NAME = "alchemy:five-elements";
 
 const WrapperWrapperDiv = styled("div", {
@@ -15,19 +15,8 @@ const WrapperWrapperDiv = styled("div", {
     top: "-20px",
     width: "calc(100% + 20px)",
     overflow: "hidden",
-    padding: "20px 0 0 20px",
-    "@lg": {
-        height: "780px"
-    }
-});
-
-const WrapperDiv = styled("div", {
-    position: "relative",
-    width: "100%",
-    height: "60vh",
-    paddingTop: "60px",
-    background: "url(/puzzles/alchemy/five/background.png)",
-    border: "1px solid $onBackground",
+    paddingTop: "80px",
+    paddingLeft: "20px",
     "&::before": {
         "content": "\u00a1\u00a1\u00a1WARNING: This puzzle requires a device that fits the entire grid on screen!!!",
         position: "relative",
@@ -38,7 +27,21 @@ const WrapperDiv = styled("div", {
         whiteSpace: "pre-wrap"
     },
     "@lg": {
-        paddingTop: "0px",
+        height: "780px",
+        paddingTop: "20px",
+        "&::before": {
+            content: ""
+        }
+    }
+});
+
+const WrapperDiv = styled("div", {
+    position: "relative",
+    width: "100%",
+    height: "60vh",
+    background: "url(/puzzles/alchemy/five/background.png)",
+    border: "1px solid $onBackground",
+    "@lg": {
         backgroundColor: "$surface01",
         width: "760px",
         height: "760px",
