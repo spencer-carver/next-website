@@ -69,7 +69,7 @@ const PhotoContainerDiv = styled("div", {
 });
 
 const RingSVG: FunctionComponent<{ color: string }> = ({ color }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="240" height="240" style={{ position: "absolute", zIndex: "3", top: "-20px", left: "-20px", transform: "rotate(-15deg)" }}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="240" height="240" style={{ position: "absolute", zIndex: "3", top: "-24px", left: "-20px", transform: "rotate(-15deg)" }}>
         <path id="Layer" fill={ color } d="M256 0C201.27 0 156.9 26.74 156.9 49.55L355.1 49.55C355.1 26.74 310.73 0 256 0Z"/>
         <path id="Layer" fillRule="evenodd" fill="#7c7c7c" d="M487.23 280.77C487.23 408.48 383.7 512 256 512C128.3 512 24.77 408.48 24.77 280.77C24.77 185.1 74.05 96.34 156.9 49.55L355.1 49.55C437.95 96.34 487.23 185.1 487.23 280.77ZM445.94 280.77C445.94 175.88 360.9 90.84 256 90.84C151.1 90.84 66.06 175.88 66.06 280.77C66.06 385.67 151.1 470.71 256 470.71C360.9 470.71 445.94 385.67 445.94 280.77Z"/>
         <g id="Layer">
@@ -109,10 +109,10 @@ const PuzzleComponent: FunctionComponent = () => {
                     <DraggableRing
                         css={{
                             background: "url(/puzzles/alchemy/five/wind.png) no-repeat, #98BEFD",
-                            transform: "translate(102px, 458px)",
-                            backgroundPosition: "-102px -458px, center center"
+                            transform: "translate(102px, 462px)",
+                            backgroundPosition: "-102px -462px, center center"
                         }}
-                        defaultPosition={{ x: 102, y: 458 }}
+                        defaultPosition={{ x: 102, y: 462 }}
                         color="#98BEFD"
                     />
                     <DraggableRing
@@ -127,10 +127,10 @@ const PuzzleComponent: FunctionComponent = () => {
                     <DraggableRing
                         css={{
                             background: "url(/puzzles/alchemy/five/earth.png) no-repeat, #EC671B",
-                            transform: "translate(458px, 458px)",
-                            backgroundPosition: "-458px -458px, center center"
+                            transform: "translate(458px, 462px)",
+                            backgroundPosition: "-458px -462px, center center"
                         }}
-                        defaultPosition={{ x: 458, y: 458 }}
+                        defaultPosition={{ x: 458, y: 462 }}
                         color="#EC671B"
                     />
                     <DraggableRing
