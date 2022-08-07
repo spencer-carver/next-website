@@ -73,17 +73,19 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
         setAnswer(answer);
     }, [name]);
 
+    const path = round ? name.replaceAll(":", "/"): name;
+
     return (
         <>
             <Head>
                 <title>{ title }</title>
-                <link rel="canonical" href={ `https://spencer.carvers.info/puzzles/${ name }` } />
+                <link rel="canonical" href={ `https://spencer.carvers.info/puzzles/${ path }` } />
                 <meta name="description" content={ description } />
                 <meta name="homepage" content="false" />
                 <meta property="og:site_name" content={ title } />
                 <meta property="og:description" content={ description } />
                 <meta property="og:title" content={ title } />
-                <meta property="og:url" content={ `https://spencer.carvers.info/puzzles/${ name }` } />
+                <meta property="og:url" content={ `https://spencer.carvers.info/puzzles/${ path }` } />
                 <meta property="og:image" content={ "https://spencer.carvers.info/seo-puzzle.jpg" } />
                 <meta name="twitter:description" content={ description } />
                 <meta name="twitter:title" content={ title } />
