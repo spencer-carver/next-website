@@ -285,7 +285,7 @@ const SideboardDiv = styled("div", {
         ...(sharedDeckAndSideboardStyles["@lg"] as Record<string, string>),
         paddingTop: "10px",
         flexDirection: "column",
-        "& div:nth-of-type(2n)": {
+        "& span:nth-of-type(2n)": {
             marginLeft: "50px"
         }
     },

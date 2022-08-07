@@ -3,6 +3,7 @@ import Head from "next/head";
 import PuzzleComplete from "./Complete";
 import PuzzleAnswerSubmission from "./AnswerCheck";
 import BackNavigation from "../BackNavigation";
+import { PuzzleDetails } from "../../constants/Puzzle";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 
 export const PuzzleDiv = styled("div", {
@@ -13,7 +14,7 @@ export const PuzzleDiv = styled("div", {
     textAlign: "center",
     minHeight: "calc(100vh - 185px)",
     "@lg": {
-        maxWidth: "800px"
+        maxWidth: "760px"
     },
     [`.${ yahooGeocitiesTheme } &`]: {
         minHeight: "calc(100vh - 322px)"
@@ -40,14 +41,13 @@ export const DescriptionDiv = styled("div", {
     }
 });
 
-interface PuzzleWrapperProps {
+interface PuzzleWrapperProps extends PuzzleDetails {
     name: string;
-    title: string;
     description: string;
     children?: ReactNode;
 }
 
-export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ name, title, description, children }) => {
+export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ name, title, round, description, children }) => {
     const [ answer, setAnswer ] = useState(undefined);
     const [ AnswerBanner, setAnswerBanner ] = useState(null);
 
@@ -90,7 +90,7 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
                 <meta name="twitter:image" content={ "https://spencer.carvers.info/seo-puzzle.jpg" } />
             </Head>
             { AnswerBanner }
-            <BackNavigation to="/puzzles" />
+            <BackNavigation to={ `/puzzles${ round ? `/${ round.toLowerCase() }` : "" }` } />
             <PuzzleDiv>
                 <Heading>{ title }</Heading>
                 { description && <DescriptionDiv>{ description }</DescriptionDiv> }

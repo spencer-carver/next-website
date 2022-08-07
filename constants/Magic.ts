@@ -24,16 +24,23 @@ const ART_CROP_URL_PREFIX = "https://c1.scryfall.com/file/scryfall-cards/art_cro
 
 export const PIONEER_DECKS: DeckLinkProps[] = [{
     name: "5-Color Humans",
-    id: "party-pyre",
+    id: "humans",
     colors: "WUBRG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/9/c/9c2000ef-3e6b-4f44-8bd6-ed8119336d5a.jpg`,
-    isUnderConstruction: true
+    isUnderConstruction: true,
+    link: "/magic/deck/humans"
 },{
     name: "Lotus Field Combo",
     id: "lotus-field-combo",
     colors: "WUBG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/0/e/0e013033-3995-4ba8-b0c3-0614c79aaaab.jpg`,
     classification: DeckClassification.PRIMARY
+},{
+    name: "Azorius Control",
+    id: "azorius-control",
+    colors: "WU",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/2/0/20b5fe42-929c-406d-9377-40b49f9d2e2c.jpg`,
+    isUnderConstruction: true
 }];
 
 export const MODERN_DECKS: DeckLinkProps[] = [{
@@ -100,9 +107,9 @@ export const LEGACY_DECKS: DeckLinkProps[] = [{
     imageUrl: `${ ART_CROP_URL_PREFIX }/1/5/15c34f32-49d9-4a0d-83b2-28172f54fdd1.jpg`,
     classification: DeckClassification.PRIMARY
 },{
-    name: "Manaless Dredge",
-    id: "manaless-dredge",
-    colors: "UBRG",
+    name: "Dredge",
+    id: "dredge",
+    colors: "WUBRG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/0/4/04628d6f-8985-4e4b-a746-fbb2ef631694.jpg`
 },{
     name: "Miracles",

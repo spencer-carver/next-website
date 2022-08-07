@@ -53,6 +53,9 @@ export const darkTheme = createTheme({
     },
     radii: {
         borderRadius: "20px"
+    },
+    shadows: {
+        background: "#121212"
     }
 });
 
@@ -82,6 +85,9 @@ export const lightTheme = createTheme({
     },
     radii: {
         borderRadius: "20px"
+    },
+    shadows: {
+        background: "#ffffff"
     }
 });
 
@@ -111,6 +117,9 @@ export const yahooGeocitiesTheme = createTheme({
     },
     radii: {
         borderRadius: "0"
+    },
+    shadows: {
+        background: "#121212"
     }
 });
 

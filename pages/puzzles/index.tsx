@@ -1,27 +1,16 @@
-import React, { useState, FunctionComponent, useEffect, useCallback } from "react";
+import React, { useState, FunctionComponent, useEffect } from "react";
 import Head from "next/head";
 import { CSS } from "@stitches/react";
-import Link from "../../components/Link";
 import PuzzleComplete from "../../components/Puzzle/Complete";
 import { DescriptionDiv, Heading, PuzzleDiv } from "../../components/Puzzle/common";
+import RowEntry from "../../components/Puzzle/RowEntry";
 import BackNavigation from "../../components/BackNavigation";
+import { PuzzleRounds, PUZZLES } from "../../constants/Puzzle";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
+import RoundEntry from "../../components/Puzzle/RoundEntry";
 
 const NAME = "All Puzzles";
 const DESCRIPTION = "A list of all puzzles available at Spencer Carver's website.";
-const NEWEST_PUZZLE = "x-marks-the-spot";
-
-const PUZZLES = {
-    "tutorial": "Tutorial",
-    "tetris": "Tetris",
-    "travel-diary": "Travel Diary",
-    "an-explosive-discovery": "An Explosive Discovery",
-    "yakuza-zero": "Yakuza 0",
-    "cheese-sampler": "Cheese Sampler",
-    "x-marks-the-spot": "X Marks the Spot",
-    "enigmarch-2022": "#Enigmarch 2022",
-    "judge-calls-one": "Judge Calls"
-};
 
 const puzzleDivOverrides: CSS = {
     minHeight: "calc(100vh - 131px)",
@@ -50,15 +39,6 @@ const PuzzleList = styled("ul", {
     }
 });
 
-const NewSpan = styled("span", {
-    position: "absolute",
-    left: "0px",
-    top: "-15px",
-    fontSize: "10px",
-    fontWeight: "bold",
-    color: "$error"
-});
-
 const AnswerSpan = styled("span", {
     position: "absolute",
     right: "-10px",
@@ -75,41 +55,6 @@ const AnswerSpan = styled("span", {
         left: "240px"
     }
 });
-
-const RowEntry: FunctionComponent<{ puzzleId: string; index: number; clearAnswer: Function; }> = ({ puzzleId, index, clearAnswer }) => {
-    const [ puzzleAnswer, setPuzzleAnswer ] = useState(null);
-
-    useEffect(() => {
-        try {
-            setPuzzleAnswer(localStorage.getItem(puzzleId));
-        } catch (e) {
-            //do nothing
-        }
-    }, [puzzleId]);
-
-    const clearPuzzleAnswer = useCallback((): void => {
-        clearAnswer(puzzleId);
-        setPuzzleAnswer(null);
-    }, [clearAnswer, puzzleId]);
-
-    return (
-        <li style={{ position: "relative" }}>
-            { puzzleId === NEWEST_PUZZLE && <NewSpan>NEW</NewSpan> }
-            <Link href={ `/puzzles/${ puzzleId }` }>{ PUZZLES[puzzleId] }</Link>
-            { puzzleAnswer ? (
-                <AnswerSpan
-                    role="button"
-                    tabIndex={ 0 }
-                    title="Clear Answer"
-                    onKeyPress={ clearPuzzleAnswer }
-                    onClick={ clearPuzzleAnswer }
-                >
-                    { puzzleAnswer }
-                </AnswerSpan>
-            ) : <AnswerSpan css={{ "color": "$onBackground", "&:hover": { cursor: "unset" } }}>???</AnswerSpan> }
-        </li>
-    );
-}
 
 const Puzzles: FunctionComponent = () => {
     const [ numberAnswered, setNumberAnswered ] = useState(0);
@@ -161,7 +106,20 @@ const Puzzles: FunctionComponent = () => {
                 </DescriptionDiv>
                 <PuzzleList>
                     <li style={{ position: "relative", textDecoration: "underline" }}>Puzzle<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Answer</AnswerSpan></li>
-                    { Object.keys(PUZZLES).map((puzzleId: string, index: number) => <RowEntry key={ index } puzzleId={ puzzleId } index={ index } clearAnswer={ clearAnswer } />) }
+                    { Object.keys(PUZZLES).map((puzzleId: string, index: number) => {
+                        if (PUZZLES[puzzleId].round) {
+                            return null;
+                        }
+
+                        return <RowEntry key={ index } puzzleId={ puzzleId } title={ PUZZLES[puzzleId].title } clearAnswer={ clearAnswer } />;
+                    }) }
+                </PuzzleList>
+                <DescriptionDiv as="p">
+                    Rounds comprise a set of puzzles that all connect together into a &apos;meta puzzle&apos;, which uses the answers from the other puzzles to reach a final answer.
+                </DescriptionDiv>
+                <PuzzleList>
+                    <li style={{ position: "relative", textDecoration: "underline" }}>Round<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Solved</AnswerSpan></li>
+                    { [PuzzleRounds.ALCHEMY].map((puzzleId: string, index: number) => <RoundEntry key={ index } puzzleId={ puzzleId.toLowerCase() } title={ puzzleId } round={ PuzzleRounds.ALCHEMY } />) }
                 </PuzzleList>
                 { numberAnswered > 0 && (
                     <DescriptionDiv as="p">
