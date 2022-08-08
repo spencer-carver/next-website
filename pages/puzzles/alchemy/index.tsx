@@ -146,9 +146,11 @@ const Puzzles: FunctionComponent = () => {
                 </DescriptionDiv>
                 <div style={{ position: "relative", maxWidth: "740px", paddingLeft: "10px" }}>
                     <Background />
-                    <CircleFour isComplete={ fourElementsAnswered }>
-                        <PuzzleTextDiv>Coming Soon</PuzzleTextDiv>
-                    </CircleFour>
+                    <Link href="/puzzles/alchemy/four-elements">
+                        <CircleFour isComplete={ fourElementsAnswered }>
+                            <PuzzleTextDiv>Four Elements</PuzzleTextDiv>
+                        </CircleFour>
+                    </Link>
                     <Link href="/puzzles/alchemy/five-elements">
                         <CircleFive isComplete={ fiveElementsAnswered }>
                             <PuzzleTextDiv>Five Elements</PuzzleTextDiv>
