@@ -60,6 +60,16 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>August 7, 2022</SubHeading>
+                <List>
+                    <ListItem>
+                        Updated Round: <Link href="/puzzles/alchemy" component={ A }>Alchemy</Link>
+                        <List>
+                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/four-elements" component={ A }>Four Elements</Link></ListItem>
+                        </List>
+                    </ListItem>
+                </List>
+                <P>Well this one came together quick... Hopefully this means I can roll out the whole round before the end of August!</P>
                 <SubHeading>August 6, 2022</SubHeading>
                 <List>
                     <ListItem>Updated Page: <Link href="/puzzles" component={ A }>Puzzle landing page</Link></ListItem>
@@ -73,7 +83,7 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <P>I have finally created a meta puzzle! To facilitate the concept of round and meta puzzle, I have added to the main puzzle landing page.</P>
                 <P>There will be 3 more puzzles in the Alchemy round at some point soon (I know the themes, just not the specifics)!</P>
                 <P>I am also working on extending the blog structure to support puzzles, much like how the deck guidance now exists in the magic section (and is still slowly being fleshed out). This will introduce solution pages where I get to talk about how to solve the puzzle (if you have finished it or do not feel inclined to) and also inspirations and motivations.</P>
-                <P>At the current rate the next update will be in early September, but I hope to have all 3 puzzles remaining Alchemy puzzles ready by then (if not with staggered releases sooner)!</P>
+                <P>At the current rate the next update will be in early September, but I hope to have all 3 remaining Alchemy puzzles ready by then (if not with staggered releases sooner)!</P>
                 <SubHeading>July 11, 2022</SubHeading>
                 <List>
                     <ListItem>Updated Page: <Link href="/magic" component={ A }>Magic landing page</Link></ListItem>

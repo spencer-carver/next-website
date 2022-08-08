@@ -99,10 +99,17 @@ const Puzzles: FunctionComponent = () => {
             <PuzzleDiv css={ puzzleDivOverrides }>
                 <Heading>Puzzles</Heading>
                 <DescriptionDiv as="p">
-                    I&apos;m trying to make puzzles! Here are all of my attempts in percieved order of difficulty.
-                    If you need help with a puzzle in a way that the built-in hint system doesn&apos;t assist,
-                    email your question to <a href="mailto:puzzle@carvers.info">puzzle@carvers.info</a> with the puzzle name as the subject and I will try and assist you.
                     This page is not a puzzle.
+                </DescriptionDiv>
+                <DescriptionDiv as="p">
+                    Rounds comprise a set of puzzles that all connect together into a &apos;meta puzzle&apos;.
+                </DescriptionDiv>
+                <PuzzleList>
+                    <li style={{ position: "relative", textDecoration: "underline" }}>Round<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Solved</AnswerSpan></li>
+                    { [PuzzleRounds.ALCHEMY].map((puzzleId: string, index: number) => <RoundEntry key={ index } puzzleId={ puzzleId.toLowerCase() } title={ puzzleId } round={ PuzzleRounds.ALCHEMY } />) }
+                </PuzzleList>
+                <DescriptionDiv as="p">
+                    The below puzzles are unaffiliated with any broader theme.
                 </DescriptionDiv>
                 <PuzzleList>
                     <li style={{ position: "relative", textDecoration: "underline" }}>Puzzle<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Answer</AnswerSpan></li>
@@ -115,17 +122,9 @@ const Puzzles: FunctionComponent = () => {
                     }) }
                 </PuzzleList>
                 <DescriptionDiv as="p">
-                    Rounds comprise a set of puzzles that all connect together into a &apos;meta puzzle&apos;, which uses the answers from the other puzzles to reach a final answer.
+                    If you need help with a puzzle in a way that the built-in hint system doesn&apos;t assist,
+                    email your question to <a href="mailto:puzzle@carvers.info">puzzle@carvers.info</a> with the puzzle name as the subject and I will try and assist you.
                 </DescriptionDiv>
-                <PuzzleList>
-                    <li style={{ position: "relative", textDecoration: "underline" }}>Round<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Solved</AnswerSpan></li>
-                    { [PuzzleRounds.ALCHEMY].map((puzzleId: string, index: number) => <RoundEntry key={ index } puzzleId={ puzzleId.toLowerCase() } title={ puzzleId } round={ PuzzleRounds.ALCHEMY } />) }
-                </PuzzleList>
-                { numberAnswered > 0 && (
-                    <DescriptionDiv as="p">
-                        If you want to erase an answer (perhaps to let someone else try the puzzle), just click on it!
-                    </DescriptionDiv>
-                ) }
             </PuzzleDiv>
         </>
     );
