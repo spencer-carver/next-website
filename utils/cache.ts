@@ -22,8 +22,13 @@ async function fetchFromCache(url: string, ttl: number = BROWSER_CACHE_TTL): Pro
         return data;
     } catch (error) {
         return await window.fetch(url)
-            .then((response) => response.json())
-            .then((data: JSON) => {
+            .then((response) => { 
+                if (!response.ok) {
+                    throw new Error("request failed");
+                }
+
+                return response.json();
+            }).then((data: JSON) => {
                 try {
                     localStorage.setItem(url, JSON.stringify({
                         data,
@@ -34,7 +39,7 @@ async function fetchFromCache(url: string, ttl: number = BROWSER_CACHE_TTL): Pro
                 }
 
                 return data;
-            });
+            }).catch(() => ({} as JSON));
     }
 }
 

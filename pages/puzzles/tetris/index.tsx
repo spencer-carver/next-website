@@ -14,7 +14,7 @@ const FallbackSpan = styled("span", {
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME }>
+        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME } solutionAvailable={ true }>
             <video style={{ width: "100%", maxWidth: "600px" }} controls poster={ undefined }>
                 <source src={ SRC } type="video/mp4" />
                 <track label="English" kind="captions" srcLang="en" src={ SUBTITLE_SRC } default />
