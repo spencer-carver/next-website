@@ -1,7 +1,8 @@
 import React, { useState, FunctionComponent, useMemo } from "react";
 import { CSS } from "@stitches/react";
 import { API_URL } from "../../../constants/ExternalUrls";
-import { lightTheme, styled, yahooGeocitiesTheme } from "../../../styles/stitches";
+import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
+import Link from "../../Link";
 
 const AnswerBoxDiv = styled("div", {
     bottom: "0",
@@ -19,9 +20,20 @@ const InputForm = styled("form", {
     margin: "0 5px 10px 5px"
 });
 
+const SolutionAnchor = styled("a", {
+    marginLeft: "5px",
+    color: "$onBackground",
+    textDecoration: "underline",
+    "&:hover": {
+        cursor: "pointer"
+    }
+});
+
 interface PuzzleAnswerSubmissionProps {
     puzzleName: string;
+    answer?: string;
     onSuccess: Function;
+    solutionLink?: string;
 }
 
 export interface PuzzleAnswer {
@@ -32,7 +44,7 @@ export interface PuzzleAnswer {
     time?: number;
 }
 
-const PuzzleAnswerSubmission: FunctionComponent<PuzzleAnswerSubmissionProps> = ({ puzzleName, onSuccess }) => {
+const PuzzleAnswerSubmission: FunctionComponent<PuzzleAnswerSubmissionProps> = ({ puzzleName, answer: existingAnswer, onSuccess, solutionLink }) => {
     const [ answer, setAnswer ] = useState("");
     const [ answers, setAnswers ] = useState([] as PuzzleAnswer[]);
     const [ hintCount, setHintCount ] = useState(0);
@@ -75,8 +87,13 @@ const PuzzleAnswerSubmission: FunctionComponent<PuzzleAnswerSubmissionProps> = (
         <AnswerBoxDiv css={ answers.length > 0 ? {} : { position: "sticky" } }>
             { MemoizedAnswers }
             <InputForm onSubmit={ submit }>
-                <input type="text" placeholder="Answer Here" value={ answer } onChange={ onType }></input>
-                <button type="submit">Submit</button>
+                { !existingAnswer && (
+                    <>
+                        <input type="text" placeholder="Answer Here" value={ answer } onChange={ onType }></input>
+                        <button type="submit">Submit</button>
+                    </>
+                ) }
+                { solutionLink && <Link href={ solutionLink } component={ SolutionAnchor }>View Solution</Link> }
             </InputForm>
         </AnswerBoxDiv>
     );

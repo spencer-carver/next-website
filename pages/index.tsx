@@ -60,6 +60,12 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>August 8, 2022</SubHeading>
+                <List>
+                    <ListItem>New Feature: Puzzle Solutions</ListItem>
+                </List>
+                <P>As promised, the blog structure was extended for hosting puzzle solutions! I plan to gradually fill these in over time (just like with the Magic content), but the largest hurdle is now complete!</P>
+                <P>You can see a solution has been added (part of the answer bar at the bottom of the screen) for the very first puzzle I ever made, <Link href="/puzzles/tetris" component={ A }>Tetris</Link>!</P>
                 <SubHeading>August 7, 2022</SubHeading>
                 <List>
                     <ListItem>

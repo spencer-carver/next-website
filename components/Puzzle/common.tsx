@@ -45,9 +45,10 @@ interface PuzzleWrapperProps extends PuzzleDetails {
     name: string;
     description: string;
     children?: ReactNode;
+    solutionAvailable?: boolean;
 }
 
-export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ name, title, round, description, children }) => {
+export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ name, title, round, description, children, solutionAvailable }) => {
     const [ answer, setAnswer ] = useState(undefined);
     const [ AnswerBanner, setAnswerBanner ] = useState(null);
 
@@ -98,7 +99,7 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
                 { description && <DescriptionDiv>{ description }</DescriptionDiv> }
                 { children }
             </PuzzleDiv>
-            <PuzzleAnswerSubmission puzzleName={ name } onSuccess={ onSuccess } />
+            <PuzzleAnswerSubmission puzzleName={ name } answer={ answer } onSuccess={ onSuccess } solutionLink={ solutionAvailable ? `/puzzles/${ path }/solution` : undefined } />
         </>
     );
 };
