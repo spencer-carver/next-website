@@ -49,8 +49,7 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "alchemy/six-elements": {
         title: "Six Elements",
-        round: PuzzleRounds.ALCHEMY,
-        comingSoon: true
+        round: PuzzleRounds.ALCHEMY
     },
     "alchemy/seven-elements": {
         title: "Seven Elements",

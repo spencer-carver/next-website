@@ -60,6 +60,24 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>August 14, 2022</SubHeading>
+                <List>
+                    <ListItem>
+                        Updated Round: <Link href="/puzzles/alchemy" component={ A }>Alchemy</Link>
+                        <List>
+                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/six-elements" component={ A }>Six Elements</Link></ListItem>
+                        </List>
+                    </ListItem>
+                    <ListItem>
+                        New Solutions Available:
+                        <List>
+                            <ListItem><Link href="/puzzles/tutorial" component={ A }>Tutorial</Link></ListItem>
+                            <ListItem><Link href="/puzzles/travel-diary" component={ A }>Travel Diary</Link></ListItem>
+                            <ListItem><Link href="/puzzles/an-explosive-discovery" component={ A }>An Explosive Discovery</Link></ListItem>
+                        </List>
+                    </ListItem>
+                </List>
+                <P>One to go!</P>
                 <SubHeading>August 8, 2022</SubHeading>
                 <List>
                     <ListItem>New Feature: Puzzle Solutions</ListItem>
