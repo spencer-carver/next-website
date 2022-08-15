@@ -1,7 +1,6 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent } from "react";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import Image from "../../../../components/Image";
-import { CSS } from "@stitches/react";
 import { styled } from "../../../../styles/stitches";
 import { PuzzleRounds } from "../../../../constants/Puzzle";
 

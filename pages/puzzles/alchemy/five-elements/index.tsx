@@ -40,9 +40,8 @@ const WrapperDiv = styled("div", {
     width: "100%",
     height: "60vh",
     background: "url(/puzzles/alchemy/five/background.png)",
-    border: "1px solid $onBackground",
+    border: "1px solid black",
     "@lg": {
-        backgroundColor: "$surface01",
         width: "760px",
         height: "760px",
         "&::before": {
@@ -50,10 +49,10 @@ const WrapperDiv = styled("div", {
         }
     },
     [`.${ darkTheme } &`]: {
-        background: "url(/puzzles/alchemy/five/background-inv.png)",
+        filter: "invert(100%)"
     },
     [`.${ yahooGeocitiesTheme } &`]: {
-        background: "url(/puzzles/alchemy/five/background-inv.png)",
+        filter: "invert(100%)"
     }
 });
 
@@ -110,7 +109,13 @@ const PuzzleComponent: FunctionComponent = () => {
                         css={{
                             background: "url(/puzzles/alchemy/five/wind.png) no-repeat, #98BEFD",
                             transform: "translate(102px, 462px)",
-                            backgroundPosition: "-102px -462px, center center"
+                            backgroundPosition: "-102px -462px, center center",
+                            [`.${ darkTheme } &`]: {
+                                filter: "invert(100%)"
+                            },
+                            [`.${ yahooGeocitiesTheme } &`]: {
+                                filter: "invert(100%)"
+                            }
                         }}
                         defaultPosition={{ x: 102, y: 462 }}
                         color="#98BEFD"
@@ -119,7 +124,13 @@ const PuzzleComponent: FunctionComponent = () => {
                         css={{
                             background: "url(/puzzles/alchemy/five/water.png) no-repeat, #55AAFC",
                             transform: "translate(458px, 102px)",
-                            backgroundPosition: "-458px -102px, center center"
+                            backgroundPosition: "-458px -102px, center center",
+                            [`.${ darkTheme } &`]: {
+                                filter: "invert(100%)"
+                            },
+                            [`.${ yahooGeocitiesTheme } &`]: {
+                                filter: "invert(100%)"
+                            }
                         }}
                         defaultPosition={{ x: 458, y: 102 }}
                         color="#55AAFC"
@@ -128,7 +139,13 @@ const PuzzleComponent: FunctionComponent = () => {
                         css={{
                             background: "url(/puzzles/alchemy/five/earth.png) no-repeat, #EC671B",
                             transform: "translate(458px, 462px)",
-                            backgroundPosition: "-458px -462px, center center"
+                            backgroundPosition: "-458px -462px, center center",
+                            [`.${ darkTheme } &`]: {
+                                filter: "invert(100%)"
+                            },
+                            [`.${ yahooGeocitiesTheme } &`]: {
+                                filter: "invert(100%)"
+                            }
                         }}
                         defaultPosition={{ x: 458, y: 462 }}
                         color="#EC671B"
@@ -137,7 +154,13 @@ const PuzzleComponent: FunctionComponent = () => {
                         css={{
                             background: "url(/puzzles/alchemy/five/heart.png) no-repeat, #F076FC",
                             transform: "translate(102px, 102px)",
-                            backgroundPosition: "-102px -102px, center center"
+                            backgroundPosition: "-102px -102px, center center",
+                            [`.${ darkTheme } &`]: {
+                                filter: "invert(100%)"
+                            },
+                            [`.${ yahooGeocitiesTheme } &`]: {
+                                filter: "invert(100%)"
+                            }
                         }}
                         defaultPosition={{ x: 102, y: 102 }}
                         color="#F076FC"
