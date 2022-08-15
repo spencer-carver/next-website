@@ -9,7 +9,7 @@ export interface PuzzleDetails {
     comingSoon?: boolean;
 }
 
-export const NEWEST_PUZZLE = "alchemy/four-elements";
+export const NEWEST_PUZZLE = "alchemy/six-elements";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -49,8 +49,7 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "alchemy/six-elements": {
         title: "Six Elements",
-        round: PuzzleRounds.ALCHEMY,
-        comingSoon: true
+        round: PuzzleRounds.ALCHEMY
     },
     "alchemy/seven-elements": {
         title: "Seven Elements",

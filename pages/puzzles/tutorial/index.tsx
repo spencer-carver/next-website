@@ -198,7 +198,7 @@ const Tutorial: FunctionComponent = () => {
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME }>
+        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME } solutionAvailable={ true }>
             <Tutorial />
         </PuzzleWrapperComponent>
     );

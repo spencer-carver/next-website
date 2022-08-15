@@ -60,6 +60,18 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>August 14, 2022</SubHeading>
+                <List>
+                    <ListItem>
+                        Updated Round: <Link href="/puzzles/alchemy" component={ A }>Alchemy</Link>
+                        <List>
+                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/six-elements" component={ A }>Six Elements</Link></ListItem>
+                        </List>
+                    </ListItem>
+                    <ListItem>New Puzzle Solution: <Link href="/puzzles/tutorial" component={ A }>Tutorial</Link></ListItem>
+                </List>
+                <P>One more puzzle in the Alchemy round to go! Not sure if this one will come together in the next week, but hopefully having a buffer to still wrap up in August!</P>
+                <P>I am also hoping to have a few more puzzle solutions posted and some internal component refactoring done in the next few weeks as well.</P>
                 <SubHeading>August 8, 2022</SubHeading>
                 <List>
                     <ListItem>New Feature: Puzzle Solutions</ListItem>
