@@ -9,7 +9,7 @@ export interface PuzzleDetails {
     comingSoon?: boolean;
 }
 
-export const NEWEST_PUZZLE = "alchemy/six-elements";
+export const NEWEST_PUZZLE = "alchemy/seven-elements";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -31,7 +31,7 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         title: "Cheese Sampler"
     },
     "x-marks-the-spot": {
-        title: "X Marks the Spot"
+        title: "❌ Marks the Spot"
     },
     "enigmarch-2022": {
         title: "#Enigmarch 2022"
@@ -40,26 +40,24 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         title: "Judge Calls"
     },
     "alchemy/four-elements": {
-        title: "Four Elements",
+        title: "Four Nations",
         round: PuzzleRounds.ALCHEMY
     },
     "alchemy/five-elements": {
-        title: "Five Elements",
+        title: "Five Rings",
         round: PuzzleRounds.ALCHEMY
     },
     "alchemy/six-elements": {
-        title: "Six Elements",
+        title: "Six Heroes",
         round: PuzzleRounds.ALCHEMY
     },
     "alchemy/seven-elements": {
-        title: "Seven Elements",
-        round: PuzzleRounds.ALCHEMY,
-        comingSoon: true
+        title: "Seven Attributes",
+        round: PuzzleRounds.ALCHEMY
     },
     "alchemy/alchemy": {
         title: "Alchemy",
         round: PuzzleRounds.ALCHEMY,
-        isMeta: true,
-        comingSoon: true
+        isMeta: true
     }
 };

@@ -4,7 +4,7 @@ import { darkTheme, styled, yahooGeocitiesTheme } from "../../../../styles/stitc
 import Image from "../../../../components/Image";
 import { PuzzleRounds } from "../../../../constants/Puzzle";
 
-const TITLE = "Six Elements";
+const TITLE = "Six Heroes";
 const DESCRIPTION = "Multiple battles against the Bohrok are underway, but where is the leader of the Toa? Hopefully you can find the right time to ASCII him.";
 const NAME = "alchemy:six-elements";
 

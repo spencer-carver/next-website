@@ -148,22 +148,24 @@ const Puzzles: FunctionComponent = () => {
                     <Background />
                     <Link href="/puzzles/alchemy/four-elements">
                         <CircleFour isComplete={ fourElementsAnswered }>
-                            <PuzzleTextDiv>Four Elements</PuzzleTextDiv>
+                            <PuzzleTextDiv>Four Nations</PuzzleTextDiv>
                         </CircleFour>
                     </Link>
                     <Link href="/puzzles/alchemy/five-elements">
                         <CircleFive isComplete={ fiveElementsAnswered }>
-                            <PuzzleTextDiv>Five Elements</PuzzleTextDiv>
+                            <PuzzleTextDiv>Five Rings</PuzzleTextDiv>
                         </CircleFive>
                     </Link>
                     <Link href="/puzzles/alchemy/six-elements">
                         <CircleSix isComplete={ sixElementsAnswered }>
-                            <PuzzleTextDiv>Six Elements</PuzzleTextDiv>
+                            <PuzzleTextDiv>Six Heroes</PuzzleTextDiv>
                         </CircleSix>
                     </Link>
-                    <CircleSeven isComplete={ sevenElementsAnswered }>
-                        <PuzzleTextDiv>Coming Soon</PuzzleTextDiv>
-                    </CircleSeven>
+                    <Link href="/puzzles/alchemy/seven-elements">
+                        <CircleSeven isComplete={ sevenElementsAnswered }>
+                            <PuzzleTextDiv>Seven Attributes</PuzzleTextDiv>
+                        </CircleSeven>
+                    </Link>
                     { (metaUnlocked || metaAnswered) && (
                         <Link href="/puzzles/alchemy/alchemy">
                             <Meta isComplete={ metaAnswered }>

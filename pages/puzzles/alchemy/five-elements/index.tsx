@@ -5,8 +5,8 @@ import { darkTheme, styled, yahooGeocitiesTheme } from "../../../../styles/stitc
 import { PuzzleRounds } from "../../../../constants/Puzzle";
 import Draggable, { ControlPosition } from "react-draggable";
 
-const TITLE = "Five Elements";
-const DESCRIPTION = "Wheeler has been robbed! Help search for suspects and find the missing ring!";
+const TITLE = "Five Rings";
+const DESCRIPTION = "Wheeler has been robbed! Help the planeteers search for suspects and find the missing ring!";
 const NAME = "alchemy:five-elements";
 
 const WrapperWrapperDiv = styled("div", {

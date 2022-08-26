@@ -4,7 +4,7 @@ import Image from "../../../../components/Image";
 import { styled } from "../../../../styles/stitches";
 import { PuzzleRounds } from "../../../../constants/Puzzle";
 
-const TITLE = "Four Elements";
+const TITLE = "Four Nations";
 const DESCRIPTION = "Without the fire scroll, how will we decipher the answer?";
 const NAME = "alchemy:four-elements";
 
