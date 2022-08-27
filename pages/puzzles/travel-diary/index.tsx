@@ -3,10 +3,6 @@ import { CSS } from "@stitches/react";
 import { PuzzleWrapperComponent } from "../../../components/Puzzle/common";
 import { styled } from "../../../styles/stitches";
 
-const TITLE = "Travel Diary";
-const DESCRIPTION = "As if public transit wasn't confusing enough already!";
-const NAME = "travel-diary";
-
 type Segment = [string, number];
 
 const RowDiv = styled("div", {
@@ -83,7 +79,7 @@ const Subway: FunctionComponent = () => {
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME }>
+        <PuzzleWrapperComponent name="travel-diary">
             <Subway />
         </PuzzleWrapperComponent>
     );

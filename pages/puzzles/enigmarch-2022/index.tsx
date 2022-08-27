@@ -7,8 +7,6 @@ import Image from "../../../components/Image";
 import { styled } from "../../../styles/stitches";
 import { API_URL } from "../../../constants/ExternalUrls";
 
-const TITLE = "#Enigmarch 2022";
-const DESCRIPTION = "A puzzle a day keeps the boredom at bay.";
 const NAME = "enigmarch-2022";
 
 interface PuzzleStepProps {
@@ -240,7 +238,7 @@ const PuzzleComponent: FunctionComponent = () => {
     }, []);
     
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME }>
+        <PuzzleWrapperComponent name={ NAME }>
             <FinalAnswerComponent intermediates={ intermediates } activeDay={ activeStep } onClickDate={ setActiveStep } setIntermediates={ setIntermediates } />
             <div style={{ margin: "10px auto" }}>
                 { STEP_TO_PUZZLE_TYPE.map((Puzzle, index) => {

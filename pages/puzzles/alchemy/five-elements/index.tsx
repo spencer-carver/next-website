@@ -5,10 +5,6 @@ import { darkTheme, styled, yahooGeocitiesTheme } from "../../../../styles/stitc
 import { PuzzleRounds } from "../../../../constants/Puzzle";
 import Draggable, { ControlPosition } from "react-draggable";
 
-const TITLE = "Five Elements";
-const DESCRIPTION = "Wheeler has been robbed! Help search for suspects and find the missing ring!";
-const NAME = "alchemy:five-elements";
-
 const WrapperWrapperDiv = styled("div", {
     position: "relative",
     left: "-20px",
@@ -102,7 +98,7 @@ const DraggableRing: FunctionComponent<{ css: CSS; defaultPosition: ControlPosit
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME } round={ PuzzleRounds.ALCHEMY }>
+        <PuzzleWrapperComponent name="alchemy:five-elements">
             <WrapperWrapperDiv>
                 <WrapperDiv>
                     <DraggableRing

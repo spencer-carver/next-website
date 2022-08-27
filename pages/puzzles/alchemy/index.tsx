@@ -82,7 +82,7 @@ const Puzzles: FunctionComponent = () => {
 
     useEffect(() => {
         setNumberAnswered(
-            roundPuzzles.reduce((count: number, puzzleId: string): number => count + (localStorage.getItem(puzzleId.replaceAll("/", ":")) ? 1 : 0), 0)
+            roundPuzzles.reduce((count: number, puzzleId: string): number => count + (localStorage.getItem(puzzleId) ? 1 : 0), 0)
             + (localStorage.getItem("alchemy:alchemy") ? 1 : 0)
         );
         setFourElementsAnswered(!!localStorage.getItem("alchemy:four-elements"));
@@ -94,22 +94,22 @@ const Puzzles: FunctionComponent = () => {
 
     const clearAnswer = (puzzleId: string): void => {
         try {
-            localStorage.removeItem(puzzleId.replaceAll("/", ":"));
+            localStorage.removeItem(puzzleId);
 
             switch (puzzleId) {
-                case "alchemy/four-elements":
+                case "alchemy:four-elements":
                     setFourElementsAnswered(false);
                     break;
-                case "alchemy/five-elements":
+                case "alchemy:five-elements":
                     setFiveElementsAnswered(false);
                     break;
-                case "alchemy/six-elements":
+                case "alchemy:six-elements":
                     setSixElementsAnswered(false);
                     break;
-                case "alchemy/seven-elements":
+                case "alchemy:seven-elements":
                     setSevenElementsAnswered(false);
                     break;
-                case "alchemy/alchemy":
+                case "alchemy:alchemy":
                     setMetaAnswered(false);
             }
         } catch (e) {
@@ -148,22 +148,24 @@ const Puzzles: FunctionComponent = () => {
                     <Background />
                     <Link href="/puzzles/alchemy/four-elements">
                         <CircleFour isComplete={ fourElementsAnswered }>
-                            <PuzzleTextDiv>Four Elements</PuzzleTextDiv>
+                            <PuzzleTextDiv>Four Nations</PuzzleTextDiv>
                         </CircleFour>
                     </Link>
                     <Link href="/puzzles/alchemy/five-elements">
                         <CircleFive isComplete={ fiveElementsAnswered }>
-                            <PuzzleTextDiv>Five Elements</PuzzleTextDiv>
+                            <PuzzleTextDiv>Five Rings</PuzzleTextDiv>
                         </CircleFive>
                     </Link>
                     <Link href="/puzzles/alchemy/six-elements">
                         <CircleSix isComplete={ sixElementsAnswered }>
-                            <PuzzleTextDiv>Six Elements</PuzzleTextDiv>
+                            <PuzzleTextDiv>Six Heroes</PuzzleTextDiv>
                         </CircleSix>
                     </Link>
-                    <CircleSeven isComplete={ sevenElementsAnswered }>
-                        <PuzzleTextDiv>Coming Soon</PuzzleTextDiv>
-                    </CircleSeven>
+                    <Link href="/puzzles/alchemy/seven-elements">
+                        <CircleSeven isComplete={ sevenElementsAnswered }>
+                            <PuzzleTextDiv>Seven Attributes</PuzzleTextDiv>
+                        </CircleSeven>
+                    </Link>
                     { (metaUnlocked || metaAnswered) && (
                         <Link href="/puzzles/alchemy/alchemy">
                             <Meta isComplete={ metaAnswered }>
@@ -175,7 +177,7 @@ const Puzzles: FunctionComponent = () => {
                 <PuzzleList>
                     <li style={{ position: "relative", textDecoration: "underline" }}>Puzzle<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Answer</AnswerSpan></li>
                     { roundPuzzles.map((puzzleId: string, index: number) => <RowEntry key={ index } puzzleId={ puzzleId } { ...PUZZLES[puzzleId] } clearAnswer={ clearAnswer } />) }
-                    { (metaUnlocked || metaAnswered) && <RowEntry puzzleId="alchemy/alchemy" { ...PUZZLES["alchemy/alchemy"] } clearAnswer={ clearAnswer } /> }
+                    { (metaUnlocked || metaAnswered) && <RowEntry puzzleId="alchemy:alchemy" { ...PUZZLES["alchemy:alchemy"] } clearAnswer={ clearAnswer } /> }
                 </PuzzleList>
                 { numberAnswered > 0 && (
                     <DescriptionDiv as="p">

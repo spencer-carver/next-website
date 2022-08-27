@@ -3,10 +3,6 @@ import Link from "../../../components/Link";
 import { PuzzleWrapperComponent } from "../../../components/Puzzle/common";
 import { lightTheme, styled } from "../../../styles/stitches";
 
-const TITLE = "Tutorial";
-const DESCRIPTION = "If you follow the instructions and rearrange your thoughts, you'll get this in no time!";
-const NAME = "tutorial";
-
 const BRAILLE_LINK = "https://en.wikipedia.org/wiki/English_Braille#Alphabet";
 const MORSE_CODE_LINK = "https://en.wikipedia.org/wiki/Morse_code#/media/File:International_Morse_Code.svg";
 const SEMAPHORE_LINK = "https://en.wikipedia.org/wiki/Flag_semaphore#Contemporary_semaphore_flag_system";
@@ -198,7 +194,7 @@ const Tutorial: FunctionComponent = () => {
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME } solutionAvailable={ true }>
+        <PuzzleWrapperComponent name="tutorial">
             <Tutorial />
         </PuzzleWrapperComponent>
     );

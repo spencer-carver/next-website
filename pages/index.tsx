@@ -24,7 +24,9 @@ const PageDiv = styled("div", {
 const Heading = styled("h2", {});
 const SubHeading = styled("h3", {});
 const List = styled("ul", {});
-const ListItem = styled("li", {});
+const ListItem = styled("li", {
+    margin: "3px 0"
+});
 const P = styled("p", {});
 const A = styled("a", {
     color: "$onBackground",
@@ -60,12 +62,27 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>August 27, 2022</SubHeading>
+                <List>
+                    <ListItem>Updated Page: <Link href="/puzzles" component={ A }>Puzzle landing page</Link></ListItem>
+                    <ListItem>
+                        Updated Round: <Link href="/puzzles/alchemy" component={ A }>Alchemy</Link>
+                        <List>
+                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/seven-elements" component={ A }>Seven Attributes</Link></ListItem>
+                            <ListItem>New Puzzle: Alchemy (Requires Unlock)</ListItem>
+                        </List>
+                    </ListItem>
+                    <ListItem>Updated Puzzle: <Link href="/puzzles/x-marks-the-spot" component={ A }>❌ Marks the Spot</Link></ListItem>
+                    <ListItem>New Puzzle Solution: <Link href="/puzzles/travel-diary" component={ A }>Travel Diary</Link></ListItem>
+                    <ListItem>New Puzzle Solution: <Link href="/puzzles/judge-calls-one" component={ A }>Judge Calls</Link></ListItem>
+                </List>
+                <P>The Alchemy Round is fully complete! Some renamings occurred for clarity, but puzzles have not changed. I have also refined <Link href="/puzzles/x-marks-the-spot" component={ A }>❌ Marks the Spot</Link> to be a bit cleaner as well.</P>
                 <SubHeading>August 14, 2022</SubHeading>
                 <List>
                     <ListItem>
                         Updated Round: <Link href="/puzzles/alchemy" component={ A }>Alchemy</Link>
                         <List>
-                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/six-elements" component={ A }>Six Elements</Link></ListItem>
+                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/six-elements" component={ A }>Six Heroes</Link></ListItem>
                         </List>
                     </ListItem>
                     <ListItem>New Puzzle Solution: <Link href="/puzzles/tutorial" component={ A }>Tutorial</Link></ListItem>
@@ -83,7 +100,7 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                     <ListItem>
                         Updated Round: <Link href="/puzzles/alchemy" component={ A }>Alchemy</Link>
                         <List>
-                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/four-elements" component={ A }>Four Elements</Link></ListItem>
+                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/four-elements" component={ A }>Four Nations</Link></ListItem>
                         </List>
                     </ListItem>
                 </List>
@@ -94,7 +111,7 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                     <ListItem>
                         New Puzzle Round: <Link href="/puzzles/alchemy" component={ A }>Alchemy</Link>
                         <List>
-                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/five-elements" component={ A }>Five Elements</Link></ListItem>
+                            <ListItem>New Puzzle: <Link href="/puzzles/alchemy/five-elements" component={ A }>Five Rings</Link></ListItem>
                         </List>
                     </ListItem>
                 </List>
@@ -116,7 +133,7 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <P>I have gotten a chance to play some more magic recently! Working on fleshing out the deck details for my Legacy decks, and picked up the 11th deck for my battlebox!</P>
                 <SubHeading>June 17, 2022</SubHeading>
                 <List>
-                    <ListItem>New Puzzle: <Link href="/puzzles/x-marks-the-spot" component={ A }>X Marks the Spot</Link></ListItem>
+                    <ListItem>New Puzzle: <Link href="/puzzles/x-marks-the-spot" component={ A }>❌ Marks the Spot</Link></ListItem>
                 </List>
                 <P>This idea came together pretty quickly! While it ended in a different format than what I originally had in mind, I quite like it! Hopefully you do too!</P>
                 <SubHeading>June 13, 2022</SubHeading>
