@@ -51,7 +51,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "judge-calls-one": {
         title: "Judge Calls",
-        description: "Can you decrypt what the players are talking about?"
+        description: "Can you decrypt what the players are talking about?",
+        solutionAvailable: true
     },
     "alchemy:four-elements": {
         title: "Four Nations",

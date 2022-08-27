@@ -99,7 +99,7 @@ const PuzzleSolution: FunctionComponent<PageProps> = ({ setLoading }) => {
             return;
         }
 
-        fetchFromCache(`${ API_URL }/api/blog/${ puzzleName }`).then((data) => {
+        fetchFromCache(`${ API_URL }/api/blog/${ puzzleName.replace(":", "-") }`).then((data) => {
             if (typeof (data as unknown as Post).content === "string") {
                 setPost(data as unknown as Post);
             }

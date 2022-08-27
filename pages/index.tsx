@@ -74,6 +74,7 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                     </ListItem>
                     <ListItem>Updated Puzzle: <Link href="/puzzles/x-marks-the-spot" component={ A }>❌ Marks the Spot</Link></ListItem>
                     <ListItem>New Puzzle Solution: <Link href="/puzzles/travel-diary" component={ A }>Travel Diary</Link></ListItem>
+                    <ListItem>New Puzzle Solution: <Link href="/puzzles/judge-calls-one" component={ A }>Judge Calls</Link></ListItem>
                 </List>
                 <P>The Alchemy Round is fully complete! Some renamings occurred for clarity, but puzzles have not changed. I have also refined <Link href="/puzzles/x-marks-the-spot" component={ A }>❌ Marks the Spot</Link> to be a bit cleaner as well.</P>
                 <SubHeading>August 14, 2022</SubHeading>

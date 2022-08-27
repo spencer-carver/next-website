@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { styled } from "../../../../styles/stitches";
-import { PuzzleRounds } from "../../../../constants/Puzzle";
 import Image from "../../../../components/Image";
 
 const ImageWrapperDiv = styled("div", {
