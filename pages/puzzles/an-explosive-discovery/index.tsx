@@ -3,10 +3,6 @@ import { CSS } from "@stitches/react";
 import { PuzzleWrapperComponent } from "../../../components/Puzzle/common";
 import { styled } from "../../../styles/stitches";
 
-const TITLE = "An Explosive Discovery";
-const DESCRIPTION = "Find everything, but tread carefully!";
-const NAME = "an-explosive-discovery";
-
 const WORD_SEARCH = [
     [ "E", "V", "I", "F", "O", "U", "R", "R", "H", "J", "Q", "E", "E", "S", "A", "B", "D", "A", "Q", "N", "C", "T", "T", "N", "E", "M", "E", "L", "E" ],
     [ "R", "A", "W", "T", "O", "N", "E", "G", "I", "O", "N", "Z", "Z", "L", "E", "U", "Q", "J", "E", "N", "J", "U", "A", "R", "D", "D", "W", "T", "S" ],
@@ -325,7 +321,7 @@ const Cell: FunctionComponent<{ value: string; showLetters: boolean; showGrid: b
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME }>
+        <PuzzleWrapperComponent name="an-explosive-discovery">
             <Wordsearch />
         </PuzzleWrapperComponent>
     );

@@ -3,10 +3,6 @@ import { CSS } from "@stitches/react";
 import { PuzzleWrapperComponent } from "../../../components/Puzzle/common";
 import { styled } from "../../../styles/stitches";
 
-const TITLE = "Yakuza 0";
-const DESCRIPTION = "Is this really a game about the Japanese Mafia? Maybe we should google it...";
-const NAME = "yakuza-zero";
-
 const DANCE_FLOOR = [
     [ "", "M I", "D", "I C N L", "" ],
     [ "N S", "O", "H", "A", "Y S" ],
@@ -107,7 +103,7 @@ const YakuzaZero: FunctionComponent = () => {
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME }>
+        <PuzzleWrapperComponent name="yakuza-zero">
             <YakuzaZero />
         </PuzzleWrapperComponent>
     );

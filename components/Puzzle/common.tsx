@@ -3,7 +3,7 @@ import Head from "next/head";
 import PuzzleComplete from "./Complete";
 import PuzzleAnswerSubmission from "./AnswerCheck";
 import BackNavigation from "../BackNavigation";
-import { PuzzleDetails } from "../../constants/Puzzle";
+import { PuzzleDetails, PUZZLES } from "../../constants/Puzzle";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 
 export const PuzzleDiv = styled("div", {
@@ -41,14 +41,12 @@ export const DescriptionDiv = styled("div", {
     }
 });
 
-interface PuzzleWrapperProps extends PuzzleDetails {
+interface PuzzleWrapperProps {
     name: string;
-    description: string;
     children?: ReactNode;
-    solutionAvailable?: boolean;
 }
 
-export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ name, title, round, description, children, solutionAvailable }) => {
+export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ name, children }) => {
     const [ answer, setAnswer ] = useState(undefined);
     const [ AnswerBanner, setAnswerBanner ] = useState(null);
 
@@ -74,6 +72,12 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
         setAnswer(answer);
     }, [name]);
 
+    const {
+        title,
+        description,
+        round,
+        solutionAvailable
+    } = PUZZLES[name];
     const path = round ? name.replaceAll(":", "/"): name;
 
     return (

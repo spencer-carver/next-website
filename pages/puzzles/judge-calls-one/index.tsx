@@ -2,10 +2,7 @@ import React, { FunctionComponent } from "react";
 import { PuzzleWrapperComponent } from "../../../components/Puzzle/common";
 import { styled } from "../../../styles/stitches";
 
-const TITLE = "Judge Calls";
-const DESCRIPTION = "Can you decrypt what the players are talking about?";
 const SRC = "/puzzles/judge-calls-one.pdf";
-const NAME = "judge-calls-one";
 
 const PDFObject = styled("object", {
     width: "100%",
@@ -18,7 +15,7 @@ const FallbackSpan = styled("span", {
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME }>
+        <PuzzleWrapperComponent name="judge-calls-one">
             <PDFObject data={ SRC } type="application/pdf" >
                 <FallbackSpan>
                     Could not display the PDF. To view, download it <a href={ SRC }>here</a>.

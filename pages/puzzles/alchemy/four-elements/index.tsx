@@ -4,10 +4,6 @@ import Image from "../../../../components/Image";
 import { styled } from "../../../../styles/stitches";
 import { PuzzleRounds } from "../../../../constants/Puzzle";
 
-const TITLE = "Four Nations";
-const DESCRIPTION = "Without the fire scroll, how will we decipher the answer?";
-const NAME = "alchemy:four-elements";
-
 const ImageWrapperDiv = styled("div", {
     position: "relative",
     width: "300px",
@@ -104,7 +100,7 @@ const AnswerSpan = styled("div", {
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME } round={ PuzzleRounds.ALCHEMY }>
+        <PuzzleWrapperComponent name="alchemy:four-elements">
             <ImageWrapperDiv>
                 <Image src="/puzzles/alchemy/four/air.png" alt="An airbending scroll" layout="fill" />
             </ImageWrapperDiv>

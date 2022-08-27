@@ -4,10 +4,6 @@ import { styled } from "../../../../styles/stitches";
 import { PuzzleRounds } from "../../../../constants/Puzzle";
 import Image from "../../../../components/Image";
 
-const TITLE = "Seven Attributes";
-const DESCRIPTION = "What is Amnael's Endgame? He may hold all the cards, but I'm sure you can draw something!";
-const NAME = "alchemy:seven-elements";
-
 const ImageWrapperDiv = styled("div", {
     position: "relative",
     width: "300px",
@@ -37,7 +33,7 @@ const ImageWrapperDiv = styled("div", {
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME } round={ PuzzleRounds.ALCHEMY }>
+        <PuzzleWrapperComponent name="alchemy:seven-elements">
             <ImageWrapperDiv>
                 <Image src="/puzzles/alchemy/seven-attributes.png" alt="A grid of unknown Yugioh Cards and other mysterious clues" layout="fill" />
             </ImageWrapperDiv>

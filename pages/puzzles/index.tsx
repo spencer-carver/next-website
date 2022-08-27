@@ -6,7 +6,7 @@ import { DescriptionDiv, Heading, PuzzleDiv } from "../../components/Puzzle/comm
 import RowEntry from "../../components/Puzzle/RowEntry";
 import BackNavigation from "../../components/BackNavigation";
 import { PuzzleRounds, PUZZLES } from "../../constants/Puzzle";
-import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
+import { lightTheme, styled, yahooGeocitiesTheme } from "../../styles/stitches";
 import RoundEntry from "../../components/Puzzle/RoundEntry";
 
 const NAME = "All Puzzles";
@@ -53,6 +53,18 @@ const AnswerSpan = styled("span", {
     },
     "@lg": {
         left: "240px"
+    }
+});
+
+const A = styled("a", {
+    color: "$onBackground",
+    textDecoration: "none",
+    borderBottom: "2px dotted $secondary",
+    "&:hover": {
+        backgroundColor: "$secondary"
+    },
+    [`.${ lightTheme } &`]: {
+        borderBottom: "2px dotted $onBackground"
     }
 });
 
@@ -106,7 +118,7 @@ const Puzzles: FunctionComponent = () => {
                 </DescriptionDiv>
                 <PuzzleList>
                     <li style={{ position: "relative", textDecoration: "underline" }}>Round<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Solved</AnswerSpan></li>
-                    { [PuzzleRounds.ALCHEMY].map((puzzleId: string, index: number) => <RoundEntry key={ index } puzzleId={ puzzleId.toLowerCase() } title={ puzzleId } round={ PuzzleRounds.ALCHEMY } />) }
+                    { [PuzzleRounds.ALCHEMY].map((roundId: string, index: number) => <RoundEntry key={ index } round={ roundId } />) }
                 </PuzzleList>
                 <DescriptionDiv as="p">
                     The below puzzles are unaffiliated with any broader theme.
@@ -118,12 +130,12 @@ const Puzzles: FunctionComponent = () => {
                             return null;
                         }
 
-                        return <RowEntry key={ index } puzzleId={ puzzleId } title={ PUZZLES[puzzleId].title } clearAnswer={ clearAnswer } />;
+                        return <RowEntry key={ index } puzzleId={ puzzleId } { ...PUZZLES[puzzleId] } clearAnswer={ clearAnswer } />;
                     }) }
                 </PuzzleList>
                 <DescriptionDiv as="p">
                     If you need help with a puzzle in a way that the built-in hint system doesn&apos;t assist,
-                    email your question to <a href="mailto:puzzle@carvers.info">puzzle@carvers.info</a> with the puzzle name as the subject and I will try and assist you.
+                    email your question to <A href="mailto:puzzle@carvers.info">puzzle@carvers.info</A> with the puzzle name as the subject and I will try and assist you.
                 </DescriptionDiv>
             </PuzzleDiv>
         </>

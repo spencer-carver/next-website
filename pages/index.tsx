@@ -24,7 +24,9 @@ const PageDiv = styled("div", {
 const Heading = styled("h2", {});
 const SubHeading = styled("h3", {});
 const List = styled("ul", {});
-const ListItem = styled("li", {});
+const ListItem = styled("li", {
+    margin: "3px 0"
+});
 const P = styled("p", {});
 const A = styled("a", {
     color: "$onBackground",
@@ -62,6 +64,7 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <Heading>Site News:</Heading>
                 <SubHeading>August 27, 2022</SubHeading>
                 <List>
+                    <ListItem>Updated Page: <Link href="/puzzles" component={ A }>Puzzle landing page</Link></ListItem>
                     <ListItem>
                         Updated Round: <Link href="/puzzles/alchemy" component={ A }>Alchemy</Link>
                         <List>
@@ -70,7 +73,7 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                         </List>
                     </ListItem>
                     <ListItem>Updated Puzzle: <Link href="/puzzles/x-marks-the-spot" component={ A }>❌ Marks the Spot</Link></ListItem>
-                    <ListItem>New Puzzle Solution: <Link href="/puzzles/tutorial" component={ A }>Tutorial</Link></ListItem>
+                    <ListItem>New Puzzle Solution: <Link href="/puzzles/travel-diary" component={ A }>Travel Diary</Link></ListItem>
                 </List>
                 <P>The Alchemy Round is fully complete! Some renamings occurred for clarity, but puzzles have not changed. I have also refined <Link href="/puzzles/x-marks-the-spot" component={ A }>❌ Marks the Spot</Link> to be a bit cleaner as well.</P>
                 <SubHeading>August 14, 2022</SubHeading>

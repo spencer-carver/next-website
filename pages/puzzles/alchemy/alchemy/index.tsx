@@ -5,10 +5,6 @@ import { styled } from "../../../../styles/stitches";
 import { Meta } from "../../../../components/Puzzle/circles";
 import { PuzzleRounds } from "../../../../constants/Puzzle";
 
-const TITLE = "Alchemy";
-const DESCRIPTION = "Find your inner fire.";
-const NAME = "alchemy:alchemy";
-
 const metaStyles: CSS = {
     opacity: "0.6",
     width: "320px",
@@ -71,7 +67,7 @@ const PuzzleComponent: FunctionComponent = () => {
     }, []);
 
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME } round={ PuzzleRounds.ALCHEMY }>
+        <PuzzleWrapperComponent name="alchemy:alchemy">
             <div style={{ position: "relative", height: "60vh" }}>
                 <Meta css={ metaStyles } />
                 <Table>

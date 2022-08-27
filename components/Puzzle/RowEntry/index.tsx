@@ -2,6 +2,7 @@ import React, { useState, FunctionComponent, useEffect, useCallback } from "reac
 import Link from "../../Link";
 import { NEWEST_PUZZLE, PuzzleDetails } from "../../../constants/Puzzle";
 import { styled } from "../../../styles/stitches";
+import { CSS } from "@stitches/react";
 
 const NewSpan = styled("span", {
     position: "absolute",
@@ -9,8 +10,23 @@ const NewSpan = styled("span", {
     top: "-15px",
     fontSize: "10px",
     fontWeight: "bold",
-    color: "$error"
+    color: "$error",
+    textTransform: "uppercase",
+    pointerEvents: "none"
 });
+
+const solutionOverrides: CSS = {
+    color: "$secondary",
+    left: "unset",
+    right: "-10px",
+    "@md": {
+        left: "190px",
+        right: "unset"
+    },
+    "@lg": {
+        left: "240px"
+    }
+};
 
 const AnswerSpan = styled("span", {
     position: "absolute",
@@ -34,12 +50,12 @@ interface RowEntryProps extends PuzzleDetails {
     clearAnswer: Function;
 }
 
-const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, comingSoon, clearAnswer }) => {
+const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, comingSoon, solutionAvailable, clearAnswer }) => {
     const [ puzzleAnswer, setPuzzleAnswer ] = useState(null);
 
     useEffect(() => {
         try {
-            setPuzzleAnswer(localStorage.getItem(puzzleId.replaceAll("/", ":")));
+            setPuzzleAnswer(localStorage.getItem(puzzleId));
         } catch (e) {
             //do nothing
             console.error(e);
@@ -57,8 +73,9 @@ const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, c
 
     return (
         <li style={{ position: "relative" }}>
-            { puzzleId === NEWEST_PUZZLE && <NewSpan>NEW</NewSpan> }
-            <Link href={ `/puzzles/${ puzzleId }` }>{ isMeta ? <b>{title}</b>: title }</Link>
+            { puzzleId === NEWEST_PUZZLE && <NewSpan>New</NewSpan> }
+            { solutionAvailable && !puzzleAnswer && <NewSpan css={ solutionOverrides }>Available</NewSpan> }
+            <Link href={ `/puzzles/${ puzzleId.replaceAll(":", "/") }` }>{ isMeta ? <b>{title}</b>: title }</Link>
             { puzzleAnswer ? (
                 <AnswerSpan
                     role="button"

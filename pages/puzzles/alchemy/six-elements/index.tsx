@@ -4,10 +4,6 @@ import { darkTheme, styled, yahooGeocitiesTheme } from "../../../../styles/stitc
 import Image from "../../../../components/Image";
 import { PuzzleRounds } from "../../../../constants/Puzzle";
 
-const TITLE = "Six Heroes";
-const DESCRIPTION = "Multiple battles against the Bohrok are underway, but where is the leader of the Toa? Hopefully you can find the right time to ASCII him.";
-const NAME = "alchemy:six-elements";
-
 const WrapperDiv = styled("div", {
     position: "relative",
     color: "$onBackground",
@@ -98,7 +94,7 @@ const BOLD = "3px solid $onBackground";
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME } round={ PuzzleRounds.ALCHEMY }>
+        <PuzzleWrapperComponent name="alchemy:six-elements">
             <ImageWrapperDiv>
                 <Image src="/puzzles/alchemy/six/final-grid.png" alt="A mysterious grid with arrows" layout="fill" />
             </ImageWrapperDiv>

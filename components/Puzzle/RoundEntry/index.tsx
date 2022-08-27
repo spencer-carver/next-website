@@ -9,7 +9,9 @@ const NewSpan = styled("span", {
     top: "-15px",
     fontSize: "10px",
     fontWeight: "bold",
-    color: "$error"
+    color: "$error",
+    textTransform: "uppercase",
+    pointerEvents: "none"
 });
 
 const AnswerSpan = styled("span", {
@@ -26,11 +28,11 @@ const AnswerSpan = styled("span", {
     }
 });
 
-interface RoundEntryProps extends PuzzleDetails {
-    puzzleId: string;
+interface RoundEntryProps {
+    round: string;
 }
 
-const RoundEntry: FunctionComponent<RoundEntryProps> = ({ puzzleId: roundId, title, isMeta, round }) => {
+const RoundEntry: FunctionComponent<RoundEntryProps> = ({ round }) => {
     const [ solved, setSolved ] = useState(null);
     const [ total, setTotal ] = useState(null);
 
@@ -39,7 +41,7 @@ const RoundEntry: FunctionComponent<RoundEntryProps> = ({ puzzleId: roundId, tit
             const total = Object.keys(PUZZLES).filter((puzzleId: string) => PUZZLES[puzzleId].round === round && !PUZZLES[puzzleId].comingSoon).length;
             const solved = Object.keys(PUZZLES).filter((puzzleId: string) => PUZZLES[puzzleId].round === round).reduce((acc: number, puzzleId: string) => {
                 try {
-                    return acc + (localStorage.getItem(puzzleId.replaceAll("/", ":")) ? 1 : 0);
+                    return acc + (localStorage.getItem(puzzleId) ? 1 : 0);
                 } catch (e) {
                     return acc;
                 }
@@ -50,14 +52,15 @@ const RoundEntry: FunctionComponent<RoundEntryProps> = ({ puzzleId: roundId, tit
             //do nothing
             console.error(e);
         }
-    }, [roundId, round]);
+    }, [round]);
 
-    const ROUND_OF_NEWEST_PUZZLE = NEWEST_PUZZLE.split("/")[0];
+    const ROUND_OF_NEWEST_PUZZLE = NEWEST_PUZZLE.split(":")[0];
+    const roundPath = round.toLowerCase();
 
     return (
         <li style={{ position: "relative" }}>
-            { roundId === ROUND_OF_NEWEST_PUZZLE && <NewSpan>NEW</NewSpan> }
-            <Link href={ `/puzzles/${ roundId }` }>{ isMeta ? <b>{title}</b>: title }</Link>
+            { roundPath === ROUND_OF_NEWEST_PUZZLE && <NewSpan>New</NewSpan> }
+            <Link href={ `/puzzles/${ roundPath }` }>{ round }</Link>
             { solved === total
                 ? <AnswerSpan>{ solved }/{ total }</AnswerSpan>
                 : <AnswerSpan css={{ "color": "$onBackground", "&:hover": { cursor: "unset" } }}>{ solved }/{ total }</AnswerSpan>

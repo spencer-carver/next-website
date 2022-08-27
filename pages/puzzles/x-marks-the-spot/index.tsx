@@ -3,10 +3,7 @@ import Image from "../../../components/Image";
 import { PuzzleWrapperComponent } from "../../../components/Puzzle/common";
 import { styled } from "../../../styles/stitches";
 
-const TITLE = "❌ Marks the Spot";
-const DESCRIPTION = "On the open seas, you often seek the route most travelled.";
 const SRC = "/puzzles/x-marks-the-spot.png";
-const NAME = "x-marks-the-spot";
 
 const WarningDiv = styled("div", {
     margin: "10px 0",
@@ -50,13 +47,13 @@ const P = styled("p", {
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME }>
+        <PuzzleWrapperComponent name="x-marks-the-spot">
             <WarningDiv>{ "\u00a1\u00a1\u00a1WARNING: This puzzle requires a device large enough to read the image clearly!!!" }</WarningDiv>
             <ImageWrapperDiv>
                 <Image src={ SRC } alt="A puzzle map on the sea" layout="fill" />
             </ImageWrapperDiv>
             <P>
-                Aside from the pre-placed route, follow the normal rules of Hashi with the additional restriction that square islands can only connect to circular islands.
+                Aside from the pre-placed route, follow the normal rules of Hashi.
             </P>
         </PuzzleWrapperComponent>
     );

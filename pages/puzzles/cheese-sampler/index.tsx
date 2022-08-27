@@ -5,10 +5,6 @@ import ImageComponent from "../../../components/Image";
 import AudioTrack from "../../../components/Audio";
 import { styled } from "../../../styles/stitches";
 
-const TITLE = "Cheese Sampler";
-const DESCRIPTION = "My themed parody group is wrappping up it's first (and only) tour at our biggest venue ever!";
-const NAME = "cheese-sampler";
-
 const CHEESES: { [key: string]: string } = {
     "ricotta": "1 🧀 3 🎵",
     "camembert": "7 🧀 1 🎵",
@@ -108,7 +104,7 @@ const Song: FunctionComponent<CheeseProp> = ({ cheese }) => {
 
 const PuzzleComponent: FunctionComponent = () => {
     return (
-        <PuzzleWrapperComponent title={ TITLE } description={ DESCRIPTION } name={ NAME }>
+        <PuzzleWrapperComponent name="cheese-sampler">
             <CheeseSampler />
         </PuzzleWrapperComponent>
     );
