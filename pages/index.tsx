@@ -62,6 +62,9 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>January 3, 2023</SubHeading>
+                <P>Happy New Year! Not much in the way of goings on recently. The next big update is likely to be #Enigmarch 2023, with the intention of being a full round of quick puzzles rather than a single one.</P>
+                <P>I have a conference presentation in February I am working on, so expect the <Link href="/about" component={ A }>About</Link> page to get updated with a link to the presentation material once that is completed as well!</P>
                 <SubHeading>August 27, 2022</SubHeading>
                 <List>
                     <ListItem>Updated Page: <Link href="/puzzles" component={ A }>Puzzle landing page</Link></ListItem>
