@@ -1,6 +1,8 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { getCssText, globalStyles } from "../styles/stitches";
 
+const MastodonVerificationTag = () => <a rel="me" href="https://masto.nyc/@spencerrc" style={{ display: "none" }}>Mastodon</a>;
+
 export default class MyDocument extends Document {
     render() {
         globalStyles();
@@ -23,6 +25,7 @@ export default class MyDocument extends Document {
                     <meta name="twitter:site" content="@spencerrc" />
                 </Head>
                 <body>
+                    <MastodonVerificationTag />
                     <Main />
                     <NextScript />
                 </body>
