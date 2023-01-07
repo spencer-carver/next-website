@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import Head from "next/head";
 import Link from "../../components/Link";
 import { CSS } from "@stitches/react";
-import { styled } from "../../styles/stitches";
+import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 import BackNavigation from "../../components/BackNavigation";
 import Image from "../../components/Image";
 import {
@@ -28,8 +28,10 @@ const TITLE = "All Magic: the Gathering Decks";
 const DESCRIPTION = "Magic is one of my favorite hobbies, both playing and collecting! Check out what I like to play.";
 
 const ContentDiv = styled("div", {
-    marginTop: "10px",
-    padding: "20px 0"
+    padding: "30px 0 20px",
+    "@xxl": {
+        background: "linear-gradient(90deg, $background 0%, $background calc(50% + 317.2px), $surface02 calc(50% + 341.6px))",
+    }
 });
 
 const Heading = styled("h1", {
@@ -63,6 +65,24 @@ const Description = styled("p", {
     margin: "0 40px"
 });
 
+const LeftColumn = styled("div", {
+    display: "block",
+    width: "100%",
+    "@xxl": {
+        display: "inline-block",
+        width: "80%"
+    }
+});
+
+const RightColumn = styled("div", {
+    display: "block",
+    width: "100%",
+    "@xxl": {
+        display: "inline-block",
+        width: "20%"
+    }
+});
+
 const ListContainer = styled("ul", {
     display: "flex",
     flexWrap: "wrap",
@@ -78,9 +98,18 @@ const FormatGroup: FunctionComponent<FormatGroupProps> = ({ name, decks }) => {
     return (
         <div>
             <Heading as="h2">{ name }</Heading>
-            <ListContainer>
-                { decks.map((deck) => <DeckLink key={ deck.id } { ...deck } />) }
-            </ListContainer>
+            <div>
+                <LeftColumn>
+                    <ListContainer>
+                        { decks.filter(({ classification }) => classification !== DeckClassification.KATHYS).map((deck) => <DeckLink key={ deck.id } { ...deck } />) }
+                    </ListContainer>
+                </LeftColumn>
+                <RightColumn>
+                    <ListContainer>
+                        { decks.filter(({ classification }) => classification === DeckClassification.KATHYS).map((deck) => <DeckLink key={ deck.id } { ...deck } />) }
+                    </ListContainer>
+                </RightColumn>
+            </div>
         </div>
     );
 };
@@ -105,10 +134,10 @@ const Magic: FunctionComponent = () => {
             <BackNavigation to="/" />
             <ContentDiv>
                 <Heading css={{ textAlign: "center" }}>
-                    My Magic: the Gathering decks
+                    Magic: the Gathering decks
                 </Heading>
                 <Description  css={{ textAlign: "center" }}>
-                    ⭐: primary deck, ❤️: my wife&apos;s deck
+                    My wife and I have several decks for many different formats
                 </Description>
                 <DecksDiv>
                     <FormatGroup name="Pioneer" decks={ PIONEER_DECKS } />
@@ -187,7 +216,8 @@ const DeckLinkAnchor = styled("a", {
     marginLeft: "16px",
     marginBottom: "10px",
     "&:hover": {
-        backgroundColor: "$surface02"
+        backgroundColor: "$surface03",
+        borderRadius: "2%"
     },
     [`&:hover ${ DeckNameHeader }`]: {
         color: "$onSurface"
@@ -231,6 +261,12 @@ const ImageWrapper = styled("div", {
     height: "156px"
 });
 
+const completedStyles: CSS = {
+    [`.${ yahooGeocitiesTheme } &`]: {
+        border: "1px solid $onBackground"
+    }
+};
+
 const underConstructionStyles: CSS = {
     border: "10px solid transparent",
     borderImage: "repeating-linear-gradient(-55deg, #000000, #000000 20px, #FFE031 20px, #FFE031 40px) 10",
@@ -252,10 +288,9 @@ const DeckLink: FunctionComponent<DeckLinkProps> = ({ name, id, colors, imageUrl
 
     const DeckElement: FunctionComponent = () => (
         <>
-            {imageUrl && <ImageWrapper css={ isUnderConstruction ? underConstructionStyles : {} }><Image src={ imageUrl } alt="name" layout="fill" /></ImageWrapper>}
+            {imageUrl && <ImageWrapper css={ isUnderConstruction ? underConstructionStyles : completedStyles }><Image src={ imageUrl } alt="name" layout="fill" /></ImageWrapper>}
             <DeckNameHeader>{name}</DeckNameHeader>
             {classification === DeckClassification.PRIMARY && <ClassificationSpan>⭐</ClassificationSpan>}
-            {classification === DeckClassification.KATHYS && <ClassificationSpan>❤️</ClassificationSpan>}
             {isUnderConstruction && <UnderConstructionSpan>Under Construction</UnderConstructionSpan>}
             <DeckColorSpan>{ colorEl }</DeckColorSpan>
         </>

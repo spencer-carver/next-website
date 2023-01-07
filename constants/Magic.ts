@@ -23,24 +23,23 @@ export interface DeckLinkProps {
 const ART_CROP_URL_PREFIX = "https://c1.scryfall.com/file/scryfall-cards/art_crop/front";
 
 export const PIONEER_DECKS: DeckLinkProps[] = [{
-    name: "5-Color Humans",
+    name: "Azorius Control",
+    id: "azorius-control",
+    colors: "WU",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/2/0/20b5fe42-929c-406d-9377-40b49f9d2e2c.jpg`,
+    isUnderConstruction: true
+},{
+    name: "Humans",
     id: "humans",
     colors: "WUBRG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/9/c/9c2000ef-3e6b-4f44-8bd6-ed8119336d5a.jpg`,
-    isUnderConstruction: true,
-    link: "/magic/deck/humans"
+    isUnderConstruction: true
 },{
     name: "Lotus Field Combo",
     id: "lotus-field-combo",
     colors: "WUBG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/0/e/0e013033-3995-4ba8-b0c3-0614c79aaaab.jpg`,
     classification: DeckClassification.PRIMARY
-},{
-    name: "Azorius Control",
-    id: "azorius-control",
-    colors: "WU",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/2/0/20b5fe42-929c-406d-9377-40b49f9d2e2c.jpg`,
-    isUnderConstruction: true
 }];
 
 export const MODERN_DECKS: DeckLinkProps[] = [{
@@ -92,7 +91,6 @@ export const LEGACY_DECKS: DeckLinkProps[] = [{
     id: "elves",
     colors: "BG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/5/7/57948c65-4324-42bc-97ae-7cc700eb3817.jpg`,
-    isUnderConstruction: true,
     link: "/magic/deck/elves"
 },{
     name: "Enchantress",
@@ -156,13 +154,19 @@ export const PAUPER_DECKS: DeckLinkProps[] = [{
 }];
 
 export const COMMANDER_DECKS: DeckLinkProps[] = [{
+    name: "Gavi, Nest Warden",
+    id: "gavi",
+    colors: "WUR",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/8/0/80bc07d5-bdbb-4a6d-8958-0c172ea80245.jpg`,
+    isUnderConstruction: true,
+    link: "/magic/deck/gavi"
+},{
     name: "Hanna, Ship's Navigator",
     id: "hanna",
     colors: "WU",
     imageUrl: `${ ART_CROP_URL_PREFIX }/e/3/e34e53fc-0c11-4594-b4ca-eaac663040ae.jpg`,
     isUnderConstruction: true,
-    classification: DeckClassification.KATHYS,
-    link: "/magic/deck/hanna"
+    classification: DeckClassification.KATHYS
 },{
     name: "Karador, Ghost Chieftain",
     id: "karador",
@@ -200,7 +204,8 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     name: "Sasaya, Orochi Ascendant",
     id: "sasaya",
     colors: "G",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/d/2/d224c50f-8146-4c91-9401-04e5bd306d02.jpg`
+    imageUrl: `${ ART_CROP_URL_PREFIX }/d/2/d224c50f-8146-4c91-9401-04e5bd306d02.jpg`,
+    classification: DeckClassification.PRIMARY
 },{
     name: "Sen Triplets",
     id: "sen-triplets",
@@ -217,7 +222,8 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     id: "yuriko",
     colors: "UB",
     imageUrl: `${ ART_CROP_URL_PREFIX }/8/5/852508f9-90ea-4889-a4a8-31b28dd3fdab.jpg`,
-    isUnderConstruction: true
+    isUnderConstruction: true,
+    link: "/magic/deck/yuriko"
 },{
     name: "Zedruu the Greathearted",
     id: "zedruu",
@@ -234,7 +240,8 @@ export const OATHBREAKER_DECKS: DeckLinkProps[] = [{
     name: "Wrenn & Six",
     id: "wrenn-and-six",
     colors: "RGC",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/4/a/4a706ecf-3277-40e3-871c-4ba4ead16e20.jpg`
+    imageUrl: `${ ART_CROP_URL_PREFIX }/4/a/4a706ecf-3277-40e3-871c-4ba4ead16e20.jpg`,
+    classification: DeckClassification.PRIMARY
 },{
     name: "Calix, Destiny's Hand",
     id: "calix-enchantress",
@@ -246,8 +253,7 @@ export const OATHBREAKER_DECKS: DeckLinkProps[] = [{
     id: "corruption-control",
     colors: "UBR",
     imageUrl: `${ ART_CROP_URL_PREFIX }/3/d/3d228005-91f1-451e-ab6f-1f86316708a7.jpg`,
-    isUnderConstruction: true,
-    link: "/magic/deck/corruption-control"
+    isUnderConstruction: true
 }];
 
 export const OTHER_DECKS: DeckLinkProps[] = [{
