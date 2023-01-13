@@ -11,6 +11,7 @@ import debounce from "lodash.debounce";
 import { lightTheme, styled, yahooGeocitiesTheme } from "../../../../styles/stitches";
 import BackNavigation from "../../../../components/BackNavigation";
 import Guidance from "../../../../components/Magic/Guidance";
+import { DeckView } from "../../../../constants/Magic";
 
 export interface Card {
     instance?: number;
@@ -151,9 +152,6 @@ const TableDiv = styled("div", {
     },
     [`.${ yahooGeocitiesTheme } &`]: {
         backgroundColor: "transparent"
-    },
-    "@md": {
-        paddingTop: "0"
     }
 });
 
@@ -162,9 +160,19 @@ const PlaymatDiv = styled("div", {
     paddingBottom: "30px",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "space-between",
     "@lg": {
-        flexDirection: "row"
+        flexDirection: "row",
+        width: "760px"
+    },
+    "@xl": {
+        width: "940px"
+    },
+    "@xxl": {
+        width: "1180px"
+    },
+    "@xxxl": {
+        width: "1420px"
     }
 });
 
@@ -214,8 +222,10 @@ const FeaturedDiv = styled("div", {
 const sharedDeckAndSideboardStyles: CSS = {
     display: "inline-flex",
     flexWrap: "wrap",
-    paddingTop: "10px",
-    paddingBottom: "120px",
+    padding: "10px 10px 100px",
+    "@md": {
+        paddingBottom: "120px"
+    },
     "@lg": {
         paddingBottom: "150px"
     },
@@ -227,51 +237,36 @@ const sharedDeckAndSideboardStyles: CSS = {
 const DeckDiv = styled("div", {
     ...(Object.keys(sharedDeckAndSideboardStyles).filter((key) => !key.startsWith("@")).reduce((object, key) => { object[key] = sharedDeckAndSideboardStyles[key]; return object; }, {})),
     flexDirection: "row",
-    alignContent: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
+    "@md": {
+        ...(sharedDeckAndSideboardStyles["@md"] as Record<string, string>)
+    },
     "@lg": {
         ...(sharedDeckAndSideboardStyles["@lg"] as Record<string, string>),
-        width: "480px",
-        height: "880px",
-        flexDirection: "column",
         justifyContent: "initial",
-        alignContent: "center",
-        marginRight: "70px",
+        alignContent: "flex-end",
         "& div": {
             marginRight: "10px"
         }
     },
-    "@xl": {
-        width: "660px",
-        height: "660px"
-    },
     "@xxl": {
         ...(sharedDeckAndSideboardStyles["@xxl"] as Record<string, string>),
-        width: "770px",
-        height: "880px",
-        alignContent: "baseline",
-        marginRight: "25px"
     },
-    "@xxxl": {
-        height: "660px",
-        marginRight: "75px"
-    }
 });
 
-const yorionDeckStyle: CSS = {
+const stackedDeckStyles: CSS = {
+    paddingBottom: "0px",
     "@lg": {
-        height: "1188px",
+        justifyContent: "center"
+    }
+};
+
+const yorionDeckStyles: CSS = {
+    "@lg": {
         marginRight: "20px"
     },
     "@xl": {
-        height: "880px",
         marginRight: "70px"
-    },
-    "@xxl": {
-        height: "1188px",
-    },
-    "@xxxl": {
-        height: "880px"
     }
 };
 
@@ -279,24 +274,34 @@ const SideboardDiv = styled("div", {
     ...(Object.keys(sharedDeckAndSideboardStyles).filter((key) => !key.startsWith("@")).reduce((object, key) => { object[key] = sharedDeckAndSideboardStyles[key]; return object; }, {})),
     paddingTop: "40px",
     flexDirection: "row",
-    alignContent: "end",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
+    "@md": {
+        ...(sharedDeckAndSideboardStyles["@md"] as Record<string, string>)
+    },
     "@lg": {
         ...(sharedDeckAndSideboardStyles["@lg"] as Record<string, string>),
         paddingTop: "10px",
         flexDirection: "column",
+        justifyContent: "flex-start",
         "& span:nth-of-type(2n)": {
             marginLeft: "50px"
         }
     },
     "@xxl": {
-        ...(sharedDeckAndSideboardStyles["@xxl"] as Record<string, string>),
-        width: "350px"
-    },
-    "@xxxl": {
-        marginLeft: "200px"
+        ...(sharedDeckAndSideboardStyles["@xxl"] as Record<string, string>)
     }
 });
+
+const stackedSideboardStyles: CSS = {
+    paddingBottom: "0px",
+    "& span:nth-of-type(2n)": {
+        marginLeft: "0px"
+    },
+    "@lg": {
+        flexDirection: "row",
+        justifyContent: "center"
+    }
+};
 
 const DECK_TYPE_TO_ADDITIONAL_STYLES: Record<string, CSS> = {
     commander: {
@@ -306,15 +311,12 @@ const DECK_TYPE_TO_ADDITIONAL_STYLES: Record<string, CSS> = {
         height: "auto",
         "@lg": {
             margin: "0 auto",
-            width: "calc(100% - 40px)"
+            placeContent: "center"
         }
     },
     oathbreaker: {
         margin: "0 auto",
-        alignContent: "center",
-        "@xxl": {
-            height: "660px"
-        }
+        alignContent: "center"
     }
 };
 
@@ -327,11 +329,33 @@ const SIDEBOARD_TYPE_TO_ADDITIONAL_STYLES: Record<string, CSS> = {
     }
 };
 
+const DeckViewControls = styled("span", {
+    float: "right",
+    zIndex: "2",
+    position: "relative",
+    paddingTop: "15px",
+    paddingRight: "15px",
+    color: "$onBackground"
+});
+
 const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
     const router = useRouter();
     const { deck: deckName } = router.query;
     const [deck, setDeck] = useState(null as unknown as FormattedDeck);
     const [loaded, setLoaded] = useState(false);
+    const [deckView, setDeckView] = useState(DeckView.default);
+
+    const updateDeckViewPreference = useCallback((changeEvent) => {
+        const newDeckView = changeEvent.target.value;
+
+        try {
+            localStorage.setItem("deckView", newDeckView);
+
+            setDeckView(newDeckView);
+        } catch (e) {
+            // do nothing
+        }
+    }, []);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const debouncedSetLoaded = useCallback(debounce((value: boolean) => setLoading(false), 500), []);
@@ -343,6 +367,16 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
         }
 
         fetchFromCache(`${ API_URL }/api/mtg/${ deckName }`).then((data) => {
+            try {
+                const preferredView = localStorage.getItem("deckView");
+
+                if (preferredView) {
+                    setDeckView(preferredView as DeckView);
+                }
+            } catch (e) {
+                // do nothing
+            }
+
             setDeck(massageDeck(data as unknown as MTGDeck));
             setLoaded(true);
             debouncedSetLoaded(false);
@@ -359,7 +393,7 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
 
     let additionalDeckStyles: CSS = {};
     if (deck.entries.mainboard.length > 60 && deck.entries.mainboard.length <= 80) {
-        additionalDeckStyles = yorionDeckStyle;
+        additionalDeckStyles = yorionDeckStyles;
     } else if (deck.entries.mainboard.length > 80) {
         additionalDeckStyles = DECK_TYPE_TO_ADDITIONAL_STYLES.commander;
     }
@@ -390,6 +424,11 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
                 <meta name="twitter:image" content="https://spencer.carvers.info/seo.jpg" />
             </Head>
             <BackNavigation to="/magic" />
+            <DeckViewControls>
+                <input id={ DeckView.default } type="radio" name="deckView" value={ DeckView.default } checked={ deckView === DeckView.default } onChange={ updateDeckViewPreference } /><label htmlFor={ DeckView.default }>{ DeckView.default }</label>
+                <input id={ DeckView.stacked } type="radio" name="deckView" value={ DeckView.stacked } checked={ deckView === DeckView.stacked } onChange={ updateDeckViewPreference } /><label htmlFor={ DeckView.stacked }>{ DeckView.stacked }</label>
+                { /* <input id={ DeckView.list } type="radio" name="deckView" value={ DeckView.list } checked={ deckView === DeckView.list } onChange={ updateDeckViewPreference } /><label htmlFor={ DeckView.list }>{ DeckView.list }</label> */ }
+            </DeckViewControls>
             <TableDiv>
                 <TitleHeading>{deck.type === "constructed" && <><FormatSpan>{deck.format}</FormatSpan>&nbsp;</>}{TITLE}</TitleHeading>
                 <FeaturedDiv css={ deck.type === "constructed" ? { display: "none" } : {} }>
@@ -403,6 +442,7 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
                                     index={ i }
                                     instance={ instance }
                                     count={ count }
+                                    view={ deckView }
                                     type="featured"
                                     setLoaded={ debouncedSetLoaded }
                                 />
@@ -410,8 +450,8 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
                         })
                     }
                 </FeaturedDiv>
-                <PlaymatDiv>
-                    <DeckDiv css={ DECK_TYPE_TO_ADDITIONAL_STYLES[deck.type] || additionalDeckStyles }>
+                <PlaymatDiv css={ deckView === "stacked" ? { "flexDirection": "column" } : {} }>
+                    <DeckDiv css={{ ...(DECK_TYPE_TO_ADDITIONAL_STYLES[deck.type] || additionalDeckStyles), ...(deckView === "stacked" ? stackedDeckStyles : {}) }}>
                         {
                             deck.entries.mainboard.map(({ instance, count, card_digest: cardDigest }, i) => {
                                 return (
@@ -422,6 +462,7 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
                                         index={ i }
                                         instance={ instance }
                                         count={ count }
+                                        view={ deckView }
                                         type={ deck.type }
                                         setLoaded={ debouncedSetLoaded }
                                     />
@@ -429,7 +470,7 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
                             })
                         }
                     </DeckDiv>
-                    <SideboardDiv css={ SIDEBOARD_TYPE_TO_ADDITIONAL_STYLES[deck.type] || additionalSideboardStyles }>
+                    <SideboardDiv css={{ ...(SIDEBOARD_TYPE_TO_ADDITIONAL_STYLES[deck.type] || additionalSideboardStyles), ...(deckView === "stacked" ? stackedSideboardStyles : {}) }}>
                         {
                             deck.entries.sideboard.map(({ instance, count, card_digest: cardDigest }, i) => {
                                 return (
@@ -440,6 +481,7 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
                                         index={ i }
                                         instance={ instance }
                                         count={ count }
+                                        view={ deckView }
                                         type="sideboard"
                                         setLoaded={ debouncedSetLoaded }
                                     />

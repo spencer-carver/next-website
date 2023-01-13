@@ -62,8 +62,13 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
-                <SubHeading>January 7, 2023</SubHeading>
+                <SubHeading>January 13, 2023</SubHeading>
+                <List>
+                    <ListItem>Updated Page: <Link href="/magic" component={ A }>Magic landing page</Link></ListItem>
+                    <ListItem>Updated Pages: Magic deck view</ListItem>
+                </List>
                 <P>Slight revision to the <Link href="/magic" component={ A }>Magic</Link> page, drawing a different distinction between my decks and my wife&apos;s. Better at larger breakpoints. Also updated the construction status of a few deck ideas.</P>
+                <P>Deck view now supports a &quot;stacked&quot; view, and remembers user preference.</P>
                 <SubHeading>January 3, 2023</SubHeading>
                 <P>Happy New Year! Not much in the way of goings on recently. The next big update is likely to be #Enigmarch 2023, with the intention of being a full round of quick puzzles rather than a single one.</P>
                 <P>I have a conference presentation in February I am working on, so expect the <Link href="/about" component={ A }>About</Link> page to get updated with a link to the presentation material once that is completed as well!</P>

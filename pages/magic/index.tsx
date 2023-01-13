@@ -86,7 +86,8 @@ const RightColumn = styled("div", {
 const ListContainer = styled("ul", {
     display: "flex",
     flexWrap: "wrap",
-    paddingInlineStart: "0px"
+    paddingInlineStart: "0px",
+    margin: "0"
 });
 
 interface FormatGroupProps {
@@ -208,7 +209,10 @@ const DeckListItem = styled("li", {
 });
 
 const DeckNameHeader = styled("h3", {
-    width: "211px",
+    width: "201px",
+    height: "44px",
+    margin: "10px 0",
+    paddingLeft: "10px",
     color: "$primary"
 });
 

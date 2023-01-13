@@ -20,7 +20,13 @@ export interface DeckLinkProps {
     isUnderConstruction?: boolean;
 }
 
-const ART_CROP_URL_PREFIX = "https://c1.scryfall.com/file/scryfall-cards/art_crop/front";
+export enum DeckView {
+    default = "default",
+    stacked = "stacked",
+    list = "list"
+}
+
+const ART_CROP_URL_PREFIX = "https://cards.scryfall.io/art_crop/front";
 
 export const PIONEER_DECKS: DeckLinkProps[] = [{
     name: "Azorius Control",
@@ -179,6 +185,12 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     imageUrl: `${ ART_CROP_URL_PREFIX }/d/e/de53d083-251e-42a4-9e2e-c2978c80615b.jpg`,
     classification: DeckClassification.KATHYS
 },{
+    name: "Liberator, Urza's Battlethopter",
+    id: "liberator",
+    colors: "C",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/c/3/c31e6768-bcab-43c4-bfc1-76e961689ae9.jpg`,
+    isUnderConstruction: true
+},{
     name: "Lord Windgrace",
     id: "lord-windgrace",
     colors: "BRG",
@@ -222,7 +234,6 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     id: "yuriko",
     colors: "UB",
     imageUrl: `${ ART_CROP_URL_PREFIX }/8/5/852508f9-90ea-4889-a4a8-31b28dd3fdab.jpg`,
-    isUnderConstruction: true,
     link: "/magic/deck/yuriko"
 },{
     name: "Zedruu the Greathearted",
