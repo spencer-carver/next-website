@@ -98,7 +98,8 @@ function massageDeck(data: MTGDeck): FormattedDeck | undefined {
         };
 
         const cards = ([] as Card[]).concat(deckEntries.featured, deckEntries.mainboard, deckEntries.sideboard, deckEntries.maybeboard).reduce((cardMap, entry) => {
-            const name = entry.card_digest.name.split(" // ")[0];
+            const isDFC = Object.keys(entry.card_digest.image_uris).length > 1;
+            const name =  isDFC ? entry.card_digest.name.split(" // ")[0] : entry.card_digest.name;
 
             if (cardMap[name]) {
                 return cardMap;
