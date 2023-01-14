@@ -17,7 +17,7 @@ interface CardComponentProps {
     count: number;
     index: number;
     setLoaded?: (boolean) => void;
-    view: DeckView;
+    view?: DeckView;
     css?: CSS;
 }
 
@@ -143,7 +143,7 @@ const DualFacedCardComponent: FunctionComponent<DualFacedCardComponentProps> = (
 };
 
 const CardComponent: FunctionComponent<CardComponentProps> = (props) => {
-    const { name, image, image_uris, count, instance, setLoaded, view, css } = props;
+    const { name, image, image_uris, count, instance, setLoaded, view = DeckView.default, css } = props;
     const cardLoaded = useCallback(() => setLoaded(true), [setLoaded]);
 
     if (view === DeckView.stacked && instance > 1) {
