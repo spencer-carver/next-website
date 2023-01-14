@@ -61,21 +61,22 @@ const tooltipWrapperStyles: CSS = {
 const tooltipContainerStyles: CSS = {
     display: "none",
     backgroundColor: "transparent",
-    bottom: "255px",
+    bottom: "25px",
+    padding: "0",
+    borderRadius: "7px",
+    boxShadow: "0px 0px 5px 3px $onBackground",
     "@lg": {
-        display: "initial"
+        display: "initial",
+        borderRadius: "9px"
     },
     "@xxl": {
-        bottom: "325px"
+        borderRadius: "14px"
     }
 };
 
 const cardTooltipStyles: CSS = {
     width: "150px !important",
     "@lg": {
-        width: "200px !important"
-    },
-    "@xxl": {
         width: "250px !important"
     }
 };
@@ -111,7 +112,7 @@ const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, h
         const card = cards[children];
 
         if (!card) {
-            return <Code>{ children }</Code>;
+            return <Code>{children}</Code>;
         }
 
         return (
@@ -123,12 +124,12 @@ const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, h
                     instance={ 1 }
                     count={ 1 }
                     type="featured"
-                    setLoaded={ () => {} }
+                    setLoaded={ () => { } }
                     css={ cardTooltipStyles }
                 /> }
                 css={ tooltipWrapperStyles }
                 tooltipCss={ tooltipContainerStyles }>
-                <Code css={{ "@lg": { "&:hover": { backgroundColor: "$secondary" } } }}>{ children }</Code>
+                <Code css={{ "@lg": { "&:hover": { backgroundColor: "$secondary" } } }}>{children}</Code>
             </Tooltip>
         );
     }, [cards]);
@@ -147,17 +148,17 @@ const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, h
     return (
         <>
             <PageDiv>
-                <p>Last Updated: { modifyDate }</p>
+                <p>Last Updated: {modifyDate}</p>
                 <ReactMarkdown
                     remarkPlugins={ [remarkGfm] }
                     components={{
                         ...MarkdownComponents,
                         code: CardPreview as unknown as CodeComponent
                     }}>
-                        { post.content }
-                    </ReactMarkdown>
+                    {post.content}
+                </ReactMarkdown>
             </PageDiv>
-            { format && <BackToTopSpan><Link href="#Matchups">to Matchups</Link></BackToTopSpan> }
+            {format && format !== "commander" && <BackToTopSpan><Link href="#Matchups">to Matchups</Link></BackToTopSpan>}
         </>
     );
 };
