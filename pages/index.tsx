@@ -62,6 +62,11 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>February XX, 2023</SubHeading>
+                <List>
+                    <ListItem>Updated Page: <Link href="/about" component={ A }>About Me</Link></ListItem>
+                </List>
+                <P>Section for conference talks / publications added.</P>
                 <SubHeading>January 28, 2023</SubHeading>
                 <List>
                     <ListItem>Updated Page: <Link href="/puzzles" component={ A }>Puzzle landing page</Link></ListItem>

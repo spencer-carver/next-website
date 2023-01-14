@@ -1,6 +1,6 @@
 import Head from "next/head";
 import AboutMe from "../../components/AboutMe";
-import Projects from "../../components/Projects";
+import { Projects, Publications } from "../../components/Projects";
 import Skills from "../../components/Skills";
 import Stream from "../../components/Stream";
 import ConstructionGif from "../../components/ConstructionGif";
@@ -40,6 +40,7 @@ const About: FunctionComponent<PageProps> =  ({ theme }) => {
                 <Skills />
                 <ConstructionGif theme={ theme } />
                 <Projects />
+                <Publications />
                 <Stream />
             </PageDiv>
         </>

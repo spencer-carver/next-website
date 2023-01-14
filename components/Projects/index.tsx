@@ -242,7 +242,7 @@ const ModuleTitleSpan = styled("span", {
     }
 });
 
-const Projects: FunctionComponent = () => {
+export const Projects: FunctionComponent = () => {
     const projects = Object.keys(PROJECT_DETAILS).map((key) => PROJECT_DETAILS[key]);
 
     return (
@@ -253,4 +253,17 @@ const Projects: FunctionComponent = () => {
     );
 };
 
-export default Projects;
+export const Publications: FunctionComponent = () => {
+    const projects = Object.keys(PROJECT_DETAILS).map((key) => PROJECT_DETAILS[key]);
+
+    return (
+        <ProjectsDiv>
+            <ModuleTitleSpan>Presentations &amp; Publications</ModuleTitleSpan>
+            <ul>
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+            </ul>
+        </ProjectsDiv>
+    );
+};
