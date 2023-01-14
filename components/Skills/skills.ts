@@ -117,6 +117,7 @@ const SKILLS: Skill[] = [{
     imageSrc: MAGIC_JUDGES_LOGO,
     imageAlt: "Magic Judges Logo",
     startDate: new Date(2016, 9, 10),
+    endDate: new Date(2022, 11, 31),
     experienceLevel: "Level 1",
     showTenure: true
 },{

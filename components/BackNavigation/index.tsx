@@ -4,7 +4,7 @@ import Link from "../Link";
 
 const BackAnchor = styled("a", {
     position: "absolute",
-    top: "80px",
+    top: "65px",
     left: "30px",
     textDecoration: "none",
     color: "$onBackground",
