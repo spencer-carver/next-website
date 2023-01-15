@@ -11,6 +11,7 @@ import { CodeComponent } from "react-markdown/lib/ast-to-react";
 import fetchFromCache from "../../../utils/cache";
 import { API_URL } from "../../../constants/ExternalUrls";
 import { Card } from "../../../pages/magic/deck/[deck]";
+import { DeckView } from "../../../constants/Magic";
 
 const { a, code } = MarkdownComponents;
 const Link = a as unknown as FunctionComponent<{ href: string; children: ReactElement | string }>;
@@ -74,13 +75,6 @@ const tooltipContainerStyles: CSS = {
     }
 };
 
-const cardTooltipStyles: CSS = {
-    width: "150px !important",
-    "@lg": {
-        width: "250px !important"
-    }
-};
-
 interface GuidanceProps {
     deckName: string;
     format?: string;
@@ -125,7 +119,7 @@ const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, h
                     count={ 1 }
                     type="featured"
                     setLoaded={ () => { } }
-                    css={ cardTooltipStyles }
+                    view={ DeckView.stacked }
                 /> }
                 css={ tooltipWrapperStyles }
                 tooltipCss={ tooltipContainerStyles }>

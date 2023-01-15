@@ -18,7 +18,6 @@ interface CardComponentProps {
     index: number;
     setLoaded?: (boolean) => void;
     view?: DeckView;
-    css?: CSS;
 }
 
 interface DualFacedCardComponentProps {
@@ -137,14 +136,15 @@ const DualFacedCardComponent: FunctionComponent<DualFacedCardComponentProps> = (
     return (
         <CardContainerDiv css={ css }>
             <Image src={ image?.replace("large", "normal") } alt={ name } title="Click to Transform" width="250px" height="349px" onLoad={ cardLoaded } onClick={ () => setShowBack(!showBack) } />
-            { view === DeckView.stacked && count > 1 && <StackedCardCountSpan>x { count }</StackedCardCountSpan> }
+            {view === DeckView.stacked && count > 1 && <StackedCardCountSpan>x {count}</StackedCardCountSpan>}
         </CardContainerDiv>
     );
 };
 
 const CardComponent: FunctionComponent<CardComponentProps> = (props) => {
-    const { name, image, image_uris, count, instance, setLoaded, view = DeckView.default, css } = props;
+    const { name, image, image_uris, count, instance, setLoaded, view = DeckView.default } = props;
     const cardLoaded = useCallback(() => setLoaded(true), [setLoaded]);
+    const css = view === DeckView.stacked ? stackedViewCss : {};
 
     if (view === DeckView.stacked && instance > 1) {
         return;
@@ -155,9 +155,9 @@ const CardComponent: FunctionComponent<CardComponentProps> = (props) => {
     }
 
     return (
-        <CardContainerDiv css={ css || view === DeckView.stacked ? stackedViewCss : {} }>
+        <CardContainerDiv css={ css }>
             <Image src={ image?.replace("large", "normal") } alt={ name } width="250px" height="349px" onLoad={ cardLoaded } />
-            { view === DeckView.stacked && count > 1 && <StackedCardCountSpan>x { count }</StackedCardCountSpan> }
+            {view === DeckView.stacked && count > 1 && <StackedCardCountSpan>x {count}</StackedCardCountSpan>}
         </CardContainerDiv>
     );
 };
