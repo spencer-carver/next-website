@@ -62,6 +62,8 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>January 27, 2023</SubHeading>
+                <P>Myr myr myr! A new legendary creature has prompted a long-time stalwart of the decks page to get an update! Introducing <Link href="/magic/deck/urtet" component={ A }>Urtet, Remnant of Memnarch</Link>!</P>
                 <SubHeading>January 13, 2023</SubHeading>
                 <List>
                     <ListItem>Updated Page: <Link href="/magic" component={ A }>Magic landing page</Link></ListItem>

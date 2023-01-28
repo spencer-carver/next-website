@@ -15,7 +15,7 @@ module.exports = (phase, { defaultConfig }) => {
         ...defaultConfig,
         images: imgixImageLoader,
         ...(phase === PHASE_DEVELOPMENT_SERVER ? {
-            pageExtensions: defaultConfig.pageExtensions.map((extension) => [`dev\.${extension}`, extension]).flat(),
+            pageExtensions: defaultConfig.pageExtensions.map((extension) => [`dev\.${ extension }`, extension]).flat(),
             webpack: (config) => {
                 config.module.rules.push({
                     test: /\.md/,
@@ -25,7 +25,7 @@ module.exports = (phase, { defaultConfig }) => {
                 return config;
             }
         } : {
-            pageExtensions: defaultConfig.pageExtensions.map((extension) => `(?<!dev\.)${extension}`),
+            pageExtensions: defaultConfig.pageExtensions.map((extension) => `(?<!dev\.)${ extension }`),
         })
     });
 };

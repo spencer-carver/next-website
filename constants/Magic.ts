@@ -179,12 +179,6 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     colors: "WBG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/6/2/6200ac79-b166-43d0-9a0b-5b547625ed57.jpg`
 },{
-    name: "Karona, False God",
-    id: "karona",
-    colors: "WUBRG",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/d/e/de53d083-251e-42a4-9e2e-c2978c80615b.jpg`,
-    classification: DeckClassification.KATHYS
-},{
     name: "Liberator, Urza's Battlethopter",
     id: "liberator",
     colors: "C",
@@ -228,6 +222,12 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     id: "trostani",
     colors: "GW",
     imageUrl: `${ ART_CROP_URL_PREFIX }/9/d/9d1d9d86-5666-4e59-9766-137657b4e040.jpg`,
+    classification: DeckClassification.KATHYS
+},{
+    name: "Urtet, Remnant of Memnarch",
+    id: "urtet",
+    colors: "WUBRG",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/7/a/7aa01ab4-26b0-49dc-8514-b3850d355a21.jpg`,
     classification: DeckClassification.KATHYS
 },{
     name: "Yuriko, the Tiger's Shadow",
