@@ -37,6 +37,7 @@ interface MTGDeck {
         lands?: Card[];
         sideboard?: Card[];
         maybeboard?: Card[];
+        outside?: Card[];
     };
 }
 
@@ -94,7 +95,10 @@ function massageDeck(data: MTGDeck): FormattedDeck | undefined {
                 massageList(data.entries.lands)
             ),
             sideboard: massageList(data.entries.sideboard),
-            maybeboard: massageList(data.entries.maybeboard)
+            maybeboard: ([] as Card[]).concat(
+                massageList(data.entries.maybeboard),
+                massageList(data.entries.outside)
+            )
         };
 
         const cards = ([] as Card[]).concat(deckEntries.featured, deckEntries.mainboard, deckEntries.sideboard, deckEntries.maybeboard).reduce((cardMap, entry) => {
