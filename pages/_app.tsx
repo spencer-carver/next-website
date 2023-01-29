@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import { darkTheme, defaultTheme, lightTheme, THEMES } from "../styles/stitches";
-import { invalidateExpiredCacheItems } from "../utils/cache";
+import { invalidateExpiredCacheItems } from "../utils/fetch";
+import useStorage from "../utils/useStorage";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+    const storage = useStorage("settings");
     const [theme, setTheme] = useState(defaultTheme);
     const [loading, setLoading] = useState(false);
 
@@ -14,7 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         invalidateExpiredCacheItems();
 
         try {
-            const selectedTheme = THEMES[localStorage.getItem("theme")];
+            const selectedTheme = THEMES[storage.getItem<string>("theme")];
 
             if (selectedTheme) {
                 setTheme(selectedTheme);
@@ -30,7 +32,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         } catch (e) {
             //do nothing
         }
-    }, []);
+    }, [storage]);
 
     return (
         <>

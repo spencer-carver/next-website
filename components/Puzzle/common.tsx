@@ -3,8 +3,9 @@ import Head from "next/head";
 import PuzzleComplete from "./Complete";
 import PuzzleAnswerSubmission from "./AnswerCheck";
 import BackNavigation from "../BackNavigation";
-import { PuzzleDetails, PUZZLES } from "../../constants/Puzzle";
+import { PUZZLES } from "../../constants/Puzzle";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
+import useStorage from "../../utils/useStorage";
 
 export const PuzzleDiv = styled("div", {
     margin: "0 auto",
@@ -47,6 +48,7 @@ interface PuzzleWrapperProps {
 }
 
 export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ name, children }) => {
+    const storage = useStorage("puzzle");
     const [ answer, setAnswer ] = useState(undefined);
     const [ AnswerBanner, setAnswerBanner ] = useState(null);
 
@@ -56,21 +58,21 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
 
     useEffect(() => {
         try {
-            setAnswer(localStorage.getItem(name));
+            setAnswer(storage.getItem<string>(name));
         } catch (e) {
             // do nothing
         }
-    }, [name]);
+    }, [storage, name]);
 
     const onSuccess = useCallback((answer: string) => {
         try {
-            localStorage.setItem(name, answer);
+            storage.setItem<string>(name, answer);
         } catch (e) {
             // do nothing
         }
 
         setAnswer(answer);
-    }, [name]);
+    }, [storage, name]);
 
     const {
         title,

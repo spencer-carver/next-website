@@ -62,6 +62,14 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>January 28, 2023</SubHeading>
+                <List>
+                    <ListItem>Updated Page: <Link href="/puzzles" component={ A }>Puzzle landing page</Link></ListItem>
+                    <ListItem>New Puzzle Round: <Link href="/puzzles/enigmarch-2023" component={ A }>#Enigmarch 2023</Link></ListItem>
+                    <ListItem>Various Site Enhancements</ListItem>
+                </List>
+                <P>While we are still over a month away from March, I set up some of the scaffolding for the puzzles to come!</P>
+                <P>Additionally, made some caching, storage, and timeout related updates to the site to (hopefully) allow things to load quicker, more reliably, and using less browser resources.</P>
                 <SubHeading>January 27, 2023</SubHeading>
                 <P>Myr myr myr! A new legendary creature has prompted a long-time stalwart of the decks page to get an update! Introducing <Link href="/magic/deck/urtet" component={ A }>Urtet, Remnant of Memnarch</Link>!</P>
                 <SubHeading>January 13, 2023</SubHeading>

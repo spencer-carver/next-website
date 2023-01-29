@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { PageProps } from "../../../@types/global";
 import { API_URL } from "../../../constants/ExternalUrls";
-import fetchFromCache from "../../../utils/cache";
+import fetchData from "../../../utils/fetch";
 import ErrorPage from "../../404";
 import BackNavigation from "../../../components/BackNavigation";
 import { styled } from "../../../styles/stitches";
@@ -71,7 +71,7 @@ const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
             return;
         }
 
-        fetchFromCache(`${ API_URL }/api/blog/${ postName }`).then((data) => {
+        fetchData(`${ API_URL }/api/blog/${ postName }`).then((data) => {
             if (typeof (data as unknown as Post).content === "string") {
                 setPost(data as unknown as Post);
             }

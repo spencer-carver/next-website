@@ -14,10 +14,10 @@ interface LinkProps {
 
 const Link: FunctionComponent<LinkProps> = ({ href, component: Component = DefaultAnchor, children }) => {
     if (href.startsWith("https")) {
-        return <NextLink href={ href } passHref={ true }><Component target="_blank" rel="noreferrer noopener">{ children }</Component></NextLink>;
+        return <NextLink href={ href } passHref={ true } legacyBehavior={ true }><Component target="_blank" rel="noreferrer noopener">{ children }</Component></NextLink>;
     }
 
-    return <NextLink href={ href } passHref={ true }><Component>{ children }</Component></NextLink>;
+    return <NextLink href={ href } passHref={ true } legacyBehavior={ true }><Component>{ children }</Component></NextLink>;
 };
 
 export default Link;

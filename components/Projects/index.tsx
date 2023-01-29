@@ -60,7 +60,7 @@ const Resources: FunctionComponent<{ title: string; resources?: Array<Resource> 
                         return (
                             <Link key={ index } href={ url as string } component={ ResourceLink }>
                                 <ResourceImageWrapperDiv css={ resourceLinkStyles }>
-                                    <Image src={ image } alt={ alt } title={ alt } width="50px" height="50px" />
+                                    <Image src={ image } alt={ alt } title={ alt } width={ 50 } height={ 50 } />
                                 </ResourceImageWrapperDiv>
                             </Link>
                         );
@@ -68,7 +68,7 @@ const Resources: FunctionComponent<{ title: string; resources?: Array<Resource> 
 
                     return (
                         <ResourceImageWrapperDiv key={ index }>
-                            <Image src={ image } alt={ alt } title={ alt } width="50px" height="50px" />
+                            <Image src={ image } alt={ alt } title={ alt } width={ 50 } height={ 50 } />
                         </ResourceImageWrapperDiv>
                     );
                 })

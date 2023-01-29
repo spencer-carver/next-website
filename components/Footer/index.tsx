@@ -4,6 +4,7 @@ import { styled, DEFAULT_THEME_NAME, THEMES, lightTheme, yahooGeocitiesTheme } f
 import KebabMenu from "../Icons/KebabMenu";
 import Image from "../Image";
 import { PageProps } from "../../@types/global";
+import useStorage, { StorageHandler } from "../../utils/useStorage";
 
 const MenuDiv = styled("div", {
     position: "absolute",
@@ -52,11 +53,11 @@ const kebabMenuStyles: CSS = {
     }
 };
 
-const getSelectedTheme = (): string => {
+const getSelectedTheme = (storage: StorageHandler): string => {
     let theme;
 
     try {
-        theme = localStorage.getItem("theme");
+        theme = storage.getItem("theme");
     } catch (e) {
         // do nothing
     }
@@ -67,27 +68,28 @@ const getSelectedTheme = (): string => {
 };
 
 const Theme: FunctionComponent<{ setTheme: Function }> = ({ setTheme }) => {
+    const storage = useStorage("settings");
     const [ showMenu, setShowMenu ] = useState(false);
 
     const onClick = (): void => setShowMenu(!showMenu);
 
     useEffect(() => {
-        setTheme(THEMES[getSelectedTheme()])
-    }, [setTheme]);
+        setTheme(THEMES[getSelectedTheme(storage)])
+    }, [storage, setTheme]);
 
     const changeTheme = useCallback((e) => {
         const newTheme = e.target.getAttribute("data-theme");
 
         try {
-            localStorage.setItem("theme", newTheme);
+            storage.setItem<string>("theme", newTheme);
         } catch (e) {
             // do nothing
         }
 
         setTheme(THEMES[newTheme]);
-    }, [setTheme]);
+    }, [storage, setTheme]);
 
-    const selectedTheme = getSelectedTheme();
+    const selectedTheme = getSelectedTheme(storage);
 
     return (
         <>
@@ -181,11 +183,11 @@ const Footer: FunctionComponent<PageProps & { setTheme: Function }> = ({ theme, 
             { (theme === yahooGeocitiesTheme) && (
                 <>
                     <GeocitiesBannerDiv>
-                    <div style={{ height: "40px", width: "193px", textAlign: "center" }}><Image src="/constr16.gif" alt="Under Construction" width="128px" height="40px" /></div>
-                    <div style={{ height: "31px", width: "193px", textAlign: "center" }}><Image src="/netscapenow.gif" alt="Netscape Now!" width="88px" height="31px" /></div>
-                    <GeocitiesCoolPageLink href="https://cameronsworld.net" target="_blank" rel="noreferrer noopener"><Image src="/geocitie.gif" alt="Cool page of the day" width="193px" height="106px" /></GeocitiesCoolPageLink>
-                    <div style={{ height: "31px", width: "193px", textAlign: "center" }}><Image src="/ie_logo.gif" alt="Free Internet Explorer" width="88px" height="31px" /></div>
-                    <div style={{ height: "40px", width: "193px", textAlign: "center" }}><Image src="/constr16.gif" alt="Under Construction" width="128px" height="40px" /></div>
+                    <div style={{ height: "40px", width: "193px", textAlign: "center" }}><Image src="/constr16.gif" alt="Under Construction" width={ 128 } height={ 40 } /></div>
+                    <div style={{ height: "31px", width: "193px", textAlign: "center" }}><Image src="/netscapenow.gif" alt="Netscape Now!" width={ 88 } height={ 31 } /></div>
+                    <GeocitiesCoolPageLink href="https://cameronsworld.net" target="_blank" rel="noreferrer noopener"><Image src="/geocitie.gif" alt="Cool page of the day" width={ 193 } height={ 106 } /></GeocitiesCoolPageLink>
+                    <div style={{ height: "31px", width: "193px", textAlign: "center" }}><Image src="/ie_logo.gif" alt="Free Internet Explorer" width={ 88 } height={ 31 } /></div>
+                    <div style={{ height: "40px", width: "193px", textAlign: "center" }}><Image src="/constr16.gif" alt="Under Construction" width={ 128 } height={ 40 } /></div>
                     </GeocitiesBannerDiv>
                     <MusicCreditDiv>Music: https://www.bensound.com/royalty-free-music</MusicCreditDiv>
                 </>

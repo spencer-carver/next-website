@@ -135,7 +135,7 @@ const DualFacedCardComponent: FunctionComponent<DualFacedCardComponentProps> = (
 
     return (
         <CardContainerDiv css={ css }>
-            <Image src={ image?.replace("large", "normal") } alt={ name } title="Click to Transform" width="250px" height="349px" onLoad={ cardLoaded } onClick={ () => setShowBack(!showBack) } />
+            <Image src={ image?.replace("large", "normal") } alt={ name } title="Click to Transform" width={ 250 } height={ 349 } onLoad={ cardLoaded } onClick={ () => setShowBack(!showBack) } />
             {view === DeckView.stacked && count > 1 && <StackedCardCountSpan>x {count}</StackedCardCountSpan>}
         </CardContainerDiv>
     );
@@ -156,7 +156,7 @@ const CardComponent: FunctionComponent<CardComponentProps> = (props) => {
 
     return (
         <CardContainerDiv css={ css }>
-            <Image src={ image?.replace("large", "normal") } alt={ name } width="250px" height="349px" onLoad={ cardLoaded } />
+            <Image src={ image?.replace("large", "normal") } alt={ name } width={ 250 } height={ 349 } onLoad={ cardLoaded } />
             {view === DeckView.stacked && count > 1 && <StackedCardCountSpan>x {count}</StackedCardCountSpan>}
         </CardContainerDiv>
     );

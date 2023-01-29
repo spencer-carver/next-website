@@ -2,6 +2,7 @@ import { FunctionComponent, useCallback, useEffect, useState } from "react";
 import { CSS } from "@stitches/react";
 import { keyframes, styled } from "../../styles/stitches";
 import Link from "../Link";
+import useStorage from "../../utils/useStorage";
 
 const ContainerDiv = styled("div", {
     height: "0px",
@@ -52,44 +53,50 @@ const CloseSpan = styled("span", {
     }
 });
 
+interface VisitedProps {
+    dismissed: boolean;
+    time: number;
+}
+
 const FirstTimeVisitor: FunctionComponent<{ lastUpdate: number; }> = ({ lastUpdate }) => {
+    const storage = useStorage("settings");
     const [isDismissed, setIsDismissed] = useState(true);
     const [firstTime, setFirstTime] = useState(false);
 
     useEffect(() => {
         try {
-            const hasVisited = localStorage.getItem("visited");
+            const hasVisited = storage.getItem<VisitedProps>("visited");
 
             if (!hasVisited) {
                 setFirstTime(true);
                 setIsDismissed(false);
 
-                localStorage.setItem("visited", JSON.stringify({ dismissed: false, time: (new Date()).getTime() }));
+                storage.setItem<VisitedProps>("visited", { dismissed: false, time: (new Date()).getTime() });
 
                 return;
             }
 
-            const { dismissed, time } = JSON.parse(hasVisited);
+            const { dismissed, time } = hasVisited;
 
             const updatedDismissed = time > lastUpdate ? dismissed : false;
 
-            localStorage.setItem("visited", JSON.stringify({ dismissed: updatedDismissed, time: (new Date()).getTime() }));
+            storage.setItem<VisitedProps>("visited", { dismissed: updatedDismissed, time: (new Date()).getTime() });
 
             setIsDismissed(updatedDismissed);
         } catch(e) {
             // do nothing
         }
-    }, [lastUpdate]);
+    }, [storage, lastUpdate]);
 
     const dismissComponent = useCallback(() => {
         try {
-            localStorage.setItem("visited", JSON.stringify({ dismissed: true, time: (new Date()).getTime() }));
+            storage.setItem<VisitedProps>("visited", { dismissed: true, time: (new Date()).getTime() });
         } catch (e) {
             // do nothing
         }
 
         setIsDismissed(true);
-    }, []);
+    }, [storage]);
 
     if (isDismissed) {
         return (

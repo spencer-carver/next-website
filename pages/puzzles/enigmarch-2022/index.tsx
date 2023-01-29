@@ -6,6 +6,7 @@ import Wordle from "../../../components/Puzzle/Wordle";
 import Image from "../../../components/Image";
 import { styled } from "../../../styles/stitches";
 import { API_URL } from "../../../constants/ExternalUrls";
+import useStorage, { migrateItem } from "../../../utils/useStorage";
 
 const NAME = "enigmarch-2022";
 
@@ -62,7 +63,7 @@ const WordleGenerator: (encodedAnswer: string, existingData: string[][]) => Func
 const Picture: (url: string) => FunctionComponent<PuzzleStepProps> = (url) => function PicturePuzzle({ step, completeStep }) {
     return (
         <DailyPuzzleDiv>
-            <Image src={ url } alt="Today&apos;s Image" width="300px" height="300px" />
+            <Image src={ url } alt="Today&apos;s Image" width={ 300 } height={ 300 } />
             <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" />
         </DailyPuzzleDiv>
     );
@@ -146,10 +147,10 @@ const buttonCellStyles: CSS = {
     }
 };
 
-const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onClickDate }) => {
+const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onClickDate, storage }) => {
     function clearCalendar() {
         try {
-            localStorage.removeItem("enigmarch-calendar");
+            storage.removeItem("enigmarch-2022-intermediates");
 
             setIntermediates(Array(32));
         } catch (e) {
@@ -209,6 +210,7 @@ const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onCl
 };
 
 const PuzzleComponent: FunctionComponent = () => {
+    const storage = useStorage("puzzle");
     const [activeStep, setActiveStep] = useState(0);
     const [intermediates, setIntermediates] = useState(new Array(32));
     const completeStep = useCallback((step: number, value: string) => {
@@ -217,15 +219,16 @@ const PuzzleComponent: FunctionComponent = () => {
         setIntermediates(newIntermediates);
 
         try {
-            localStorage.setItem("enigmarch-calendar", JSON.stringify(newIntermediates));
+            storage.setItem<string[]>("enigmarch-2022-intermediates", newIntermediates);
         } catch (e) {
             //do nothing
         }
-    }, [ intermediates, setIntermediates ]);
+    }, [storage, intermediates, setIntermediates]);
 
     useEffect(() => {
         try {
-            const storedIntermediates = JSON.parse(localStorage.getItem("enigmarch-calendar"));
+            migrateItem("enigmarch-calendar", "enigmarch-2022-intermediates");
+            const storedIntermediates = storage.getItem<string[]>("enigmarch-2022-intermediates");
 
             if (!storedIntermediates) {
                 return;
@@ -235,11 +238,11 @@ const PuzzleComponent: FunctionComponent = () => {
         } catch (e) {
             //do nothing
         }
-    }, []);
+    }, [storage]);
     
     return (
         <PuzzleWrapperComponent name={ NAME }>
-            <FinalAnswerComponent intermediates={ intermediates } activeDay={ activeStep } onClickDate={ setActiveStep } setIntermediates={ setIntermediates } />
+            <FinalAnswerComponent storage={ storage } intermediates={ intermediates } activeDay={ activeStep } onClickDate={ setActiveStep } setIntermediates={ setIntermediates } />
             <div style={{ margin: "10px auto" }}>
                 { STEP_TO_PUZZLE_TYPE.map((Puzzle, index) => {
                     return <div key={ index } style={{ display: index === activeStep ? "inline-block" : "none" }}><Puzzle step={ index } completeStep={ completeStep } /></div>;

@@ -5,9 +5,10 @@ import PuzzleComplete from "../../components/Puzzle/Complete";
 import { DescriptionDiv, Heading, PuzzleDiv } from "../../components/Puzzle/common";
 import RowEntry from "../../components/Puzzle/RowEntry";
 import BackNavigation from "../../components/BackNavigation";
-import { PuzzleRounds, PUZZLES } from "../../constants/Puzzle";
+import { PuzzleRounds, PUZZLES, ROUNDS } from "../../constants/Puzzle";
 import { lightTheme, styled, yahooGeocitiesTheme } from "../../styles/stitches";
 import RoundEntry from "../../components/Puzzle/RoundEntry";
+import useStorage from "../../utils/useStorage";
 
 const NAME = "All Puzzles";
 const DESCRIPTION = "A list of all puzzles available at Spencer Carver's website.";
@@ -69,6 +70,7 @@ const A = styled("a", {
 });
 
 const Puzzles: FunctionComponent = () => {
+    const storage = useStorage("puzzle");
     const [ numberAnswered, setNumberAnswered ] = useState(0);
     const [ AnswerBanner, setAnswerBanner ] = useState(null);
 
@@ -77,12 +79,12 @@ const Puzzles: FunctionComponent = () => {
     }, [numberAnswered]);
 
     useEffect(() => {
-        setNumberAnswered(Object.keys(PUZZLES).reduce((count: number, puzzleId: string): number => count + (localStorage.getItem(puzzleId) ? 1 : 0), 0));
-    }, []);
+        setNumberAnswered(Object.keys(PUZZLES).reduce((count: number, puzzleId: string): number => count + (storage.getItem(puzzleId) ? 1 : 0), 0));
+    }, [storage]);
 
     const clearAnswer = (puzzleId: string): void => {
         try {
-            localStorage.removeItem(puzzleId);
+            storage.removeItem(puzzleId);
         } catch (e) {
             //do nothing
         }
@@ -118,7 +120,7 @@ const Puzzles: FunctionComponent = () => {
                 </DescriptionDiv>
                 <PuzzleList>
                     <li style={{ position: "relative", textDecoration: "underline" }}>Round<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Solved</AnswerSpan></li>
-                    { [PuzzleRounds.ALCHEMY].map((roundId: string, index: number) => <RoundEntry key={ index } round={ roundId } />) }
+                    { [PuzzleRounds.ALCHEMY, PuzzleRounds.ENIGMARCH2023].map((roundId: string, index: number) => <RoundEntry key={ index } round={ ROUNDS[roundId] } />) }
                 </PuzzleList>
                 <DescriptionDiv as="p">
                     The below puzzles are unaffiliated with any broader theme.
