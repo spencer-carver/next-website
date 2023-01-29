@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { CSS } from "@stitches/react";
 import Link from "../Link";
 import Image from "../Image";
 import Slideshow from "../Slideshow";
-import PROJECT_DETAILS, { Project, Resource } from "./projects";
+import PROJECT_DETAILS, { Project, ProjectType, Resource } from "./projects";
 import { lightTheme, styled, yahooGeocitiesTheme } from "../../styles/stitches";
 
 const ResourcesDiv = styled("div", {
@@ -84,6 +84,7 @@ const CardDiv = styled("div", {
     padding: "100px 0 20px",
     color: "$onBackground",
     width: "240px",
+    minHeight: "210px",
     "&:last-child": {
         borderBottom: "none"
     },
@@ -91,7 +92,7 @@ const CardDiv = styled("div", {
         width: "600px",
         display: "flex",
         flexDirection: "row",
-        height: "300px"
+        height: "290px"
     },
     [`.${ yahooGeocitiesTheme } &`]: {
         color: "$onSurface"
@@ -189,6 +190,28 @@ const ProjectCard: FunctionComponent<Project> = (props) => {
     );
 };
 
+const PresentationCard: FunctionComponent<Project> = (props) => {
+    const {
+        title,
+        description,
+        extendedDescription,
+        utilizes,
+        resources
+    } = props;
+
+    return (
+        <CardDiv>
+            <InfoDiv>
+                <TitleSpan>{ title }</TitleSpan>
+                <DescriptionSpan>{ description }</DescriptionSpan>
+                <ExtendedDescriptionSpan>{ extendedDescription }</ExtendedDescriptionSpan>
+                <Resources title="Technologies" resources={ utilizes } />
+                <Resources title="Resources" resources={ resources } />
+            </InfoDiv>
+        </CardDiv>
+    );
+};
+
 const CardContainerDiv = styled("div", {
     visibility: "hidden",
     position: "relative",
@@ -215,9 +238,17 @@ const ProjectCardContainer: FunctionComponent<ProjectCardProps> = (props) => {
         selected
     } = props;
 
+    if (props.type === ProjectType.PROJECT) {
+        return (
+            <CardContainerDiv css={ selected === index ? cardContainerSelectedStyles : {} }>
+                <ProjectCard { ...props } />
+            </CardContainerDiv>
+        );
+    }
+
     return (
         <CardContainerDiv css={ selected === index ? cardContainerSelectedStyles : {} }>
-            <ProjectCard { ...props } />
+            <PresentationCard { ...props } />
         </CardContainerDiv>
     );
 };
@@ -243,27 +274,13 @@ const ModuleTitleSpan = styled("span", {
 });
 
 export const Projects: FunctionComponent = () => {
-    const projects = Object.keys(PROJECT_DETAILS).map((key) => PROJECT_DETAILS[key]);
+    const [ projects ] = useState(Object.keys(PROJECT_DETAILS).map((key) => PROJECT_DETAILS[key]));
+    const [ selected, setSelected ] = useState(0);
 
     return (
         <ProjectsDiv>
-            <ModuleTitleSpan>Projects</ModuleTitleSpan>
-            <Slideshow items={ projects } component={ ProjectCardContainer } options={{}} />
-        </ProjectsDiv>
-    );
-};
-
-export const Publications: FunctionComponent = () => {
-    const projects = Object.keys(PROJECT_DETAILS).map((key) => PROJECT_DETAILS[key]);
-
-    return (
-        <ProjectsDiv>
-            <ModuleTitleSpan>Presentations &amp; Publications</ModuleTitleSpan>
-            <ul>
-                <li>One</li>
-                <li>Two</li>
-                <li>Three</li>
-            </ul>
+            <ModuleTitleSpan>{ projects[selected].type }s</ModuleTitleSpan>
+            <Slideshow items={ projects } component={ ProjectCardContainer } updateSelected={ setSelected } options={{}} />
         </ProjectsDiv>
     );
 };

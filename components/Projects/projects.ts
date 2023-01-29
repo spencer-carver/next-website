@@ -6,7 +6,14 @@ export interface Resource {
     url?: string;
 }
 
+export const enum ProjectType {
+    PROJECT = "Project",
+    PRESENTATION = "Presentation",
+    PUBLICATION = "Publication"
+};
+
 export interface Project {
+    type: ProjectType;
     title: string;
     description: string;
     extendedDescription?: string;
@@ -19,6 +26,7 @@ export interface Project {
 const PROJECT_DETAILS: { [key: string]: Project } = {
     website: {
         title: "My Website",
+        type: ProjectType.PROJECT,
         description: "A React.js website built using Amazon Web Services. You're on it right now!",
         extendedDescription: "This website is a living resume and example of what front-end work I do. It also serves as a public location where I can put anything I make that I find interesting, such as puzzles.",
         imageUrl: "/website.png",
@@ -47,6 +55,7 @@ const PROJECT_DETAILS: { [key: string]: Project } = {
     },
     watchdog: {
         title: "Watchdog",
+        type: ProjectType.PROJECT,
         description: "An Amazon Alexa App that can track the comings and goings of family members.",
         extendedDescription: "Watchdog is my first published Alexa skill that relies on Amazon's name parsing and dynamoDB to store a single datapoint for referencing when someone left home.",
         imageUrl: "/watchdog.png",
@@ -70,6 +79,7 @@ const PROJECT_DETAILS: { [key: string]: Project } = {
     },
     mail: {
         title: "Serverless Mail",
+        type: ProjectType.PROJECT,
         description: "Routes carvers.info emails to my personal gmail using the free tiers of multiple AWS services.",
         extendedDescription: "Amazon SES recieves all incoming messages to carvers.info, and then dumps the contents into s3. A lambda function picks up the change, rewrites message headers, and reroutes to gmail.",
         imageUrl: "/email.png",
@@ -84,6 +94,7 @@ const PROJECT_DETAILS: { [key: string]: Project } = {
     },
     blog: {
         title: "Headless Blog",
+        type: ProjectType.PROJECT,
         description: "Blog CMS utilizing free tiers of AWS and GCP to upload content to the site without deployments",
         extendedDescription: "A google cloud service role has access to a folder on my Google Drive and looks for '.md' files. An AWS Lambda function is attached to my site API and can utilize this role to fetch posts.",
         imageUrl: "/blog.png",
@@ -103,6 +114,37 @@ const PROJECT_DETAILS: { [key: string]: Project } = {
             alt: "Github",
             url: "https://github.com/spencer-carver/google-drive-blog-api"
         }]
+    },
+    astrophotography: {
+        title: "Asteroid Lightcurve Analysis at the Oakley Southern Sky Observatory: 2011 November-December",
+        type: ProjectType.PUBLICATION,
+        description: "",
+        imageUrl: "",
+        imageAlt: "",
+        resources: [{
+            url: "https://ui.adsabs.harvard.edu/abs/2012MPBu...39..131M/abstract",
+            image: "",
+            alt: "link to publication"
+        }]
+    },
+    "optical-adc": {
+        title: "Photonic analog-to-digital converter via asynchronous oversampling",
+        type: ProjectType.PUBLICATION,
+        description: "",
+        imageUrl: "",
+        imageAlt: "",
+        resources: [{
+            url: "https://ui.adsabs.harvard.edu/abs/2012SPIE.8397E..0HC/abstract",
+            image: "",
+            alt: "link to publication"
+        }]
+    },
+    "developerweek-2023-talk": {
+        title: "Digital Dim Sum: Mastering Microservices for Many Palates",
+        type: ProjectType.PRESENTATION,
+        description: "",
+        imageUrl: "",
+        imageAlt: "",
     }
 };
 
