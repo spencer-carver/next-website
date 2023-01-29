@@ -5,13 +5,14 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { PageProps } from "../../../@types/global";
 import { API_URL } from "../../../constants/ExternalUrls";
-import fetchFromCache from "../../../utils/cache";
+import fetchData from "../../../utils/fetch";
 import ErrorPage from "../../404";
 import BackNavigation from "../../../components/BackNavigation";
 import { styled } from "../../../styles/stitches";
 import { Post } from "../../blog";
 import MarkdownComponents from "../../../components/Markdown";
 import PuzzleComplete from "../../../components/Puzzle/Complete";
+import useStorage from "../../../utils/useStorage";
 
 function formatName(name: string): string {
     return name.replace(/-/g, " ");
@@ -71,6 +72,7 @@ const ClickHereSpan = styled("span", {
 const PuzzleSolution: FunctionComponent<PageProps> = ({ setLoading }) => {
     const router = useRouter();
     const slug = router.query.puzzle as string[] | undefined;
+    const storage = useStorage("puzzle");
     const [post, setPost] = useState({} as unknown as Post);
     const [loaded, setLoaded] = useState(false);
     const [solution, setSolution] = useState("");
@@ -82,13 +84,13 @@ const PuzzleSolution: FunctionComponent<PageProps> = ({ setLoading }) => {
 
     useEffect(() => {
         try {
-            const solution = localStorage.getItem(puzzleName);
+            const solution = storage.getItem<string>(puzzleName);
             setSolution(solution);
             setShowSolution(!!solution);
         } catch (e) {
             // do nothing
         }
-    }, [puzzleName]);
+    }, [storage, puzzleName]);
 
     useEffect(() => {
         setLoading(true);
@@ -99,7 +101,7 @@ const PuzzleSolution: FunctionComponent<PageProps> = ({ setLoading }) => {
             return;
         }
 
-        fetchFromCache(`${ API_URL }/api/blog/${ puzzleName.replace(":", "-") }`).then((data) => {
+        fetchData(`${ API_URL }/api/blog/${ puzzleName.replace(":", "-") }`).then((data) => {
             if (typeof (data as unknown as Post).content === "string") {
                 setPost(data as unknown as Post);
             }

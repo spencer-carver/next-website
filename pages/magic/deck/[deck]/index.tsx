@@ -5,13 +5,14 @@ import Head from "next/head";
 import ErrorPage from "../../../404";
 import { PageProps } from "../../../../@types/global";
 import { API_URL } from "../../../../constants/ExternalUrls";
-import fetchFromCache from "../../../../utils/cache";
+import fetchData from "../../../../utils/fetch";
 import CardComponent from "../../../../components/Magic/Card";
 import debounce from "lodash.debounce";
 import { lightTheme, styled, yahooGeocitiesTheme } from "../../../../styles/stitches";
 import BackNavigation from "../../../../components/BackNavigation";
 import Guidance from "../../../../components/Magic/Guidance";
 import { DeckView } from "../../../../constants/Magic";
+import useStorage, { migrateItem } from "../../../../utils/useStorage";
 
 export interface Card {
     instance?: number;
@@ -346,6 +347,7 @@ const DeckViewControls = styled("span", {
 const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
     const router = useRouter();
     const { deck: deckName } = router.query;
+    const storage = useStorage("magic");
     const [deck, setDeck] = useState(null as unknown as FormattedDeck);
     const [loaded, setLoaded] = useState(false);
     const [deckView, setDeckView] = useState(DeckView.default);
@@ -354,16 +356,16 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
         const newDeckView = changeEvent.target.value;
 
         try {
-            localStorage.setItem("deckView", newDeckView);
+            storage.setItem("deck-view", newDeckView);
 
             setDeckView(newDeckView);
         } catch (e) {
             // do nothing
         }
-    }, []);
+    }, [storage]);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const debouncedSetLoaded = useCallback(debounce((value: boolean) => setLoading(false), 500), []);
+    const debouncedSetLoaded = useCallback(debounce(() => setLoading(false), 500), []);
 
     useEffect(() => {
         setLoading(true);
@@ -371,9 +373,10 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
             return;
         }
 
-        fetchFromCache(`${ API_URL }/api/mtg/${ deckName }`).then((data) => {
+        fetchData(`${ API_URL }/api/mtg/${ deckName }`).then((data) => {
             try {
-                const preferredView = localStorage.getItem("deckView");
+                migrateItem("deckView", "deck-view");
+                const preferredView = storage.getItem("deck-view");
 
                 if (preferredView) {
                     setDeckView(preferredView as DeckView);
@@ -384,9 +387,9 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
 
             setDeck(massageDeck(data as unknown as MTGDeck));
             setLoaded(true);
-            debouncedSetLoaded(false);
+            debouncedSetLoaded();
         });
-    }, [deckName, debouncedSetLoaded, setLoading]);
+    }, [storage, deckName, debouncedSetLoaded, setLoading]);
 
     if (!loaded) {
         return null;
@@ -430,9 +433,9 @@ const Deck: FunctionComponent<PageProps> = ({ setLoading }) => {
             </Head>
             <BackNavigation to="/magic" />
             <DeckViewControls>
-                <input id={ DeckView.default } type="radio" name="deckView" value={ DeckView.default } checked={ deckView === DeckView.default } onChange={ updateDeckViewPreference } /><label htmlFor={ DeckView.default }>{ DeckView.default }</label>
-                <input id={ DeckView.stacked } type="radio" name="deckView" value={ DeckView.stacked } checked={ deckView === DeckView.stacked } onChange={ updateDeckViewPreference } /><label htmlFor={ DeckView.stacked }>{ DeckView.stacked }</label>
-                { /* <input id={ DeckView.list } type="radio" name="deckView" value={ DeckView.list } checked={ deckView === DeckView.list } onChange={ updateDeckViewPreference } /><label htmlFor={ DeckView.list }>{ DeckView.list }</label> */ }
+                <input id={ DeckView.default } type="radio" name="deck-view" value={ DeckView.default } checked={ deckView === DeckView.default } onChange={ updateDeckViewPreference } /><label htmlFor={ DeckView.default }>{ DeckView.default }</label>
+                <input id={ DeckView.stacked } type="radio" name="deck-view" value={ DeckView.stacked } checked={ deckView === DeckView.stacked } onChange={ updateDeckViewPreference } /><label htmlFor={ DeckView.stacked }>{ DeckView.stacked }</label>
+                { /* <input id={ DeckView.list } type="radio" name="deck-view" value={ DeckView.list } checked={ deckView === DeckView.list } onChange={ updateDeckViewPreference } /><label htmlFor={ DeckView.list }>{ DeckView.list }</label> */ }
             </DeckViewControls>
             <TableDiv>
                 <TitleHeading>{deck.type === "constructed" && <><FormatSpan>{deck.format}</FormatSpan>&nbsp;</>}{TITLE}</TitleHeading>

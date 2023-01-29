@@ -1,6 +1,25 @@
 export const enum PuzzleRounds {
-    ALCHEMY = "Alchemy"
+    ALCHEMY = "alchemy",
+    ENIGMARCH2023 = "enigmarch-2023"
 }
+
+export interface RoundDetails {
+    id: PuzzleRounds;
+    title: string;
+    comingSoon?: boolean;
+}
+
+export const ROUNDS: Record<PuzzleRounds, RoundDetails> = {
+    [PuzzleRounds.ALCHEMY]: {
+        id: PuzzleRounds.ALCHEMY,
+        title: "Alchemy"
+    },
+    [PuzzleRounds.ENIGMARCH2023]: {
+        id: PuzzleRounds.ENIGMARCH2023,
+        title: "#Enigmarch 2023",
+        comingSoon: true
+    }
+};
 
 export interface PuzzleDetails {
     title: string;

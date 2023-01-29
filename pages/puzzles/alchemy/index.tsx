@@ -4,11 +4,12 @@ import { CSS } from "@stitches/react";
 import PuzzleComplete from "../../../components/Puzzle/Complete";
 import { DescriptionDiv, Heading, PuzzleDiv } from "../../../components/Puzzle/common";
 import BackNavigation from "../../../components/BackNavigation";
-import { PuzzleRounds, PUZZLES } from "../../../constants/Puzzle";
+import { PuzzleRounds, PUZZLES, ROUNDS } from "../../../constants/Puzzle";
 import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
 import { Background, CircleFour, CircleFive, CircleSix, CircleSeven, Meta } from "../../../components/Puzzle/circles";
 import RowEntry from "../../../components/Puzzle/RowEntry";
 import Link from "../../../components/Link";
+import useStorage from "../../../utils/useStorage";
 
 const NAME = "Puzzle Round: Alchemy";
 const DESCRIPTION = "A puzzle round themed around Alchemy?";
@@ -67,6 +68,7 @@ const AnswerSpan = styled("span", {
 });
 
 const Puzzles: FunctionComponent = () => {
+    const storage = useStorage("puzzle");
     const [ roundPuzzles ] = useState(Object.keys(PUZZLES).filter((puzzleId: string) => PUZZLES[puzzleId].round === PuzzleRounds.ALCHEMY && !PUZZLES[puzzleId].isMeta));
     const [ numberAnswered, setNumberAnswered ] = useState(0);
     const [ fourElementsAnswered, setFourElementsAnswered ] = useState(false);
@@ -82,19 +84,19 @@ const Puzzles: FunctionComponent = () => {
 
     useEffect(() => {
         setNumberAnswered(
-            roundPuzzles.reduce((count: number, puzzleId: string): number => count + (localStorage.getItem(puzzleId) ? 1 : 0), 0)
-            + (localStorage.getItem("alchemy:alchemy") ? 1 : 0)
+            roundPuzzles.reduce((count: number, puzzleId: string): number => count + (storage.getItem<string>(puzzleId) ? 1 : 0), 0)
+            + (storage.getItem<string>("alchemy:alchemy") ? 1 : 0)
         );
-        setFourElementsAnswered(!!localStorage.getItem("alchemy:four-elements"));
-        setFiveElementsAnswered(!!localStorage.getItem("alchemy:five-elements"));
-        setSixElementsAnswered(!!localStorage.getItem("alchemy:six-elements"));
-        setSevenElementsAnswered(!!localStorage.getItem("alchemy:seven-elements"));
-        setMetaAnswered(!!localStorage.getItem("alchemy:alchemy"));
-    }, [roundPuzzles]);
+        setFourElementsAnswered(!!storage.getItem<string>("alchemy:four-elements"));
+        setFiveElementsAnswered(!!storage.getItem<string>("alchemy:five-elements"));
+        setSixElementsAnswered(!!storage.getItem<string>("alchemy:six-elements"));
+        setSevenElementsAnswered(!!storage.getItem<string>("alchemy:seven-elements"));
+        setMetaAnswered(!!storage.getItem<string>("alchemy:alchemy"));
+    }, [storage, roundPuzzles]);
 
     const clearAnswer = (puzzleId: string): void => {
         try {
-            localStorage.removeItem(puzzleId);
+            storage.removeItem(puzzleId);
 
             switch (puzzleId) {
                 case "alchemy:four-elements":
@@ -140,7 +142,7 @@ const Puzzles: FunctionComponent = () => {
             <BackNavigation to="/puzzles" />
             { AnswerBanner }
             <PuzzleDiv css={ puzzleDivOverrides }>
-                <Heading>{ PuzzleRounds.ALCHEMY }</Heading>
+                <Heading>{ ROUNDS[PuzzleRounds.ALCHEMY].title }</Heading>
                 <DescriptionDiv as="p">
                     Elements transform and combine in different ways.
                 </DescriptionDiv>

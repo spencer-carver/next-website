@@ -3,6 +3,7 @@ import Link from "../../Link";
 import { NEWEST_PUZZLE, PuzzleDetails } from "../../../constants/Puzzle";
 import { styled } from "../../../styles/stitches";
 import { CSS } from "@stitches/react";
+import useStorage from "../../../utils/useStorage";
 
 const NewSpan = styled("span", {
     position: "absolute",
@@ -51,16 +52,17 @@ interface RowEntryProps extends PuzzleDetails {
 }
 
 const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, comingSoon, solutionAvailable, clearAnswer }) => {
+    const storage = useStorage("puzzle");
     const [ puzzleAnswer, setPuzzleAnswer ] = useState(null);
 
     useEffect(() => {
         try {
-            setPuzzleAnswer(localStorage.getItem(puzzleId));
+            setPuzzleAnswer(storage.getItem(puzzleId));
         } catch (e) {
             //do nothing
             console.error(e);
         }
-    }, [puzzleId]);
+    }, [storage, puzzleId]);
 
     const clearPuzzleAnswer = useCallback((): void => {
         clearAnswer(puzzleId);

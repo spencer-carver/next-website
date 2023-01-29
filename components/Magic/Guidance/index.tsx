@@ -8,7 +8,7 @@ import MarkdownComponents from "../../../components/Markdown";
 import Tooltip from "../../Tooltip";
 import CardComponent from "../Card";
 import { CodeComponent } from "react-markdown/lib/ast-to-react";
-import fetchFromCache from "../../../utils/cache";
+import fetchData from "../../../utils/fetch";
 import { API_URL } from "../../../constants/ExternalUrls";
 import { Card } from "../../../pages/magic/deck/[deck]";
 import { DeckView } from "../../../constants/Magic";
@@ -93,7 +93,7 @@ const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, h
             return;
         }
 
-        fetchFromCache(`${ API_URL }/api/blog/${ deckName }`).then((data) => {
+        fetchData(`${ API_URL }/api/blog/${ deckName }`).then((data) => {
             if (typeof (data as unknown as Post).content === "string") {
                 setPost(data as unknown as Post);
             }

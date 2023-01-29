@@ -4,6 +4,7 @@ import { styled, DEFAULT_THEME_NAME, THEMES, lightTheme, yahooGeocitiesTheme } f
 import KebabMenu from "../Icons/KebabMenu";
 import Image from "../Image";
 import { PageProps } from "../../@types/global";
+import useStorage, { StorageHandler } from "../../utils/useStorage";
 
 const MenuDiv = styled("div", {
     position: "absolute",
@@ -52,11 +53,11 @@ const kebabMenuStyles: CSS = {
     }
 };
 
-const getSelectedTheme = (): string => {
+const getSelectedTheme = (storage: StorageHandler): string => {
     let theme;
 
     try {
-        theme = localStorage.getItem("theme");
+        theme = storage.getItem("theme");
     } catch (e) {
         // do nothing
     }
@@ -67,27 +68,28 @@ const getSelectedTheme = (): string => {
 };
 
 const Theme: FunctionComponent<{ setTheme: Function }> = ({ setTheme }) => {
+    const storage = useStorage("settings");
     const [ showMenu, setShowMenu ] = useState(false);
 
     const onClick = (): void => setShowMenu(!showMenu);
 
     useEffect(() => {
-        setTheme(THEMES[getSelectedTheme()])
-    }, [setTheme]);
+        setTheme(THEMES[getSelectedTheme(storage)])
+    }, [storage, setTheme]);
 
     const changeTheme = useCallback((e) => {
         const newTheme = e.target.getAttribute("data-theme");
 
         try {
-            localStorage.setItem("theme", newTheme);
+            storage.setItem<string>("theme", newTheme);
         } catch (e) {
             // do nothing
         }
 
         setTheme(THEMES[newTheme]);
-    }, [setTheme]);
+    }, [storage, setTheme]);
 
-    const selectedTheme = getSelectedTheme();
+    const selectedTheme = getSelectedTheme(storage);
 
     return (
         <>

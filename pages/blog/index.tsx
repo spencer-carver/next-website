@@ -4,7 +4,7 @@ import { PageProps } from "../../@types/global";
 import Link from "../../components/Link";
 import { API_URL } from "../../constants/ExternalUrls";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
-import fetchFromCache from "../../utils/cache";
+import fetchData from "../../utils/fetch";
 import BackNavigation from "../../components/BackNavigation";
 
 const TITLE = "All Blog Posts";
@@ -91,7 +91,7 @@ const BlogIndex: FunctionComponent<PageProps> = ({ setLoading }) => {
 
     useEffect(() => {
         setLoading(true);
-        fetchFromCache(`${ API_URL }/api/blog`).then((data) => {
+        fetchData(`${ API_URL }/api/blog`).then((data) => {
             setPosts(data as unknown as Post[]);
             setLoading(false);
         });

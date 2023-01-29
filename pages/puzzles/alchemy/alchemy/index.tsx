@@ -3,7 +3,7 @@ import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { CSS } from "@stitches/react";
 import { styled } from "../../../../styles/stitches";
 import { Meta } from "../../../../components/Puzzle/circles";
-import { PuzzleRounds } from "../../../../constants/Puzzle";
+import useStorage from "../../../../utils/useStorage";
 
 const metaStyles: CSS = {
     opacity: "0.6",
@@ -54,17 +54,18 @@ const FeederList = styled("ul", {
 });
 
 const PuzzleComponent: FunctionComponent = () => {
+    const storage = useStorage("puzzle");
     const [ fourElementsAnswer, setFourElementsAnswer ] = useState("");
     const [ fiveElementsAnswer, setFiveElementsAnswer ] = useState("");
     const [ sixElementsAnswer, setSixElementsAnswer ] = useState("");
     const [ sevenElementsAnswer, setSevenElementsAnswer ] = useState("");
 
     useEffect(() => {
-        setFourElementsAnswer(localStorage.getItem("alchemy:four-elements"));
-        setFiveElementsAnswer(localStorage.getItem("alchemy:five-elements"));
-        setSixElementsAnswer(localStorage.getItem("alchemy:six-elements"));
-        setSevenElementsAnswer(localStorage.getItem("alchemy:seven-elements"));
-    }, []);
+        setFourElementsAnswer(storage.getItem<string>("alchemy:four-elements"));
+        setFiveElementsAnswer(storage.getItem<string>("alchemy:five-elements"));
+        setSixElementsAnswer(storage.getItem<string>("alchemy:six-elements"));
+        setSevenElementsAnswer(storage.getItem<string>("alchemy:seven-elements"));
+    }, [storage]);
 
     return (
         <PuzzleWrapperComponent name="alchemy:alchemy">
