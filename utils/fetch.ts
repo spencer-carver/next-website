@@ -18,9 +18,9 @@ function invalidateFetchCacheItems() {
     const now = (new Date()).getTime();
     const cachedDataItems = Object.keys(localStorage).filter((name) => name.startsWith("https"));
 
-    for (let item in cachedDataItems) {
+    cachedDataItems.map((item) => {
         try {
-            const { time } = JSON.parse(localStorage.get(item));
+            const { time } = JSON.parse(localStorage.getItem(item));
 
             if (!time || now - time > BROWSER_CACHE_TTL) {
                 localStorage.removeItem(item);
@@ -28,7 +28,7 @@ function invalidateFetchCacheItems() {
         } catch (e) {
             // do nothing
         }
-    }
+    });
 }
 
 export function invalidateExpiredCacheItems() {
