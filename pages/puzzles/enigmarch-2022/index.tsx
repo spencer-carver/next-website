@@ -63,7 +63,7 @@ const WordleGenerator: (encodedAnswer: string, existingData: string[][]) => Func
 const Picture: (url: string) => FunctionComponent<PuzzleStepProps> = (url) => function PicturePuzzle({ step, completeStep }) {
     return (
         <DailyPuzzleDiv>
-            <Image src={ url } alt="Today&apos;s Image" width="300px" height="300px" />
+            <Image src={ url } alt="Today&apos;s Image" width={ 300 } height={ 300 } />
             <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" />
         </DailyPuzzleDiv>
     );

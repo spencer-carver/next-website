@@ -181,7 +181,7 @@ const Flipcard: FunctionComponent<FlipcardProps> = (props) => {
                 <FlipCardFrontDiv css={ selected ? flipCardFrontEnabledStyles : flipCardFrontDisabledStyles }>
                     <EarmarkDiv css={ selected ? theme : earmarkDisabledStyles } />
                     <ImageWrapperDiv><ImageContainerDiv>
-                        <Image src={ imageSrc } alt={ imageAlt } height="100px" width="100px" /></ImageContainerDiv>
+                        <Image src={ imageSrc } alt={ imageAlt } height={ 100 } width={ 100 } /></ImageContainerDiv>
                     </ImageWrapperDiv>
                 </FlipCardFrontDiv>
                 <FlipCardBackDiv css={ theme }>{ children }</FlipCardBackDiv>

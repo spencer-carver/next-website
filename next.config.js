@@ -11,7 +11,7 @@ const imgixImageLoader = {
 };
 
 module.exports = (phase, { defaultConfig }) => {
-    return withBundleAnalyzer({
+    const config = withBundleAnalyzer({
         ...defaultConfig,
         images: imgixImageLoader,
         ...(phase === PHASE_DEVELOPMENT_SERVER ? {
@@ -28,4 +28,18 @@ module.exports = (phase, { defaultConfig }) => {
             pageExtensions: defaultConfig.pageExtensions.map((extension) => `(?<!dev\.)${ extension }`),
         })
     });
+
+    // @next/bundle-analyzer adds values which next complains about
+    delete config.webpackDevMiddleware;
+    delete config.configOrigin;
+    delete config.target;
+
+    // next itself adds some defaults that it complains about
+    delete config.amp.canonicalBase;
+    delete config.assetPrefix;
+    delete config.experimental.outputFileTracingRoot;
+    delete config.i18n;
+    delete config.reactStrictMode;
+
+    return config;
 };

@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { HeadingComponent, TableCellComponent } from "react-markdown/lib/ast-to-react";
+import { HeadingComponent, TableDataCellComponent, TableHeaderCellComponent } from "react-markdown/lib/ast-to-react";
 import { NormalComponents } from "react-markdown/lib/complex-types";
 import { styled } from "../../styles/stitches";
 import Link from "../Link";
@@ -104,8 +104,8 @@ const components = {
     h2: Heading2 as unknown as HeadingComponent,
     h3: Heading3 as unknown as HeadingComponent,
     table: Table as unknown as NormalComponents["table"],
-    th: TableHeading as unknown as TableCellComponent,
-    td: TableCell as unknown as TableCellComponent,
+    th: TableHeading as unknown as TableHeaderCellComponent,
+    td: TableCell as unknown as TableDataCellComponent,
     a: BlogLink as unknown as NormalComponents["a"],
     pre: Pre as unknown as NormalComponents["pre"],
     code: Code as unknown as NormalComponents["code"],

@@ -1,4 +1,4 @@
-import NextImage, { ImageProps } from "next/image";
+import NextImage, { ImageProps } from "next/legacy/image";
 import { FunctionComponent } from "react";
 
 function skipOptimization(props): boolean {

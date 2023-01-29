@@ -88,7 +88,7 @@ interface CheeseProp {
 const Image: FunctionComponent<CheeseProp> = ({ cheese, alt }) => {
     return (
         <ImageContainerDiv>
-            <ImageComponent src={ `/puzzles/cheese-sampler/${ cheese }.jpg` } alt={ alt } width="200px" height="200px" />
+            <ImageComponent src={ `/puzzles/cheese-sampler/${ cheese }.jpg` } alt={ alt } width={ 200 } height={ 200 } />
             <LabelSpan>{ CHEESES[cheese] }</LabelSpan>
         </ImageContainerDiv>
     );

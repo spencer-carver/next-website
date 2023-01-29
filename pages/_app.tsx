@@ -5,10 +5,10 @@ import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import { darkTheme, defaultTheme, lightTheme, THEMES } from "../styles/stitches";
 import { invalidateExpiredCacheItems } from "../utils/fetch";
-import StorageHandler from "../utils/useStorage";
+import useStorage from "../utils/useStorage";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-    const [ storage ] = useState(new StorageHandler("settings"));
+    const storage = useStorage("settings");
     const [theme, setTheme] = useState(defaultTheme);
     const [loading, setLoading] = useState(false);
 
