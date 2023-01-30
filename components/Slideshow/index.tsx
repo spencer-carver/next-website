@@ -120,15 +120,16 @@ interface SlideshowProps {
     items: Array<{ [key: string]: any }>;
     component?: FunctionComponent<any>;
     updateSelected?: (index: number) => void;
+    startingIndex?: number;
     options: SlideshowOptions;
 }
 
-const Slideshow: FunctionComponent<SlideshowProps> = ({ items, component: Component = ImageSlide, updateSelected, options }) => {
+const Slideshow: FunctionComponent<SlideshowProps> = ({ items, component: Component = ImageSlide, updateSelected, startingIndex, options }) => {
     const {
         isHero = false
     } = options;
 
-    const [ selected, setInternalSelected ] = useState(0);
+    const [ selected, setInternalSelected ] = useState(startingIndex || 0);
 
     const setSelected = useCallback((nextIndex: number) => {
         setInternalSelected(nextIndex);
@@ -174,6 +175,10 @@ const Slideshow: FunctionComponent<SlideshowProps> = ({ items, component: Compon
 
         return (): void => clearInterval(window.slideshowTimer);
     });
+
+    useEffect(() => {
+        setSelected(startingIndex);
+    }, [setSelected, startingIndex]);
 
     return (
         <>

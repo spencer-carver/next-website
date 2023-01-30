@@ -1,7 +1,18 @@
-import { ALEXA_LOGO, AWS_LOGO, GCP_LOGO, GITHUB_LOGO, JS_LOGO, NEXT_JS_LOGO, PYTHON_LOGO, REACT_LOGO, STITCHES_LOGO, TS_LOGO } from "../../constants/Logos";
+import {
+    ALEXA_LOGO,
+    AWS_LOGO,
+    GCP_LOGO,
+    GITHUB_LOGO,
+    JS_LOGO,
+    NEXT_JS_LOGO,
+    PYTHON_LOGO,
+    REACT_LOGO,
+    STITCHES_LOGO,
+    TS_LOGO
+} from "../../constants/Logos";
 
 export interface Resource {
-    image: string;
+    image?: string;
     alt: string;
     url?: string;
 }
@@ -17,8 +28,8 @@ export interface Project {
     title: string;
     description: string;
     extendedDescription?: string;
-    imageUrl: string;
-    imageAlt: string;
+    imageUrl?: string;
+    imageAlt?: string;
     utilizes?: Array<Resource>;
     resources?: Array<Resource>;
 }
@@ -118,33 +129,30 @@ const PROJECT_DETAILS: { [key: string]: Project } = {
     astrophotography: {
         title: "Asteroid Lightcurve Analysis at the Oakley Southern Sky Observatory: 2011 November-December",
         type: ProjectType.PUBLICATION,
-        description: "",
-        imageUrl: "",
-        imageAlt: "",
+        description: "Published in The Minor Planet Bulletin July 2012.",
         resources: [{
             url: "https://ui.adsabs.harvard.edu/abs/2012MPBu...39..131M/abstract",
-            image: "",
-            alt: "link to publication"
+            alt: "Publication"
         }]
     },
     "optical-adc": {
-        title: "Photonic analog-to-digital converter via asynchronous oversampling",
+        title: "Photonic Analog-to-Digital Converter via Asynchronous Oversampling",
         type: ProjectType.PUBLICATION,
-        description: "",
-        imageUrl: "",
-        imageAlt: "",
+        description: "Poster presentation at SPIE Sensing and Security Conference April 2012.",
         resources: [{
             url: "https://ui.adsabs.harvard.edu/abs/2012SPIE.8397E..0HC/abstract",
-            image: "",
-            alt: "link to publication"
+            alt: "Publication"
         }]
     },
     "developerweek-2023-talk": {
         title: "Digital Dim Sum: Mastering Microservices for Many Palates",
         type: ProjectType.PRESENTATION,
-        description: "",
-        imageUrl: "",
-        imageAlt: "",
+        description: "Inspired by the Epicurious “4 Levels” video series, presented at DeveloperWeek Conference February 2023.",
+        extendedDescription: "This talk aims to equate different styles of building microservice architectures to the “Amateur”, “Home Chef”, and “Professional” labels, while also providing a compare-and-contrast view from the perspective of the “Food Scientist”.",
+        resources: [{
+            alt: "Presentation",
+            url: "https://dumpling.academy"
+        }]
     }
 };
 

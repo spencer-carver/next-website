@@ -23,7 +23,7 @@ const SectionDiv = styled("div", {
     }
 });
 
-const ControlsDiv = styled("div", {
+export const ControlsDiv = styled("div", {
     width: "280px",
     margin: "20px",
     textAlign: "center",
@@ -36,7 +36,7 @@ const ControlsDiv = styled("div", {
     }
 });
 
-const SelectorSpan = styled("span", {
+export const SelectorSpan = styled("span", {
     fontSize: "36px",
     color: "$onSurface",
     backgroundColor: "transparent"
