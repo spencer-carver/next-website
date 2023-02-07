@@ -45,17 +45,17 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
         <>
             <Head>
                 <title>{ NAME }</title>
-                <link rel="canonical" href="https://spencer.carvers.info" />
+                <link rel="canonical" href={ process.env.NEXT_PUBLIC_SITE_URL } />
                 <meta name="description" content={ DESCRIPTION } />
                 <meta name="homepage" content="true" />
                 <meta property="og:site_name" content={ NAME } />
                 <meta property="og:description" content={ DESCRIPTION } />
                 <meta property="og:title" content={ NAME } />
-                <meta property="og:url" content="https://spencer.carvers.info" />
-                <meta property="og:image" content="https://spencer.carvers.info/seo.jpg" />
+                <meta property="og:url" content={ process.env.NEXT_PUBLIC_SITE_URL } />
+                <meta property="og:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo.jpg` } />
                 <meta name="twitter:description" content={ DESCRIPTION } />
                 <meta name="twitter:title" content={ NAME } />
-                <meta name="twitter:image" content="https://spencer.carvers.info/seo.jpg" />
+                <meta name="twitter:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo.jpg` } />
             </Head>
             <Hero options={{ overlayLogo: true, hideMobile: true }} />
             <PageDiv>

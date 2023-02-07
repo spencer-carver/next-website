@@ -211,17 +211,17 @@ const Puzzles: FunctionComponent = () => {
         <>
             <Head>
                 <title>{ NAME }</title>
-                <link rel="canonical" href="https://spencer.carvers.info/puzzles/enigmarch-2023" />
+                <link rel="canonical" href={ `${ process.env.NEXT_PUBLIC_SITE_URL }/puzzles/enigmarch-2023` } />
                 <meta name="description" content={ DESCRIPTION } />
                 <meta name="homepage" content="false" />
                 <meta property="og:site_name" content={ NAME } />
                 <meta property="og:description" content={ DESCRIPTION } />
                 <meta property="og:title" content={ NAME } />
-                <meta property="og:url" content="https://spencer.carvers.info/puzzles/enigmarch-2023" />
-                <meta property="og:image" content="https://spencer.carvers.info/seo-puzzle.jpg" />
+                <meta property="og:url" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/puzzles/enigmarch-2023` } />
+                <meta property="og:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo-puzzle.jpg` } />
                 <meta name="twitter:description" content={ DESCRIPTION } />
                 <meta name="twitter:title" content={ NAME } />
-                <meta name="twitter:image" content="https://spencer.carvers.info/seo-puzzle.jpg" />
+                <meta name="twitter:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo-puzzle.jpg` } />
             </Head>
             <BackNavigation to="/puzzles" />
             { AnswerBanner }
