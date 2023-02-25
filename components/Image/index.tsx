@@ -8,7 +8,7 @@ function skipOptimization(props): boolean {
     }
 
     // don't optimize images from domains I don't control
-    if (!(props.src.startsWith("https://spencer.carvers.info") || props.src.indexOf("/") === 0)) {
+    if (!(props.src.startsWith(process.env.NEXT_PUBLIC_SITE_URL) || props.src.indexOf("/") === 0)) {
         return true;
     }
 

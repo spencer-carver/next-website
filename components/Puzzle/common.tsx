@@ -86,17 +86,17 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
         <>
             <Head>
                 <title>{ title }</title>
-                <link rel="canonical" href={ `https://spencer.carvers.info/puzzles/${ path }` } />
+                <link rel="canonical" href={ `${ process.env.NEXT_PUBLIC_SITE_URL }/puzzles/${ path }` } />
                 <meta name="description" content={ description } />
                 <meta name="homepage" content="false" />
                 <meta property="og:site_name" content={ title } />
                 <meta property="og:description" content={ description } />
                 <meta property="og:title" content={ title } />
-                <meta property="og:url" content={ `https://spencer.carvers.info/puzzles/${ path }` } />
-                <meta property="og:image" content={ "https://spencer.carvers.info/seo-puzzle.jpg" } />
+                <meta property="og:url" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/puzzles/${ path }` } />
+                <meta property="og:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo-puzzle.jpg` } />
                 <meta name="twitter:description" content={ description } />
                 <meta name="twitter:title" content={ title } />
-                <meta name="twitter:image" content={ "https://spencer.carvers.info/seo-puzzle.jpg" } />
+                <meta name="twitter:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo-puzzle.jpg` } />
             </Head>
             { AnswerBanner }
             <BackNavigation to={ `/puzzles${ round ? `/${ round.toLowerCase() }` : "" }` } />

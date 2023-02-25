@@ -120,17 +120,17 @@ const Magic: FunctionComponent = () => {
         <>
             <Head>
                 <title>{ TITLE }</title>
-                <link rel="canonical" href="https://spencer.carvers.info/magic" />
+                <link rel="canonical" href={ `${ process.env.NEXT_PUBLIC_SITE_URL }/magic` } />
                 <meta name="description" content={ DESCRIPTION } />
                 <meta name="homepage" content="false" />
                 <meta property="og:site_name" content={ TITLE } />
                 <meta property="og:description" content={ DESCRIPTION } />
                 <meta property="og:title" content={ TITLE } />
-                <meta property="og:url" content="https://spencer.carvers.info/magic" />
-                <meta property="og:image" content="https://spencer.carvers.info/seo.jpg" />
+                <meta property="og:url" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/magic` } />
+                <meta property="og:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo.jpg` } />
                 <meta name="twitter:description" content={ DESCRIPTION } />
                 <meta name="twitter:title" content={ TITLE } />
-                <meta name="twitter:image" content="https://spencer.carvers.info/seo.jpg" />
+                <meta name="twitter:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo.jpg` } />
             </Head>
             <BackNavigation to="/" />
             <ContentDiv>

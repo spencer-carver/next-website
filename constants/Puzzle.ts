@@ -30,7 +30,7 @@ export interface PuzzleDetails {
     solutionAvailable?: boolean;
 }
 
-export const NEWEST_PUZZLE = "alchemy:seven-elements";
+export const NEWEST_PUZZLE = "130-bpm";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -59,6 +59,10 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "cheese-sampler": {
         title: "Cheese Sampler",
         description: "My themed parody group is wrappping up it's first (and only) tour at our biggest venue ever!"
+    },
+    "130-bpm": {
+        title: "130 BPM",
+        description: ""
     },
     "x-marks-the-spot": {
         title: "❌ Marks the Spot",

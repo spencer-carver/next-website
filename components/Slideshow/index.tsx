@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FunctionComponent } from "react";
+import React, { useState, useEffect, FunctionComponent, useCallback } from "react";
 import { CSS } from "@stitches/react";
 import Image from "../Image";
 import { styled, lightTheme } from "../../styles/stitches";
@@ -119,17 +119,24 @@ interface SlideshowOptions {
 interface SlideshowProps {
     items: Array<{ [key: string]: any }>;
     component?: FunctionComponent<any>;
+    updateSelected?: (index: number) => void;
+    startingIndex?: number;
     options: SlideshowOptions;
 }
 
-const Slideshow: FunctionComponent<SlideshowProps> = ({ items, component: Component = ImageSlide, options }) => {
+const Slideshow: FunctionComponent<SlideshowProps> = ({ items, component: Component = ImageSlide, updateSelected, startingIndex, options }) => {
     const {
         isHero = false
     } = options;
 
-    const [ selected, setSelected ] = useState(0);
+    const [ selected, setInternalSelected ] = useState(startingIndex || 0);
 
-    function nextItem(): void {
+    const setSelected = useCallback((nextIndex: number) => {
+        setInternalSelected(nextIndex);
+        updateSelected?.(nextIndex);
+    }, [updateSelected]);
+
+    const nextItem = useCallback(() => {
         const newIndex = selected === items.length - 1
             ? 0
             : selected + 1;
@@ -142,9 +149,9 @@ const Slideshow: FunctionComponent<SlideshowProps> = ({ items, component: Compon
 
         clearInterval(window.slideshowTimer);
         window.slideshowTimer = setInterval(nextItem, 2 * TRANSITION_TIME);
-    }
+    }, [isHero, items, selected, setSelected]);
 
-    function previousItem(): void {
+    const previousItem = useCallback(() => {
         const newIndex = selected === 0
             ? items.length - 1
             : selected - 1;
@@ -157,7 +164,7 @@ const Slideshow: FunctionComponent<SlideshowProps> = ({ items, component: Compon
 
         clearInterval(window.slideshowTimer);
         window.slideshowTimer = setInterval(previousItem, 2 * TRANSITION_TIME);
-    }
+    }, [isHero, items, selected, setSelected]);
 
     useEffect(() => {
         if (!isHero) {
@@ -168,6 +175,10 @@ const Slideshow: FunctionComponent<SlideshowProps> = ({ items, component: Compon
 
         return (): void => clearInterval(window.slideshowTimer);
     });
+
+    useEffect(() => {
+        setSelected(startingIndex);
+    }, [setSelected, startingIndex]);
 
     return (
         <>

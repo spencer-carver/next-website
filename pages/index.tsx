@@ -45,23 +45,30 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
         <>
             <Head>
                 <title>{ NAME }</title>
-                <link rel="canonical" href="https://spencer.carvers.info" />
+                <link rel="canonical" href={ process.env.NEXT_PUBLIC_SITE_URL } />
                 <meta name="description" content={ DESCRIPTION } />
                 <meta name="homepage" content="true" />
                 <meta property="og:site_name" content={ NAME } />
                 <meta property="og:description" content={ DESCRIPTION } />
                 <meta property="og:title" content={ NAME } />
-                <meta property="og:url" content="https://spencer.carvers.info" />
-                <meta property="og:image" content="https://spencer.carvers.info/seo.jpg" />
+                <meta property="og:url" content={ process.env.NEXT_PUBLIC_SITE_URL } />
+                <meta property="og:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo.jpg` } />
                 <meta name="twitter:description" content={ DESCRIPTION } />
                 <meta name="twitter:title" content={ NAME } />
-                <meta name="twitter:image" content="https://spencer.carvers.info/seo.jpg" />
+                <meta name="twitter:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo.jpg` } />
             </Head>
             <Hero options={{ overlayLogo: true, hideMobile: true }} />
             <PageDiv>
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>February 25, 2023</SubHeading>
+                <List>
+                    <ListItem>Updated Page: <Link href="/about" component={ A }>About Me</Link></ListItem>
+                    <ListItem>New Puzzle: <Link href="/puzzles/130-bpm" component={ A }>130 BPM</Link></ListItem>
+                </List>
+                <P>Section for conference talks / publications added.</P>
+                <P>A new puzzle has been added! Right before #Enigmarch as well (where I plan to add 31 puzzles over 31 days). This puzzle is the implementation of an idea I have had for a long time, with heavy inspiration from a particularly wonderful MIT Mysteryhunt puzzle from 2020.</P>
                 <SubHeading>January 28, 2023</SubHeading>
                 <List>
                     <ListItem>Updated Page: <Link href="/puzzles" component={ A }>Puzzle landing page</Link></ListItem>

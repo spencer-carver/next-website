@@ -17,7 +17,7 @@ export default class MyDocument extends Document {
                     </noscript>
                     <link href="https://fonts.googleapis.com/css?family=Lato&amp;display=swap" rel="stylesheet" />
                     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&amp;display=swap" rel="stylesheet" />
-                    <link rel="shortcut icon" href="https://spencer.carvers.info/favicon.ico" />
+                    <link rel="shortcut icon" href={ `${ process.env.NEXT_PUBLIC_SITE_URL }/favicon.ico` } />
                     <meta name="referrer" content="unsafe-url" />
                     <meta name="referrer" content="always" />
                     <meta property="og:type" content="website" />

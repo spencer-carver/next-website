@@ -60,14 +60,12 @@ const tooltipWrapperStyles: CSS = {
 };
 
 const tooltipContainerStyles: CSS = {
-    display: "none",
     backgroundColor: "transparent",
     bottom: "25px",
     padding: "0",
     borderRadius: "7px",
     boxShadow: "0px 0px 5px 3px $onBackground",
     "@lg": {
-        display: "initial",
         borderRadius: "9px"
     },
     "@xxl": {
