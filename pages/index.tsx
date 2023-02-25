@@ -62,11 +62,13 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
-                <SubHeading>February XX, 2023</SubHeading>
+                <SubHeading>February 25, 2023</SubHeading>
                 <List>
                     <ListItem>Updated Page: <Link href="/about" component={ A }>About Me</Link></ListItem>
+                    <ListItem>New Puzzle: <Link href="/puzzles/130-bpm" component={ A }>130 BPM</Link></ListItem>
                 </List>
                 <P>Section for conference talks / publications added.</P>
+                <P>A new puzzle has been added! Right before #Enigmarch as well (where I plan to add 31 puzzles over 31 days). This puzzle is the implementation of an idea I have had for a long time, with heavy inspiration from a particularly wonderful MIT Mysteryhunt puzzle from 2020.</P>
                 <SubHeading>January 28, 2023</SubHeading>
                 <List>
                     <ListItem>Updated Page: <Link href="/puzzles" component={ A }>Puzzle landing page</Link></ListItem>

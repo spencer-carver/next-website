@@ -151,7 +151,7 @@ const PROJECT_DETAILS: { [key: string]: Project } = {
         extendedDescription: "This talk aims to equate different styles of building microservice architectures to the “Amateur”, “Home Chef”, and “Professional” labels, while also providing a compare-and-contrast view from the perspective of the “Food Scientist”.",
         resources: [{
             alt: "Presentation",
-            url: "https://dumpling.academy"
+            url: "https://dumpling.academy/developerweek-2023/slides.pdf"
         }]
     }
 };
