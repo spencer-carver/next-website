@@ -177,7 +177,7 @@ const Slideshow: FunctionComponent<SlideshowProps> = ({ items, component: Compon
     });
 
     useEffect(() => {
-        setSelected(startingIndex);
+        setSelected(startingIndex || 0);
     }, [setSelected, startingIndex]);
 
     return (
