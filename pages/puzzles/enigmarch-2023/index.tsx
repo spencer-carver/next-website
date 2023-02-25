@@ -8,6 +8,7 @@ import { PuzzleRounds, PUZZLES, ROUNDS } from "../../../constants/Puzzle";
 import RowEntry from "../../../components/Puzzle/RowEntry";
 import PuzzleComplete from "../../../components/Puzzle/Complete";
 import Head from "next/head";
+import Link from "../../../components/Link";
 
 const NAME = "Puzzle Round: #Enigmarch 2023";
 const DESCRIPTION = "Coming soon!";
@@ -132,10 +133,6 @@ const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onCl
                                 <tr key={ rowIndex }>
                                     {
                                         row.map((cell, columnIndex) => {
-                                            if (rowIndex === 4 && columnIndex === 6) {
-                                                return <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } css={{ fontSize: "9px", "&:hover": { cursor: "pointer" } }} onClick={ clearCalendar }>Clear Calendar</TableCell>
-                                            }
-
                                             if (!cell) {
                                                 return <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } />
                                             }
@@ -147,7 +144,13 @@ const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onCl
                                             };
 
                                             return (
-                                                <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } role="button" onClick={ () => onClickDate(cell) } title={ `March ${ cell }` } css={ additionalStyles }><DayOfMonth>{cell}</DayOfMonth>{intermediates[cell]}</TableCell>
+                                                <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } role="button" onClick={ () => onClickDate(cell) } title={ `March ${ cell }` } css={ additionalStyles }>
+                                                    <Link href={ `/puzzles/enigmarch-2023/march-${ cell }` }>
+                                                        <div style={{ width: "100%", height: "100%" }}>
+                                                            <DayOfMonth>{cell}</DayOfMonth>{intermediates[cell]}
+                                                        </div>
+                                                    </Link>
+                                                </TableCell>
                                             );
                                         })
                                     }
@@ -168,7 +171,6 @@ const Puzzles: FunctionComponent = () => {
     const [ metaAnswered, setMetaAnswered ] = useState(false);
     const [ AnswerBanner, setAnswerBanner ] = useState(null);
     const [intermediates, setIntermediates] = useState(new Array(32));
-    const [activeStep, setActiveStep] = useState(0);
     const metaUnlocked = !!intermediates[31];
 
     useEffect(() => {
@@ -231,8 +233,8 @@ const Puzzles: FunctionComponent = () => {
                     <FinalAnswerComponent
                         storage={ storage }
                         intermediates={ intermediates }
-                        activeDay={ activeStep }
-                        onClickDate={ setActiveStep }
+                        activeDay={ 0 }
+                        onClickDate={ (day) => window.location.href = `/puzzles/enigmarch-2023/march-${ day }` }
                         setIntermediates={ setIntermediates }
                     />
                 </div>

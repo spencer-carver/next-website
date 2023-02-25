@@ -30,7 +30,7 @@ export interface PuzzleDetails {
     solutionAvailable?: boolean;
 }
 
-export const NEWEST_PUZZLE = "130-bpm";
+export const NEWEST_PUZZLE = "enigmarch-2023:march-1";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -102,5 +102,17 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         round: PuzzleRounds.ALCHEMY,
         description: "Find your inner fire.",
         isMeta: true
+    },
+    "enigmarch-2023:march-1": {
+        title: "March 1: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD"
+    },
+    "enigmarch-2023:march-31": {
+        title: "March 31: Meta",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        isMeta: true,
+        comingSoon: true
     }
 };
