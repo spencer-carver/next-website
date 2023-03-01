@@ -49,9 +49,10 @@ const AnswerSpan = styled("span", {
 interface RowEntryProps extends PuzzleDetails {
     puzzleId: string;
     clearAnswer: Function;
+    showComingSoon?: boolean;
 }
 
-const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, comingSoon, solutionAvailable, clearAnswer }) => {
+const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, comingSoon, solutionAvailable, clearAnswer, showComingSoon }) => {
     const storage = useStorage("puzzle");
     const [ puzzleAnswer, setPuzzleAnswer ] = useState(null);
 
@@ -69,13 +70,14 @@ const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, c
         setPuzzleAnswer(null);
     }, [clearAnswer, puzzleId]);
 
-    if (comingSoon) {
+    if (comingSoon && !showComingSoon) {
         return;
     }
 
     return (
         <li style={{ position: "relative" }}>
             { puzzleId === NEWEST_PUZZLE && <NewSpan>New</NewSpan> }
+            { comingSoon && <NewSpan css={{ color: "$primary" }}>Coming Soon</NewSpan> }
             { solutionAvailable && !puzzleAnswer && <NewSpan css={ solutionOverrides }>Available</NewSpan> }
             <Link href={ `/puzzles/${ puzzleId.replaceAll(":", "/") }` }>{ isMeta ? <b>{title}</b>: title }</Link>
             { puzzleAnswer ? (

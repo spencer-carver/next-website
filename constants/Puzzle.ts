@@ -30,7 +30,7 @@ export interface PuzzleDetails {
     solutionAvailable?: boolean;
 }
 
-export const NEWEST_PUZZLE = "130-bpm";
+export const NEWEST_PUZZLE = "enigmarch-2023:march-1";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -102,5 +102,191 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         round: PuzzleRounds.ALCHEMY,
         description: "Find your inner fire.",
         isMeta: true
+    },
+    "enigmarch-2023:march-1": {
+        title: "March 1: KEY",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "A mystery cipher? you'll be running around unless you find a tutorial."
+    },
+    "enigmarch-2023:march-2": {
+        title: "March 2: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-3": {
+        title: "March 3: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-4": {
+        title: "March 4: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-5": {
+        title: "March 5: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-6": {
+        title: "March 6: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-7": {
+        title: "March 7: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-8": {
+        title: "March 8: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-9": {
+        title: "March 9: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-10": {
+        title: "March 10: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-11": {
+        title: "March 11: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-12": {
+        title: "March 12: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-13": {
+        title: "March 13: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-14": {
+        title: "March 14: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-15": {
+        title: "March 15: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-16": {
+        title: "March 16: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-17": {
+        title: "March 17: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-18": {
+        title: "March 18: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-19": {
+        title: "March 19: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-20": {
+        title: "March 20: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-21": {
+        title: "March 21: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-22": {
+        title: "March 22: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-23": {
+        title: "March 23: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-24": {
+        title: "March 24: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-25": {
+        title: "March 25: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-26": {
+        title: "March 26: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-27": {
+        title: "March 27: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-28": {
+        title: "March 28: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-29": {
+        title: "March 29: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-30": {
+        title: "March 30: ???",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        comingSoon: true
+    },
+    "enigmarch-2023:march-31": {
+        title: "March 31: Meta",
+        round: PuzzleRounds.ENIGMARCH2023,
+        description: "TBD",
+        isMeta: true,
+        comingSoon: true
     }
 };

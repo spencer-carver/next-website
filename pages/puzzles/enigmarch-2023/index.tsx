@@ -8,6 +8,7 @@ import { PuzzleRounds, PUZZLES, ROUNDS } from "../../../constants/Puzzle";
 import RowEntry from "../../../components/Puzzle/RowEntry";
 import PuzzleComplete from "../../../components/Puzzle/Complete";
 import Head from "next/head";
+import Link from "../../../components/Link";
 
 const NAME = "Puzzle Round: #Enigmarch 2023";
 const DESCRIPTION = "Coming soon!";
@@ -99,17 +100,7 @@ const buttonCellStyles: CSS = {
     }
 };
 
-const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onClickDate, storage }) => {
-    function clearCalendar() {
-        try {
-            storage.removeItem("enigmarch-2023-intermediates");
-
-            setIntermediates(Array(32));
-        } catch (e) {
-            // do nothing
-        }
-    }
-
+const FinalAnswerComponent = ({ intermediates }) => {
     return (
         <WrapperDiv>
             <br />
@@ -132,22 +123,23 @@ const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onCl
                                 <tr key={ rowIndex }>
                                     {
                                         row.map((cell, columnIndex) => {
-                                            if (rowIndex === 4 && columnIndex === 6) {
-                                                return <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } css={{ fontSize: "9px", "&:hover": { cursor: "pointer" } }} onClick={ clearCalendar }>Clear Calendar</TableCell>
-                                            }
-
                                             if (!cell) {
                                                 return <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } />
                                             }
 
                                             const additionalStyles = {
                                                 ...buttonCellStyles,
-                                                ...(activeDay === cell ? { backgroundColor: "$surface02", color: "$onSurface" } : {}),
-                                                ...(intermediates[cell] ? { backgroundColor: "$secondary", color: "$onSecondary" } : {})
+                                                ...(intermediates[cell] ? { backgroundColor: "$secondary", color: "$onSecondary", "&:hover": { backgroundColor: "$secondary" } } : {})
                                             };
 
                                             return (
-                                                <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } role="button" onClick={ () => onClickDate(cell) } title={ `March ${ cell }` } css={ additionalStyles }><DayOfMonth>{cell}</DayOfMonth>{intermediates[cell]}</TableCell>
+                                                <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } title={ `March ${ cell }` } css={ additionalStyles }>
+                                                    <Link href={ `/puzzles/enigmarch-2023/march-${ cell }` }>
+                                                        <div style={{ width: "100%", height: "100%" }}>
+                                                            <DayOfMonth>{cell}</DayOfMonth>
+                                                        </div>
+                                                    </Link>
+                                                </TableCell>
                                             );
                                         })
                                     }
@@ -165,41 +157,29 @@ const Puzzles: FunctionComponent = () => {
     const storage = useStorage("puzzle");
     const [ roundPuzzles ] = useState(Object.keys(PUZZLES).filter((puzzleId: string) => PUZZLES[puzzleId].round === PuzzleRounds.ENIGMARCH2023 && !PUZZLES[puzzleId].isMeta));
     const [ numberAnswered, setNumberAnswered ] = useState(0);
-    const [ metaAnswered, setMetaAnswered ] = useState(false);
     const [ AnswerBanner, setAnswerBanner ] = useState(null);
     const [intermediates, setIntermediates] = useState(new Array(32));
-    const [activeStep, setActiveStep] = useState(0);
-    const metaUnlocked = !!intermediates[31];
-
-    useEffect(() => {
-        try {
-            const storedIntermediates = storage.getItem<string[]>("enigmarch-2023-intermediates");
-
-            if (!storedIntermediates) {
-                return;
-            }
-
-            setIntermediates(storedIntermediates);
-        } catch (e) {
-            //do nothing
-        }
-    }, [storage]);
 
     useEffect(() => {
         setAnswerBanner(<PuzzleComplete answer={ `SOLVED: ${ numberAnswered }` } />);
     }, [numberAnswered]);
 
     useEffect(() => {
-        setNumberAnswered(
-            roundPuzzles.reduce((count: number, puzzleId: string): number => count + (storage.getItem<string>(puzzleId) ? 1 : 0), 0)
-            + (storage.getItem<string>("enigmarch-2023:march-31") ? 1 : 0)
-        );
-        setMetaAnswered(!!storage.getItem<string>("enigmarch-2023:march-31"));
+        const puzzleAnswers = roundPuzzles.map((puzzleId: string) => storage.getItem<string>(puzzleId));
+        puzzleAnswers.unshift(null);
+        puzzleAnswers.push(storage.getItem<string>("enigmarch-2023:march-31"));
+
+        setIntermediates(puzzleAnswers);
+        setNumberAnswered(puzzleAnswers.filter((answer) => !!answer).length);
     }, [storage, roundPuzzles]);
 
     const clearAnswer = (puzzleId: string): void => {
         try {
             storage.removeItem(puzzleId);
+
+            const parts = puzzleId.split("-");
+            intermediates[parts[parts.length - 1]] = undefined;
+            setIntermediates(intermediates);
         } catch (e) {
             //do nothing
         }
@@ -228,20 +208,14 @@ const Puzzles: FunctionComponent = () => {
             <PuzzleDiv css={ puzzleDivOverrides }>
                 <Heading>{ ROUNDS[PuzzleRounds.ENIGMARCH2023].title }</Heading>
                 <div style={{ position: "relative", maxWidth: "740px", paddingLeft: "10px" }}>
-                    <FinalAnswerComponent
-                        storage={ storage }
-                        intermediates={ intermediates }
-                        activeDay={ activeStep }
-                        onClickDate={ setActiveStep }
-                        setIntermediates={ setIntermediates }
-                    />
+                    <FinalAnswerComponent intermediates={ intermediates } />
                 </div>
                 <DescriptionDiv as="p">{ DESCRIPTION }</DescriptionDiv>
                 { roundPuzzles.length > 0 && (
                     <PuzzleList>
                         <li style={{ position: "relative", textDecoration: "underline" }}>Puzzle<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Answer</AnswerSpan></li>
-                        { roundPuzzles.map((puzzleId: string, index: number) => <RowEntry key={ index } puzzleId={ puzzleId } { ...PUZZLES[puzzleId] } clearAnswer={ clearAnswer } />) }
-                        { (metaUnlocked || metaAnswered) && <RowEntry puzzleId="enigmarch-2023:march-31" { ...PUZZLES["enigmarch-2023:march-31"] } clearAnswer={ clearAnswer } /> }
+                        { roundPuzzles.map((puzzleId: string, index: number) => <RowEntry key={ index } puzzleId={ puzzleId } { ...PUZZLES[puzzleId] } clearAnswer={ clearAnswer } showComingSoon={ index === 1 } />) }
+                        <RowEntry puzzleId="enigmarch-2023:march-31" { ...PUZZLES["enigmarch-2023:march-31"] } clearAnswer={ clearAnswer } />
                     </PuzzleList>
                 ) }
                 { numberAnswered > 0 && (

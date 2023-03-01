@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback, useEffect, useRef, useState } from "react";
+import React, { FunctionComponent, useCallback, useRef, useState } from "react";
 import { CSS } from "@stitches/react";
 import { PuzzleWrapperComponent } from "../../../components/Puzzle/common";
 import AudioTrack from "../../../components/Audio";
