@@ -104,9 +104,9 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         isMeta: true
     },
     "enigmarch-2023:march-1": {
-        title: "March 1: ???",
+        title: "March 1: KEY",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "TBD"
+        description: "A mystery cipher? you'll be running around unless you find a tutorial."
     },
     "enigmarch-2023:march-2": {
         title: "March 2: ???",
