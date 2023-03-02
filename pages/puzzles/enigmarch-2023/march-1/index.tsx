@@ -23,7 +23,7 @@ const BackgroundDiv = styled("div", {
     paddingTop: "16px",
     "@lg": {
         width: "537px",
-        paddingLeft: "14px",
+        paddingLeft: "16px",
         paddingTop: "19px"
     }
 });
@@ -113,7 +113,7 @@ const PuzzleComponent: FunctionComponent = () => {
                             <Datum css={{ borderLeft: "3px solid $onBackground" }}>M</Datum><Datum>I</Datum><Datum>Y</Datum><Datum>M</Datum><Datum css={{ borderRight: "3px solid $onBackground" }}>Y</Datum>
                         </tr>
                         <tr>
-                            <Datum css={{ borderLeft: "3px solid $onBackground" }}>A</Datum><Datum>A</Datum><Datum>I</Datum><Datum>A</Datum><Datum>B</Datum>
+                            <Datum css={{ borderLeft: "3px solid $onBackground" }}>A</Datum><Datum>A</Datum><Datum>J</Datum><Datum>A</Datum><Datum>C</Datum>
                             <Datum css={{ borderLeft: "3px solid $onBackground" }}>K</Datum><Datum>E</Datum><Datum>P</Datum><Datum>L</Datum><Datum css={{ borderRight: "3px solid $onBackground" }}>Y</Datum>
                         </tr>
                     </tbody>

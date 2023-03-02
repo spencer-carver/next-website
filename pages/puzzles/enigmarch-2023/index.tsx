@@ -11,7 +11,7 @@ import Head from "next/head";
 import Link from "../../../components/Link";
 
 const NAME = "Puzzle Round: #Enigmarch 2023";
-const DESCRIPTION = "Coming soon!";
+const DESCRIPTION = "A puzzle a day, what could be sweeter?";
 
 const puzzleDivOverrides: CSS = {
     minHeight: "calc(100vh - 131px)",
@@ -158,7 +158,8 @@ const Puzzles: FunctionComponent = () => {
     const [ roundPuzzles ] = useState(Object.keys(PUZZLES).filter((puzzleId: string) => PUZZLES[puzzleId].round === PuzzleRounds.ENIGMARCH2023 && !PUZZLES[puzzleId].isMeta));
     const [ numberAnswered, setNumberAnswered ] = useState(0);
     const [ AnswerBanner, setAnswerBanner ] = useState(null);
-    const [intermediates, setIntermediates] = useState(new Array(32));
+    const [ intermediates, setIntermediates ] = useState(new Array(32));
+    const [ todayDayNumber ] = useState((new Date()).getDate());
 
     useEffect(() => {
         setAnswerBanner(<PuzzleComplete answer={ `SOLVED: ${ numberAnswered }` } />);
@@ -207,14 +208,14 @@ const Puzzles: FunctionComponent = () => {
             { AnswerBanner }
             <PuzzleDiv css={ puzzleDivOverrides }>
                 <Heading>{ ROUNDS[PuzzleRounds.ENIGMARCH2023].title }</Heading>
+                <DescriptionDiv as="p">{ DESCRIPTION }</DescriptionDiv>
                 <div style={{ position: "relative", maxWidth: "740px", paddingLeft: "10px" }}>
                     <FinalAnswerComponent intermediates={ intermediates } />
                 </div>
-                <DescriptionDiv as="p">{ DESCRIPTION }</DescriptionDiv>
                 { roundPuzzles.length > 0 && (
                     <PuzzleList>
                         <li style={{ position: "relative", textDecoration: "underline" }}>Puzzle<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Answer</AnswerSpan></li>
-                        { roundPuzzles.map((puzzleId: string, index: number) => <RowEntry key={ index } puzzleId={ puzzleId } { ...PUZZLES[puzzleId] } clearAnswer={ clearAnswer } showComingSoon={ index === 1 } />) }
+                        { roundPuzzles.map((puzzleId: string, index: number) => <RowEntry key={ index } puzzleId={ puzzleId } { ...PUZZLES[puzzleId] } clearAnswer={ clearAnswer } showComingSoon={ index <= todayDayNumber } />) }
                         <RowEntry puzzleId="enigmarch-2023:march-31" { ...PUZZLES["enigmarch-2023:march-31"] } clearAnswer={ clearAnswer } />
                     </PuzzleList>
                 ) }

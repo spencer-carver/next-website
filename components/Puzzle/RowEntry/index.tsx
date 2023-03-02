@@ -79,7 +79,8 @@ const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, c
             { puzzleId === NEWEST_PUZZLE && <NewSpan>New</NewSpan> }
             { comingSoon && <NewSpan css={{ color: "$primary" }}>Coming Soon</NewSpan> }
             { solutionAvailable && !puzzleAnswer && <NewSpan css={ solutionOverrides }>Available</NewSpan> }
-            <Link href={ `/puzzles/${ puzzleId.replaceAll(":", "/") }` }>{ isMeta ? <b>{title}</b>: title }</Link>
+            { comingSoon && <span style={{ pointerEvents: "none" }}>{ isMeta ? <b>{title}</b>: title }</span> }
+            { !comingSoon && <Link href={ `/puzzles/${ puzzleId.replaceAll(":", "/") }` }>{ isMeta ? <b>{title}</b>: title }</Link> }
             { puzzleAnswer ? (
                 <AnswerSpan
                     role="button"
