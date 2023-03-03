@@ -30,7 +30,7 @@ export interface PuzzleDetails {
     solutionAvailable?: boolean;
 }
 
-export const NEWEST_PUZZLE = "enigmarch-2023:march-2";
+export const NEWEST_PUZZLE = "enigmarch-2023:march-3";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -114,10 +114,9 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         description: "How do they assign the points in Wingspan anyway?"
     },
     "enigmarch-2023:march-3": {
-        title: "March 3: ???",
+        title: "March 3: WIND",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "TBD",
-        comingSoon: true
+        description: ""
     },
     "enigmarch-2023:march-4": {
         title: "March 4: ???",
