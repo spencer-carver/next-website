@@ -15,10 +15,10 @@ const SolvedDiv = styled("div", {
     boxShadow: "0 0 3px rgba(0,0,0,.3)",
     zIndex: "1",
     "@lg": {
-        width: "260px",
+        width: "300px",
         position: "fixed",
-        top: "95px",
-        right: "-60px",
+        top: "100px",
+        right: "-80px",
         fontSize: "16px",
         lineHeight: "50px",
         letterSpacing: "1px",
