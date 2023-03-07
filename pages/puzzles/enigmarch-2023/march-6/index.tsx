@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import Image from "../../../../components/Image";
 import { CSS } from "@stitches/react";
-import { styled } from "../../../../styles/stitches";
+import { darkTheme, styled, yahooGeocitiesTheme } from "../../../../styles/stitches";
 
 const ImageWrapperDiv = styled("div", {
     position: "relative",
@@ -13,6 +13,12 @@ const ImageWrapperDiv = styled("div", {
     "@lg": {
         width: "100px",
         height: "100px",
+    },
+    [`.${ darkTheme } &`]: {
+        filter: "invert(100%)"
+    },
+    [`.${ yahooGeocitiesTheme } &`]: {
+        filter: "invert(100%)"
     }
 });
 
