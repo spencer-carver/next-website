@@ -2,7 +2,6 @@ import React, { FunctionComponent } from "react";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { CSS } from "@stitches/react";
 import { darkTheme, styled, yahooGeocitiesTheme } from "../../../../styles/stitches";
-import { PuzzleRounds } from "../../../../constants/Puzzle";
 import Draggable, { ControlPosition } from "react-draggable";
 
 const WrapperWrapperDiv = styled("div", {
