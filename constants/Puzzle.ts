@@ -129,13 +129,12 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         description: "Veins of gemstones are known to intersect."
     },
     "enigmarch-2023:march-6": {
-        title: "March 6: ???",
+        title: "March 6: MYTHICAL",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "TBD",
-        comingSoon: true
+        description: "The timeless tale of tournament victory."
     },
     "enigmarch-2023:march-7": {
-        title: "March 7: ???",
+        title: "March 7: ARROW",
         round: PuzzleRounds.ENIGMARCH2023,
         description: "TBD",
         comingSoon: true

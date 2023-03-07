@@ -135,6 +135,10 @@ const Cell: FunctionComponent<{ value: string }> = ({ value }) => {
     );
 };
 
+const P = styled("p", {
+    color: "$onBackground"
+});
+
 const PuzzleComponent: FunctionComponent = () => {
     return (
         <PuzzleWrapperComponent name="enigmarch-2023:march-5">
@@ -154,13 +158,13 @@ const PuzzleComponent: FunctionComponent = () => {
                 { DESCRIPTIONS.map((word, index) => <Word key={ index } word={ word } />) }
             </BankList>
             <div>
-                <p>8,2</p>
-                <p>5,3</p>
-                <p>4</p>
-                <p>15,11</p>
-                <p>9,1,6</p>
-                <p>7,13,12,14</p>
-                <p>10</p>
+                <P>8,2</P>
+                <P>5,3</P>
+                <P>4</P>
+                <P>15,11</P>
+                <P>9,1,6</P>
+                <P>7,13,12,14</P>
+                <P>10</P>
             </div>
         </PuzzleWrapperComponent>
     );
