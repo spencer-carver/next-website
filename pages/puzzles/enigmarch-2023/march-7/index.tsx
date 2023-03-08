@@ -31,7 +31,7 @@ const ImageWrapperDiv = styled("div", {
     },
     "@lg": {
         width: "760px",
-        height: "600px",
+        height: "540px",
         marginLeft: "auto"
     },
     "@xl": {
