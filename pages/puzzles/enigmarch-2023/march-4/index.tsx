@@ -96,7 +96,7 @@ const ImageWrapperWrapperDiv = styled("div", {
         width: "100%",
         height: "100%",
         backgroundImage: "url(/puzzles/enigmarch-2023/rain.png)",
-        animation: `${ rain } 0.2s linear infinite`,
+        animation: `${ rain } 0.3s linear 0s infinite reverse`,
         opacity: 0,
         zIndex: "2"
     },
@@ -114,7 +114,10 @@ const ImageWrapperWrapperDiv = styled("div", {
     "@lg": {
         width: "760px",
         height: "340px",
-        marginLeft: "auto"
+        marginLeft: "auto",
+        "&:before": {
+            animation: `${ rain } 0.2s linear 0s infinite normal`,
+        }
     },
     "@xl": {
         width: "1000px",
