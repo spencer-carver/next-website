@@ -91,7 +91,7 @@ const Die = ({ x, y, z, sides}: { x: number; y: number; z: number; sides: string
                     <Dot>{ sides[4] }</Dot>
                 </Face>
                 <Face css={{ transform: "rotateX(-180deg) translateZ(50px)", "@lg": { transform: "rotateX(-180deg) translateZ(75px)" } }}>
-                    <Dot>{ sides[5] }</Dot>
+                    <Dot css={{ transform: "rotateX(180deg)", marginTop: "10px" }}>{ sides[5] }</Dot>
                 </Face>
             </CubeDiv>
         </CubeWrapper>
@@ -99,6 +99,7 @@ const Die = ({ x, y, z, sides}: { x: number; y: number; z: number; sides: string
 };
 
 const GameBoard = styled("div", {
+    position: "relative",
     width: "100%",
     display: "flex",
     justifyContent: "space-around",
@@ -111,20 +112,24 @@ const GameBoard = styled("div", {
 const enum GAME_STATES {
     WAITING = "WAITING",
     IN_PROGRESS = "IN_PROGRESS",
+    NICK = "NICKED",
+    OUT = "THREW OUT",
     WIN = "WIN",
     LOSE = "LOSE"
 }
 
-function calculateGameState(main, chance, roll, gameState, setChance) {
+function calculateGameState(main, chance, roll, setChance, setLossStreak) {
     if (chance) {
         if (main === roll) {
             setChance(0);
+            setLossStreak(ls => ls+1);
 
             return GAME_STATES.LOSE;
         }
 
         if (chance === roll) {
             setChance(0);
+            setLossStreak(0);
 
             return GAME_STATES.WIN;
         }
@@ -133,17 +138,21 @@ function calculateGameState(main, chance, roll, gameState, setChance) {
     }
 
     if (roll === 2 || roll === 3) {
-        return GAME_STATES.LOSE;
+        return GAME_STATES.OUT;
     }
 
     switch(main) {
         case 5:
         case 9:
             if (roll === main) {
-                return GAME_STATES.WIN;
+                setLossStreak(0);
+
+                return GAME_STATES.NICK;
             }
             if (roll === 11 || roll === 12) {
-                return GAME_STATES.LOSE;
+                setLossStreak(ls => ls+1);
+
+                return GAME_STATES.OUT;
             }
 
             setChance(roll);
@@ -152,10 +161,14 @@ function calculateGameState(main, chance, roll, gameState, setChance) {
         case 6:
         case 8:
             if (roll === main || roll === 12) {
-                return GAME_STATES.WIN;
+                setLossStreak(0);
+
+                return GAME_STATES.NICK;
             }
             if (roll === 11) {
-                return GAME_STATES.LOSE;
+                setLossStreak(ls => ls+1);
+
+                return GAME_STATES.OUT;
             }
 
             setChance(roll);
@@ -163,17 +176,19 @@ function calculateGameState(main, chance, roll, gameState, setChance) {
             return GAME_STATES.IN_PROGRESS;
         case 7:
             if (roll === main || roll === 11) {
-                return GAME_STATES.WIN;
+                setLossStreak(0);
+
+                return GAME_STATES.NICK;
             }
             if (roll === 12) {
-                return GAME_STATES.LOSE;
+                setLossStreak(ls => ls+1);
+
+                return GAME_STATES.OUT;
             }
 
             setChance(roll);
 
             return GAME_STATES.IN_PROGRESS;
-        default:
-            console.log(main, typeof main, main === 6);
     }
 }
 
@@ -186,7 +201,7 @@ const FULL_BOARD = [
 ];
 
 function updateRecord(wins, gameState, main, chance) {
-    if (gameState === GAME_STATES.WIN && !chance) {
+    if (gameState === GAME_STATES.NICK) {
         // unlock the next in this main's row
         for (let i = 0; i < wins[main - 5].length; ++i) {
             if (!wins[main - 5][i]) {
@@ -204,7 +219,7 @@ function updateRecord(wins, gameState, main, chance) {
         return wins;
     }
 
-    if (gameState === GAME_STATES.LOSE && !chance) {
+    if (gameState === GAME_STATES.OUT) {
         // invalidate the next in this main's row
         for (let i = 0; i < wins[main - 5].length; ++i) {
             if (!wins[main - 5][i]) {
@@ -239,12 +254,23 @@ const Button = styled("button", {
     }
 });
 
-const MainSelect = styled("div", {
+const MainDiv = styled("div", {
     margin: "10px 0",
     height: "20px"
 });
 
-const MainInput = styled("input", {
+const StrikeOut = styled("span", {
+    position: "absolute",
+    top: "23px",
+    backgroundColor: "$error",
+    color: "$onError",
+    padding: "10px",
+    "@lg": {
+        top: "60px"
+    }
+});
+
+const MainSelect = styled("select", {
     width: "100px"
 });
 
@@ -270,6 +296,7 @@ const Datum = styled("td", {
 const PuzzleComponent: FunctionComponent = () => {
     const [main, setMain] = useState(5);
     const [chance, setChance] = useState(0);
+    const [lossStreak, setLossStreak] = useState(0);
     const [gameState, setGameState] = useState(GAME_STATES.WAITING);
     const [dieOneResults, setDieOneResults] = useState({x:0,y:0,z:0});
     const [dieTwoResults, setDieTwoResults] = useState({x:0,y:0,z:0});
@@ -290,18 +317,22 @@ const PuzzleComponent: FunctionComponent = () => {
 
         setDieOneResults(d1);
         setDieTwoResults(d2);
-        const state = calculateGameState(main, chance, d1.roll + d2.roll, gameState, setChance);
+        const state = calculateGameState(main, chance, d1.roll + d2.roll, setChance, setLossStreak);
         setWins(wins => updateRecord(wins, state, main, chance));
         setGameState(state);
-    }, [main, chance, gameState]);
+    }, [main, chance]);
 
-    const reset = useCallback(() => setWins([
-        ["","-","","","","",""],
-        ["","","-","","","",""],
-        ["","","","-","","",""],
-        ["","","","","-","",""],
-        ["","","","","","-",""]
-    ]), []);
+    const reset = useCallback(() => {
+        setWins([
+            ["","-","","","","",""],
+            ["","","-","","","",""],
+            ["","","","-","","",""],
+            ["","","","","-","",""],
+            ["","","","","","-",""]
+        ]);
+        setLossStreak(0);
+        setGameState(GAME_STATES.WAITING);
+    }, []);
 
     const selectMain = useCallback(({ target: { value } }) => setMain(parseInt(value)), []);
 
@@ -310,17 +341,23 @@ const PuzzleComponent: FunctionComponent = () => {
             <GameBoard>
                 <Die { ...dieOneResults } sides={ d1Sides } />
                 <Die { ...dieTwoResults } sides={ d2Sides } />
+                { lossStreak === 3 && <StrikeOut>Three losses in a row means you lose caster position. Restart to try again!</StrikeOut> }
             </GameBoard>
             <Controls>
-                <MainSelect>
-                    <span>Choose a main:</span>
-                    <MainInput type="number" min={ 5 } max={ 9 } value={ main } onChange={ selectMain } disabled={ gameState === GAME_STATES.IN_PROGRESS }/>
-                </MainSelect>
-                <MainSelect>
+                <MainDiv>
+                    <span>Choose a main: </span>
+                    <MainSelect onChange={ selectMain } value={ main } disabled={ gameState === GAME_STATES.IN_PROGRESS }>
+                        { [5,6,7,8,9].map((value) => <option key={ value } value={ value }>{ value }</option>) }
+                    </MainSelect>
+                </MainDiv>
+                <MainDiv>
                     { !!chance ? <div>Your chance is: { chance }</div> : <div /> }
-                    { gameState === GAME_STATES.WIN || gameState === GAME_STATES.LOSE ? <div>YOU { gameState }</div> : <div /> }
-                </MainSelect>
-                <Button onClick={ rollDice }>roll</Button>
+                    { gameState !== GAME_STATES.WAITING && gameState !== GAME_STATES.IN_PROGRESS
+                        ? <div>YOU { gameState }</div>
+                        : <div />
+                    }
+                </MainDiv>
+                <Button onClick={ rollDice } disabled={ lossStreak === 3 }>roll</Button>
                 <Button onClick={ reset }>restart</Button>
             </Controls>
             <Table>
