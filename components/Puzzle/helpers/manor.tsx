@@ -1,5 +1,5 @@
 import React from "react";
-import { keyframes, styled } from "../../../../styles/stitches";
+import { keyframes, styled } from "../../../styles/stitches";
 
 const window1Keyframes = keyframes({
     "42%": {

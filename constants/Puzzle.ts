@@ -30,7 +30,7 @@ export interface PuzzleDetails {
     solutionAvailable?: boolean;
 }
 
-export const NEWEST_PUZZLE = "enigmarch-2023:march-10";
+export const NEWEST_PUZZLE = "enigmarch-2023:march-12";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -159,10 +159,9 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         description: "The bold show you where to go. The boldest help you get there."
     },
     "enigmarch-2023:march-12": {
-        title: "March 12: ???",
+        title: "March 12: TOWER",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "TBD",
-        comingSoon: true
+        description: "It may not be balanced, but each layer is significant and supports the tower's core."
     },
     "enigmarch-2023:march-13": {
         title: "March 13: ???",
@@ -273,7 +272,7 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         comingSoon: true
     },
     "enigmarch-2023:march-31": {
-        title: "March 31: Meta",
+        title: "March 31: META",
         round: PuzzleRounds.ENIGMARCH2023,
         description: "TBD",
         isMeta: true,

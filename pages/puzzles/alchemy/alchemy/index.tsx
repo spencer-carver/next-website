@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { CSS } from "@stitches/react";
 import { styled } from "../../../../styles/stitches";
-import { Meta } from "../../../../components/Puzzle/circles";
+import { Meta } from "../../../../components/Puzzle/helpers/circles";
 import useStorage from "../../../../utils/useStorage";
 
 const metaStyles: CSS = {

@@ -5,6 +5,14 @@ import { styled } from "../../../styles/stitches";
 import { CSS } from "@stitches/react";
 import useStorage from "../../../utils/useStorage";
 
+const Row = styled("li", {
+    position: "relative",
+    fontSize: "14px",
+    "@lg": {
+        fontSize: "unset"
+    }
+});
+
 const NewSpan = styled("span", {
     position: "absolute",
     left: "0px",
@@ -75,7 +83,7 @@ const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, c
     }
 
     return (
-        <li style={{ position: "relative" }}>
+        <Row>
             { puzzleId === NEWEST_PUZZLE && <NewSpan>New</NewSpan> }
             { comingSoon && <NewSpan css={{ color: "$primary" }}>Coming Soon</NewSpan> }
             { solutionAvailable && !puzzleAnswer && <NewSpan css={ solutionOverrides }>Available</NewSpan> }
@@ -92,7 +100,7 @@ const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, c
                     { puzzleAnswer }
                 </AnswerSpan>
             ) : <AnswerSpan css={{ "color": "$onBackground", "&:hover": { cursor: "unset" } }}>???</AnswerSpan> }
-        </li>
+        </Row>
     );
 }
 

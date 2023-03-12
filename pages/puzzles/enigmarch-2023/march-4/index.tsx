@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import Image from "../../../../components/Image";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { keyframes, styled } from "../../../../styles/stitches";
-import ManorSVG from "./manor";
+import ManorSVG from "../../../../components/Puzzle/helpers/manor";
 
 const SRC = "/puzzles/enigmarch-2023/manor.svg";
 const COVER_SRC = "/puzzles/enigmarch-2023/manor.png";
