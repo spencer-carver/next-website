@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useCallback, useMemo, useState } from "react";
-import { buffer } from "stream/consumers";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { styled } from "../../../../styles/stitches";
 
@@ -138,6 +137,8 @@ function calculateGameState(main, chance, roll, setChance, setLossStreak) {
     }
 
     if (roll === 2 || roll === 3) {
+        setLossStreak(ls => ls+1);
+
         return GAME_STATES.OUT;
     }
 
