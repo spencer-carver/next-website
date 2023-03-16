@@ -17,6 +17,11 @@ function skipOptimization(props): boolean {
         return true;
     }
 
+    // don't optimize svgs (slow)
+    if (props.src.indexOf(".svg") !== -1) {
+        return true;
+    }
+
     return false;
 }
 
