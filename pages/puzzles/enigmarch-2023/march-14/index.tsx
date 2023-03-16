@@ -4,8 +4,10 @@ import { styled } from "../../../../styles/stitches";
 
 const P = styled("p", {
     color: "$onBackground",
-    width: "500px",
-    margin: "0 auto 20px"
+    margin: "0 auto 20px",
+    "@lg": {
+        width: "500px"
+    }
 });
 
 const PuzzleComponent: FunctionComponent = () => {
