@@ -65,6 +65,7 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <SubHeading>March 2023</SubHeading>
                 <List>
                     <ListItem>Updated Puzzle Round: <Link href="/puzzles/enigmarch-2023" component={ A }>#Enigmarch 2023</Link></ListItem>
+                    <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2023/march-16" component={ A }>March 16: MASK</Link></ListItem>
                     <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2023/march-15" component={ A }>March 15: ROOM</Link></ListItem>
                     <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2023/march-14" component={ A }>March 14: SECOND</Link></ListItem>
                     <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2023/march-13" component={ A }>March 13: MATCH</Link></ListItem>
