@@ -5,6 +5,7 @@ import { styled } from "../../../../styles/stitches";
 const P = styled("p", {
     color: "$onBackground",
     margin: "0 auto 20px",
+    letterSpacing: "1px",
     "@lg": {
         width: "500px"
     }

@@ -273,9 +273,9 @@ function parseCommand(
     if (trimmedCommand === "HELP") {
         return [
             "type 'FEEL' to discover what is at your location",
-            "type 'MOVE <DIRECTION>' to move that direction",
-            "type 'TAKE <ITEM>' to pick up an item",
-            "type 'USE' to use your held item, put it down, or interact"
+            "type 'MOVE <DIRECTION>' to move that direction. The Directions are 'N', 'S', 'W', 'E', 'NW', 'NE', 'SW', and 'SE'",
+            "type 'TAKE <ITEM>' to pick up an item. Not specifying an item name will grab the first eligible item",
+            "type 'USE' to use your held item, put it down, or interact with the environment (if allowed)"
         ];
     }
 
