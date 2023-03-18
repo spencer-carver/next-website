@@ -1,6 +1,5 @@
-import { time } from "console";
-import _ from "lodash";
-import React, { FunctionComponent, useCallback, useState } from "react";
+import React, { FunctionComponent, useCallback, useRef, useState } from "react";
+import Notification from "../../../../components/Notification";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { styled } from "../../../../styles/stitches";
 
@@ -273,7 +272,7 @@ function parseCommand(
     if (trimmedCommand === "HELP") {
         return [
             "type 'FEEL' to discover what is at your location",
-            "type 'MOVE <DIRECTION>' to move that direction. The Directions are 'N', 'S', 'W', 'E', 'NW', 'NE', 'SW', and 'SE'",
+            "type 'MOVE <DIRECTION>' to move that direction.",
             "type 'TAKE <ITEM>' to pick up an item. Not specifying an item name will grab the first eligible item",
             "type 'USE' to use your held item, put it down, or interact with the environment (if allowed)"
         ];
@@ -302,22 +301,32 @@ function parseCommand(
         })).filter(v => !!v);
     }
 
-    const validDirections = ["NW", "N", "NE", "W", "E", "SW", "S", "SE"].filter((direction) => {
+    const validDirections = ["NW", "N", "NE", "W", "E", "SW", "S", "SE"];
+
+    const allowedDirections = validDirections.filter((direction) => {
         return direction.split("").reduce((_, directionPart) => !POSITIONS[position].includes(directionPart), true);
     });
 
     if (trimmedCommand === "MOVE") {
-        return [ "Which way?"];
+        return [ "Which way? The directions are 'N', 'S', 'W', 'E', 'NW', 'NE', 'SW', and 'SE'."];
     }
 
     if (trimmedCommand.startsWith("MOVE")) {
         const directionToMove = trimmedCommand.slice(5);
 
         if (!validDirections.includes(directionToMove)) {
+            return ["Not a valid direction. The directions are 'N', 'S', 'W', 'E', 'NW', 'NE', 'SW', and 'SE'."];
+        }
+
+        if (!allowedDirections.includes(directionToMove)) {
             return ["You run into a wall."];
         }
 
         const nextPosition = getNextPosition(position, directionToMove);
+
+        if (nextPosition < 0 || nextPosition > 8) {
+            return ["You run into a wall."];
+        }
 
         if (currentStep === 7 && (nextPosition === 1 || nextPosition === 4)) {
             return ["You can not go there due to the collapsed ceiling."];
@@ -384,6 +393,10 @@ function parseCommand(
             return state[position][itemKey].interactable
                 && state[position][itemKey].unlocked;
         });
+
+        if (interactKey === "west lever" && (!state[8]["east lever"] || (state[8]["east lever"].used !== state[8]["east lever"].uses))) {
+            return ["The lever is stuck"];
+        }
 
         if (interactKey) {
             // interact with an object
@@ -593,7 +606,7 @@ const DEFAULT_STATE: Record<string, FlagState>[] = [
                 "The mysterious button is now here.",
                 "The mysterious button is now here.",
                 "The mysterious button is now here.",
-                "The mysterious button is now here.",
+                "The mysterious button is now here. It somehow seems halfway satisifed.",
                 "The mysterious button is now here.",
                 "The mysterious button is now here.",
                 "The mysterious button is now here.",
@@ -856,6 +869,7 @@ const PuzzleComponent: FunctionComponent = () => {
         "",
         ["The door to the escape room closes behind you, leaving you in complete darkness."]
     ]]);
+    const inputRef = useRef(null);
 
     const onSubmit = useCallback((event) => {
         event.preventDefault();
@@ -877,9 +891,13 @@ const PuzzleComponent: FunctionComponent = () => {
 
     return (
         <PuzzleWrapperComponent name="enigmarch-2023:march-15">
-            <Game>
+            <Notification css={{ marginBottom: "10px" }}>
+                <P>Erattum (3/18/23): Fixed a bug on step 4 where steps could be finished in the wrong order, causing a soft-lock.</P>
+            </Notification>
+            <Game onClick={ () => inputRef.current?.focus() }>
                 <form onSubmit={ onSubmit }>
                     <Input
+                        ref={ inputRef }
                         type="text"
                         autoFocus={ true }
                         placeholder="Enter a command or 'HELP'"
