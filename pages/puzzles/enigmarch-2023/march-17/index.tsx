@@ -11,12 +11,13 @@ const P = styled("p", {
 
 const Shell = styled("div", {
     height: "50vh",
+    overflowX: "clip",
     overflowY: "scroll",
-    overflowX: "hidden",
     position: "relative",
     border: "1px solid $onBackground",
     display: "flex",
-    flexDirection: "column-reverse"
+    flexDirection: "column-reverse",
+    color: "$onBackground"
 });
 
 const History = styled("div", {
@@ -39,7 +40,7 @@ const Input = styled("input", {
     position: "relative",
     display: "inline-block",
     bottom: "0",
-    flexGrow: "1",
+    width: "calc(100% - 108px)",
     color: "$onBackground",
     backgroundColor: "$background",
     border: "1px solid transparent",
@@ -168,13 +169,13 @@ function processCommand(
             currentPathParts.pop();
             const newCurrent = currentPathParts.length === 0 ? "/" : `/${ currentPathParts.join("/") }/`;
 
-            if (candidateParts.length === 0) {
+            if (candidateParts.filter(v => v !== ".").length === 0) {
                 setCurrentDirectory(newCurrent);
 
                 return [];
             }
 
-            return processCommand(`cd ${ candidateParts.join("/") }/.`, newCurrent, setCurrentDirectory);
+            return processCommand(`cd ${ candidateParts.filter(v => v !== ".").join("/") }/.`, newCurrent, setCurrentDirectory);
         }
 
         const candidateParts = candidateCommand[1].split("/");
@@ -184,13 +185,13 @@ function processCommand(
             const newCurrent = `${ currentDirectory.slice(0, currentDirectory.length - 1) }/${ candidateParts[0] }/`;
             candidateParts.splice(0,1);
 
-            if (candidateParts.length === 0) {
+            if (candidateParts.filter(v => v !== ".").length === 0) {
                 setCurrentDirectory(newCurrent);
 
                 return [];
             }
 
-            return processCommand(`cd ${ candidateParts.join("/") }/.`, newCurrent, setCurrentDirectory);
+            return processCommand(`cd ${ candidateParts.filter(v => v !== ".").join("/") }/.`, newCurrent, setCurrentDirectory);
         }
 
         if (directory.find(([name, isDir]) => !isDir && candidateParts[0] === name)) {
