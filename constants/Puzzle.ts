@@ -30,7 +30,7 @@ export interface PuzzleDetails {
     solutionAvailable?: boolean;
 }
 
-export const NEWEST_PUZZLE = "enigmarch-2023:march-19";
+export const NEWEST_PUZZLE = "enigmarch-2023:march-20";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -199,10 +199,9 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         description: "A major reason these stars are visible is because of what isn't there."
     },
     "enigmarch-2023:march-20": {
-        title: "March 20: ???",
+        title: "March 20: FISH",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "TBD",
-        comingSoon: true
+        description: "These fish may have found their schools, but can they find their families?"
     },
     "enigmarch-2023:march-21": {
         title: "March 21: ???",
