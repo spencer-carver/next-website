@@ -18,7 +18,12 @@ const Datum = styled("td", {
     width: "40px",
     color: "$onBackground",
     border: "1px solid transparent",
-    textAlign: "left"
+    textAlign: "left",
+    "@lg": {
+        height: "40px",
+        width: "60px",
+        fontSize: "24px"
+    }
 });
 
 const nameStyles: CSS = {
