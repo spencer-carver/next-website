@@ -90,7 +90,7 @@ const Die = ({ x, y, z, sides}: { x: number; y: number; z: number; sides: string
                     <Dot>{ sides[4] }</Dot>
                 </Face>
                 <Face css={{ transform: "rotateX(-180deg) translateZ(50px)", "@lg": { transform: "rotateX(-180deg) translateZ(75px)" } }}>
-                    <Dot css={{ transform: "rotateX(180deg)", marginTop: "10px" }}>{ sides[5] }</Dot>
+                    <Dot css={{ transform: "rotateX(180deg) rotateY(-180deg)", marginTop: "10px" }}>{ sides[5] }</Dot>
                 </Face>
             </CubeDiv>
         </CubeWrapper>
