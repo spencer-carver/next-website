@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback, useMemo, useState } from "react";
+import React, { FunctionComponent, useCallback, useEffect, useMemo, useState } from "react";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { styled } from "../../../../styles/stitches";
 import { CSS } from "@stitches/react";
@@ -156,8 +156,8 @@ const DIE_TWO = [
 ];
 
 const PuzzleComponent: FunctionComponent = () => {
-    const [version, setVersion] = useState(Math.floor(Math.random() * 2));
-    const [offset, setOffset] = useState(Math.floor(Math.random() * 25));
+    const [version, setVersion] = useState(0);
+    const [offset, setOffset] = useState(0);
     const [seenAll, setSeenAll] = useState(false);
     const [seenDie1, setSeenDie1] = useState([true,false,false,false,false,false]);
     const [seenDie2, setSeenDie2] = useState([true,false,false,false,false,false]);
@@ -181,25 +181,35 @@ const PuzzleComponent: FunctionComponent = () => {
         setDieOneResults(d1);
         setDieTwoResults(d2);
 
-        const newSeenD1 = seenDie1.map((old, index) => index === d1.roll - 1 ? true : old);
-        const newSeenD2 = seenDie2.map((old, index) => index === d2.roll - 1 ? true : old);
-        setSeenDie1(newSeenD1);
-        setSeenDie2(newSeenD2);
-        setSeenAll(newSeenD1.filter((v) => !v).length + newSeenD2.filter((v) => !v).length === 0);
+        setSeenDie1(sd1 => sd1.map((old, index) => index === d1.roll - 1 ? true : old));
+        setSeenDie2(sd2 => sd2.map((old, index) => index === d2.roll - 1 ? true : old));
+    }, []);
+
+    useEffect(() => {
+        setSeenAll(seenDie1.filter((v) => !v).length + seenDie2.filter((v) => !v).length === 0);
     }, [seenDie1, seenDie2]);
 
     const reset = useCallback(() => {
-        setSeenDie1([false,false,false,false,false,false].map((old, index) => index === dieOneResults.roll - 1 ? true : old));
-        setSeenDie2([false,false,false,false,false,false].map((old, index) => index === dieTwoResults.roll - 1 ? true : old));
+        setPastResults([
+            [
+                version,
+                d1Sides.map((side, index) => seenDie1[index] ? side : "_").concat(d2Sides.map((side, index) => seenDie2[index] ? side : "_"))
+            ],
+            ...pastResults
+        ]);
 
-        if (seenAll) {
-            setPastResults([[version, d1Sides.concat(d2Sides)], ...pastResults]);
-        }
-
+        setSeenDie1([false,false,false,false,false,false]);
+        setSeenDie2([false,false,false,false,false,false]);
         setSeenAll(false);
+
         setVersion(Math.floor(Math.random() * 2));
         setOffset(Math.floor(Math.random() * 25));
-    }, [seenAll, version, dieOneResults, dieTwoResults, d1Sides, d2Sides, pastResults]);
+    }, [version, d1Sides, d2Sides, seenDie1, seenDie2, pastResults]);
+
+    const onRestart = () => {
+        reset();
+        rollDice();
+    };
 
     return (
         <PuzzleWrapperComponent name="enigmarch-2023:march-23">
@@ -210,9 +220,13 @@ const PuzzleComponent: FunctionComponent = () => {
             </GameBoard>
             <Controls>
                 <Button onClick={ rollDice } disabled={ seenAll }>roll</Button>
-                <Button onClick={ reset }>restart</Button>
+                <Button onClick={ onRestart }>restart</Button>
             </Controls>
             <ul style={{ paddingInlineStart: "0" }}>
+                <ListItem css={ ITEM_STYLES[version] }>
+                    { d1Sides.reduce((prev, result, index) => `${ prev } ${ seenDie1[index] ? result : "_" } `, "") }
+                    { d2Sides.reduce((prev, result, index) => `${ prev } ${ seenDie2[index] ? result : "_" } `, "") }
+                </ListItem>
                 { pastResults.map(([v, results], index) => <ListItem key={ index } css={ ITEM_STYLES[v] }>{ results.reduce((prev, result) => `${ prev } ${ result } `, "") }</ListItem>) }
             </ul>
         </PuzzleWrapperComponent>
