@@ -75,7 +75,7 @@ const spacer2Style: CSS = {
 };
 
 const LINE_1 = "q N S J|Y b T t|s Q D U|w X C l|O I R k|e J O h|x i h N|F I I E|b y L y|Z Y Z c";
-const LINE_2 = "R m M B|O Z x P|b x B i|P b y D|B q Z I|r B q E|B k P E|f C Q Y|v A X V";
+const LINE_2 = "R m M B|O Z x P|b x B i|P b y D|B q Z I|r B q E|B k P E|f C Q Y|v H B V";
 const LINE_3 = "b N N j|k X e N|G B i I|Y s s D|z C c y|W B u T|C F W H";
 
 const PuzzleComponent: FunctionComponent = () => {
