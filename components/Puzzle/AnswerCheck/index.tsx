@@ -6,7 +6,7 @@ import Link from "../../Link";
 
 const AnswerBoxDiv = styled("div", {
     bottom: "0",
-    margin: "0 auto",
+    margin: "10px auto 0",
     width: "calc(100% - 20px)",
     minHeight: "50px",
     backgroundColor: "$background",
@@ -38,9 +38,10 @@ interface PuzzleAnswerSubmissionProps {
 
 export interface PuzzleAnswer {
     correct: boolean;
+    submission: string;
+    value: string;
     intermediate?: boolean;
     hint?: boolean;
-    value: string;
     time?: number;
 }
 
@@ -126,13 +127,24 @@ const PastAnswersList = styled("ul", {
 });
 
 const AnswerListItem = styled("li", {
-    display: "block",
+    display: "flex",
+    justifyContent: "space-between",
     marginBottom: "1px",
+    padding: "2px 2px 2px 0",
     color: "$onBackground"
 });
 
 const TimeSpan = styled("span", {
-    float: "right"
+    display: "none",
+    "@md": {
+        display: "unset"
+    }
+});
+
+const SubmissionSpan = styled("span", {
+    padding: "2px 5px",
+    marginRight: "5px",
+    backgroundColor: "rgba(0,0,0,0.3)"
 });
 
 const correctStyle: CSS = {
@@ -148,8 +160,7 @@ const hintStyle: CSS = {
 };
 
 const incorrectStyle: CSS = {
-    backgroundColor: "$error",
-    color: "$onError"
+    backgroundColor: "$error"
 };
 
 const PastAnswers: FunctionComponent<{ pastAnswers: PuzzleAnswer[] }> = ({ pastAnswers }) => {
@@ -168,7 +179,22 @@ const PastAnswers: FunctionComponent<{ pastAnswers: PuzzleAnswer[] }> = ({ pastA
                         )
                     );
 
-                return <AnswerListItem key={ index } css={ answerStyle }>{ pastResult.value }<TimeSpan>{ formatTimeDifference(pastResult.time, now) }</TimeSpan></AnswerListItem>;
+                const message = (pastResult.hint || pastResult.intermediate)
+                    ? pastResult.value
+                    : ( pastResult.correct
+                        ? "Correct!"
+                        : "Incorrect"
+                    )
+
+                return (
+                    <AnswerListItem key={ index } css={ answerStyle }>
+                        <span>
+                            <SubmissionSpan>{ pastResult.correct ? pastResult.value : pastResult.submission }</SubmissionSpan>
+                            { message }
+                        </span>
+                        <TimeSpan>{ formatTimeDifference(pastResult.time, now) }</TimeSpan>
+                    </AnswerListItem>
+                );
             }) }
         </PastAnswersList>
     );
@@ -221,7 +247,11 @@ export const PartialAnswerCheck = ({ puzzleName, step, completeStep, placeholder
                 <input type="text" placeholder={ placeholderText } value={ answer } onChange={ onType }></input>
                 <button type="submit">Submit</button>
             </InputForm>
-            <AnswerListItem css={ answerStyle }>{lastGuess.value}</AnswerListItem>
+            { lastGuess.value && (
+                <AnswerListItem css={{ ...answerStyle, textTransform: "uppercase", justifyContent: "center", marginTop: "5px" }}>
+                    { lastGuess.value }
+                </AnswerListItem>
+            )}
         </>
     );
 };

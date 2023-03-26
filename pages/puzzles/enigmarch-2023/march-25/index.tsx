@@ -46,7 +46,7 @@ const PuzzleComponent: FunctionComponent = () => {
         <PuzzleWrapperComponent name="enigmarch-2023:march-25">
             <WarningDiv>{ "\u00a1\u00a1\u00a1WARNING: This puzzle requires a device large enough to see the image clearly!!!" }</WarningDiv>
             <ImageWrapperDiv>
-                <Image src={ SRC } alt="A board at the end of a round of Wingspan" layout="fill" />
+                <Image src={ SRC } alt="An odd collection of knots" layout="fill" />
             </ImageWrapperDiv>
         </PuzzleWrapperComponent>
     );
