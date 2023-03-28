@@ -30,7 +30,7 @@ export interface PuzzleDetails {
     solutionAvailable?: boolean;
 }
 
-export const NEWEST_PUZZLE = "enigmarch-2023:march-26";
+export const NEWEST_PUZZLE = "enigmarch-2023:march-27";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -234,13 +234,12 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         description: "While this may be AI generated, Magic: the Gathering has very talented artists!"
     },
     "enigmarch-2023:march-27": {
-        title: "March 27: ???",
+        title: "March 27: FIRE",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "TBD",
-        comingSoon: true
+        description: "What three words can help describe these fiery locations?"
     },
     "enigmarch-2023:march-28": {
-        title: "March 28: ???",
+        title: "March 28: DIAGONAL",
         round: PuzzleRounds.ENIGMARCH2023,
         description: "TBD",
         comingSoon: true
