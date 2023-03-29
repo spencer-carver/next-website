@@ -43,7 +43,7 @@ const PuzzleComponent: FunctionComponent = () => {
                     <tr><Datum>[13].[14],[15].[16]</Datum><Datum css={{ width: "20px" }}>=</Datum><Datum css={{ color: "$primary" }}>[?].[?].[?]</Datum></tr>
                 </tbody>
             </Table>
-            <ul style={{ listStyle: "none" }}>
+            <ul style={{ listStyle: "none", paddingInlineStart: "0" }}>
                 <ListItem>1. FARM COUNTRY RESOURCES (9)</ListItem>
                 <ListItem>2. OFFER TO HELP (9)</ListItem>
                 <ListItem>3. WEEKEND WARRIOR&apos;S GAME? (9)</ListItem>
