@@ -62,7 +62,7 @@ const MARCH_2023 = [
     [5,6,7,8,9,10,11],
     [12,13,14,15,16,17,18],
     [19,20,21,22,23,24,25],
-    [26,27,28,29,30,31,0]
+    [26,27,28,29,30,31,32]
 ];
 
 const WrapperDiv = styled("div", {
@@ -100,6 +100,14 @@ const buttonCellStyles: CSS = {
     }
 };
 
+const Anchor = styled("a", {
+    color: "$onBackground",
+    textDecoration: "none",
+    "&:visited": {
+        textDecoration: "none"
+    }
+});
+
 const FinalAnswerComponent = ({ intermediates }) => {
     return (
         <WrapperDiv>
@@ -125,6 +133,23 @@ const FinalAnswerComponent = ({ intermediates }) => {
                                         row.map((cell, columnIndex) => {
                                             if (!cell) {
                                                 return <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } />
+                                            }
+
+                                            if (cell === 32) {
+                                                const additionalStyles = {
+                                                    ...buttonCellStyles,
+                                                    ...(intermediates[cell] ? { backgroundColor: "$primary", color: "$onPrimary", "&:hover": { backgroundColor: "$primary" } } : {})
+                                                };
+
+                                                return (
+                                                    <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } title="Meta" css={ additionalStyles }>
+                                                        <Link href="/puzzles/enigmarch-2023/meta" component={ Anchor }>
+                                                            <div style={{ width: "100%", height: "100%" }}>
+                                                                <DayOfMonth>META</DayOfMonth>
+                                                            </div>
+                                                        </Link>
+                                                    </TableCell>
+                                                );
                                             }
 
                                             const additionalStyles = {
@@ -168,7 +193,7 @@ const Puzzles: FunctionComponent = () => {
     useEffect(() => {
         const puzzleAnswers = roundPuzzles.map((puzzleId: string) => storage.getItem<string>(puzzleId));
         puzzleAnswers.unshift(null);
-        puzzleAnswers.push(storage.getItem<string>("enigmarch-2023:march-31"));
+        puzzleAnswers.push(storage.getItem<string>("enigmarch-2023:meta"));
 
         setIntermediates(puzzleAnswers);
         setNumberAnswered(puzzleAnswers.filter((answer) => !!answer).length);
@@ -178,8 +203,13 @@ const Puzzles: FunctionComponent = () => {
         try {
             storage.removeItem(puzzleId);
 
-            const parts = puzzleId.split("-");
-            intermediates[parts[parts.length - 1]] = undefined;
+            if (puzzleId === "enigmarch-2023:meta") {
+                intermediates[32] = undefined;
+            } else {
+                const parts = puzzleId.split("-");
+                intermediates[parts[parts.length - 1]] = undefined;
+            }
+
             setIntermediates(intermediates);
         } catch (e) {
             //do nothing
@@ -216,7 +246,7 @@ const Puzzles: FunctionComponent = () => {
                     <PuzzleList>
                         <li style={{ position: "relative", textDecoration: "underline" }}>Puzzle<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Answer</AnswerSpan></li>
                         { roundPuzzles.map((puzzleId: string, index: number) => <RowEntry key={ index } puzzleId={ puzzleId } { ...PUZZLES[puzzleId] } clearAnswer={ clearAnswer } showComingSoon={ index <= todayDayNumber } />) }
-                        <RowEntry puzzleId="enigmarch-2023:march-31" { ...PUZZLES["enigmarch-2023:march-31"] } clearAnswer={ clearAnswer } />
+                        <RowEntry puzzleId="enigmarch-2023:meta" { ...PUZZLES["enigmarch-2023:meta"] } clearAnswer={ clearAnswer } />
                     </PuzzleList>
                 ) }
                 { numberAnswered > 0 && (
