@@ -65,6 +65,8 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <SubHeading>March 2023</SubHeading>
                 <List>
                     <ListItem>Updated Puzzle Round: <Link href="/puzzles/enigmarch-2023" component={ A }>#Enigmarch 2023</Link></ListItem>
+                    <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2023/meta" component={ A }>March: META</Link></ListItem>
+                    <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2023/march-31" component={ A }>March 31: REVERSE</Link></ListItem>
                     <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2023/march-30" component={ A }>March 30: PUSH</Link></ListItem>
                     <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2023/march-29" component={ A }>March 29: QUOTE</Link></ListItem>
                     <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2023/march-28" component={ A }>March 28: DIAGONAL</Link></ListItem>
@@ -96,7 +98,7 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                     <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2023/march-2" component={ A }>March 2: NEST</Link></ListItem>
                     <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2023/march-1" component={ A }>March 1: KEY</Link></ListItem>
                 </List>
-                <P>Happy #Enigmarch! Each day I&apos;ll be adding a new puzzle from the inspirational prompots posted on the <Link href="https://twitter.com/EnigmarchHQ" component={ A }>EnigmarchHQ twitter</Link>.</P>
+                <P>Happy #Enigmarch! Each day I&apos;ll be adding a new puzzle from the inspirational prompts posted on the <Link href="https://twitter.com/EnigmarchHQ" component={ A }>EnigmarchHQ twitter</Link>.</P>
                 
                 <SubHeading>February 25, 2023</SubHeading>
                 <List>

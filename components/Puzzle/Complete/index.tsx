@@ -18,8 +18,8 @@ const SolvedDiv = styled("div", {
     "@lg": {
         width: "300px",
         position: "fixed",
-        top: "100px",
-        right: "-80px",
+        top: "105px",
+        right: "-75px",
         fontSize: "14px",
         lineHeight: "50px",
         transform: "rotate(45deg)",
