@@ -29,6 +29,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             const body = document.getElementsByTagName("body")[0];
             body.style.visibility = "visible";
             body.style.opacity = "1";
+
+            const uuid = storage.getItem<string>("uuid");
+
+            if (!uuid) {
+                storage.setItem("uuid", crypto.randomUUID());
+            }
         } catch (e) {
             //do nothing
         }

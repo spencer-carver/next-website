@@ -62,6 +62,11 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>April 8, 2023</SubHeading>
+                <List>
+                    <ListItem>New feature: Puzzle Stats!</ListItem>
+                </List>
+                <P>Solution guides are still on their way, but was more motivated to work on something else right away. The answer checker will now keep statistics about number of attempts and incorrect guesses globally! For puzzles that have a solution guide available, these stats are now showcased at the top of that page.</P>
                 <SubHeading>March 2023</SubHeading>
                 <List>
                     <ListItem>Updated Puzzle Round: <Link href="/puzzles/enigmarch-2023" component={ A }>#Enigmarch 2023</Link></ListItem>

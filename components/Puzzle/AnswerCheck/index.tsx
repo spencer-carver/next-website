@@ -3,6 +3,7 @@ import { CSS } from "@stitches/react";
 import { API_URL } from "../../../constants/ExternalUrls";
 import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
 import Link from "../../Link";
+import useStorage from "../../../utils/useStorage";
 
 const AnswerBoxDiv = styled("div", {
     bottom: "0",
@@ -49,6 +50,7 @@ const PuzzleAnswerSubmission: FunctionComponent<PuzzleAnswerSubmissionProps> = (
     const [ answer, setAnswer ] = useState("");
     const [ answers, setAnswers ] = useState([] as PuzzleAnswer[]);
     const [ hintCount, setHintCount ] = useState(0);
+    const storage = useStorage("settings");
 
     function onType(event: React.ChangeEvent<HTMLInputElement>): void {
         setAnswer((event.target as HTMLInputElement).value);
@@ -61,10 +63,12 @@ const PuzzleAnswerSubmission: FunctionComponent<PuzzleAnswerSubmissionProps> = (
             return;
         }
 
+        const uuid = storage.getItem<string>("uuid");
+
         const answerResponse: PuzzleAnswer = await window.fetch(`${ API_URL }/api/puzzle/${ puzzleName }/submit`, {
             method: "POST",
             credentials: "include",
-            body: JSON.stringify({ answer, hintCount })
+            body: JSON.stringify({ uuid, answer, hintCount })
         }).then(response => response.json());
 
         if (answerResponse.correct) {
@@ -209,6 +213,7 @@ const partialInputOverrideStyles: CSS = {
 };
 
 export const PartialAnswerCheck = ({ puzzleName, step, completeStep, placeholderText = "Answer Here" }) => {
+    const storage = useStorage("settings");
     const [answer, setAnswer] = useState("");
     const [lastGuess, setLastGuess] = useState({} as PuzzleAnswer);
 
@@ -223,10 +228,16 @@ export const PartialAnswerCheck = ({ puzzleName, step, completeStep, placeholder
             return;
         }
 
+        const uuid = storage.getItem<string>("uuid");
+
         const answerResponse: PuzzleAnswer = await window.fetch(`${ API_URL }/api/puzzle/${ puzzleName }/submit`, {
             method: "POST",
             credentials: "include",
-            body: JSON.stringify({ answer: `${ step }:${ answer }`, hintCount: 0 })
+            body: JSON.stringify({
+                uuid,
+                answer: `${ step }:${ answer }`,
+                hintCount: 0
+            })
         }).then(response => response.json());
 
         if (answerResponse.intermediate) {

@@ -16,8 +16,7 @@ export const ROUNDS: Record<PuzzleRounds, RoundDetails> = {
     },
     [PuzzleRounds.ENIGMARCH2023]: {
         id: PuzzleRounds.ENIGMARCH2023,
-        title: "#Enigmarch 2023",
-        comingSoon: true
+        title: "#Enigmarch 2023"
     }
 };
 

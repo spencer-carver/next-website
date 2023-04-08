@@ -13,6 +13,7 @@ import { Post } from "../../blog";
 import MarkdownComponents from "../../../components/Markdown";
 import PuzzleComplete from "../../../components/Puzzle/Complete";
 import useStorage from "../../../utils/useStorage";
+import PuzzleStats from "../../../components/Puzzle/Stats";
 
 function formatName(name: string): string {
     return name.replace(/-/g, " ");
@@ -77,6 +78,7 @@ const PuzzleSolution: FunctionComponent<PageProps> = ({ setLoading }) => {
     const [loaded, setLoaded] = useState(false);
     const [solution, setSolution] = useState("");
     const [showSolution, setShowSolution] = useState(false);
+    const [stats, setStats] = useState({} as unknown as PuzzleStats);
 
     const isSolution = slug && slug[slug.length - 1] === "solution";
     const puzzleName = isSolution ? slug.slice(0, slug.length - 1).join(":") : null;
@@ -94,6 +96,7 @@ const PuzzleSolution: FunctionComponent<PageProps> = ({ setLoading }) => {
 
     useEffect(() => {
         setLoading(true);
+
         if (!puzzleName) {
             setLoading(false);
             setLoaded(true);
@@ -108,7 +111,11 @@ const PuzzleSolution: FunctionComponent<PageProps> = ({ setLoading }) => {
             setLoading(false);
             setLoaded(true);
         });
-    }, [puzzleName, showSolution, setLoading]);
+
+        fetchData(`${ API_URL }/api/puzzle/${ puzzleName.replace(":", "-") }/stats`).then((data) => {
+            setStats(data as unknown as PuzzleStats);
+        });
+    }, [puzzleName, setLoading]);
 
     if (!loaded) {
         return null;
@@ -145,6 +152,7 @@ const PuzzleSolution: FunctionComponent<PageProps> = ({ setLoading }) => {
             { showSolution ? (
                 <PageDiv>
                     { solution && <PuzzleComplete answer={ solution } /> }
+                    <PuzzleStats stats={ stats } />
                     <ReactMarkdown
                         remarkPlugins={ [remarkGfm] }
                         components={ MarkdownComponents }>

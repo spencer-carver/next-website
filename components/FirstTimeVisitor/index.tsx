@@ -59,7 +59,7 @@ const FirstTimeVisitor: FunctionComponent<{ lastUpdate: number; }> = ({ lastUpda
 
     return (
         <Notification isDismissed={ isDismissed } onClose={ dismissComponent }>
-            <Line>There&apos;s been an update since your last visit! Read below for more information.</Line>
+            { !firstTime && <Line>There&apos;s been an update since your last visit! Read below for more information.</Line> }
             { firstTime && <Line>If this is your first time here, be sure to check out the <Link href="/about">About Me</Link> page. Welcome!</Line> }
         </Notification>
     );

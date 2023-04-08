@@ -7,7 +7,7 @@ This codebase uses [Next.js](https://nextjs.org/), [Typescript](https://www.type
 If you're interested in the previous version if this site, it is available [here](https://github.com/spencer-carver/website).
 
 ### Infrastructure
-![architecture diagram](https://user-images.githubusercontent.com/2357930/56998077-ea700180-6b77-11e9-9943-35ab63cb5303.png)
+![architecture diagram](/public/docs/infrastructure.png)
 
 <sub><sup>diagram created with [draw.io](https://www.draw.io/?splash=0&libs=aws3)</sup></sub>
 
