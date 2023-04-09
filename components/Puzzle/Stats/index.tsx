@@ -40,34 +40,39 @@ const Section = styled("div", {
     }
 });
 
+const Label = styled("div", {
+    fontWeight: "bold",
+    paddingBottom: "5px"
+});
+
 const PuzzleStats = ({ stats }: { stats: PuzzleStats }) => {
     return (
         <>
             <WrapperDiv>
                 <Section>
-                    <div>Incorrect Answers</div>
+                    <Label>Incorrect Answers</Label>
                     { stats.incorrect }
                 </Section>
                 <Section>
-                    <div>Hints Requested</div>
+                    <Label>Hints Requested</Label>
                     { stats.hints }
                 </Section>
                 <Section>
-                    <div>Intermediates Found</div>
+                    <Label>Intermediates Found</Label>
                     { stats.intermediates }
                 </Section>
                 <Section>
-                    <div>Correct Answers</div>
+                    <Label>Correct Answers</Label>
                     { stats.correct }
                 </Section>
             </WrapperDiv>
-            { stats.firstSolve.timestamp && (<WrapperDiv css={{ marginTop: "5px" }}>
+            { stats.firstSolve?.timestamp && (<WrapperDiv css={{ marginTop: "5px" }}>
                     <Section>
-                        <div>Unique Guesses</div>
+                        <Label>Unique Guesses</Label>
                         { Object.keys(stats.answers).length }
                     </Section>
                     <Section>
-                        <div>Most Common Guess</div>
+                        <Label>Most Common Guess</Label>
                         { Object.keys(stats.answers).reduce((mostFrequent, answer) => {
                             return mostFrequent && stats.answers[mostFrequent] > stats.answers[answer]
                                 ? mostFrequent
@@ -75,11 +80,11 @@ const PuzzleStats = ({ stats }: { stats: PuzzleStats }) => {
                             }, undefined)}
                     </Section>
                     <Section>
-                        <div>First Solve</div>
+                        <Label>First Solve</Label>
                         { new Date(stats.firstSolve.timestamp).toLocaleDateString() }
                     </Section>
                     <Section>
-                        <div>First Solved By</div>
+                        <Label>First Solved By</Label>
                         { stats.firstSolve.user }
                     </Section>
                 </WrapperDiv>
