@@ -5,6 +5,7 @@ import KebabMenu from "../Icons/KebabMenu";
 import Image from "../Image";
 import { PageProps } from "../../@types/global";
 import useStorage, { StorageHandler } from "../../utils/useStorage";
+import Link from "../Link";
 
 const MenuDiv = styled("div", {
     position: "absolute",
@@ -119,7 +120,7 @@ const GeocitiesBannerDiv = styled("div", {
     alignItems: "center"
 });
 
-const GeocitiesCoolPageLink = styled ("a", {
+const GeocitiesCoolPageLink = styled("a", {
     "&:hover": {
         cursor: "pointer"
     }
@@ -144,8 +145,29 @@ const FooterElement = styled("footer", {
     }
 });
 
-const CopyrightNotice = styled ("p", {
+const CopyrightNotice = styled("p", {
     display: "inline-block"
+});
+
+const PrivacyPolicy = styled("span", {
+    position: "absolute",
+    right: "5px",
+    bottom: "15px",
+    fontSize: "10px",
+    "@lg": {
+        bottom: "22px"
+    }
+});
+
+const Line2 = styled("div", {
+    "@lg": {
+        display: "inline-block",
+        marginLeft: "3px"
+    }
+});
+
+const PrivacyLink = styled("a", {
+    textDecoration: "none"
 });
 
 const SONG = "https://www.bensound.com/bensound-music/bensound-house.mp3";
@@ -195,6 +217,12 @@ const Footer: FunctionComponent<PageProps & { setTheme: Function }> = ({ theme, 
             <FooterElement>
                 <Theme setTheme={ setTheme } />
                 <CopyrightNotice>&#169; 2019-{ (new Date()).getFullYear() } Spencer Carver</CopyrightNotice>
+                <PrivacyPolicy>
+                    <Link href="/legal" component={ PrivacyLink }>
+                        Privacy
+                        <Line2>Policy</Line2>
+                    </Link>
+                </PrivacyPolicy>
             </FooterElement>
         </>
     );
