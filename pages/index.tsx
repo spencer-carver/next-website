@@ -62,6 +62,11 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>April 18, 2023</SubHeading>
+                <List>
+                    <ListItem>Incoming support: Recipes</ListItem>
+                </List>
+                <P>Extending the blog structure to allow for Kathy&apos;s recipes to start filling that section of the site. More details TBD, but for now, <Link component={ A } href="/recipes/dutch-baby">direct links</Link> work, but they aren&apos;t yet searchable.</P>
                 <SubHeading>April 9, 2023</SubHeading>
                 <List>
                     <ListItem>New Page: <Link href="/past-updates" component={ A }>Past Updates</Link></ListItem>
