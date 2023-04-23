@@ -98,7 +98,7 @@ const Recipes: FunctionComponent<PageProps> = ({ setLoading }) => {
     useEffect(() => {
         setLoading(true);
         fetchData(`${ API_URL }/api/recipes`).then((data) => {
-            const postList = data as unknown as Post[];
+            const postList = (data as unknown as Post[]).sort((a, b) => a.name.localeCompare(b.name));
 
             const tags = {};
 
