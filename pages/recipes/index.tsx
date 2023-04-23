@@ -1,10 +1,13 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 import { PageProps } from "../../@types/global";
-import ConstructionGif from "../../components/ConstructionGif";
 import Link from "../../components/Link";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 import BackNavigation from "../../components/BackNavigation";
+import { API_URL } from "../../constants/ExternalUrls";
+import fetchData from "../../utils/fetch";
+import { Post } from "../blog";
+import { CSS } from "@stitches/react";
 
 const TITLE = "All Recipes";
 const DESCRIPTION = "Some of my favorite recipes for any time of day or year!";
@@ -50,10 +53,77 @@ const LinkAnchor = styled("a", {
     color: "$onSurface",
     textDecoration: "none",
     paddingBottom: "1px",
-    borderBottom: "1px dotted $primary"
+    borderBottom: "1px dotted $primary",
+    textTransform: "capitalize"
 });
 
-const Recipes: FunctionComponent<PageProps> = ({ theme }) => {
+function formatName(name: string): string {
+    return name.replace(/-/g, " ");
+}
+
+const FilterTag = styled("div", {
+    display: "inline-block",
+    backgroundColor: "$surface04",
+    padding: "5px",
+    borderRadius: "5px",
+    margin: "3px",
+    textTransform: "capitalize",
+    "&:hover": {
+        backgroundColor: "$surface08",
+        cursor: "pointer"
+    }
+});
+
+const filterSelectedStyle: CSS = {
+    backgroundColor: "$secondary",
+    color: "$onSecondary",
+    "&:hover": {
+        backgroundColor: "$secondary",
+        cursor: "pointer"
+    }
+};
+
+const RecipeTags = styled("span", {
+    display: "none",
+    "@lg": {
+        display: "initial"
+    }
+});
+
+const Recipes: FunctionComponent<PageProps> = ({ setLoading }) => {
+    const [ posts, setPosts ] = useState([] as Post[]);
+    const [ tags, setTags ] = useState<Record<string, number>>({});
+    const [ filterTags, setFilterTags ] = useState<Record<string, boolean>>({});
+
+    useEffect(() => {
+        setLoading(true);
+        fetchData(`${ API_URL }/api/recipes`).then((data) => {
+            const postList = data as unknown as Post[];
+
+            const tags = {};
+
+            postList.forEach(({ description }) => {
+                const candidateTags = description.toLowerCase().split(",");
+
+                candidateTags.forEach((candidate) => tags[candidate.trim()] = (tags[candidate.trim()] || 0) + 1);
+            });
+
+            setPosts(postList);
+            setTags(tags);
+            setLoading(false);
+        });
+    }, [setLoading]);
+
+    const handleTagClick = useCallback((tag: string) => {
+        if (filterTags[tag]) {
+            delete filterTags[tag];
+        } else {
+            filterTags[tag] = true;
+        }
+        
+        setFilterTags({ ...filterTags });
+    }, [filterTags]);
+
     return (
         <>
             <Head>
@@ -75,17 +145,33 @@ const Recipes: FunctionComponent<PageProps> = ({ theme }) => {
                 <MenuDiv>
                     <Heading>Recipes</Heading>
                     <SectionHeading>Drinks</SectionHeading>
-                    <Link href="/recipes/cocktails" component={ LinkAnchor }>Cocktails</Link>
-                    <SectionHeading>Small Plates</SectionHeading>
-                    <ConstructionGif theme={ theme } useFallback={ true } />
-                    <SectionHeading>Breakfast</SectionHeading>
-                    <ConstructionGif theme={ theme } useFallback={ true } />
-                    <SectionHeading>Lunch</SectionHeading>
-                    <ConstructionGif theme={ theme } useFallback={ true } />
-                    <SectionHeading>Dinner</SectionHeading>
-                    <ConstructionGif theme={ theme } useFallback={ true } />
-                    <SectionHeading>Dessert</SectionHeading>
-                    <ConstructionGif theme={ theme } useFallback={ true } />
+                    <div><Link href="/recipes/cocktails" component={ LinkAnchor }>Cocktails</Link></div>
+                    <SectionHeading>Dishes { posts.length > 0 && `(${ posts.length })` }</SectionHeading>
+                    <div style={{ paddingBottom: "15px" }}>
+                        { Object.keys(tags).sort().map((tag, index) => (
+                            <FilterTag key={ index } onClick={ () => handleTagClick(tag) } css={ filterTags[tag] ? filterSelectedStyle : {} }>
+                                { tag } ({ tags[tag] })
+                            </FilterTag>
+                        )) }
+                    </div>
+                    { posts.map((post, index) => {
+                        let matchesFilter = true;
+
+                        Object.keys(filterTags).map((tag) => {
+                            matchesFilter = matchesFilter && post.description.toLowerCase().includes(tag);
+                        });
+
+                        if (!matchesFilter) {
+                            return false;
+                        }
+
+                        return (
+                            <div key={ index } style={{ paddingBottom: "5px", display: "flex", justifyContent: "space-between" }}>
+                                <Link href={ `/recipes/${ post.name }` } component={ LinkAnchor }>{ formatName(post.name) }</Link>
+                                <RecipeTags style={{ textAlign: "right" }}>{ post.description }</RecipeTags>
+                            </div>
+                        );
+                    })}
                 </MenuDiv>
             </ContentDiv>
         </>
