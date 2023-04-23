@@ -112,6 +112,16 @@ const SmartTableCell = ({ children }) => {
             return;
         }
 
+        if (typeof children[0] !== "string") {
+            if (children[0].props && children[0].props.children && children[0].props.children[0]) {
+                ingredientSet.add(children[0].props.children[0].toLowerCase());
+
+                setIngredientSet(ingredientSet);
+
+                return;
+            }
+        }
+
         const value = children[0] as string;
 
         ingredientSet.add(value.toLowerCase());
@@ -135,8 +145,14 @@ const SmartTableCell = ({ children }) => {
         setScaleFactor(newScaleFactor);
     }, [children, setScaleFactor]);
 
-    if (!children) {
+    if (!children || !children[0]) {
         return <TableCell>{ children }</TableCell>;
+    }
+
+    if (typeof children[0] !== "string") {
+        if (children[0].props && children[0].props.children && children[0].props.children[0]) {
+            return <TableCell data-ingredient={ children[0].props.children[0].toLowerCase() }>{ children[0] }</TableCell>;
+        }
     }
 
     const value = children[0] as string;
@@ -164,9 +180,7 @@ const SmartH4 = ({ children }) => {
             return;
         }
 
-        const ingredientList = children[0].split(":")[1].trim();
-
-        // TODO ignore parenthesis
+        const ingredientList = children[0].includes(":") ? children[0].split(":")?.[1].trim() : "";
 
         ingredientList.split(",").forEach((v) => ingredientSet.add(v.trim().toLowerCase()));
 
