@@ -12,9 +12,9 @@ import fetchData from "../../../utils/fetch";
 import { API_URL } from "../../../constants/ExternalUrls";
 import { Card } from "../../../pages/magic/deck/[deck]";
 import { DeckView } from "../../../constants/Magic";
+import Link from "../../Link";
 
-const { a, code } = MarkdownComponents;
-const Link = a as unknown as FunctionComponent<{ href: string; children: ReactElement | string }>;
+const { code } = MarkdownComponents;
 const Code = code as unknown as FunctionComponent<{ css?: CSS; children: ReactElement | string }>;
 
 const PageDiv = styled("div", {
@@ -49,7 +49,20 @@ const BackToTopSpan = styled("span", {
     padding: "2px",
     border: "1px solid $onBackground",
     borderRadius: "5px",
-    backgroundColor: "$secondary"
+    backgroundColor: "$secondary",
+    color: "$onSecondary",
+    "&:hover": {
+        backgroundColor: "$primary",
+        color: "$onPrimary"
+    }
+});
+
+const ButtonLink = styled("a", {
+    color: "inherit",
+    textDecoration: "none",
+    "&:visited":{
+        color: "inherit"
+    }
 });
 
 const tooltipWrapperStyles: CSS = {
@@ -150,7 +163,7 @@ const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, h
                     {post.content}
                 </ReactMarkdown>
             </PageDiv>
-            {format && format !== "commander" && <BackToTopSpan><Link href="#Matchups">to Matchups</Link></BackToTopSpan>}
+            {format && format !== "commander" && <BackToTopSpan><Link href="#Matchups" component={ ButtonLink }>to Matchups</Link></BackToTopSpan>}
         </>
     );
 };

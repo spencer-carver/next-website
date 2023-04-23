@@ -62,6 +62,18 @@ const PageDiv = styled("div", {
     }
 });
 
+const RecipeLink = styled("a", {
+    color: "inherit",
+    textDecoration: "none",
+    borderBottom: "2px dotted $secondary",
+    "&:visited":{
+        color: "inherit"
+    },
+    "&:hover": {
+        backgroundColor: "$secondary"
+    }
+});
+
 const Table = styled("table", {
     borderCollapse: "collapse"
 });
@@ -87,6 +99,7 @@ const QuantityInput = styled("input", {
     border: "none",
     fontSize: "16px",
     fontFamily: "'Lato', sans-serif",
+    color: "inherit",
     backgroundColor: "transparent",
     "&::-webkit-outer-spin-button": {
         appearance: "none"
@@ -212,7 +225,10 @@ const Li = styled("li", {
     "&:hover": {
         backgroundColor: "$secondary",
         color: "$onSecondary",
-        cursor: "pointer"
+        cursor: "pointer",
+        "&::marker": {
+            color: "$onBackground"
+        }
     }
 });
 
@@ -268,9 +284,10 @@ const ResetScaleFactor = styled("span", {
     top: "10px",
     right: "20px",
     padding: "2px",
-    border: "1px solid $onBackground",
+    border: "1px solid transparent",
     borderRadius: "5px",
     backgroundColor: "$secondary",
+    color: "$onSecondary",
     zIndex: "2",
     "&:hover": {
         cursor: "pointer"
@@ -344,9 +361,11 @@ const Recipe: FunctionComponent<PageProps> = ({ setLoading }) => {
 
         elements.forEach((element: HTMLTableCellElement | HTMLSpanElement) => {
             if (element.tagName === "TD") {
-                element.parentElement.style.backgroundColor = "var(--colors-secondary)"
+                element.parentElement.style.backgroundColor = "var(--colors-secondary)";
+                element.parentElement.style.color = "var(--colors-onSecondary)";
             } else {
-                element.style.backgroundColor = "var(--colors-secondary)"
+                element.style.backgroundColor = "var(--colors-secondary)";
+                element.style.color = "var(--colors-onSecondary)";
             }
         });
     }, [metadata]);
@@ -365,8 +384,10 @@ const Recipe: FunctionComponent<PageProps> = ({ setLoading }) => {
         elements.forEach((element: HTMLTableCellElement | HTMLSpanElement) => {
             if (element.tagName === "TD") {
                 element.parentElement.style.backgroundColor = "unset";
+                element.parentElement.style.color = "unset";
             } else {
                 element.style.backgroundColor = "unset";
+                element.style.color = "unset";
             }
         });
     }, [metadata]);
@@ -420,6 +441,7 @@ const Recipe: FunctionComponent<PageProps> = ({ setLoading }) => {
                         td: SmartTableCell as unknown as TableDataCellComponent,
                         li: SmartListItem as unknown as SpecialComponents["li"],
                         code: IngredientMap as unknown as NormalComponents["code"],
+                        a: RecipeLink as unknown as NormalComponents["a"]
                     }}>
                     { recipe.content }
                 </ReactMarkdown>
