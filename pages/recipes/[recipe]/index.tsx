@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import React, { FunctionComponent, Dispatch, SetStateAction, createContext, useContext, useEffect, useState } from "react";
+import React, { FunctionComponent, Dispatch, SetStateAction, createContext, useContext, useEffect, useState, useCallback, MouseEventHandler } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { HeadingComponent, SpecialComponents, TableDataCellComponent, TableHeaderCellComponent } from "react-markdown/lib/ast-to-react";
@@ -44,6 +44,7 @@ const HeaderDiv = styled("div", {
 
 const PageDiv = styled("div", {
     padding: "0 20px",
+    position: "relative",
     backgroundColor: "$background",
     color: "$onBackground",
     "& sup span a": {
@@ -75,17 +76,35 @@ const TableCell = styled("td", {
     border: "1px solid transparent",
     padding: "5px",
     "@lg": {
-        "&:not(:last-of-type)": {
+        "&:not(:last-of-type):not(:first-of-type)": {
             paddingRight: "15px"
         }
+    }
+});
+
+const QuantityInput = styled("input", {
+    width: "75px",
+    border: "none",
+    fontSize: "16px",
+    fontFamily: "'Lato', sans-serif",
+    backgroundColor: "transparent",
+    "&::-webkit-outer-spin-button": {
+        appearance: "none"
+    },
+    "&::-webkit-inner-spin-button": {
+        appearance: "none"
+    },
+    "&:hover": {
+        cursor: "pointer"
     }
 });
 
 const SmartTableCell = ({ children }) => {
     const {
         scaleFactor,
-        ingredientSet, setIngredientSet,
-        generalizedIngredientSet, setGeneralizedIngredientSet
+        setScaleFactor,
+        ingredientSet,
+        setIngredientSet
     } = useRecipe();
 
     useEffect(() => {
@@ -97,15 +116,24 @@ const SmartTableCell = ({ children }) => {
 
         ingredientSet.add(value.toLowerCase());
 
-        if (value.includes(" ")) {
-            value.split(" ").forEach((v) => v && generalizedIngredientSet.add(v.toLowerCase()));
+        setIngredientSet(ingredientSet);
+    }, [children, ingredientSet, setIngredientSet]);
+
+    const onInputChange = useCallback((event) => {
+        if (!children) {
+            return;
         }
 
-        // TODO plural?
+        const value = parseFloat(children[0] as string);
 
-        setIngredientSet(ingredientSet);
-        setGeneralizedIngredientSet(generalizedIngredientSet);
-    }, [children, ingredientSet, setIngredientSet, generalizedIngredientSet, setGeneralizedIngredientSet]);
+        if (Number.isNaN(value)) {
+            return;
+        }
+
+        const newScaleFactor = (parseFloat(event.target.value) || 0) / value;
+
+        setScaleFactor(newScaleFactor);
+    }, [children, setScaleFactor]);
 
     if (!children) {
         return <TableCell>{ children }</TableCell>;
@@ -113,19 +141,17 @@ const SmartTableCell = ({ children }) => {
 
     const value = children[0] as string;
 
-    if (!Number.isNaN(parseFloat(value))) {
-        return <TableCell>{ Math.round(scaleFactor * parseFloat(value) * 100) / 100 }</TableCell>
+    if (Number.isNaN(parseFloat(value))) {
+        return <TableCell data-ingredient={ value.toLowerCase() }>{ value }</TableCell>;
     }
 
-    const ingredients = [value.toLowerCase()];
+    const quantity = Math.round(scaleFactor * parseFloat(value) * 100) / 100;
 
-    if (value.includes(" ")) {
-        value.split(" ").forEach((v) => v && ingredients.push(v.toLowerCase()));
-
-        //TODO plural?
-    }
-
-    return <TableCell data-ingredients={ ingredients }>{ value }</TableCell>;
+    return (
+        <TableCell>
+            <QuantityInput type="number" step="any" min="0" value={ quantity } onChange={ onInputChange }/>
+        </TableCell>
+    );
 };
 
 const H4 = styled("h4", {});
@@ -140,21 +166,26 @@ const SmartH4 = ({ children }) => {
 
         const ingredientList = children[0].split(":")[1].trim();
 
-        ingredientList.split(",").forEach((v) => ingredientSet.add(v.trim().toLowerCase()));
+        // TODO ignore parenthesis
 
-        //TODO two-words?
-        //TODO plural?
+        ingredientList.split(",").forEach((v) => ingredientSet.add(v.trim().toLowerCase()));
 
         setIngredientSet(ingredientSet);
     }, [children, ingredientSet, setIngredientSet]);
 
-    const [ heading, ingredients ] = children[0].split(":");
+    const [ heading, allIngredients ] = children[0].split(":");
+    const ingredients = allIngredients.split(",").reduce((arr, ingredient) => {
+        const parts = ingredient.split(" and ").map(i => i.trim()).filter(i => !!i);
+
+        return arr.concat(parts);
+    }, []);
 
     return (
-        <H4>{ heading }: { ingredients.trim().split(",").map((i, ind) =>
+        <H4>{ heading }: { ingredients.map((i, ind) =>
             <React.Fragment key={ ind }>
-                { ind !== 0 && ", " }
-                <span data-ingredients={ [i.trim().toLowerCase()] }>
+                { ind !== 0 && ind !== ingredients.length - 1 && ", " }
+                { ingredients.length > 1 && ind === ingredients.length - 1 && " and " }
+                <span data-ingredient={ i.trim().toLowerCase() } style={{ padding: "0 2px" }}>
                     { i.trim() }
                 </span>
             </React.Fragment>
@@ -163,10 +194,17 @@ const SmartH4 = ({ children }) => {
     );
 };
 
-const Li = styled("li", {});
+const Li = styled("li", {
+    "&:hover": {
+        backgroundColor: "$secondary",
+        color: "$onSecondary",
+        cursor: "pointer"
+    }
+});
 
-const SmartListItem = ({ children }) => {
-    const { ingredientSet, generalizedIngredientSet } = useRecipe();
+const SmartListItem = ({ index, children }) => {
+    const [isDone, setIsDone] = useState(false);
+    const { ingredientSet, onHoverStep, onLeaveStep } = useRecipe();
 
     if (!children || !children[0]) {
         return;
@@ -181,33 +219,74 @@ const SmartListItem = ({ children }) => {
         }
     });
 
-    generalizedIngredientSet.forEach((ingredient) => {
-        if (instruction.toLowerCase().includes(ingredient)) {
-            ingredients.push(ingredient);
-        }
-    });
-
     return (
-        <Li data-ingredients={ ingredients }>
+        <Li data-index={ index + 1 }
+            onMouseEnter={ onHoverStep }
+            onMouseLeave={ onLeaveStep }
+            onClick={ () => setIsDone(v => !v) }
+            css={ isDone ? { textDecoration: "line-through" } : {} }
+        >
             { instruction }
         </Li>
     );
 };
 
+const IngredientMap = ({ children }) => {
+    const { setMetadata } = useRecipe();
+
+    useEffect(() => {
+        try {
+            const metadata = JSON.parse(children[0]);
+
+            setMetadata(metadata);
+        } catch (error) {
+            // do nothing
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return null;
+};
+
+const ResetScaleFactor = styled("span", {
+    position: "absolute",
+    float: "right",
+    top: "10px",
+    right: "20px",
+    padding: "2px",
+    border: "1px solid $onBackground",
+    borderRadius: "5px",
+    backgroundColor: "$secondary",
+    zIndex: "2",
+    "&:hover": {
+        cursor: "pointer"
+    }
+});
+
+interface StepMetadata {
+    ingredients: string[];
+}
+
 interface RecipeProps {
     scaleFactor: number;
+    setScaleFactor: Dispatch<SetStateAction<number>>;
     ingredientSet: Set<string>;
     setIngredientSet: Dispatch<SetStateAction<Set<string>>>;
-    generalizedIngredientSet: Set<string>;
-    setGeneralizedIngredientSet: Dispatch<SetStateAction<Set<string>>>;
+    metadata: Record<number, StepMetadata>;
+    setMetadata: Dispatch<SetStateAction<Record<number, StepMetadata>>>;
+    onHoverStep: MouseEventHandler<HTMLLIElement>;
+    onLeaveStep: MouseEventHandler<HTMLLIElement>;
 }
 
 const RecipeContext = createContext<RecipeProps>({
     scaleFactor: 1,
+    setScaleFactor: () => {},
     ingredientSet: new Set<string>(),
     setIngredientSet: () => {},
-    generalizedIngredientSet: new Set<string>(),
-    setGeneralizedIngredientSet: () => {}
+    metadata: {},
+    setMetadata: () => {},
+    onHoverStep: () => {},
+    onLeaveStep: () => {}
 });
 
 function useRecipe() {
@@ -221,7 +300,7 @@ const Recipe: FunctionComponent<PageProps> = ({ setLoading }) => {
     const [loaded, setLoaded] = useState(false);
     const [scaleFactor, setScaleFactor] = useState(1);
     const [ingredientSet, setIngredientSet] = useState(new Set<string>());
-    const [generalizedIngredientSet, setGeneralizedIngredientSet] = useState(new Set<string>());
+    const [metadata, setMetadata] = useState<Record<number, StepMetadata>>({});
 
     useEffect(() => {
         setLoading(true);
@@ -237,6 +316,46 @@ const Recipe: FunctionComponent<PageProps> = ({ setLoading }) => {
             setLoaded(true);
         });
     }, [recipeName, setLoading]);
+
+    const onHoverStep = useCallback((event) => {
+        const stepNumber = parseInt(event.target.dataset.index);
+
+        const ingredients = metadata[stepNumber]?.ingredients || [];
+
+        const elements = ingredients.reduce((arr, ingredient) => {
+            const ingredientElements = document.querySelectorAll(`[data-ingredient='${ ingredient.toLowerCase() }']`);
+
+            return arr.concat(Array.from(ingredientElements));
+        }, []);
+
+        elements.forEach((element: HTMLTableCellElement | HTMLSpanElement) => {
+            if (element.tagName === "TD") {
+                element.parentElement.style.backgroundColor = "var(--colors-secondary)"
+            } else {
+                element.style.backgroundColor = "var(--colors-secondary)"
+            }
+        });
+    }, [metadata]);
+    
+    const onLeaveStep = useCallback((event) => {
+        const stepNumber = parseInt(event.target.dataset.index);
+
+        const ingredients = metadata[stepNumber]?.ingredients || [];
+
+        const elements = ingredients.reduce((arr, ingredient) => {
+            const ingredientElements = document.querySelectorAll(`[data-ingredient='${ ingredient.toLowerCase() }']`);
+
+            return arr.concat(Array.from(ingredientElements));
+        }, []);
+
+        elements.forEach((element: HTMLTableCellElement | HTMLSpanElement) => {
+            if (element.tagName === "TD") {
+                element.parentElement.style.backgroundColor = "unset";
+            } else {
+                element.style.backgroundColor = "unset";
+            }
+        });
+    }, [metadata]);
 
     if (!loaded) {
         return null;
@@ -254,7 +373,7 @@ const Recipe: FunctionComponent<PageProps> = ({ setLoading }) => {
 
     // eslint-disable-next-line react/no-children-prop
     return (
-        <RecipeContext.Provider value={{ scaleFactor, ingredientSet, setIngredientSet, generalizedIngredientSet, setGeneralizedIngredientSet }}>
+        <RecipeContext.Provider value={{ scaleFactor, setScaleFactor, ingredientSet, setIngredientSet, metadata, setMetadata, onHoverStep, onLeaveStep }}>
             <Head>
                 <title>{ TITLE }</title>
                 <link rel="canonical" href={ `${ process.env.NEXT_PUBLIC_SITE_URL }/recipes/${ recipeName }` } />
@@ -276,6 +395,7 @@ const Recipe: FunctionComponent<PageProps> = ({ setLoading }) => {
                 { publishDate !== modifyDate && <span>Modified on { modifyDate }</span>}
             </HeaderDiv>
             <PageDiv>
+                { scaleFactor !== 1 && <ResetScaleFactor onClick={ () => setScaleFactor(1) }>reset</ResetScaleFactor>}
                 <ReactMarkdown
                     remarkPlugins={ [remarkGfm] }
                     components={{
@@ -284,7 +404,8 @@ const Recipe: FunctionComponent<PageProps> = ({ setLoading }) => {
                         table: Table as unknown as NormalComponents["table"],
                         th: TableHeading as unknown as TableHeaderCellComponent,
                         td: SmartTableCell as unknown as TableDataCellComponent,
-                        li: SmartListItem as unknown as SpecialComponents["li"]
+                        li: SmartListItem as unknown as SpecialComponents["li"],
+                        code: IngredientMap as unknown as NormalComponents["code"],
                     }}>
                     { recipe.content }
                 </ReactMarkdown>
