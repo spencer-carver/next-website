@@ -84,6 +84,7 @@ export interface Post {
     createdTime: number;
     modifiedTime: number;
     content?: string;
+    author: string;
 }
 
 const BlogIndex: FunctionComponent<PageProps> = ({ setLoading }) => {

@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, Dispatch, SetStateAction, createContext, useContext, useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { TableDataCellComponent, TableHeaderCellComponent } from "react-markdown/lib/ast-to-react";
+import { HeadingComponent, SpecialComponents, TableDataCellComponent, TableHeaderCellComponent } from "react-markdown/lib/ast-to-react";
 import { NormalComponents } from "react-markdown/lib/complex-types";
 import { PageProps } from "../../../@types/global";
 import { API_URL } from "../../../constants/ExternalUrls";
@@ -81,12 +81,147 @@ const TableCell = styled("td", {
     }
 });
 
+const SmartTableCell = ({ children }) => {
+    const {
+        scaleFactor,
+        ingredientSet, setIngredientSet,
+        generalizedIngredientSet, setGeneralizedIngredientSet
+    } = useRecipe();
+
+    useEffect(() => {
+        if (!children || !Number.isNaN(parseFloat(children[0]))) {
+            return;
+        }
+
+        const value = children[0] as string;
+
+        ingredientSet.add(value.toLowerCase());
+
+        if (value.includes(" ")) {
+            value.split(" ").forEach((v) => v && generalizedIngredientSet.add(v.toLowerCase()));
+        }
+
+        // TODO plural?
+
+        setIngredientSet(ingredientSet);
+        setGeneralizedIngredientSet(generalizedIngredientSet);
+    }, [children, ingredientSet, setIngredientSet, generalizedIngredientSet, setGeneralizedIngredientSet]);
+
+    if (!children) {
+        return <TableCell>{ children }</TableCell>;
+    }
+
+    const value = children[0] as string;
+
+    if (!Number.isNaN(parseFloat(value))) {
+        return <TableCell>{ Math.round(scaleFactor * parseFloat(value) * 100) / 100 }</TableCell>
+    }
+
+    const ingredients = [value.toLowerCase()];
+
+    if (value.includes(" ")) {
+        value.split(" ").forEach((v) => v && ingredients.push(v.toLowerCase()));
+
+        //TODO plural?
+    }
+
+    return <TableCell data-ingredients={ ingredients }>{ value }</TableCell>;
+};
+
+const H4 = styled("h4", {});
+
+const SmartH4 = ({ children }) => {
+    const { ingredientSet, setIngredientSet } = useRecipe();
+
+    useEffect(() => {
+        if (!children || !children[0]) {
+            return;
+        }
+
+        const ingredientList = children[0].split(":")[1].trim();
+
+        ingredientList.split(",").forEach((v) => ingredientSet.add(v.trim().toLowerCase()));
+
+        //TODO two-words?
+        //TODO plural?
+
+        setIngredientSet(ingredientSet);
+    }, [children, ingredientSet, setIngredientSet]);
+
+    const [ heading, ingredients ] = children[0].split(":");
+
+    return (
+        <H4>{ heading }: { ingredients.trim().split(",").map((i, ind) =>
+            <React.Fragment key={ ind }>
+                { ind !== 0 && ", " }
+                <span data-ingredients={ [i.trim().toLowerCase()] }>
+                    { i.trim() }
+                </span>
+            </React.Fragment>
+        ) }
+        </H4>
+    );
+};
+
+const Li = styled("li", {});
+
+const SmartListItem = ({ children }) => {
+    const { ingredientSet, generalizedIngredientSet } = useRecipe();
+
+    if (!children || !children[0]) {
+        return;
+    }
+
+    const instruction = children[0] as string;
+    const ingredients = [];
+
+    ingredientSet.forEach((ingredient) => {
+        if (instruction.toLowerCase().includes(ingredient)) {
+            ingredients.push(ingredient);
+        }
+    });
+
+    generalizedIngredientSet.forEach((ingredient) => {
+        if (instruction.toLowerCase().includes(ingredient)) {
+            ingredients.push(ingredient);
+        }
+    });
+
+    return (
+        <Li data-ingredients={ ingredients }>
+            { instruction }
+        </Li>
+    );
+};
+
+interface RecipeProps {
+    scaleFactor: number;
+    ingredientSet: Set<string>;
+    setIngredientSet: Dispatch<SetStateAction<Set<string>>>;
+    generalizedIngredientSet: Set<string>;
+    setGeneralizedIngredientSet: Dispatch<SetStateAction<Set<string>>>;
+}
+
+const RecipeContext = createContext<RecipeProps>({
+    scaleFactor: 1,
+    ingredientSet: new Set<string>(),
+    setIngredientSet: () => {},
+    generalizedIngredientSet: new Set<string>(),
+    setGeneralizedIngredientSet: () => {}
+});
+
+function useRecipe() {
+    return useContext(RecipeContext);
+}
+
 const Recipe: FunctionComponent<PageProps> = ({ setLoading }) => {
     const router = useRouter();
     const { recipe: recipeName } = router.query;
-    const [recipe, setPost] = useState({} as unknown as Post);
+    const [recipe, setRecipe] = useState({} as unknown as Post);
     const [loaded, setLoaded] = useState(false);
     const [scaleFactor, setScaleFactor] = useState(1);
+    const [ingredientSet, setIngredientSet] = useState(new Set<string>());
+    const [generalizedIngredientSet, setGeneralizedIngredientSet] = useState(new Set<string>());
 
     useEffect(() => {
         setLoading(true);
@@ -94,9 +229,9 @@ const Recipe: FunctionComponent<PageProps> = ({ setLoading }) => {
             return;
         }
 
-        fetchData(`${ API_URL }/api/blog/${ recipeName }`).then((data) => {
+        fetchData(`${ API_URL }/api/recipes/${ recipeName }`).then((data) => {
             if (typeof (data as unknown as Post).content === "string") {
-                setPost(data as unknown as Post);
+                setRecipe(data as unknown as Post);
             }
             setLoading(false);
             setLoaded(true);
@@ -115,11 +250,11 @@ const Recipe: FunctionComponent<PageProps> = ({ setLoading }) => {
     const modifyDate = new Date(recipe.modifiedTime).toDateString();
 
     const TITLE = formatName(recipe.name);
-    const DESCRIPTION = recipe.description || "A recipe by Spencer Carver and/or Kathy Chen";
+    const DESCRIPTION = `A recipe by ${ recipe.author }`;
 
     // eslint-disable-next-line react/no-children-prop
     return (
-        <>
+        <RecipeContext.Provider value={{ scaleFactor, ingredientSet, setIngredientSet, generalizedIngredientSet, setGeneralizedIngredientSet }}>
             <Head>
                 <title>{ TITLE }</title>
                 <link rel="canonical" href={ `${ process.env.NEXT_PUBLIC_SITE_URL }/recipes/${ recipeName }` } />
@@ -145,14 +280,16 @@ const Recipe: FunctionComponent<PageProps> = ({ setLoading }) => {
                     remarkPlugins={ [remarkGfm] }
                     components={{
                         ...MarkdownComponents,
+                        h4: SmartH4 as unknown as HeadingComponent,
                         table: Table as unknown as NormalComponents["table"],
                         th: TableHeading as unknown as TableHeaderCellComponent,
-                        td: TableCell as unknown as TableDataCellComponent
+                        td: SmartTableCell as unknown as TableDataCellComponent,
+                        li: SmartListItem as unknown as SpecialComponents["li"]
                     }}>
                     { recipe.content }
                 </ReactMarkdown>
             </PageDiv>
-        </>
+        </RecipeContext.Provider>
     );
 };
 

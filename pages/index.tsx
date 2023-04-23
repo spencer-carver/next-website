@@ -62,6 +62,11 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>April 23, 2023</SubHeading>
+                <List>
+                    <ListItem>Updated Page: <Link href="/recipes" component={ A }>Recipes</Link></ListItem>
+                </List>
+                <P>Still working on more features and better functionality here, but the main recipes page can now be populated with the contents of our shared recipe folder, and has rudimentary filtering based on tags.</P>
                 <SubHeading>April 18, 2023</SubHeading>
                 <List>
                     <ListItem>Incoming support: Recipes</ListItem>

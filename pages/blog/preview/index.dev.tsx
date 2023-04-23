@@ -68,7 +68,8 @@ const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
             name: "Preview Post",
             createdTime: (new Date()).getTime(),
             modifiedTime: (new Date()).getTime(),
-            content: previewPost
+            content: previewPost,
+            author: "Spencer Carver"
         });
         setLoading(false);
         setLoaded(true);
