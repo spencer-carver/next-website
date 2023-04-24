@@ -138,8 +138,7 @@ const SiteNavDiv = styled("div", {
     margin: "5px 30px 5px 0",
     padding: "10px 0 10px 10px",
     zIndex: "1000003",
-    width: "85px",
-    height: "130px"
+    width: "85px"
 });
 
 const SiteNavContentsDiv = styled("div", {
@@ -177,7 +176,8 @@ const SiteNav: FunctionComponent<SiteNavProps> = ({ expanded, toggleMenu }) => {
                 <Link href="/blog" component={ SiteNavLinkAnchor }>Blog</Link>
                 <Link href="/puzzles" component={ SiteNavLinkAnchor }>Puzzles</Link>
                 <Link href="/magic" component={ SiteNavLinkAnchor }>Magic</Link>
-                <Link href="/recipes" component={ SiteNavLinkAnchor }>Recipes</Link>
+                <Link href="https://dumpling.academy/recipes" component={ SiteNavLinkAnchor }>Recipes</Link>
+                <Link href="/cocktails" component={ SiteNavLinkAnchor }>Cocktails</Link>
                 <Link href={ GITHUB_URL } component={ SiteNavLinkAnchor }>Github</Link>
             </SiteNavContentsDiv>
         </SiteNavDiv>
@@ -219,7 +219,7 @@ const PageNavDiv = styled("div", {
 const SiteNavBackgroundDiv = styled("div", {
     backgroundColor: "$surface01",
     width: "120px",
-    height: "150px",
+    height: "172px",
     marginLeft: "-50px",
     borderBottomRightRadius: "$borderRadius",
     borderBottom: "1px solid $onBackground",

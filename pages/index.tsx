@@ -3,9 +3,7 @@ import { lightTheme, styled, yahooGeocitiesTheme } from "../styles/stitches";
 import FirstTimeVisitor from "../components/FirstTimeVisitor";
 import ConstructionGif from "../components/ConstructionGif";
 import Link from "../components/Link";
-import { TWITCH_URL, YOUTUBE_URL } from "../constants/ExternalUrls";
 import Head from "next/head";
-import Tooltip from "../components/Tooltip";
 import { FunctionComponent } from "react";
 import { PageProps } from "../@types/global";
 
@@ -62,16 +60,18 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>April 24, 2023</SubHeading>
+                <P>Recipes have moved to <Link href="https://dumpling.academy" component={ A }>Dumpling Academy</Link>, my second website.</P>
                 <SubHeading>April 23, 2023</SubHeading>
                 <List>
-                    <ListItem>Updated Page: <Link href="/recipes" component={ A }>Recipes</Link></ListItem>
+                    <ListItem>Updated Page: <Link href="https://dumpling.academy/recipes" component={ A }>Recipes</Link></ListItem>
                 </List>
                 <P>Still working on more features and better functionality here, but the main recipes page can now be populated with the contents of our shared recipe folder, and has rudimentary filtering based on tags.</P>
                 <SubHeading>April 18, 2023</SubHeading>
                 <List>
                     <ListItem>Incoming support: Recipes</ListItem>
                 </List>
-                <P>Extending the blog structure to allow for Kathy&apos;s recipes to start filling that section of the site. More details TBD, but for now, <Link component={ A } href="/recipes/dutch-baby">direct links</Link> work, but they aren&apos;t yet searchable.</P>
+                <P>Extending the blog structure to allow for Kathy&apos;s recipes to start filling that section of the site. More details TBD, but for now, <Link component={ A } href="https://dumpling.academy/recipes/dutch-baby">direct links</Link> work, but they aren&apos;t yet searchable.</P>
                 <SubHeading>April 9, 2023</SubHeading>
                 <List>
                     <ListItem>New Page: <Link href="/past-updates" component={ A }>Past Updates</Link></ListItem>
