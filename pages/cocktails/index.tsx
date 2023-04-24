@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from "react";
 import Head from "next/head";
-import BackNavigation from "../../../components/BackNavigation";
-import Link from "../../../components/Link";
-import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
+import BackNavigation from "../../components/BackNavigation";
+import Link from "../../components/Link";
+import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 
 const TITLE = "Cocktail Recipes";
 const DESCRIPTION = "Check out some of my favorite beverages, and give them a try!";
@@ -139,19 +139,19 @@ const Cocktails: FunctionComponent = () => {
         <>
             <Head>
                 <title>{ TITLE }</title>
-                <link rel="canonical" href={ `${ process.env.NEXT_PUBLIC_SITE_URL }/recipes/cocktails` } />
+                <link rel="canonical" href={ `${ process.env.NEXT_PUBLIC_SITE_URL }/cocktails` } />
                 <meta name="description" content={ DESCRIPTION } />
                 <meta name="homepage" content="false" />
                 <meta property="og:site_name" content={ TITLE } />
                 <meta property="og:description" content={ DESCRIPTION } />
                 <meta property="og:title" content={ TITLE } />
-                <meta property="og:url" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/recipes/cocktails` } />
+                <meta property="og:url" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/cocktails` } />
                 <meta property="og:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo.jpg` } />
                 <meta name="twitter:description" content={ DESCRIPTION } />
                 <meta name="twitter:title" content={ TITLE } />
                 <meta name="twitter:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo.jpg` } />
             </Head>
-            <BackNavigation to="/recipes" />
+            <BackNavigation to="/" />
             <ContentDiv>
                 <MenuDiv>
                     <h1>Cocktail Menu</h1>

@@ -115,7 +115,7 @@ const AboutMe: FunctionComponent = () => {
                         <p>
                             I enjoy <Link href={ MOUNTAINPROJECT_URL } component={ LinkTag }>Rock Climbing</Link>
                             , <Link href="/magic" component={ LinkTag }>Magic: the Gathering</Link>,
-                            and <Link href="/recipes/cocktails" component={ LinkTag }>Cocktails</Link>; though I wouldn&apos;t recommend combining them into a single activity.
+                            and <Link href="/cocktails" component={ LinkTag }>Cocktails</Link>; though I wouldn&apos;t recommend combining them into a single activity.
                         </p>
                         <p>
                             I&apos;m also a fan of <Link href="/puzzles" component={ LinkTag }>Puzzles</Link>
