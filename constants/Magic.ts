@@ -273,6 +273,11 @@ export const OTHER_DECKS: DeckLinkProps[] = [{
     colors: "WR",
     imageUrl: `${ ART_CROP_URL_PREFIX }/d/1/d14993b6-ed8d-4b9b-b54c-2837b343a61e.jpg`
 },{
+    name: "Proxy Vintage: Doomsday",
+    id: "doomsday",
+    colors: "UB",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/5/b/5b3c6d87-9383-450b-bba5-33435b6b0d08.jpg`
+},{
     name: "Proxy Vintage: Oath of Druids",
     id: "oath-of-druids",
     colors: "WUBRG",
