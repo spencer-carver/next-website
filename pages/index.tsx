@@ -60,6 +60,8 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>June 14, 2023</SubHeading>
+                <P>A long break! Puzzle answers are still coming Soon™, but for now updated some magic decks in the meantime.</P>
                 <SubHeading>April 24, 2023</SubHeading>
                 <P>Recipes have moved to <Link href="https://dumpling.academy" component={ A }>Dumpling Academy</Link>, my second website.</P>
                 <SubHeading>April 23, 2023</SubHeading>
