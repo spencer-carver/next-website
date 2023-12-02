@@ -167,7 +167,8 @@ const Line2 = styled("div", {
 });
 
 const PrivacyLink = styled("a", {
-    textDecoration: "none"
+    textDecoration: "none",
+    color: "$onBackground"
 });
 
 const SONG = "https://www.bensound.com/bensound-music/bensound-house.mp3";

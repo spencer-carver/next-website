@@ -54,13 +54,21 @@ const AnswerSpan = styled("span", {
     }
 });
 
+const speedPuzzleMarker: CSS = {
+    "&::before": {
+        content: "⏱️",
+        marginLeft: "-28px",
+        marginRight: "5px"
+    }
+};
+
 interface RowEntryProps extends PuzzleDetails {
     puzzleId: string;
     clearAnswer: Function;
     showComingSoon?: boolean;
 }
 
-const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, comingSoon, solutionAvailable, clearAnswer, showComingSoon }) => {
+const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, timeLimit, comingSoon, solutionAvailable, clearAnswer, showComingSoon }) => {
     const storage = useStorage("puzzle");
     const [ puzzleAnswer, setPuzzleAnswer ] = useState(null);
 
@@ -75,6 +83,7 @@ const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, c
 
     const clearPuzzleAnswer = useCallback((): void => {
         clearAnswer(puzzleId);
+        clearAnswer(`${ puzzleId }-time`);
         setPuzzleAnswer(null);
     }, [clearAnswer, puzzleId]);
 
@@ -83,7 +92,7 @@ const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, c
     }
 
     return (
-        <Row>
+        <Row css={ timeLimit ? speedPuzzleMarker : {} }>
             { puzzleId === NEWEST_PUZZLE && <NewSpan>New</NewSpan> }
             { comingSoon && <NewSpan css={{ color: "$primary" }}>Coming Soon</NewSpan> }
             { solutionAvailable && !puzzleAnswer && <NewSpan css={ solutionOverrides }>Available</NewSpan> }

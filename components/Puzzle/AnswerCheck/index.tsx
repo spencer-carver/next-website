@@ -1,9 +1,10 @@
 import React, { useState, FunctionComponent, useMemo } from "react";
 import { CSS } from "@stitches/react";
 import { API_URL } from "../../../constants/ExternalUrls";
-import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
 import Link from "../../Link";
 import useStorage from "../../../utils/useStorage";
+import Timer from "../Timer";
+import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
 
 const AnswerBoxDiv = styled("div", {
     bottom: "0",
@@ -35,6 +36,7 @@ interface PuzzleAnswerSubmissionProps {
     answer?: string;
     onSuccess: Function;
     solutionLink?: string;
+    disabled?: boolean;
 }
 
 export interface PuzzleAnswer {
@@ -46,7 +48,7 @@ export interface PuzzleAnswer {
     time?: number;
 }
 
-const PuzzleAnswerSubmission: FunctionComponent<PuzzleAnswerSubmissionProps> = ({ puzzleName, answer: existingAnswer, onSuccess, solutionLink }) => {
+const PuzzleAnswerSubmission: FunctionComponent<PuzzleAnswerSubmissionProps> = ({ puzzleName, answer: existingAnswer, onSuccess, solutionLink, disabled }) => {
     const [ answer, setAnswer ] = useState("");
     const [ answers, setAnswers ] = useState([] as PuzzleAnswer[]);
     const [ hintCount, setHintCount ] = useState(0);
@@ -94,8 +96,8 @@ const PuzzleAnswerSubmission: FunctionComponent<PuzzleAnswerSubmissionProps> = (
             <InputForm onSubmit={ submit }>
                 { !existingAnswer && (
                     <>
-                        <input type="text" placeholder="Answer Here" value={ answer } onChange={ onType }></input>
-                        <button type="submit">Submit</button>
+                        <input type="text" placeholder="Answer Here" value={ answer } onChange={ onType } disabled={ disabled }></input>
+                        <button type="submit" disabled={ disabled }>Submit</button>
                     </>
                 ) }
                 { solutionLink && <Link href={ solutionLink } component={ SolutionAnchor }>View Solution</Link> }
