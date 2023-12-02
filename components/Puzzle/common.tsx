@@ -6,6 +6,7 @@ import BackNavigation from "../BackNavigation";
 import { PUZZLES } from "../../constants/Puzzle";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 import useStorage from "../../utils/useStorage";
+import Timer from "./Timer";
 
 export const PuzzleDiv = styled("div", {
     margin: "0 auto",
@@ -42,6 +43,16 @@ export const DescriptionDiv = styled("div", {
     }
 });
 
+const SpeedPuzzleDiv = styled("div", {
+    fontSize: "14px",
+    marginTop: "50px",
+    marginBottom: "10px",
+    color: "$onBackground",
+    "@lg": {
+        fontSize: "20px"
+    }
+});
+
 interface PuzzleWrapperProps {
     name: string;
     children?: ReactNode;
@@ -51,6 +62,8 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
     const storage = useStorage("puzzle");
     const [ answer, setAnswer ] = useState(undefined);
     const [ AnswerBanner, setAnswerBanner ] = useState(null);
+    const [ submissionDisabled, setSubmissionDisabled ] = useState(false);
+    const [ paused, setPaused ] = useState(!!PUZZLES[name]?.timeLimit);
 
     useEffect(() => {
         setAnswerBanner(<PuzzleComplete answer={ answer } />);
@@ -58,7 +71,12 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
 
     useEffect(() => {
         try {
-            setAnswer(storage.getItem<string>(name));
+            const foundAnswer = storage.getItem<string>(name);
+
+            if (foundAnswer) {
+                setAnswer(foundAnswer);
+                setPaused(false);
+            }
         } catch (e) {
             // do nothing
         }
@@ -78,7 +96,8 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
         title,
         description,
         round,
-        solutionAvailable
+        solutionAvailable,
+        timeLimit
     } = PUZZLES[name];
     const path = round ? name.replaceAll(":", "/"): name;
 
@@ -101,11 +120,38 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
             { AnswerBanner }
             <BackNavigation to={ `/puzzles${ round ? `/${ round.toLowerCase() }` : "" }` } />
             <PuzzleDiv>
+                { timeLimit && (
+                    <Timer
+                        name={ name }
+                        timeLimit={ timeLimit }
+                        active={ !answer }
+                        paused={ paused }
+                        onTimeout={ () => setSubmissionDisabled(true) }
+                        onClick={ () => setPaused((p) => !p) }
+                    />
+                ) }
                 <Heading>{ title }</Heading>
-                { description && <DescriptionDiv>{ description }</DescriptionDiv> }
-                { children }
+                { !paused && description && <DescriptionDiv>{ description }</DescriptionDiv> }
+                { !paused ? children : (
+                    <>
+                        <DescriptionDiv>
+                            You have a fixed amount of time to complete this puzzle.
+                            <br />
+                            Click the timer to start/stop your progress. Good Luck!
+                        </DescriptionDiv>
+                        <SpeedPuzzleDiv>
+                            Content hidden while paused.
+                        </SpeedPuzzleDiv>
+                    </>
+                ) }
             </PuzzleDiv>
-            <PuzzleAnswerSubmission puzzleName={ name } answer={ answer } onSuccess={ onSuccess } solutionLink={ solutionAvailable ? `/puzzles/${ path }/solution` : undefined } />
+            <PuzzleAnswerSubmission
+                puzzleName={ name }
+                answer={ answer }
+                onSuccess={ onSuccess }
+                solutionLink={ solutionAvailable ? `/puzzles/${ path }/solution` : undefined }
+                disabled={ paused || submissionDisabled }
+            />
         </>
     );
 };

@@ -60,6 +60,11 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>December 2, 2023</SubHeading>
+                <List>
+                    <ListItem>New Puzzle: <Link href="/puzzles/speed-climbing" component={ A }>Speed Climbing</Link></ListItem>
+                </List>
+                <P>A LONG break! Puzzle answers are still coming Soon™ (I promise), but for now the first speed puzzle for my site, and themed around speed climbing to boot!</P>
                 <SubHeading>June 14, 2023</SubHeading>
                 <P>A long break! Puzzle answers are still coming Soon™, but for now updated some magic decks in the meantime.</P>
                 <SubHeading>April 24, 2023</SubHeading>

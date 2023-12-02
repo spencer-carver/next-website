@@ -57,8 +57,9 @@ const PhotoContainerDiv = styled("div", {
     width: "200px",
     height: "200px",
     borderRadius: "50%",
+    cursor: "move",
     "&:hover": {
-        cursor: "pointer"
+        cursor: "grab"
     }
 });
 
@@ -80,6 +81,7 @@ const DraggableRing: FunctionComponent<{ css: CSS; defaultPosition: ControlPosit
             defaultPosition={ defaultPosition }
             onStart={ (e, { node }) => {
                 node.style.zIndex = "2";
+                node.style.cursor = "grabbing";
             } }
             onDrag={ (e, { node, x, y }) => {
                 node.style.transform = `translate(${ x }px, ${ y }px)`;
@@ -87,6 +89,7 @@ const DraggableRing: FunctionComponent<{ css: CSS; defaultPosition: ControlPosit
             } }
             onStop={ (e, { node }) => {
                 node.style.removeProperty("z-index");
+                node.style.cursor = "grab";
             } }>
             <PhotoContainerDiv css={ css } title="Drag Me">
                 <RingSVG color={ color } />
