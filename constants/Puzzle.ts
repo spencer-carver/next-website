@@ -25,11 +25,12 @@ export interface PuzzleDetails {
     description: string;
     round?: PuzzleRounds;
     isMeta?: boolean;
+    timeLimit?: number; // in seconds
     comingSoon?: boolean;
     solutionAvailable?: boolean;
 }
 
-export const NEWEST_PUZZLE = "enigmarch-2023:march-31";
+export const NEWEST_PUZZLE = "speed-climbing";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -41,6 +42,11 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         title: "Tetris",
         description: "You don't see the appeal?",
         solutionAvailable: true
+    },
+    "speed-climbing": {
+        title: "Speed Climbing",
+        description: "The competitors face the wall and begin racing, their movements a blur as they climb to the top.",
+        timeLimit: 300
     },
     "travel-diary": {
         title: "Travel Diary",

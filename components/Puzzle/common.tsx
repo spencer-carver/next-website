@@ -6,6 +6,7 @@ import BackNavigation from "../BackNavigation";
 import { PUZZLES } from "../../constants/Puzzle";
 import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 import useStorage from "../../utils/useStorage";
+import Timer from "./Timer";
 
 export const PuzzleDiv = styled("div", {
     margin: "0 auto",
@@ -78,7 +79,8 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
         title,
         description,
         round,
-        solutionAvailable
+        solutionAvailable,
+        timeLimit
     } = PUZZLES[name];
     const path = round ? name.replaceAll(":", "/"): name;
 
@@ -100,6 +102,7 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
             </Head>
             { AnswerBanner }
             <BackNavigation to={ `/puzzles${ round ? `/${ round.toLowerCase() }` : "" }` } />
+            { timeLimit && <Timer timeLimit={ timeLimit } /> }
             <PuzzleDiv>
                 <Heading>{ title }</Heading>
                 { description && <DescriptionDiv>{ description }</DescriptionDiv> }
