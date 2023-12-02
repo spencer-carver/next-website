@@ -3,7 +3,6 @@ import { CSS } from "@stitches/react";
 import { API_URL } from "../../../constants/ExternalUrls";
 import Link from "../../Link";
 import useStorage from "../../../utils/useStorage";
-import Timer from "../Timer";
 import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
 
 const AnswerBoxDiv = styled("div", {
