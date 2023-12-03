@@ -46,7 +46,7 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "speed-climbing": {
         title: "Speed Climbing",
         description: "The competitors face the wall and begin racing, their movements a blur as they climb to the top.",
-        timeLimit: 300
+        timeLimit: 600
     },
     "travel-diary": {
         title: "Travel Diary",
@@ -55,11 +55,13 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "an-explosive-discovery": {
         title: "An Explosive Discovery",
-        description: "Find everything, but tread carefully!"
+        description: "Find everything, but tread carefully!",
+        solutionAvailable: true
     },
     "yakuza-zero": {
         title: "Yakuza 0",
-        description: "Is this really a game about the Japanese Mafia? Maybe we should google it..."
+        description: "Is this really a game about the Japanese Mafia? Maybe we should google it...",
+        solutionAvailable: true
     },
     "cheese-sampler": {
         title: "Cheese Sampler",
@@ -75,7 +77,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "enigmarch-2022": {
         title: "#Enigmarch 2022",
-        description: "A puzzle a day keeps the boredom at bay."
+        description: "A puzzle a day keeps the boredom at bay.",
+        solutionAvailable: true
     },
     "judge-calls-one": {
         title: "Judge Calls",
