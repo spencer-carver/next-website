@@ -163,15 +163,12 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     name: "Gavi, Nest Warden",
     id: "gavi",
     colors: "WUR",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/8/0/80bc07d5-bdbb-4a6d-8958-0c172ea80245.jpg`,
-    isUnderConstruction: true,
-    link: "/magic/deck/gavi"
+    imageUrl: `${ ART_CROP_URL_PREFIX }/8/0/80bc07d5-bdbb-4a6d-8958-0c172ea80245.jpg`
 },{
     name: "Hanna, Ship's Navigator",
     id: "hanna",
     colors: "WU",
     imageUrl: `${ ART_CROP_URL_PREFIX }/e/3/e34e53fc-0c11-4594-b4ca-eaac663040ae.jpg`,
-    isUnderConstruction: true,
     classification: DeckClassification.KATHYS
 },{
     name: "Karador, Ghost Chieftain",
@@ -183,13 +180,15 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     id: "liberator",
     colors: "C",
     imageUrl: `${ ART_CROP_URL_PREFIX }/c/3/c31e6768-bcab-43c4-bfc1-76e961689ae9.jpg`,
-    isUnderConstruction: true
+    isUnderConstruction: true,
+    link: "/magic/deck/liberator"
 },{
     name: "Lord Windgrace",
     id: "lord-windgrace",
     colors: "BRG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/2/1/213d6fb8-5624-4804-b263-51f339482754.jpg`,
-    isUnderConstruction: true
+    isUnderConstruction: true,
+    link: "/magic/deck/lord-windgrace"
 },{
     name: "Muldrotha, the Gravetide",
     id: "muldrotha",
@@ -204,8 +203,7 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     name: "Pramikon, Sky Rampart",
     id: "pramikon",
     colors: "WUR",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/8/5/8569ad47-a243-402d-899f-4e6b17ea4e1e.jpg`,
-    isUnderConstruction: true
+    imageUrl: `${ ART_CROP_URL_PREFIX }/8/5/8569ad47-a243-402d-899f-4e6b17ea4e1e.jpg`
 },{
     name: "Sasaya, Orochi Ascendant",
     id: "sasaya",
@@ -233,8 +231,7 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     name: "Yuriko, the Tiger's Shadow",
     id: "yuriko",
     colors: "UB",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/8/5/852508f9-90ea-4889-a4a8-31b28dd3fdab.jpg`,
-    link: "/magic/deck/yuriko"
+    imageUrl: `${ ART_CROP_URL_PREFIX }/8/5/852508f9-90ea-4889-a4a8-31b28dd3fdab.jpg`
 },{
     name: "Zedruu the Greathearted",
     id: "zedruu",
