@@ -60,6 +60,14 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>December 31, 2023</SubHeading>
+                <List>
+                    <ListItem>New Magic Deck: <Link href="/magic/deck/pramikon" component={ A }>Pramikon, Sky Rampart</Link></ListItem>
+                    <ListItem>New Magic Deck: <Link href="/magic/deck/gavi" component={ A }>Gavi, Nest Warden</Link></ListItem>
+                    <ListItem>Updated Magic Deck: <Link href="/magic/deck/hanna" component={ A }>Hanna, Ship&apos;s Navigator</Link></ListItem>
+                </List>
+                <P>Happy New Year!</P>
+                <P>Minor changes to some magic related content for now. The &apos;guidance&apos; section of some existing magic sections are also going to be re-written in the near future. This should better align with what they are meant to be (my thoughts on the deck, interesting synergies) rather than explicit matchup instructions, or other knowledge which can go stale (and which currently very much is).</P>
                 <SubHeading>December 2, 2023</SubHeading>
                 <List>
                     <ListItem>New Puzzle: <Link href="/puzzles/speed-climbing" component={ A }>Speed Climbing</Link></ListItem>
