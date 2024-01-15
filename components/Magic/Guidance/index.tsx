@@ -74,10 +74,11 @@ const tooltipWrapperStyles: CSS = {
 
 const tooltipContainerStyles: CSS = {
     backgroundColor: "transparent",
-    bottom: "25px",
+    bottom: "24px",
     padding: "0",
     borderRadius: "7px",
     boxShadow: "0px 0px 5px 3px $onBackground",
+    pointerEvents: "none",
     "@lg": {
         borderRadius: "9px"
     },
@@ -96,6 +97,7 @@ interface GuidanceProps {
 const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, hasLoaded }) => {
     const [post, setPost] = useState({} as unknown as Post);
     const [loaded, setLoaded] = useState(false);
+    const [containsMatchups, setContainsMatchups] = useState(false);
 
     useEffect(() => {
         if (!deckName) {
@@ -112,6 +114,16 @@ const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, h
             hasLoaded(true);
         });
     }, [deckName, hasLoaded]);
+
+    useEffect(() => {
+        if (!format || !loaded) {
+            return;
+        }
+
+        if (document.getElementById("Matchups")) {
+            setContainsMatchups(true);
+        }
+    }, [format, loaded]);
 
     const CardPreview = useCallback(({ children }: { children: string }) => {
         const card = cards[children];
@@ -134,7 +146,7 @@ const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, h
                 /> }
                 css={ tooltipWrapperStyles }
                 tooltipCss={ tooltipContainerStyles }>
-                <Code css={{ "@lg": { "&:hover": { backgroundColor: "$secondary" } } }}>{children}</Code>
+                <Code css={{ "@lg": { "&:hover": { backgroundColor: "$secondary", cursor: "help" } } }}>{children}</Code>
             </Tooltip>
         );
     }, [cards]);
@@ -163,7 +175,7 @@ const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, h
                     {post.content}
                 </ReactMarkdown>
             </PageDiv>
-            {format && format !== "commander" && <BackToTopSpan><Link href="#Matchups" component={ ButtonLink }>to Matchups</Link></BackToTopSpan>}
+            {containsMatchups && <BackToTopSpan><Link href="#Matchups" component={ ButtonLink }>to Matchups</Link></BackToTopSpan>}
         </>
     );
 };

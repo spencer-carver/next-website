@@ -29,16 +29,16 @@ export enum DeckView {
 const ART_CROP_URL_PREFIX = "https://cards.scryfall.io/art_crop/front";
 
 export const PIONEER_DECKS: DeckLinkProps[] = [{
+    name: "Amalia & Company",
+    id: "amalia-combo",
+    colors: "WBG",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/9/a/9acf80a5-f2ca-45b4-aca8-fbc690e35401.jpg`,
+    isUnderConstruction: true
+},{
     name: "Azorius Control",
     id: "azorius-control",
     colors: "WU",
     imageUrl: `${ ART_CROP_URL_PREFIX }/2/0/20b5fe42-929c-406d-9377-40b49f9d2e2c.jpg`,
-    isUnderConstruction: true
-},{
-    name: "Humans",
-    id: "humans",
-    colors: "WUBRG",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/9/c/9c2000ef-3e6b-4f44-8bd6-ed8119336d5a.jpg`,
     isUnderConstruction: true
 },{
     name: "Lotus Field Combo",
@@ -78,32 +78,33 @@ export const MODERN_DECKS: DeckLinkProps[] = [{
 }];
 
 export const LEGACY_DECKS: DeckLinkProps[] = [{
-    name: "Burn",
-    id: "burn",
-    colors: "R",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/8/9/89af0f45-c11c-4f13-9950-b1489440ee5b.jpg`
-},{
     name: "Death & Taxes",
     id: "death-and-taxes",
     colors: "W",
     imageUrl: `${ ART_CROP_URL_PREFIX }/8/2/824423ff-6441-4be6-b754-810adf9ca6a2.jpg`
 },{
     name: "Delver",
-    id: "izzet-delver",
-    colors: "UR",
+    id: "delver",
+    colors: "URG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/1/1/11bf83bb-c95b-4b4f-9a56-ce7a1816307a.jpg`
 },{
     name: "Elves",
     id: "elves",
     colors: "BG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/5/7/57948c65-4324-42bc-97ae-7cc700eb3817.jpg`,
-    link: "/magic/deck/elves"
 },{
     name: "Enchantress",
     id: "enchantress",
     colors: "WBG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/0/b/0babfe00-9bad-48fc-b3b1-df8280242fd2.jpg`,
     classification: DeckClassification.KATHYS
+},{
+    name: "Initiative",
+    id: "initiative",
+    colors: "WR",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/0/9/09abb6df-2aa1-4999-b550-db2892faa8c7.jpg`,
+    isUnderConstruction: true,
+    link: "/magic/deck/initiative"
 },{
     name: "Lands",
     id: "lands",
@@ -121,14 +122,14 @@ export const LEGACY_DECKS: DeckLinkProps[] = [{
     colors: "WUG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/0/9/0982ea7e-05a4-4e40-98ab-ea9aa6c7342e.jpg`
 },{
-    name: "Omnitell",
-    id: "omnitell",
+    name: "Show & Tell",
+    id: "show-and-tell",
     colors: "U",
     imageUrl: `${ ART_CROP_URL_PREFIX }/4/b/4b851c17-55ed-4671-b471-dc7b34944432.jpg`
 },{
     name: "Painter",
-    id: "strawberry-shortcake",
-    colors: "WR",
+    id: "painter",
+    colors: "R",
     imageUrl: `${ ART_CROP_URL_PREFIX }/1/7/17cd920a-de09-454a-a9da-c84512e3aff1.jpg`
 },{
     name: "Reanimator",
@@ -165,6 +166,11 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     colors: "WUR",
     imageUrl: `${ ART_CROP_URL_PREFIX }/8/0/80bc07d5-bdbb-4a6d-8958-0c172ea80245.jpg`
 },{
+    name: "Go-Shintai of Life's Origin",
+    id: "shrines",
+    colors: "WUBRG",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/9/4/9476fe67-d2d3-4835-8ba6-2a17d18cc141.jpg`
+},{
     name: "Hanna, Ship's Navigator",
     id: "hanna",
     colors: "WU",
@@ -186,9 +192,7 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     name: "Lord Windgrace",
     id: "lord-windgrace",
     colors: "BRG",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/2/1/213d6fb8-5624-4804-b263-51f339482754.jpg`,
-    isUnderConstruction: true,
-    link: "/magic/deck/lord-windgrace"
+    imageUrl: `${ ART_CROP_URL_PREFIX }/2/1/213d6fb8-5624-4804-b263-51f339482754.jpg`
 },{
     name: "Muldrotha, the Gravetide",
     id: "muldrotha",
@@ -214,19 +218,25 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     name: "Sen Triplets",
     id: "sen-triplets",
     colors: "WUB",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/4/1/418f8ecb-544b-430c-8ae9-61aaaf2dfba6.jpg`
+    imageUrl: `${ ART_CROP_URL_PREFIX }/4/1/418f8ecb-544b-430c-8ae9-61aaaf2dfba6.jpg`,
+    isUnderConstruction: true,
+    link: "/magic/deck/sen-triplets"
 },{
     name: "Trostani, Selesnya's Voice",
     id: "trostani",
     colors: "GW",
     imageUrl: `${ ART_CROP_URL_PREFIX }/9/d/9d1d9d86-5666-4e59-9766-137657b4e040.jpg`,
-    classification: DeckClassification.KATHYS
+    classification: DeckClassification.KATHYS,
+    isUnderConstruction: true,
+    link: "/magic/deck/trostani"
 },{
     name: "Urtet, Remnant of Memnarch",
     id: "urtet",
     colors: "WUBRG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/7/a/7aa01ab4-26b0-49dc-8514-b3850d355a21.jpg`,
-    classification: DeckClassification.KATHYS
+    classification: DeckClassification.KATHYS,
+    isUnderConstruction: true,
+    link: "/magic/deck/urtet"
 },{
     name: "Yuriko, the Tiger's Shadow",
     id: "yuriko",

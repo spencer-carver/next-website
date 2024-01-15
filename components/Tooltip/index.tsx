@@ -16,6 +16,7 @@ const TooltipSpan = styled("span", {
 
 const hoverStyles: CSS = {
     backgroundColor: "$secondary",
+    cursor: "help",
     [`& ${ TooltipSpan }`]: {
         visibility: "visible"
     },

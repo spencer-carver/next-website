@@ -60,6 +60,15 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>January 15, 2024</SubHeading>
+                <List>
+                    <ListItem>New Magic Deck: <Link href="/magic/deck/shrines" component={ A }>Go-Shintai of Life&apos;s Origin</Link> (a.k.a. Shrines)</ListItem>
+                    <ListItem>New Magic Deck: <Link href="/magic/deck/initiative" component={ A }>Initiative</Link> (replacing <Link href="/magic/deck/burn" component={ A }>Burn</Link> in the Legacy Battle Box)</ListItem>
+                    <ListItem>Updated Magic Deck: <Link href="/magic/deck/lord-windgrace" component={ A }>Lord Windgrace</Link></ListItem>
+                    <ListItem>New Puzzle Solution: <Link href="/puzzles/x-marks-the-spot" component={ A }>❌ Marks the Spot</Link></ListItem>
+                </List>
+                <P>Continuing our magic mood going coming into 2024, A new commander deck (shrines) and new legacy deck (initiative) appear along with a finalization of the long &quot;under construction&quot; Windgrace.</P>
+                <P>Additionally, I&apos;m continuing the slow-burn of releasing puzzle answers with one more! I have released many music-themed puzzles, but this one was one of the first where I really loved the idea, and tried to force it to work. If you never tried solving it and have no interest, check out the solution and see if you would have found it interesting!</P>
                 <SubHeading>December 31, 2023</SubHeading>
                 <List>
                     <ListItem>New Magic Deck: <Link href="/magic/deck/pramikon" component={ A }>Pramikon, Sky Rampart</Link></ListItem>
