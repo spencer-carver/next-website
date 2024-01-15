@@ -6,7 +6,7 @@ import { lightTheme, styled } from "../../../styles/stitches";
 const BRAILLE_LINK = "https://en.wikipedia.org/wiki/English_Braille#Alphabet";
 const MORSE_CODE_LINK = "https://en.wikipedia.org/wiki/Morse_code#/media/File:International_Morse_Code.svg";
 const SEMAPHORE_LINK = "https://en.wikipedia.org/wiki/Flag_semaphore#Contemporary_semaphore_flag_system";
-const NAVAL_FLAGS_LINK = "https://www.navy.mil/navydata/communications/flags/flags.html";
+const NAVAL_FLAGS_LINK = "https://en.wikipedia.org/wiki/International_Code_of_Signals#Single-flag_signals";
 const RESISTOR_BANDS_LINK = "https://static4.arrow.com/-/media/arrow/images/miscellaneous/h/how-to-read-resistor-color-codes.jpg?la=en";
 const ASCII_LINK = "https://www.asciitable.com/";
 const ANAGRAM_LINK = "https://www.wordplays.com/anagrammer";

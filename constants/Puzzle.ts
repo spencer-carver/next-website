@@ -73,7 +73,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "x-marks-the-spot": {
         title: "❌ Marks the Spot",
-        description: "On the open seas, you often seek the route most travelled."
+        description: "On the open seas, you often seek the route most travelled.",
+        solutionAvailable: true
     },
     "enigmarch-2022": {
         title: "#Enigmarch 2022",
