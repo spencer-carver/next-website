@@ -86,7 +86,7 @@ const PuzzleComponent: FunctionComponent = () => {
                     <li>{ sixElementsAnswer }</li>
                     <li>{ sevenElementsAnswer }</li>
                     <br />
-                    <span style={{ textTransform: "initial" }}>Each alchemist reached their namesake creature.</span>
+                    <span style={{ textTransform: "initial" }}>Each alchemist&apos;s iterations and evolutions finally reached their namesake creature.</span>
                 </FeederList>
             </div>
         </PuzzleWrapperComponent>

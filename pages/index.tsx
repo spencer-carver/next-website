@@ -60,6 +60,16 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>January 28, 2024</SubHeading>
+                <List>
+                    <ListItem>New Puzzle Solution: <Link href="/puzzles/alchemy/four-elements" component={ A }>Alchemy: Four Elements</Link></ListItem>
+                    <ListItem>New Puzzle Solution: <Link href="/puzzles/alchemy/five-elements" component={ A }>Alchemy: Five Elements</Link></ListItem>
+                    <ListItem>New Puzzle Solution: <Link href="/puzzles/alchemy/six-elements" component={ A }>Alchemy: Six Elements</Link></ListItem>
+                    <ListItem>New Puzzle Solution: <Link href="/puzzles/alchemy/seven-elements" component={ A }>Alchemy: Seven Elements</Link></ListItem>
+                    <ListItem>New Puzzle Solution: Alchemy Meta</ListItem>
+                    <ListItem>New Puzzle Solution: <Link href="/puzzles/130-bpm" component={ A }>130 BPM</Link></ListItem>
+                </List>
+                <P>End of the month update, 6 new puzzle solutions! I am currently planning to release the solutions for each day of #Enigmarch 2023 with the puzzle for this years challenge. If I can stick to that plan, almost every puzzle on the site will have a solution available!</P>
                 <SubHeading>January 15, 2024</SubHeading>
                 <List>
                     <ListItem>New Magic Deck: <Link href="/magic/deck/shrines" component={ A }>Go-Shintai of Life&apos;s Origin</Link> (a.k.a. Shrines)</ListItem>
