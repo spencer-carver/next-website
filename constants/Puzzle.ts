@@ -69,7 +69,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "130-bpm": {
         title: "130 BPM",
-        description: ""
+        description: "",
+        solutionAvailable: true
     },
     "x-marks-the-spot": {
         title: "❌ Marks the Spot",
@@ -89,28 +90,33 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "alchemy:four-elements": {
         title: "Four Nations",
         round: PuzzleRounds.ALCHEMY,
-        description: "Without the fire scroll, how will we decipher the answer?"
+        description: "Without the fire scroll, how will we decipher the answer?",
+        solutionAvailable: true
     },
     "alchemy:five-elements": {
         title: "Five Rings",
         round: PuzzleRounds.ALCHEMY,
-        description: "Wheeler has been robbed! Help the planeteers search for suspects and find the missing ring!"
+        description: "Wheeler has been robbed! Help the planeteers search for suspects and find the missing ring!",
+        solutionAvailable: true
     },
     "alchemy:six-elements": {
         title: "Six Heroes",
         round: PuzzleRounds.ALCHEMY,
-        description: "Multiple battles against the Bohrok are underway, but where is the leader of the Toa? Hopefully you can find the right time to ASCII him."
+        description: "Multiple battles against the Bohrok are underway, but where is the leader of the Toa? Hopefully you can find the right time to ASCII him.",
+        solutionAvailable: true
     },
     "alchemy:seven-elements": {
         title: "Seven Attributes",
         round: PuzzleRounds.ALCHEMY,
-        description: "What is Amnael's Endgame? He may hold all the cards, but I'm sure you can draw something!"
+        description: "What is Amnael's Endgame? He may hold all the cards, but I'm sure you can draw something!",
+        solutionAvailable: true
     },
     "alchemy:alchemy": {
         title: "Alchemy",
         round: PuzzleRounds.ALCHEMY,
         description: "Find your inner fire.",
-        isMeta: true
+        isMeta: true,
+        solutionAvailable: true
     },
     "enigmarch-2023:march-1": {
         title: "March 1: KEY",
