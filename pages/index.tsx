@@ -60,6 +60,13 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>February 29, 2024</SubHeading>
+                <List>
+                    <ListItem>New Magic Deck: <Link href="/magic/deck/krrik" component={ A }>K&apos;rrik</Link></ListItem>
+                    <ListItem>New Magic Deck: <Link href="/magic/deck/zhulodok" component={ A }>Zhulodok</Link> (replacing <Link href="/magic/deck/liberator" component={ A }>Liberator</Link> in the Commander section)</ListItem>
+                    <ListItem>New Puzzle Solution: <Link href="/puzzles/speed-climbing" component={ A }>Speed Climbing</Link></ListItem>
+                </List>
+                <P>Continuing our magic mood one month more! A new commander deck (K&apos;rrik), and a re-imagining of the colorless deck as ideas had stalled.</P>
                 <SubHeading>January 28, 2024</SubHeading>
                 <List>
                     <ListItem>New Puzzle Solution: <Link href="/puzzles/alchemy/four-elements" component={ A }>Alchemy: Four Elements</Link></ListItem>
@@ -158,7 +165,6 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                     <ListItem>New Puzzle: <Link href="/puzzles/enigmarch-2023/march-1" component={ A }>March 1: KEY</Link></ListItem>
                 </List>
                 <P>Happy #Enigmarch! Each day I&apos;ll be adding a new puzzle from the inspirational prompts posted on the <Link href="https://twitter.com/EnigmarchHQ" component={ A }>EnigmarchHQ twitter</Link>.</P>
-                
                 <SubHeading>February 25, 2023</SubHeading>
                 <List>
                     <ListItem>Updated Page: <Link href="/about" component={ A }>About Me</Link></ListItem>
