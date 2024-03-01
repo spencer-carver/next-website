@@ -46,7 +46,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "speed-climbing": {
         title: "Speed Climbing",
         description: "The competitors face the wall and begin racing, their movements a blur as they climb to the top.",
-        timeLimit: 600
+        timeLimit: 600,
+        solutionAvailable: true
     },
     "travel-diary": {
         title: "Travel Diary",
@@ -81,6 +82,10 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         title: "#Enigmarch 2022",
         description: "A puzzle a day keeps the boredom at bay.",
         solutionAvailable: true
+    },
+    "enigmarch-2024": {
+        title: "#Enigmarch 2024",
+        description: "A puzzle a day is the best way to play."
     },
     "judge-calls-one": {
         title: "Judge Calls",
@@ -121,7 +126,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-1": {
         title: "March 1: KEY",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "A mystery cipher? you'll be running around unless you find a tutorial."
+        description: "A mystery cipher? you'll be running around unless you find a tutorial.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-2": {
         title: "March 2: NEST",

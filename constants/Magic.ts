@@ -29,18 +29,6 @@ export enum DeckView {
 const ART_CROP_URL_PREFIX = "https://cards.scryfall.io/art_crop/front";
 
 export const PIONEER_DECKS: DeckLinkProps[] = [{
-    name: "Amalia & Company",
-    id: "amalia-combo",
-    colors: "WBG",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/9/a/9acf80a5-f2ca-45b4-aca8-fbc690e35401.jpg`,
-    isUnderConstruction: true
-},{
-    name: "Azorius Control",
-    id: "azorius-control",
-    colors: "WU",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/2/0/20b5fe42-929c-406d-9377-40b49f9d2e2c.jpg`,
-    isUnderConstruction: true
-},{
     name: "Lotus Field Combo",
     id: "lotus-field-combo",
     colors: "WUBG",
@@ -120,12 +108,16 @@ export const LEGACY_DECKS: DeckLinkProps[] = [{
     name: "Miracles",
     id: "miracles",
     colors: "WUG",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/0/9/0982ea7e-05a4-4e40-98ab-ea9aa6c7342e.jpg`
+    imageUrl: `${ ART_CROP_URL_PREFIX }/0/9/0982ea7e-05a4-4e40-98ab-ea9aa6c7342e.jpg`,
+    isUnderConstruction: true,
+    link: "/magic/deck/miracles"
 },{
     name: "Show & Tell",
     id: "show-and-tell",
     colors: "U",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/4/b/4b851c17-55ed-4671-b471-dc7b34944432.jpg`
+    imageUrl: `${ ART_CROP_URL_PREFIX }/4/b/4b851c17-55ed-4671-b471-dc7b34944432.jpg`,
+    isUnderConstruction: true,
+    link: "/magic/deck/show-and-tell"
 },{
     name: "Painter",
     id: "painter",
@@ -182,12 +174,10 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     colors: "WBG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/6/2/6200ac79-b166-43d0-9a0b-5b547625ed57.jpg`
 },{
-    name: "Liberator, Urza's Battlethopter",
-    id: "liberator",
-    colors: "C",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/c/3/c31e6768-bcab-43c4-bfc1-76e961689ae9.jpg`,
-    isUnderConstruction: true,
-    link: "/magic/deck/liberator"
+    name: "K'rrik, Son of Yawgmoth",
+    id: "krrik",
+    colors: "B",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/a/2/a2dc6a50-2a7e-4366-82a7-3c5b5aa2cca6.jpg`
 },{
     name: "Lord Windgrace",
     id: "lord-windgrace",
@@ -197,7 +187,9 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     name: "Muldrotha, the Gravetide",
     id: "muldrotha",
     colors: "UBG",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/c/6/c654737d-34ac-42ff-ae27-3a3bbb930fc1.jpg`
+    imageUrl: `${ ART_CROP_URL_PREFIX }/c/6/c654737d-34ac-42ff-ae27-3a3bbb930fc1.jpg`,
+    isUnderConstruction: true,
+    link: "/magic/deck/muldrotha"
 },{
     name: "Nahiri, the Lithomancer",
     id: "nahiri",
@@ -218,9 +210,7 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     name: "Sen Triplets",
     id: "sen-triplets",
     colors: "WUB",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/4/1/418f8ecb-544b-430c-8ae9-61aaaf2dfba6.jpg`,
-    isUnderConstruction: true,
-    link: "/magic/deck/sen-triplets"
+    imageUrl: `${ ART_CROP_URL_PREFIX }/4/1/418f8ecb-544b-430c-8ae9-61aaaf2dfba6.jpg`
 },{
     name: "Trostani, Selesnya's Voice",
     id: "trostani",
@@ -247,6 +237,11 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     id: "zedruu",
     colors: "WUR",
     imageUrl: `${ ART_CROP_URL_PREFIX }/e/9/e9ea2a6b-5aaf-4178-b945-f409fe83c41a.jpg`
+},{
+    name: "Zhulodok, Void Gorger",
+    id: "zhulodok",
+    colors: "C",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/a/0/a015461d-4214-4feb-8b04-519c537759eb.jpg`
 },{
     name: "Zur the Enchanter",
     id: "zur",
