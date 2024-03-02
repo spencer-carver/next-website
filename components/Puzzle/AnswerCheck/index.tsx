@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent, useMemo } from "react";
+import React, { useState, FunctionComponent, useMemo, useEffect } from "react";
 import { CSS } from "@stitches/react";
 import { API_URL } from "../../../constants/ExternalUrls";
 import Link from "../../Link";
@@ -213,10 +213,20 @@ const partialInputOverrideStyles: CSS = {
     }
 };
 
-export const PartialAnswerCheck = ({ puzzleName, step, completeStep, placeholderText = "Answer Here" }) => {
+export const PartialAnswerCheck = ({ puzzleName, step, completeStep, placeholderText = "Answer Here", partialAnswer }) => {
     const storage = useStorage("settings");
     const [answer, setAnswer] = useState("");
+    const [internalPartialAnswer, setInternalPartialAnswer] = useState(partialAnswer);
     const [lastGuess, setLastGuess] = useState({} as PuzzleAnswer);
+
+    useEffect(() => {
+        if (internalPartialAnswer && !partialAnswer) {
+            // value was clered, reset lastGuess too
+            setLastGuess({} as PuzzleAnswer);
+        }
+
+        setInternalPartialAnswer(partialAnswer);
+    }, [internalPartialAnswer, partialAnswer]);
 
     function onType(event: React.ChangeEvent<HTMLInputElement>): void {
         setAnswer((event.target as HTMLInputElement).value);
@@ -249,21 +259,21 @@ export const PartialAnswerCheck = ({ puzzleName, step, completeStep, placeholder
         setAnswer("");
     }
 
-    const answerStyle = lastGuess.intermediate
+    const answerStyle = partialAnswer
         ? correctStyle
         : incorrectStyle;
 
     return (
         <>
-            { !lastGuess.intermediate && (
+            { !partialAnswer && (
                 <InputForm css={ partialInputOverrideStyles } onSubmit={ submit }>
                     <input type="text" placeholder={ placeholderText } value={ answer } onChange={ onType }></input>
                     <button type="submit">Submit</button>
                 </InputForm>
             )}
-            { lastGuess.value && (
+            { (partialAnswer || lastGuess.value) && (
                 <AnswerListItem css={{ ...answerStyle, textTransform: "uppercase", justifyContent: "center", marginTop: "5px" }}>
-                    { lastGuess.value }
+                    { partialAnswer || lastGuess.value }
                 </AnswerListItem>
             )}
         </>
