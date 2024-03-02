@@ -60,6 +60,9 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>March 2024</SubHeading>
+                <P>Happy #Enigmarch! Each day I&apos;ll be adding a <Link href="/puzzles/enigmarch-2024" component={ A }>new puzzle</Link> from the inspirational prompts posted on the <Link href="https://enigmarch.com/prompts/" component={ A }>Enigmarch website</Link>.</P>
+                <P>Additionally the solution for the corresponding day will be added to <Link href="/puzzles/enigmarch-2023" component={ A }>#Enigmarch 2023</Link>!</P>
                 <SubHeading>February 29, 2024</SubHeading>
                 <List>
                     <ListItem>New Magic Deck: <Link href="/magic/deck/krrik" component={ A }>K&apos;rrik</Link></ListItem>
