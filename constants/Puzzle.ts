@@ -132,7 +132,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-2": {
         title: "March 2: NEST",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "How do they assign the points in Wingspan anyway?"
+        description: "How do they assign the points in Wingspan anyway?",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-3": {
         title: "March 3: WIND",

@@ -1,10 +1,9 @@
 import React, { FunctionComponent, useCallback, useEffect, useState } from "react";
 import { CSS } from "@stitches/react";
 import { PuzzleWrapperComponent } from "../../../components/Puzzle/common";
-import { PartialAnswerCheck, PuzzleAnswer } from "../../../components/Puzzle/AnswerCheck";
+import { PartialAnswerCheck } from "../../../components/Puzzle/AnswerCheck";
 import Image from "../../../components/Image";
 import { styled } from "../../../styles/stitches";
-//import { API_URL } from "../../../constants/ExternalUrls";
 import useStorage from "../../../utils/useStorage";
 
 const NAME = "enigmarch-2024";
@@ -12,6 +11,7 @@ const NAME = "enigmarch-2024";
 interface PuzzleStepProps {
     step: number;
     completeStep: (step: number, value: string) => void;
+    intermediate?: string;
 }
 
 const WarningDiv = styled("div", {
@@ -46,7 +46,7 @@ const TextBoxDiv = styled("div", {
     }
 });
 
-const Text: (title: string, text: string, fontSize?: string) => FunctionComponent<PuzzleStepProps> = (title, text, fontSize) => function TextPuzzle({ step, completeStep }) {
+const Text: (title: string, text: string, fontSize?: string) => FunctionComponent<PuzzleStepProps> = (title, text, fontSize) => function TextPuzzle({ step, completeStep, intermediate }) {
     return (
         <DailyPuzzleDiv>
             { title && <b>{ title }</b> }
@@ -54,28 +54,30 @@ const Text: (title: string, text: string, fontSize?: string) => FunctionComponen
                 <div style={{ ...(fontSize ? { fontSize }: {}) }}>{ text }</div>
             </TextBoxDiv>
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                { step !== 0 && text !== "???" && <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" /> }
+                { step !== 0 && text !== "???" && <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" partialAnswer={ intermediate?.split("|")[0] } /> }
             </div>
         </DailyPuzzleDiv>
     );
 };
 
-const Picture: (title: string, description: string, url: string, width: number, height: number) => FunctionComponent<PuzzleStepProps> = (title, description, url, width, height) => function PicturePuzzle({ step, completeStep }) {
+const Picture: (title: string, description: string, url: string, width: number, height: number) => FunctionComponent<PuzzleStepProps> = (title, description, url, width, height) => function PicturePuzzle({ step, completeStep, intermediate }) {
+    console.log(intermediate);
+    
     return (
         <DailyPuzzleDiv>
             { title && <b>{ title }</b> }
             { description && <div style={{ marginTop: "20px", marginBottom: "20px" }}>{ description }</div> }
             <WarningDiv>{ "\u00a1\u00a1\u00a1WARNING: This puzzle requires a device large enough to read the image clearly!!!" }</WarningDiv>
             <Image src={ url } alt="Today&apos;s Image" width={ width } height={ height } />
-            <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" />
+            <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" partialAnswer={ intermediate?.split("|")[0] } />
         </DailyPuzzleDiv>
     );
 };
 
 const STEP_TO_PUZZLE_TYPE: FunctionComponent<PuzzleStepProps>[] = [
     Text("", "Click a date to begin"),
-    Picture("Day 1: Door", "The screendoor zombies aren't too smart, but they can take a beating!", "/puzzles/enigmarch-2024/pvz.png", 900, 450),
-    Text("Day 2: False", "Coming Soon!"),
+    Picture("Day 1: Door", "The screendoor zombies aren't too smart, but they can take a beating!", "/puzzles/enigmarch-2024/plants-vs-zombies.png", 900, 450),
+    Picture("Day 2: False", "Normally you would make it true, but not today.", "/puzzles/enigmarch-2024/make-it-true.png", 900, 840),
     Text("Day 3: ???", "Coming Soon!"),
     Text("Day 4: ???", "Coming Soon!"),
     Text("Day 5: ???", "Coming Soon!"),
@@ -154,7 +156,7 @@ const DayOfMonth = styled("span", {
 const buttonCellStyles: CSS = {
     cursor: "pointer",
     "&:hover": {
-        backgroundColor: "$surface02",
+        backgroundColor: "$surface06",
         color: "$onSurface"
     }
 };
@@ -193,7 +195,7 @@ const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onCl
                                     {
                                         row.map((cell, columnIndex) => {
                                             if (rowIndex === 5 && columnIndex === 6) {
-                                                return <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } css={{ fontSize: "9px", "&:hover": { cursor: "pointer" } }} onClick={ clearCalendar }>Clear Calendar</TableCell>
+                                                return <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } css={{ fontSize: "9px", "&:hover": { cursor: "pointer", backgroundColor: "$surface06", color: "$onSurface" } }} onClick={ clearCalendar }>Clear Calendar</TableCell>
                                             }
 
                                             if (!cell) {
@@ -202,14 +204,16 @@ const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onCl
 
                                             const additionalStyles = {
                                                 ...buttonCellStyles,
-                                                ...(activeDay === cell ? { backgroundColor: "$surface02", color: "$onSurface" } : {}),
-                                                ...(intermediates[cell] ? { backgroundColor: "$secondary", color: "$onSecondary" } : {})
+                                                ...(intermediates[cell] ? { backgroundColor: "$secondary", color: "$onSecondary" } : {}),
+                                                ...(activeDay === cell ? { backgroundColor: "$primary", color: "$onPrimary", "&:hover": undefined } : {})
                                             };
+
+                                            const intermediateValue = intermediates[cell]?.split("|").length > 1 ? intermediates[cell].split("|")[1] : intermediates[cell];
 
                                             return (
                                                 <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } role="button" onClick={ () => onClickDate(cell) } title={ `March ${ cell }` } css={ additionalStyles }>
                                                     <DayOfMonth>{cell}</DayOfMonth>
-                                                    {intermediates[cell] || MARCH_2024_VALUES[rowIndex][columnIndex]}
+                                                    {intermediateValue || MARCH_2024_VALUES[rowIndex][columnIndex]}
                                                 </TableCell>
                                             );
                                         })
@@ -253,13 +257,17 @@ const PuzzleComponent: FunctionComponent = () => {
             //do nothing
         }
     }, [storage]);
-    
+
     return (
         <PuzzleWrapperComponent name={ NAME }>
             <FinalAnswerComponent storage={ storage } intermediates={ intermediates } activeDay={ activeStep } onClickDate={ setActiveStep } setIntermediates={ setIntermediates } />
             <div style={{ margin: "10px auto" }}>
                 { STEP_TO_PUZZLE_TYPE.map((Puzzle, index) => {
-                    return <div key={ index } style={{ display: index === activeStep ? "inline-block" : "none" }}><Puzzle step={ index } completeStep={ completeStep } /></div>;
+                    return (
+                        <div key={ index } style={{ display: index === activeStep ? "inline-block" : "none" }}>
+                            <Puzzle step={ index } completeStep={ completeStep } intermediate={ intermediates[index] } />
+                        </div>
+                    );
                 }) }
             </div>
         </PuzzleWrapperComponent>
