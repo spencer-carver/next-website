@@ -2,7 +2,7 @@ import React, { FunctionComponent, useCallback, useEffect, useState } from "reac
 import { CSS } from "@stitches/react";
 import { PuzzleWrapperComponent } from "../../../components/Puzzle/common";
 import { PartialAnswerCheck, PuzzleAnswer } from "../../../components/Puzzle/AnswerCheck";
-//import Image from "../../../components/Image";
+import Image from "../../../components/Image";
 import { styled } from "../../../styles/stitches";
 //import { API_URL } from "../../../constants/ExternalUrls";
 import useStorage from "../../../utils/useStorage";
@@ -14,11 +14,27 @@ interface PuzzleStepProps {
     completeStep: (step: number, value: string) => void;
 }
 
+const WarningDiv = styled("div", {
+    margin: "10px 0",
+    color: "$onError",
+    backgroundColor: "$error",
+    "@xl": {
+        display: "none"
+    }
+});
+
 const DailyPuzzleDiv = styled("div", {
     width: "300px",
     margin: "0 auto",
     textAlign: "center",
-    color: "$onBackground"
+    color: "$onBackground",
+    "@lg": {
+        width: "600px"
+    },
+    "@xl": {
+        width: "900px",
+        marginLeft: "-68px"
+    }
 });
 
 const TextBoxDiv = styled("div", {
@@ -33,30 +49,33 @@ const TextBoxDiv = styled("div", {
 const Text: (title: string, text: string, fontSize?: string) => FunctionComponent<PuzzleStepProps> = (title, text, fontSize) => function TextPuzzle({ step, completeStep }) {
     return (
         <DailyPuzzleDiv>
-            { title && <div style={{ ...(fontSize ? { fontSize }: {}) }}>{ title }</div> }
+            { title && <b>{ title }</b> }
             <TextBoxDiv>
                 <div style={{ ...(fontSize ? { fontSize }: {}) }}>{ text }</div>
             </TextBoxDiv>
-            { step !== 0 && text !== "???" && <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" /> }
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                { step !== 0 && text !== "???" && <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" /> }
+            </div>
         </DailyPuzzleDiv>
     );
 };
 
-/*
-const Picture: (url: string) => FunctionComponent<PuzzleStepProps> = (url) => function PicturePuzzle({ step, completeStep }) {
+const Picture: (title: string, description: string, url: string, width: number, height: number) => FunctionComponent<PuzzleStepProps> = (title, description, url, width, height) => function PicturePuzzle({ step, completeStep }) {
     return (
         <DailyPuzzleDiv>
-            <Image src={ url } alt="Today&apos;s Image" width={ 300 } height={ 300 } />
+            { title && <b>{ title }</b> }
+            { description && <div style={{ marginTop: "20px", marginBottom: "20px" }}>{ description }</div> }
+            <WarningDiv>{ "\u00a1\u00a1\u00a1WARNING: This puzzle requires a device large enough to read the image clearly!!!" }</WarningDiv>
+            <Image src={ url } alt="Today&apos;s Image" width={ width } height={ height } />
             <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" />
         </DailyPuzzleDiv>
     );
 };
-*/
 
 const STEP_TO_PUZZLE_TYPE: FunctionComponent<PuzzleStepProps>[] = [
     Text("", "Click a date to begin"),
-    Text("Day 1: Door", "Coming Soon!"),
-    Text("Day 2: ???", "Coming Soon!"),
+    Picture("Day 1: Door", "The screendoor zombies aren't too smart, but they can take a beating!", "/puzzles/enigmarch-2024/pvz.png", 900, 450),
+    Text("Day 2: False", "Coming Soon!"),
     Text("Day 3: ???", "Coming Soon!"),
     Text("Day 4: ???", "Coming Soon!"),
     Text("Day 5: ???", "Coming Soon!"),
@@ -97,7 +116,7 @@ const MARCH_2024 = [
     [31,0,0,0,0,0,0]
 ];
 const MARCH_2024_VALUES = [
-    ["","","","","","🚪",""],
+    ["","","","","","🚪","❌"],
     ["","","","","","",""],
     ["","","","","","",""],
     ["","","","","","",""],

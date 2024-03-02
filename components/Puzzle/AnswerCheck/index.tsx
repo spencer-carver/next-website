@@ -207,7 +207,7 @@ const PastAnswers: FunctionComponent<{ pastAnswers: PuzzleAnswer[] }> = ({ pastA
 
 const partialInputOverrideStyles: CSS = {
     width: "300px",
-    margin: "10px 0 0",
+    margin: "10px auto 0",
     "& input": {
         width: "230px"
     }
@@ -255,10 +255,12 @@ export const PartialAnswerCheck = ({ puzzleName, step, completeStep, placeholder
 
     return (
         <>
-            <InputForm css={ partialInputOverrideStyles } onSubmit={ submit }>
-                <input type="text" placeholder={ placeholderText } value={ answer } onChange={ onType }></input>
-                <button type="submit">Submit</button>
-            </InputForm>
+            { !lastGuess.intermediate && (
+                <InputForm css={ partialInputOverrideStyles } onSubmit={ submit }>
+                    <input type="text" placeholder={ placeholderText } value={ answer } onChange={ onType }></input>
+                    <button type="submit">Submit</button>
+                </InputForm>
+            )}
             { lastGuess.value && (
                 <AnswerListItem css={{ ...answerStyle, textTransform: "uppercase", justifyContent: "center", marginTop: "5px" }}>
                     { lastGuess.value }
