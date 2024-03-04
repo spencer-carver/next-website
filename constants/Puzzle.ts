@@ -138,7 +138,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-3": {
         title: "March 3: WIND",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: ""
+        description: "",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-4": {
         title: "March 4: LIGHT",

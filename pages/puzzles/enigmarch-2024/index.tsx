@@ -61,8 +61,6 @@ const Text: (title: string, text: string, fontSize?: string) => FunctionComponen
 };
 
 const Picture: (title: string, description: string, url: string, width: number, height: number) => FunctionComponent<PuzzleStepProps> = (title, description, url, width, height) => function PicturePuzzle({ step, completeStep, intermediate }) {
-    console.log(intermediate);
-    
     return (
         <DailyPuzzleDiv>
             { title && <b>{ title }</b> }
@@ -74,11 +72,28 @@ const Picture: (title: string, description: string, url: string, width: number, 
     );
 };
 
+const Video: (title: string, description: string, url: string) => FunctionComponent<PuzzleStepProps> = (title, description, url) => function PicturePuzzle({ step, completeStep, intermediate }) {
+    return (
+        <DailyPuzzleDiv>
+            { title && <b>{ title }</b> }
+            { description && <div style={{ marginTop: "20px", marginBottom: "20px" }}>{ description }</div> }
+            <WarningDiv>{ "\u00a1\u00a1\u00a1WARNING: This puzzle requires a device large enough to see the video clearly!!!" }</WarningDiv>
+            <video style={{ width: "100%", maxWidth: "600px" }} controls poster={ undefined }>
+                <source src={ url } type="video/mp4" />
+                <span style={{ margin: "10px auto" }}>
+                    Your browser does not support HTML5 video. To view, download it <a href={ url }>here</a>.
+                </span>
+            </video>
+            <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" partialAnswer={ intermediate?.split("|")[0] } />
+        </DailyPuzzleDiv>
+    );
+};
+
 const STEP_TO_PUZZLE_TYPE: FunctionComponent<PuzzleStepProps>[] = [
     Text("", "Click a date to begin"),
     Picture("Day 1: Door", "The screendoor zombies aren't too smart, but they can take a beating!", "/puzzles/enigmarch-2024/plants-vs-zombies.png", 900, 450),
     Picture("Day 2: False", "Normally you would make it true, but not today.", "/puzzles/enigmarch-2024/make-it-true.png", 900, 840),
-    Text("Day 3: ???", "Coming Soon!"),
+    Video("Day 3: Musical", "Do these notes even match the song? What could they mean?", "/puzzles/enigmarch-2024/guitar-hero.mp4"),
     Text("Day 4: ???", "Coming Soon!"),
     Text("Day 5: ???", "Coming Soon!"),
     Text("Day 6: ???", "Coming Soon!"),
@@ -119,7 +134,7 @@ const MARCH_2024 = [
 ];
 const MARCH_2024_VALUES = [
     ["","","","","","🚪","❌"],
-    ["","","","","","",""],
+    ["🎶","","","","","",""],
     ["","","","","","",""],
     ["","","","","","",""],
     ["","","","","","",""],
