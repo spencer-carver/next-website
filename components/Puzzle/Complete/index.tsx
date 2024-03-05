@@ -35,7 +35,7 @@ const PuzzleComplete: FunctionComponent<{ answer: string | null }> = ({ answer }
         return null;
     }
 
-    return <SolvedDiv>{ answer }</SolvedDiv>;
+    return <SolvedDiv>{ answer.split("|")[0] }</SolvedDiv>;
 };
 
 export default PuzzleComplete;

@@ -120,7 +120,7 @@ const Puzzles: FunctionComponent = () => {
                 </DescriptionDiv>
                 <PuzzleList>
                     <li style={{ position: "relative", textDecoration: "underline" }}>Round<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Solved</AnswerSpan></li>
-                    { [PuzzleRounds.ALCHEMY, PuzzleRounds.ENIGMARCH2023].map((roundId: string, index: number) => <RoundEntry key={ index } round={ ROUNDS[roundId] } />) }
+                    { [PuzzleRounds.ALCHEMY, PuzzleRounds.ENIGMARCH2023, PuzzleRounds.ENIGMARCH2024].map((roundId: string, index: number) => <RoundEntry key={ index } round={ ROUNDS[roundId] } />) }
                 </PuzzleList>
                 <DescriptionDiv as="p">
                     The below puzzles are unaffiliated with any broader theme.

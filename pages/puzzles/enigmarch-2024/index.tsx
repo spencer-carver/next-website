@@ -1,128 +1,61 @@
-import React, { FunctionComponent, useCallback, useEffect, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import { CSS } from "@stitches/react";
-import { PuzzleWrapperComponent } from "../../../components/Puzzle/common";
-import { PartialAnswerCheck } from "../../../components/Puzzle/AnswerCheck";
-import Image from "../../../components/Image";
-import { styled } from "../../../styles/stitches";
+import { DescriptionDiv, Heading, PuzzleDiv, PuzzleWrapperComponent } from "../../../components/Puzzle/common";
+import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
 import useStorage from "../../../utils/useStorage";
+import BackNavigation from "../../../components/BackNavigation";
+import { PuzzleRounds, PUZZLES, ROUNDS } from "../../../constants/Puzzle";
+import RowEntry from "../../../components/Puzzle/RowEntry";
+import PuzzleComplete from "../../../components/Puzzle/Complete";
+import Head from "next/head";
+import Link from "../../../components/Link";
 
-const NAME = "enigmarch-2024";
+const NAME = "Puzzle Round: #Enigmarch 2024";
+const DESCRIPTION = "A puzzle a day is the best way to play.";
 
-interface PuzzleStepProps {
-    step: number;
-    completeStep: (step: number, value: string) => void;
-    intermediate?: string;
-}
-
-const WarningDiv = styled("div", {
-    margin: "10px 0",
-    color: "$onError",
-    backgroundColor: "$error",
-    "@xl": {
-        display: "none"
+const puzzleDivOverrides: CSS = {
+    minHeight: "calc(100vh - 131px)",
+    [`.${ yahooGeocitiesTheme } &`]: {
+        minHeight: "calc(100vh - 269px)"
     }
-});
+};
 
-const DailyPuzzleDiv = styled("div", {
-    width: "300px",
-    margin: "0 auto",
-    textAlign: "center",
+const PuzzleList = styled("ul", {
+    textAlign: "left",
+    listStyle: "none",
+    fontSize: "18px",
+    lineHeight: "36px",
+    margin: "20px 0 40px",
     color: "$onBackground",
-    "@lg": {
-        width: "600px"
+    paddingInlineStart: "0",
+    "& a": {
+        textDecoration: "none",
+        "&:hover": {
+            borderBottom: "2px dotted $secondary"
+        }
     },
-    "@xl": {
-        width: "900px",
-        marginLeft: "-68px"
+    "@lg": {
+        paddingInlineStart: "40px",
+        margin: "20px 20px 40px"
     }
 });
 
-const TextBoxDiv = styled("div", {
-    height: "300px",
-    display: "flex",
-    alignItems: "center",
-    "& div": {
-        width: "100%"
+const AnswerSpan = styled("span", {
+    position: "absolute",
+    right: "-10px",
+    fontWeight: "bold",
+    color: "$secondary",
+    "&:hover": {
+        cursor: "pointer"
+    },
+    "@md": {
+        left: "190px",
+        right: "unset"
+    },
+    "@lg": {
+        left: "240px"
     }
 });
-
-const Text: (title: string, text: string, fontSize?: string) => FunctionComponent<PuzzleStepProps> = (title, text, fontSize) => function TextPuzzle({ step, completeStep, intermediate }) {
-    return (
-        <DailyPuzzleDiv>
-            { title && <b>{ title }</b> }
-            <TextBoxDiv>
-                <div style={{ ...(fontSize ? { fontSize }: {}) }}>{ text }</div>
-            </TextBoxDiv>
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                { step !== 0 && text !== "???" && <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" partialAnswer={ intermediate?.split("|")[0] } /> }
-            </div>
-        </DailyPuzzleDiv>
-    );
-};
-
-const Picture: (title: string, description: string, url: string, width: number, height: number) => FunctionComponent<PuzzleStepProps> = (title, description, url, width, height) => function PicturePuzzle({ step, completeStep, intermediate }) {
-    return (
-        <DailyPuzzleDiv>
-            { title && <b>{ title }</b> }
-            { description && <div style={{ marginTop: "20px", marginBottom: "20px" }}>{ description }</div> }
-            <WarningDiv>{ "\u00a1\u00a1\u00a1WARNING: This puzzle requires a device large enough to read the image clearly!!!" }</WarningDiv>
-            <Image src={ url } alt="Today&apos;s Image" width={ width } height={ height } />
-            <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" partialAnswer={ intermediate?.split("|")[0] } />
-        </DailyPuzzleDiv>
-    );
-};
-
-const Video: (title: string, description: string, url: string) => FunctionComponent<PuzzleStepProps> = (title, description, url) => function PicturePuzzle({ step, completeStep, intermediate }) {
-    return (
-        <DailyPuzzleDiv>
-            { title && <b>{ title }</b> }
-            { description && <div style={{ marginTop: "20px", marginBottom: "20px" }}>{ description }</div> }
-            <WarningDiv>{ "\u00a1\u00a1\u00a1WARNING: This puzzle requires a device large enough to see the video clearly!!!" }</WarningDiv>
-            <video style={{ width: "100%", maxWidth: "600px" }} controls poster={ undefined }>
-                <source src={ url } type="video/mp4" />
-                <span style={{ margin: "10px auto" }}>
-                    Your browser does not support HTML5 video. To view, download it <a href={ url }>here</a>.
-                </span>
-            </video>
-            <PartialAnswerCheck puzzleName={ NAME } step={ step } completeStep={ completeStep } placeholderText="Today's Answer Here" partialAnswer={ intermediate?.split("|")[0] } />
-        </DailyPuzzleDiv>
-    );
-};
-
-const STEP_TO_PUZZLE_TYPE: FunctionComponent<PuzzleStepProps>[] = [
-    Text("", "Click a date to begin"),
-    Picture("Day 1: Door", "The screendoor zombies aren't too smart, but they can take a beating!", "/puzzles/enigmarch-2024/plants-vs-zombies.png", 900, 450),
-    Picture("Day 2: False", "Normally you would make it true, but not today.", "/puzzles/enigmarch-2024/make-it-true.png", 900, 840),
-    Video("Day 3: Musical", "Do these notes even match the song? What could they mean?", "/puzzles/enigmarch-2024/guitar-hero.mp4"),
-    Text("Day 4: ???", "Coming Soon!"),
-    Text("Day 5: ???", "Coming Soon!"),
-    Text("Day 6: ???", "Coming Soon!"),
-    Text("Day 7: ???", "Coming Soon!"),
-    Text("Day 8: ???", "Coming Soon!"),
-    Text("Day 9: ???", "Coming Soon!"),
-    Text("Day 10: ???", "Coming Soon!"),
-    Text("Day 11: ???", "Coming Soon!"),
-    Text("Day 12: ???", "Coming Soon!"),
-    Text("Day 13: ???", "Coming Soon!"),
-    Text("Day 14: ???", "Coming Soon!"),
-    Text("Day 15: ???", "Coming Soon!"),
-    Text("Day 16: ???", "Coming Soon!"),
-    Text("Day 17: ???", "Coming Soon!"),
-    Text("Day 18: ???", "Coming Soon!"),
-    Text("Day 19: ???", "Coming Soon!"),
-    Text("Day 20: ???", "Coming Soon!"),
-    Text("Day 21: ???", "Coming Soon!"),
-    Text("Day 22: ???", "Coming Soon!"),
-    Text("Day 23: ???", "Coming Soon!"),
-    Text("Day 24: ???", "Coming Soon!"),
-    Text("Day 25: ???", "Coming Soon!"),
-    Text("Day 26: ???", "Coming Soon!"),
-    Text("Day 27: ???", "Coming Soon!"),
-    Text("Day 28: ???", "Coming Soon!"),
-    Text("Day 29: ???", "Coming Soon!"),
-    Text("Day 30: ???", "Coming Soon!"),
-    Text("Day 31: ???", "Coming Soon!")
-];
 
 const MARCH_2024 = [
     [0,0,0,0,0,1,2],
@@ -132,9 +65,10 @@ const MARCH_2024 = [
     [24,25,26,27,28,29,30],
     [31,0,0,0,0,0,0]
 ];
+
 const MARCH_2024_VALUES = [
     ["","","","","","🚪","❌"],
-    ["🎶","","","","","",""],
+    ["🎶","🔼","🚧","","","",""],
     ["","","","","","",""],
     ["","","","","","",""],
     ["","","","","","",""],
@@ -171,22 +105,20 @@ const DayOfMonth = styled("span", {
 const buttonCellStyles: CSS = {
     cursor: "pointer",
     "&:hover": {
-        backgroundColor: "$surface06",
+        backgroundColor: "$surface02",
         color: "$onSurface"
     }
 };
 
-const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onClickDate, storage }) => {
-    function clearCalendar() {
-        try {
-            storage.removeItem("enigmarch-2024-intermediates");
-
-            setIntermediates(Array(32));
-        } catch (e) {
-            // do nothing
-        }
+const Anchor = styled("a", {
+    color: "$onBackground",
+    textDecoration: "none",
+    "&:visited": {
+        textDecoration: "none"
     }
+});
 
+export const FinalAnswerComponent = ({ intermediates }) => {
     return (
         <WrapperDiv>
             <b>March 2024</b>
@@ -209,26 +141,57 @@ const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onCl
                                 <tr key={ rowIndex }>
                                     {
                                         row.map((cell, columnIndex) => {
-                                            if (rowIndex === 5 && columnIndex === 6) {
-                                                return <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } css={{ fontSize: "9px", "&:hover": { cursor: "pointer", backgroundColor: "$surface06", color: "$onSurface" } }} onClick={ clearCalendar }>Clear Calendar</TableCell>
-                                            }
-
                                             if (!cell) {
                                                 return <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } />
                                             }
 
+                                            if (cell === 32) {
+                                                const additionalStyles = {
+                                                    ...buttonCellStyles,
+                                                    ...(intermediates[cell] ? { backgroundColor: "$primary", color: "$onPrimary", "&:hover": { backgroundColor: "$primary" } } : {})
+                                                };
+
+                                                return (
+                                                    <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } title="Meta" css={ additionalStyles }>
+                                                        <Link href="/puzzles/enigmarch-2024/meta" component={ Anchor }>
+                                                            <div style={{ width: "100%", height: "100%" }}>
+                                                                <DayOfMonth>META</DayOfMonth>
+                                                            </div>
+                                                        </Link>
+                                                    </TableCell>
+                                                );
+                                            }
+
                                             const additionalStyles = {
                                                 ...buttonCellStyles,
-                                                ...(intermediates[cell] ? { backgroundColor: "$secondary", color: "$onSecondary" } : {}),
-                                                ...(activeDay === cell ? { backgroundColor: "$primary", color: "$onPrimary", "&:hover": undefined } : {})
+                                                ...(intermediates[cell] ? { backgroundColor: "$secondary", color: "$onSecondary" } : {})
                                             };
 
                                             const intermediateValue = intermediates[cell]?.split("|").length > 1 ? intermediates[cell].split("|")[1] : intermediates[cell];
 
+                                            if (!MARCH_2024_VALUES[rowIndex][columnIndex]) {
+                                                return (
+                                                    <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } title={ `March ${ cell }` } css={{ ...additionalStyles, cursor: "unset" }}>
+                                                        <div style={{ width: "100%", height: "100%" }}>
+                                                            <DayOfMonth>{ cell }</DayOfMonth>
+                                                        </div>
+                                                        <span style={{ position: "absolute", top: "10px", left: "10px", pointerEvents: "none" }}>
+                                                            { intermediateValue || MARCH_2024_VALUES[rowIndex][columnIndex] }
+                                                        </span>
+                                                    </TableCell>
+                                                );
+                                            }
+
                                             return (
-                                                <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } role="button" onClick={ () => onClickDate(cell) } title={ `March ${ cell }` } css={ additionalStyles }>
-                                                    <DayOfMonth>{cell}</DayOfMonth>
-                                                    {intermediateValue || MARCH_2024_VALUES[rowIndex][columnIndex]}
+                                                <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } title={ `March ${ cell }` } css={ additionalStyles }>
+                                                    <Link href={ `/puzzles/enigmarch-2024/march-${ cell }` }>
+                                                        <div style={{ width: "100%", height: "100%" }}>
+                                                            <DayOfMonth>{ cell }</DayOfMonth>
+                                                        </div>
+                                                    </Link>
+                                                    <span style={{ position: "absolute", top: "10px", left: "10px", pointerEvents: "none" }}>
+                                                        { intermediateValue || MARCH_2024_VALUES[rowIndex][columnIndex] }
+                                                    </span>
                                                 </TableCell>
                                             );
                                         })
@@ -243,50 +206,87 @@ const FinalAnswerComponent = ({ intermediates, setIntermediates, activeDay, onCl
     );
 };
 
-const PuzzleComponent: FunctionComponent = () => {
+const Puzzles: FunctionComponent = () => {
     const storage = useStorage("puzzle");
-    const [activeStep, setActiveStep] = useState(0);
-    const [intermediates, setIntermediates] = useState(new Array(32));
-    const completeStep = useCallback((step: number, value: string) => {
-        const newIntermediates = intermediates.slice();
-        newIntermediates[step] = value;
-        setIntermediates(newIntermediates);
-
-        try {
-            storage.setItem<string[]>("enigmarch-2024-intermediates", newIntermediates);
-        } catch (e) {
-            //do nothing
-        }
-    }, [storage, intermediates, setIntermediates]);
+    const [ roundPuzzles ] = useState(Object.keys(PUZZLES).filter((puzzleId: string) => PUZZLES[puzzleId].round === PuzzleRounds.ENIGMARCH2024 && !PUZZLES[puzzleId].isMeta));
+    const [ numberAnswered, setNumberAnswered ] = useState(0);
+    const [ AnswerBanner, setAnswerBanner ] = useState(null);
+    const [ intermediates, setIntermediates ] = useState(new Array(32));
+    const [ todayDayNumber ] = useState((new Date()).getDate());
 
     useEffect(() => {
-        try {
-            const storedIntermediates = storage.getItem<string[]>("enigmarch-2024-intermediates");
+        setAnswerBanner(<PuzzleComplete answer={ `SOLVED: ${ numberAnswered }` } />);
+    }, [numberAnswered]);
 
-            if (!storedIntermediates) {
-                return;
+    useEffect(() => {
+        storage.removeItem("enigmarch-2024-intermediates");
+
+        const puzzleAnswers = roundPuzzles.map((puzzleId: string) => storage.getItem<string>(puzzleId));
+        puzzleAnswers.unshift(null);
+        puzzleAnswers.push(storage.getItem<string>("enigmarch-2024:meta"));
+
+        setIntermediates(puzzleAnswers);
+        setNumberAnswered(puzzleAnswers.filter((answer) => !!answer).length);
+    }, [storage, roundPuzzles]);
+
+    const clearAnswer = (puzzleId: string): void => {
+        try {
+            storage.removeItem(puzzleId);
+
+            if (puzzleId === "enigmarch-2024:meta") {
+                intermediates[32] = undefined;
+            } else {
+                const parts = puzzleId.split("-");
+                intermediates[parts[parts.length - 1]] = undefined;
             }
 
-            setIntermediates(storedIntermediates);
+            setIntermediates(intermediates);
         } catch (e) {
             //do nothing
         }
-    }, [storage]);
+
+        setNumberAnswered(numberAnswered - 1);
+    };
 
     return (
-        <PuzzleWrapperComponent name={ NAME }>
-            <FinalAnswerComponent storage={ storage } intermediates={ intermediates } activeDay={ activeStep } onClickDate={ setActiveStep } setIntermediates={ setIntermediates } />
-            <div style={{ margin: "10px auto" }}>
-                { STEP_TO_PUZZLE_TYPE.map((Puzzle, index) => {
-                    return (
-                        <div key={ index } style={{ display: index === activeStep ? "inline-block" : "none" }}>
-                            <Puzzle step={ index } completeStep={ completeStep } intermediate={ intermediates[index] } />
-                        </div>
-                    );
-                }) }
-            </div>
-        </PuzzleWrapperComponent>
+        <>
+            <Head>
+                <title>{ NAME }</title>
+                <link rel="canonical" href={ `${ process.env.NEXT_PUBLIC_SITE_URL }/puzzles/enigmarch-2024` } />
+                <meta name="description" content={ DESCRIPTION } />
+                <meta name="homepage" content="false" />
+                <meta property="og:site_name" content={ NAME } />
+                <meta property="og:description" content={ DESCRIPTION } />
+                <meta property="og:title" content={ NAME } />
+                <meta property="og:url" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/puzzles/enigmarch-2024` } />
+                <meta property="og:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo-puzzle.jpg` } />
+                <meta name="twitter:description" content={ DESCRIPTION } />
+                <meta name="twitter:title" content={ NAME } />
+                <meta name="twitter:image" content={ `${ process.env.NEXT_PUBLIC_SITE_URL }/seo-puzzle.jpg` } />
+            </Head>
+            <BackNavigation to="/puzzles" />
+            { AnswerBanner }
+            <PuzzleDiv css={ puzzleDivOverrides }>
+                <Heading>{ ROUNDS[PuzzleRounds.ENIGMARCH2024].title }</Heading>
+                <DescriptionDiv as="p">{ DESCRIPTION }</DescriptionDiv>
+                <div style={{ position: "relative", maxWidth: "740px", paddingLeft: "10px" }}>
+                    <FinalAnswerComponent intermediates={ intermediates } />
+                </div>
+                { roundPuzzles.length > 0 && (
+                    <PuzzleList>
+                        <li style={{ position: "relative", textDecoration: "underline" }}>Puzzle<AnswerSpan css={{ color: "$onBackground", fontWeight: "normal", textDecoration: "underline", "&:hover": { cursor: "unset" } }}>Answer</AnswerSpan></li>
+                        { roundPuzzles.map((puzzleId: string, index: number) => <RowEntry key={ index } puzzleId={ puzzleId } { ...PUZZLES[puzzleId] } clearAnswer={ clearAnswer } showComingSoon={ index <= todayDayNumber } />) }
+                        <RowEntry puzzleId="enigmarch-2024:meta" { ...PUZZLES["enigmarch-2024:meta"] } clearAnswer={ clearAnswer } />
+                    </PuzzleList>
+                ) }
+                { numberAnswered > 0 && (
+                    <DescriptionDiv as="p">
+                        If you want to erase an answer (perhaps to let someone else try the puzzle), just click on it!
+                    </DescriptionDiv>
+                ) }
+            </PuzzleDiv>
+        </>
     );
 };
 
-export default PuzzleComponent;
+export default Puzzles;

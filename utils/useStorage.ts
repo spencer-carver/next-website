@@ -47,7 +47,7 @@ export function migrateItem(oldKey: string, newKey: string): void {
     try {
         const value = localStorage.getItem(oldKey);
         if (value) {
-            localStorage.setItem(newKey, value);
+            localStorage.setItem(`puzzle|${ newKey }`, value);
         }
 
         localStorage.removeItem(oldKey);

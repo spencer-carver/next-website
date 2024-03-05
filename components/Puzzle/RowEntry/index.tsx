@@ -106,7 +106,7 @@ const RowEntry: FunctionComponent<RowEntryProps> = ({ puzzleId, title, isMeta, t
                     onKeyPress={ clearPuzzleAnswer }
                     onClick={ clearPuzzleAnswer }
                 >
-                    { puzzleAnswer }
+                    { puzzleAnswer.split("|")[0] }
                 </AnswerSpan>
             ) : <AnswerSpan css={{ "color": "$onBackground", "&:hover": { cursor: "unset" } }}>???</AnswerSpan> }
         </Row>

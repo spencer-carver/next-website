@@ -1,6 +1,7 @@
 export const enum PuzzleRounds {
     ALCHEMY = "alchemy",
-    ENIGMARCH2023 = "enigmarch-2023"
+    ENIGMARCH2023 = "enigmarch-2023",
+    ENIGMARCH2024 = "enigmarch-2024"
 }
 
 export interface RoundDetails {
@@ -17,6 +18,10 @@ export const ROUNDS: Record<PuzzleRounds, RoundDetails> = {
     [PuzzleRounds.ENIGMARCH2023]: {
         id: PuzzleRounds.ENIGMARCH2023,
         title: "#Enigmarch 2023"
+    },
+    [PuzzleRounds.ENIGMARCH2024]: {
+        id: PuzzleRounds.ENIGMARCH2024,
+        title: "#Enigmarch 2024"
     }
 };
 
@@ -83,10 +88,6 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         description: "A puzzle a day keeps the boredom at bay.",
         solutionAvailable: true
     },
-    "enigmarch-2024": {
-        title: "#Enigmarch 2024",
-        description: "A puzzle a day is the best way to play."
-    },
     "judge-calls-one": {
         title: "Judge Calls",
         description: "Can you decrypt what the players are talking about?",
@@ -144,7 +145,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-4": {
         title: "March 4: LIGHT",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "The manor has more messages than the usual 'keep out'."
+        description: "The manor has more messages than the usual 'keep out'.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-5": {
         title: "March 5: GEM",
@@ -286,5 +288,36 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         round: PuzzleRounds.ENIGMARCH2023,
         description: "All the flavors have been mixed up! Can you recover the originals and decipher the message?",
         isMeta: true
-    }
+    },
+    "enigmarch-2024:march-1": {
+        title: "March 1: DOOR",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "The screendoor zombies aren't too smart, but they can take a beating!"
+    },
+    "enigmarch-2024:march-2": {
+        title: "March 2: FALSE",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "Normally you would make it true, but not today."
+    },
+    "enigmarch-2024:march-3": {
+        title: "March 3: MUSICAL",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "Do these notes even match the song? What could they mean?"
+    },
+    "enigmarch-2024:march-4": {
+        title: "March 4: SHIFT",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "You'll need Alan's Angel Lamp if you want to illuminate this puzzle."
+    },
+    "enigmarch-2024:march-5": {
+        title: "March 5: SIGN",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: ""
+    },
+    "enigmarch-2024:meta": {
+        title: "March: META",
+        description: "Each day's answer helps reveal a piece of the final puzzle!",
+        round: PuzzleRounds.ENIGMARCH2024,
+        isMeta: true
+    },
 };
