@@ -74,21 +74,11 @@ const Theme: FunctionComponent<{ setTheme: Function }> = ({ setTheme }) => {
 
     const onClick = (): void => setShowMenu(!showMenu);
 
-    useEffect(() => {
-        setTheme(THEMES[getSelectedTheme(storage)])
-    }, [storage, setTheme]);
-
     const changeTheme = useCallback((e) => {
         const newTheme = e.target.getAttribute("data-theme");
 
-        try {
-            storage.setItem<string>("theme", newTheme);
-        } catch (e) {
-            // do nothing
-        }
-
         setTheme(THEMES[newTheme]);
-    }, [storage, setTheme]);
+    }, [setTheme]);
 
     const selectedTheme = getSelectedTheme(storage);
 

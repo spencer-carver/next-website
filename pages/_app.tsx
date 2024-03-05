@@ -1,16 +1,30 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
-import { darkTheme, defaultTheme, lightTheme, THEMES } from "../styles/stitches";
+import { darkTheme, lightTheme, defaultTheme, THEMES } from "../styles/stitches";
 import { invalidateExpiredCacheItems } from "../utils/fetch";
 import useStorage from "../utils/useStorage";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
     const storage = useStorage("settings");
-    const [theme, setTheme] = useState(defaultTheme);
+    const [theme, setInternalTheme] = useState(defaultTheme);
     const [loading, setLoading] = useState(false);
+
+    const setTheme = useCallback((newTheme) => {
+        try {
+            const newThemeName = Object.keys(THEMES).find((themeName) => THEMES[themeName] === newTheme);
+
+            console.log(`Changing theme to ${ newThemeName }`);
+
+            storage.setItem<string>("theme", newThemeName);
+        } catch (e) {
+            // do nothing
+        }
+
+        setInternalTheme(newTheme);
+    }, [storage]);
 
     useEffect(() => {
         invalidateExpiredCacheItems();
@@ -19,7 +33,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             const selectedTheme = THEMES[storage.getItem<string>("theme")];
 
             if (selectedTheme) {
-                setTheme(selectedTheme);
+                setInternalTheme(selectedTheme);
             } else if  (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
                 setTheme(darkTheme);
             } else if  (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
@@ -38,7 +52,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         } catch (e) {
             //do nothing
         }
-    }, [storage]);
+    }, [storage, setTheme]);
 
     return (
         <>
@@ -47,7 +61,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             </Head>
             <main className={ theme }>
                 <Navigation isLoading={ loading }>
-                    <Component theme={ theme } setLoading={ setLoading } { ...pageProps } />
+                    <Component theme={ theme } setTheme={ setTheme } setLoading={ setLoading } { ...pageProps } />
                 </Navigation>
                 <Footer theme={ theme } setTheme={ setTheme } />
             </main>

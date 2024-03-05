@@ -34,6 +34,7 @@ interface PuzzleAnswerSubmissionProps {
     puzzleName: string;
     answer?: string;
     onSuccess: Function;
+    onSubmit?: Function;
     solutionLink?: string;
     disabled?: boolean;
 }
@@ -47,7 +48,9 @@ export interface PuzzleAnswer {
     time?: number;
 }
 
-const PuzzleAnswerSubmission: FunctionComponent<PuzzleAnswerSubmissionProps> = ({ puzzleName, answer: existingAnswer, onSuccess, solutionLink, disabled }) => {
+const PuzzleAnswerSubmission: FunctionComponent<PuzzleAnswerSubmissionProps> = ({
+    puzzleName, answer: existingAnswer, onSuccess, onSubmit, solutionLink, disabled
+}) => {
     const [ answer, setAnswer ] = useState("");
     const [ answers, setAnswers ] = useState([] as PuzzleAnswer[]);
     const [ hintCount, setHintCount ] = useState(0);
@@ -71,6 +74,8 @@ const PuzzleAnswerSubmission: FunctionComponent<PuzzleAnswerSubmissionProps> = (
             credentials: "include",
             body: JSON.stringify({ uuid, answer, hintCount })
         }).then(response => response.json());
+
+        onSubmit?.(answerResponse);
 
         if (answerResponse.correct) {
             onSuccess(answerResponse.value);
@@ -194,7 +199,7 @@ const PastAnswers: FunctionComponent<{ pastAnswers: PuzzleAnswer[] }> = ({ pastA
                 return (
                     <AnswerListItem key={ index } css={ answerStyle }>
                         <span>
-                            <SubmissionSpan>{ pastResult.correct ? pastResult.value : pastResult.submission }</SubmissionSpan>
+                            <SubmissionSpan>{ pastResult.correct ? pastResult.value.split("|")[0] : pastResult.submission }</SubmissionSpan>
                             { message }
                         </span>
                         <TimeSpan>{ formatTimeDifference(pastResult.time, now) }</TimeSpan>

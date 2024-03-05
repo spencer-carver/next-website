@@ -1,6 +1,6 @@
-import React, { FunctionComponent, useCallback, useEffect, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import { CSS } from "@stitches/react";
-import { DescriptionDiv, Heading, PuzzleDiv, PuzzleWrapperComponent } from "../../../components/Puzzle/common";
+import { DescriptionDiv, Heading, PuzzleDiv } from "../../../components/Puzzle/common";
 import { styled, yahooGeocitiesTheme } from "../../../styles/stitches";
 import useStorage from "../../../utils/useStorage";
 import BackNavigation from "../../../components/BackNavigation";
