@@ -35,7 +35,7 @@ const DESCRIPTIONS = [
     "The oldest known mineral on earth",
     "Literal translation: 'pomegranate'",
     "Commonly referenced as a 4 on the Mohs scale",
-    "This gemstone was once believed to give it's wearer procection in litigation",
+    "This gemstone was once believed to give it's wearer protection in litigation",
     "One of the four precious stones",
     "This is the only mineral discovered as a cut gemstone, rather than as a crystal",
     "Commonly referenced as an 8.5 on the Mohs scale",
