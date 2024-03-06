@@ -151,7 +151,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-5": {
         title: "March 5: GEM",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "Veins of gemstones are known to intersect."
+        description: "Veins of gemstones are known to intersect.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-6": {
         title: "March 6: MYTHICAL",
@@ -311,6 +312,11 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "enigmarch-2024:march-5": {
         title: "March 5: SIGN",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: ""
+    },
+    "enigmarch-2024:march-6": {
+        title: "March 6: ROUND",
         round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
