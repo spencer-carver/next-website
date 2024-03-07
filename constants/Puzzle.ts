@@ -71,7 +71,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "cheese-sampler": {
         title: "Cheese Sampler",
-        description: "My themed parody group is wrappping up it's first (and only) tour at our biggest venue ever!"
+        description: "My themed parody group is wrappping up it's first (and only) tour at our biggest venue ever!",
+        solutionAvailable: true
     },
     "130-bpm": {
         title: "130 BPM",
@@ -157,7 +158,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-6": {
         title: "March 6: MYTHICAL",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "The timeless tale of tournament victory."
+        description: "The timeless tale of tournament victory.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-7": {
         title: "March 7: ARROW",
@@ -317,6 +319,11 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "enigmarch-2024:march-6": {
         title: "March 6: ROUND",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "How difficult can it be to be a monkey in a ball?"
+    },
+    "enigmarch-2024:march-7": {
+        title: "March 7: WATCH",
         round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
