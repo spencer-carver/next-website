@@ -184,12 +184,10 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     colors: "BRG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/2/1/213d6fb8-5624-4804-b263-51f339482754.jpg`
 },{
-    name: "Muldrotha, the Gravetide",
-    id: "muldrotha",
+    name: "Muldrotha & Gyruda",
+    id: "muldrotha-and-gyruda",
     colors: "UBG",
-    imageUrl: `${ ART_CROP_URL_PREFIX }/c/6/c654737d-34ac-42ff-ae27-3a3bbb930fc1.jpg`,
-    isUnderConstruction: true,
-    link: "/magic/deck/muldrotha"
+    imageUrl: `${ ART_CROP_URL_PREFIX }/c/6/c654737d-34ac-42ff-ae27-3a3bbb930fc1.jpg`
 },{
     name: "Nahiri, the Lithomancer",
     id: "nahiri",
