@@ -164,7 +164,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-7": {
         title: "March 7: ARROW",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "Arrows point in more than one way."
+        description: "Arrows point in more than one way.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-8": {
         title: "March 8: CURSE",
@@ -324,6 +325,11 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "enigmarch-2024:march-7": {
         title: "March 7: WATCH",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "Your Personal Information Processor can do more than tell the time."
+    },
+    "enigmarch-2024:march-8": {
+        title: "March 8: ROCK",
         round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
