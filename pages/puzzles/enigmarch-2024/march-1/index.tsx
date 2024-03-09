@@ -41,10 +41,6 @@ const ImageWrapperDiv = styled("div", {
     }
 });
 
-const P = styled("p", {
-    color: "$onBackground",
-});
-
 const PuzzleComponent: FunctionComponent = () => {
     return (
         <PuzzleWrapperComponent name="enigmarch-2024:march-1">
