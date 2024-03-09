@@ -170,7 +170,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-8": {
         title: "March 8: CURSE",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "If you can't curse on TV, you get creative."
+        description: "If you can't curse on TV, you get creative.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-9": {
         title: "March 9: GLITCH",
@@ -296,12 +297,14 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-1": {
         title: "March 1: DOOR",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "The screendoor zombies aren't too smart, but they can take a beating!"
+        description: "The screendoor zombies aren't too smart, but they can take a beating!",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-2": {
         title: "March 2: FALSE",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Normally you would make it true, but not today."
+        description: "Normally you would make it true, but not today.",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-3": {
         title: "March 3: MUSICAL",
@@ -326,10 +329,16 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-7": {
         title: "March 7: WATCH",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Your Personal Information Processor can do more than tell the time."
+        description: "Your Personal Information Processor can do more than tell the time.",
+        timeLimit: 300
     },
     "enigmarch-2024:march-8": {
         title: "March 8: ROCK",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "Let the food guide you from smallest to largest!"
+    },
+    "enigmarch-2024:march-9": {
+        title: "March 8: THREAD",
         round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
