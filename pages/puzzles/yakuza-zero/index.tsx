@@ -12,10 +12,17 @@ const DANCE_FLOOR = [
 ];
 
 const ContentDiv = styled("div", {
-    textAlign: "left",
+    textAlign: "center",
     margin: "0 30px",
     padding: "20px 0 100px",
     color: "$onBackground"
+});
+
+const InstructionDiv = styled("div", {
+    textAlign: "left",
+    "@lg": {
+        marginLeft: "70px"
+    }
 });
 
 const DanceFloorTable = styled("table", {
@@ -37,24 +44,25 @@ const cornerCellStyles: CSS = {
 };
 
 const VideoIframe = styled("iframe", {
-    width: "100%",
-    height: "200px",
-    "@md": {
-        height: "416px"
+    width: "255px",
+    height: "143px",
+    "@lg": {
+        width: "560px",
+        height: "315px"
     }
 });
 
 const YakuzaZero: FunctionComponent = () => {
     return (
         <ContentDiv>
-            <div>
+            <InstructionDiv>
                 <h3>How to Dance:</h3>
                 <ul>
                     <li>Reference the video.</li>
                     <li>The first time you visit a cell, use the left-most letter.</li>
                     <li>On subsequent visits, you can use any letter already used, or the next unused one</li>
                 </ul>
-            </div>
+            </InstructionDiv>
             <DanceFloorTable>
                 <tbody>
                     {
@@ -77,22 +85,22 @@ const YakuzaZero: FunctionComponent = () => {
             </DanceFloorTable>
             <VideoIframe
                 title="part 1"
-                src="https://www.youtube.com/embed/CcWqo5UsXyg"
+                src="https://www.youtube-nocookie.com/embed/CcWqo5UsXyg"
                 frameBorder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen>
             </VideoIframe>
-            <div>
+            <InstructionDiv>
                 <h3>How to Sing:</h3>
                 <ul>
                     <li>Have your dance moves down pat.</li>
                     <li>Reference the video.</li>
                     <li>Sing your heart out.</li>
                 </ul>
-            </div>
+            </InstructionDiv>
             <VideoIframe
                 title="part 2"
-                src="https://www.youtube.com/embed/_3Mo7U0XSFo"
+                src="https://www.youtube-nocookie.com/embed/_3Mo7U0XSFo"
                 frameBorder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen>
