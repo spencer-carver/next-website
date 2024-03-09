@@ -176,7 +176,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-9": {
         title: "March 9: GLITCH",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "If you see any problems with this sudoku, please send a letter to the editor."
+        description: "If you see any problems with this sudoku, please send a letter to the editor.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-10": {
         title: "March 10: HAZARD",
@@ -340,7 +341,7 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-9": {
         title: "March 8: THREAD",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: ""
+        description: "Help Tim rebuild the ladder."
     },
     "enigmarch-2024:meta": {
         title: "March: META",
