@@ -182,7 +182,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-10": {
         title: "March 10: HAZARD",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "Pick your main, take a chance, and discover the meaning behind these odd dice."
+        description: "Pick your main, take a chance, and discover the meaning behind these odd dice.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-11": {
         title: "March 11: BOLD",
@@ -339,9 +340,14 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         description: "Let the food guide you from smallest to largest!"
     },
     "enigmarch-2024:march-9": {
-        title: "March 8: THREAD",
+        title: "March 9: THREAD",
         round: PuzzleRounds.ENIGMARCH2024,
         description: "Help Tim rebuild the ladder."
+    },
+    "enigmarch-2024:march-10": {
+        title: "March 10: ZERO",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "MissingNo may be the most famous, but there's a family of other glitches in the original 151!"
     },
     "enigmarch-2024:meta": {
         title: "March: META",
