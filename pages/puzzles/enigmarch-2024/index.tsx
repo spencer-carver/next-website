@@ -69,7 +69,7 @@ const MARCH_2024 = [
 const MARCH_2024_VALUES = [
     ["","","","","","🚪","❌"],
     ["🎶","🔼","🚧","🔴","⌚","🌑","🧵"],
-    ["","","","","","",""],
+    ["0️⃣","","","","","",""],
     ["","","","","","",""],
     ["","","","","","",""],
     ["","","","","","",""]
@@ -99,7 +99,8 @@ const DayOfMonth = styled("span", {
     position: "absolute",
     fontSize: "10px",
     top: "4px",
-    left: "4px"
+    left: "4px",
+    zIndex: 1
 });
 
 const buttonCellStyles: CSS = {
