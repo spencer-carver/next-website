@@ -188,7 +188,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-11": {
         title: "March 11: BOLD",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "The bold show you where to go. The boldest help you get there."
+        description: "The bold show you where to go. The boldest help you get there.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-12": {
         title: "March 12: TOWER",
@@ -348,6 +349,16 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         title: "March 10: ZERO",
         round: PuzzleRounds.ENIGMARCH2024,
         description: "MissingNo may be the most famous, but there's a family of other glitches in the original 151!"
+    },
+    "enigmarch-2024:march-11": {
+        title: "March 11: BRIDGE",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "This doesn't look like a Hashi puzzle. There's certainly no islands here, and what even can the bridges tell us?"
+    },
+    "enigmarch-2024:march-12": {
+        title: "March 12: SHIELD",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: ""
     },
     "enigmarch-2024:meta": {
         title: "March: META",
