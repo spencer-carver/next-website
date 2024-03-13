@@ -194,7 +194,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-12": {
         title: "March 12: TOWER",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "It may not be balanced, but each layer is significant and supports the tower's core."
+        description: "It may not be balanced, but each layer is significant and supports the tower's core.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-13": {
         title: "March 13: MATCH",
@@ -353,10 +354,15 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-11": {
         title: "March 11: BRIDGE",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "This doesn't look like a Hashi puzzle. There's certainly no islands here, and what even can the bridges tell us?"
+        description: "This doesn't look like a Hashi puzzle. There's certainly no islands here, and what can the bridges even tell us?"
     },
     "enigmarch-2024:march-12": {
         title: "March 12: SHIELD",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "What is HE protecting?"
+    },
+    "enigmarch-2024:march-13": {
+        title: "March 13: WAVE",
         round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },

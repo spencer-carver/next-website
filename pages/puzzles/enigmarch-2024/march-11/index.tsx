@@ -17,11 +17,11 @@ const WarningDiv = styled("div", {
 const ImageWrapperDiv = styled("div", {
     position: "relative",
     width: "300px",
-    height: "150px",
+    height: "240px",
     margin: "0 auto",
     "@md": {
         width: "450px",
-        height: "225px",
+        height: "361px",
         marginLeft: "-75px"
     },
     "@lg": {
