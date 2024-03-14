@@ -200,7 +200,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-13": {
         title: "March 13: MATCH",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "Every year I submit the same bracket with notable success."
+        description: "Every year I submit the same bracket with notable success.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-14": {
         title: "March 14: SECOND",
@@ -363,6 +364,11 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "enigmarch-2024:march-13": {
         title: "March 13: WAVE",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "What sort of acrostic fish did Dave catch?"
+    },
+    "enigmarch-2024:march-14": {
+        title: "March 14: SPIRIT",
         round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
