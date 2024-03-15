@@ -206,7 +206,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-14": {
         title: "March 14: SECOND",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "When is an Olympic record not an Olympic record?"
+        description: "When is an Olympic record not an Olympic record?",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-15": {
         title: "March 15: ROOM",
@@ -369,6 +370,11 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "enigmarch-2024:march-14": {
         title: "March 14: SPIRIT",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "Help Link and Zelda rebuild the spirit tracks and defeat Malladus!"
+    },
+    "enigmarch-2024:march-15": {
+        title: "March 15: 3D",
         round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
