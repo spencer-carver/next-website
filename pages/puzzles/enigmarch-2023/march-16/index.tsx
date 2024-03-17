@@ -72,7 +72,7 @@ const PuzzleComponent: FunctionComponent = () => {
                         </tr>
                         <tr>
                             <Datum css={ nameStyles }><Emphasis>█</Emphasis>██ ████, ███ ████</Datum>
-                            <Datum>Lemon and Jasmine Gingerbread with chocolate sandwich biscuits, orange, rose, and pistacho shortbread, and a crown of pistachio and rose macarons</Datum>
+                            <Datum>Lemon and Jasmine Gingerbread with chocolate sandwich biscuits, orange, rose, and pistachio shortbread, and a crown of pistachio and rose macarons</Datum>
                         </tr>
                     </tbody>
                 </Table>

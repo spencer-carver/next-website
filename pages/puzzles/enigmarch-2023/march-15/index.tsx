@@ -892,7 +892,7 @@ const PuzzleComponent: FunctionComponent = () => {
     return (
         <PuzzleWrapperComponent name="enigmarch-2023:march-15">
             <Notification css={{ marginBottom: "10px" }}>
-                <P>Erattum (3/18/23): Fixed a bug on step 4 where steps could be finished in the wrong order, causing a soft-lock.</P>
+                <P>Erattum (3/18/23): Fixed a bug on stage 4 where steps could be finished in the wrong order, causing a soft-lock.</P>
             </Notification>
             <Game onClick={ () => inputRef.current?.focus() }>
                 <form onSubmit={ onSubmit }>

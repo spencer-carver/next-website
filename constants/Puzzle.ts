@@ -212,12 +212,14 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-15": {
         title: "March 15: ROOM",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "How will you avoid getting lost in the darkness?"
+        description: "How will you avoid getting lost in the darkness?",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-16": {
         title: "March 16: MASK",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "Each treat's identity may be hidden, but that won't stop a star baker."
+        description: "Each treat's identity may be hidden, but that won't stop a star baker.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-17": {
         title: "March 17: SHELL",
@@ -380,6 +382,11 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     },
     "enigmarch-2024:march-16": {
         title: "March 16: HAND",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "What three Jokers help make this hand?"
+    },
+    "enigmarch-2024:march-17": {
+        title: "March 17: ANCIENT",
         round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
