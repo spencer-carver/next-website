@@ -388,6 +388,12 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-17": {
         title: "March 17: ANCIENT",
         round: PuzzleRounds.ENIGMARCH2024,
+        description: "Help Lara avoid the traps and claim the treasure before the tomb collapses!",
+        timeLimit: 600
+    },
+    "enigmarch-2024:march-18": {
+        title: "March 18: CLUB",
+        round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
     "enigmarch-2024:meta": {
