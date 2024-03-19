@@ -224,12 +224,14 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-17": {
         title: "March 17: SHELL",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "The shape of some shells can create a really neat echo."
+        description: "The shape of some shells can create a really neat echo.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-18": {
         title: "March 18: ROYAL",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "Philosopher Ly Tin Wheedle posits it's the only thing faster than ordinary light."
+        description: "Philosopher Ly Tin Wheedle posits it's the only thing faster than ordinary light.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-19": {
         title: "March 19: SPACE",
@@ -389,10 +391,15 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         title: "March 17: ANCIENT",
         round: PuzzleRounds.ENIGMARCH2024,
         description: "Help Lara avoid the traps and claim the treasure before the tomb collapses!",
-        timeLimit: 600
+        timeLimit: 720
     },
     "enigmarch-2024:march-18": {
         title: "March 18: CLUB",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "Find a special putter and take a walkabout the course."
+    },
+    "enigmarch-2024:march-19": {
+        title: "March 19: ODD",
         round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
