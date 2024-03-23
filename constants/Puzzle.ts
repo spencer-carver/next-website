@@ -421,6 +421,11 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-23": {
         title: "March 23: NEITHER",
         round: PuzzleRounds.ENIGMARCH2024,
+        description: "Find your way through this liminal space labyrinth."
+    },
+    "enigmarch-2024:march-24": {
+        title: "March 24: ???",
+        round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
     "enigmarch-2024:meta": {
