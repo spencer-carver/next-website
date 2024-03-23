@@ -416,6 +416,11 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-22": {
         title: "March 22: CLOUD",
         round: PuzzleRounds.ENIGMARCH2024,
+        description: "The floating city of Colombia hides many things."
+    },
+    "enigmarch-2024:march-23": {
+        title: "March 23: NEITHER",
+        round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
     "enigmarch-2024:meta": {
