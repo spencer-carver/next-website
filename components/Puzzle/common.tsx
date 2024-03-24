@@ -56,10 +56,11 @@ const SpeedPuzzleDiv = styled("div", {
 interface PuzzleWrapperProps {
     name: string;
     children?: ReactNode;
+    disabled?: boolean;
     onSubmit?: Function;
 }
 
-export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ name, children, onSubmit }) => {
+export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ name, children, disabled, onSubmit }) => {
     const storage = useStorage("puzzle");
     const [ answer, setAnswer ] = useState(undefined);
     const [ AnswerBanner, setAnswerBanner ] = useState(null);
@@ -152,7 +153,7 @@ export const PuzzleWrapperComponent: FunctionComponent<PuzzleWrapperProps> = ({ 
                 onSuccess={ onSuccess }
                 onSubmit={ onSubmit }
                 solutionLink={ solutionAvailable ? `/puzzles/${ path }/solution` : undefined }
-                disabled={ paused || submissionDisabled }
+                disabled={ paused || disabled || submissionDisabled }
             />
         </>
     );

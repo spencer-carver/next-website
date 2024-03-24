@@ -64,6 +64,9 @@ const Cloud = styled("div", {
         left: "244px",
         width: "248px",
         height: "162px"
+    },
+    "&:hover": {
+        cursor: "move"
     }
 });
 

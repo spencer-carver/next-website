@@ -241,22 +241,26 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-20": {
         title: "March 20: FISH",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "These fish may have found their schools, but can they find their families?"
+        description: "These fish may have found their schools, but can they find their families?",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-21": {
         title: "March 21: HALVE",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "Cut, look inside, and if it feels natural, repeat."
+        description: "Cut, look inside, and if it feels natural, repeat.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-22": {
         title: "March 22: VISION",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "All European entries are now in!"
+        description: "All European entries are now in!",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-23": {
         title: "March 23: DICE",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "All possibilities are equally likely, so if you don't see something..."
+        description: "All possibilities are equally likely, so if you don't see something...",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-24": {
         title: "March 24: CRYPT",
@@ -340,7 +344,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         title: "March 7: WATCH",
         round: PuzzleRounds.ENIGMARCH2024,
         description: "Your Personal Information Processor can do more than tell the time.",
-        timeLimit: 300
+        timeLimit: 300,
+        solutionAvailable: true
     },
     "enigmarch-2024:march-8": {
         title: "March 8: ROCK",
@@ -375,7 +380,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-14": {
         title: "March 14: SPIRIT",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Help Link and Zelda rebuild the spirit tracks and defeat Malladus!"
+        description: "Help Link and Zelda rebuild the spirit tracks and defeat Malladus!",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-15": {
         title: "March 15: 3D",
@@ -391,7 +397,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         title: "March 17: ANCIENT",
         round: PuzzleRounds.ENIGMARCH2024,
         description: "Help Lara avoid the traps and claim the treasure before the tomb collapses!",
-        timeLimit: 720
+        timeLimit: 720,
+        solutionAvailable: true
     },
     "enigmarch-2024:march-18": {
         title: "March 18: CLUB",
@@ -424,7 +431,13 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         description: "Find your way through this liminal space labyrinth."
     },
     "enigmarch-2024:march-24": {
-        title: "March 24: ???",
+        title: "March 24: POWER",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "",
+        timeLimit: 300
+    },
+    "enigmarch-2024:march-25": {
+        title: "March 25: ???",
         round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
