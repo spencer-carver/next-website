@@ -29,7 +29,7 @@ const TRANSCRIPTS = {
     "middle-0": "The middle door certainly looked inviting, at least to Stanley, so he decided to go through it.",
     "middle-1": "Stanley knew where he wanted to go, and to get there, the middle door made the most sense.",
     "middle-2": "Stanley confidently walked forward and opened the middle door.",
-    "right-0": "Of course! The right door. 'It was right for a reason' Stanly thought as he went through it.",
+    "right-0": "Of course! The right door. 'It was right for a reason' Stanley thought as he went through it.",
     "right-1": "Stanley had a weird feeling, like he had been here before and that two of the doors weren't going to help. Therefore, he went through the right door.",
     "right-2": "Stanley went through the door on the right.",
     "any": "Because Stanley made the correct choice, he was confident that any door would take him somewhere he wanted to go.",

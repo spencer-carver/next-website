@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
+import Notification from "../../../../components/Notification";
 import { styled } from "../../../../styles/stitches";
 import { CSS } from "@stitches/react";
 
@@ -38,9 +39,21 @@ const Footnote = styled("div", {
     marginTop: "30px"
 });
 
+const P = styled("p", {
+    color: "$onBackground",
+    margin: "0",
+    display: "block",
+    marginBottom: "5px",
+    paddingLeft: "5px",
+    textAlign: "left"
+});
+
 const PuzzleComponent: FunctionComponent = () => {
     return (
         <PuzzleWrapperComponent name="enigmarch-2023:march-22">
+            <Notification css={{ marginBottom: "10px" }}>
+                <P>Erattum (3/24/24): Fixed the indicated letter for 🇮🇱 to be the fourth rather than the first.</P>
+            </Notification>
             <Table>
                     <tbody>
                         <tr>
@@ -65,7 +78,7 @@ const PuzzleComponent: FunctionComponent = () => {
                         </tr>
                         <tr>
                             <Datum>🇮🇱</Datum>
-                            <Datum css={ nameStyles }><Emphasis>█</Emphasis>██████</Datum>
+                            <Datum css={ nameStyles }>███<Emphasis>█</Emphasis>███</Datum>
                         </tr>
                         <tr>
                             <Datum>🇲🇩</Datum>
