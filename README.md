@@ -4,7 +4,7 @@ This repository houses the code running my personal website at https://spencer.c
 ### Code
 This codebase uses [Next.js](https://nextjs.org/), [Typescript](https://www.typescriptlang.org/), and [Stitches](https://stitches.dev/). It uses Next's static HTML export functionality to generate the files hosted in s3 which comprises the accessible portion of my site.
 
-If you're interested in the previous version if this site, it is available [here](https://github.com/spencer-carver/website).
+If you're interested in the previous version of this site, it is available [here](https://github.com/spencer-carver/website).
 
 ### Infrastructure
 ![architecture diagram](/public/docs/infrastructure.png)

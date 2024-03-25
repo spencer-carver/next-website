@@ -437,7 +437,12 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         timeLimit: 300
     },
     "enigmarch-2024:march-25": {
-        title: "March 25: ???",
+        title: "March 25: RAISE",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: "If you want to raise your Chao right, you'll need to pass our Kindergarten quiz!"
+    },
+    "enigmarch-2024:march-26": {
+        title: "March 26: ???",
         round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
