@@ -10,7 +10,8 @@ const PDFObject = styled("object", {
 });
 
 const FallbackSpan = styled("span", {
-    margin: "0 10px"
+    margin: "0 10px",
+    color: "$onBackground"
 });
 
 const PuzzleComponent: FunctionComponent = () => {

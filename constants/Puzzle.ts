@@ -442,7 +442,12 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         description: "If you want to raise your Chao right, you'll need to pass our Kindergarten quiz!"
     },
     "enigmarch-2024:march-26": {
-        title: "March 26: ???",
+        title: "March 26: CLUE",
+        round: PuzzleRounds.ENIGMARCH2024,
+        description: ""
+    },
+    "enigmarch-2024:march-27": {
+        title: "March 27: RULE",
         round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
