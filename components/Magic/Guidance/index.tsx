@@ -94,6 +94,30 @@ interface GuidanceProps {
     hasLoaded: Function;
 }
 
+export const CardTooltip = ({ card, children }: { card?: Card["card_digest"]; children: string }) => {
+    if (!card) {
+        return <Code>{children}</Code>;
+    }
+
+    return (
+        <Tooltip
+            tooltip={ <CardComponent
+                { ...card }
+                image={ card.image_uris.front }
+                index={ 1 }
+                instance={ 1 }
+                count={ 1 }
+                type="featured"
+                setLoaded={ () => { } }
+                view={ DeckView.stacked }
+            /> }
+            css={ tooltipWrapperStyles }
+            tooltipCss={ tooltipContainerStyles }>
+            <Code css={{ "@lg": { "&:hover": { backgroundColor: "$secondary", cursor: "help" } } }}>{children}</Code>
+        </Tooltip>
+    );
+};
+
 const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, hasLoaded }) => {
     const [post, setPost] = useState({} as unknown as Post);
     const [loaded, setLoaded] = useState(false);
@@ -128,27 +152,7 @@ const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, h
     const CardPreview = useCallback(({ children }: { children: string }) => {
         const card = cards[children];
 
-        if (!card) {
-            return <Code>{children}</Code>;
-        }
-
-        return (
-            <Tooltip
-                tooltip={ <CardComponent
-                    { ...card }
-                    image={ card.image_uris.front }
-                    index={ 1 }
-                    instance={ 1 }
-                    count={ 1 }
-                    type="featured"
-                    setLoaded={ () => { } }
-                    view={ DeckView.stacked }
-                /> }
-                css={ tooltipWrapperStyles }
-                tooltipCss={ tooltipContainerStyles }>
-                <Code css={{ "@lg": { "&:hover": { backgroundColor: "$secondary", cursor: "help" } } }}>{children}</Code>
-            </Tooltip>
-        );
+        return <CardTooltip card={ card }>{ children }</CardTooltip>;
     }, [cards]);
 
     if (!loaded) {
