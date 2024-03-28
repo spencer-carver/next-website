@@ -449,6 +449,11 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-27": {
         title: "March 27: RULE",
         round: PuzzleRounds.ENIGMARCH2024,
+        description: "Each assassin worked against the ruling powers, but perhaps a ruler was all they really needed."
+    },
+    "enigmarch-2024:march-28": {
+        title: "March 28: COIN",
+        round: PuzzleRounds.ENIGMARCH2024,
         description: ""
     },
     "enigmarch-2024:meta": {

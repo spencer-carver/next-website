@@ -14,12 +14,16 @@ const FallbackSpan = styled("span", {
     color: "$onBackground"
 });
 
+const FallbackLink = styled("a", {
+    color: "$secondary"
+});
+
 const PuzzleComponent: FunctionComponent = () => {
     return (
         <PuzzleWrapperComponent name="judge-calls-one">
             <PDFObject data={ SRC } type="application/pdf" >
                 <FallbackSpan>
-                    Could not display the PDF. To view, download it <a href={ SRC }>here</a>.
+                    Could not display the PDF. To view, download it <FallbackLink href={ SRC }>here</FallbackLink>.
                 </FallbackSpan>
             </PDFObject>
         </PuzzleWrapperComponent>
