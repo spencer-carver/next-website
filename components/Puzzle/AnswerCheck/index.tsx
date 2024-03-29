@@ -194,13 +194,23 @@ const PastAnswers: FunctionComponent<{ pastAnswers: PuzzleAnswer[] }> = ({ pastA
                     : ( pastResult.correct
                         ? "Correct!"
                         : "Incorrect"
+                    );
+                
+                const hintText = message.startsWith("https")
+                    ? (
+                        <>
+                            <a href={ message.split(" ")[0] } target="_blank" rel="noreferrer">
+                                { message.split(" ")[0] }
+                            </a> { message.slice(message.indexOf(" ")) }
+                        </>
                     )
+                    : message;
 
                 return (
                     <AnswerListItem key={ index } css={ answerStyle }>
                         <span>
                             <SubmissionSpan>{ pastResult.correct ? pastResult.value.split("|")[0] : pastResult.submission }</SubmissionSpan>
-                            { message }
+                            { hintText }
                         </span>
                         <TimeSpan>{ formatTimeDifference(pastResult.time, now) }</TimeSpan>
                     </AnswerListItem>
