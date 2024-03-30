@@ -59,7 +59,7 @@ const PuzzleComponent: FunctionComponent = () => {
                 { LINKS.map((_linkSrc, index) => <BUTTON key={ index } onClick={ () => setSelectedCoin(index) }>{ index + 1 }</BUTTON>) }
             </div>
             <IFRAME src={ LINKS[selectedCoin] } />
-            <P>If the embedded viewer does not work, you can try the stand-alone page <a href={ LINKS[selectedCoin] } target="_blank" rel="noreferrer">here</a></P>
+            <P>If the embedded viewer does not work, you can try the stand-alone page <a href={ LINKS[selectedCoin] } target="_blank" rel="noreferrer">here</a>.</P>
         </PuzzleWrapperComponent>
     );
 };
