@@ -16,11 +16,10 @@ const SolvedDiv = styled("div", {
     boxShadow: "0 0 3px rgba(0,0,0,.3)",
     zIndex: "1",
     "@lg": {
-        width: "300px",
+        width: "310px",
         position: "fixed",
         top: "105px",
         right: "-75px",
-        fontSize: "14px",
         lineHeight: "50px",
         transform: "rotate(45deg)",
         borderRadius: "0",

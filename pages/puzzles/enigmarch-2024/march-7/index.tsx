@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
 import Image from "../../../../components/Image";
+import Notification from "../../../../components/Notification";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { styled } from "../../../../styles/stitches";
 
@@ -44,6 +45,9 @@ const PuzzleComponent: FunctionComponent = () => {
     return (
         <PuzzleWrapperComponent name="enigmarch-2024:march-7">
             <WarningDiv>{ "\u00a1\u00a1\u00a1WARNING: This puzzle requires a device large enough to see the image clearly!!!" }</WarningDiv>
+            <Notification css={{ marginBottom: "10px" }}>
+                <P>Erattum (3/31/24): Corrected the gif, as the frames had alphabetized themselves rather than the intended order.</P>
+            </Notification>
             <ImageWrapperDiv>
                 <Image src={ SRC } alt="The Pip-Boy 3000 from 'Fallout 3'" layout="fill" />
             </ImageWrapperDiv>

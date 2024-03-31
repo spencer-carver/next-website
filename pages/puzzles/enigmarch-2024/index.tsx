@@ -57,7 +57,7 @@ const AnswerSpan = styled("span", {
     }
 });
 
-const MARCH_2024 = [
+export const MARCH_2024 = [
     [0,0,0,0,0,1,2],
     [3,4,5,6,7,8,9],
     [10,11,12,13,14,15,16],
@@ -66,7 +66,7 @@ const MARCH_2024 = [
     [31,0,0,0,0,0,0]
 ];
 
-const MARCH_2024_VALUES = [
+export const MARCH_2024_VALUES = [
     ["","","","","","🚪","❌"],
     ["🎶","🔼","🚧","🔴","⌚","🌑","🧵"],
     ["0️⃣","🌉","🛡️","🌊","🥃","👓","✋"],
@@ -75,19 +75,19 @@ const MARCH_2024_VALUES = [
     ["2️⃣","","","","","",""]
 ];
 
-const WrapperDiv = styled("div", {
+export const WrapperDiv = styled("div", {
     color: "$onBackground",
     marginTop: "10px"
 });
 
-const Calendar = styled("table", {
+export const Calendar = styled("table", {
     borderSpacing: "0",
     borderCollapse: "collapse",
     margin: "0px auto",
     width: "286px"
 });
 
-const TableCell = styled("td", {
+export const TableCell = styled("td", {
     position: "relative",
     width: "40px",
     height: "40px",
@@ -95,7 +95,7 @@ const TableCell = styled("td", {
     textAlign: "center"
 });
 
-const DayOfMonth = styled("span", {
+export const DayOfMonth = styled("span", {
     position: "absolute",
     fontSize: "10px",
     top: "4px",
@@ -103,7 +103,7 @@ const DayOfMonth = styled("span", {
     zIndex: 1
 });
 
-const buttonCellStyles: CSS = {
+export const buttonCellStyles: CSS = {
     cursor: "pointer",
     "&:hover": {
         backgroundColor: "$surface02",
@@ -119,7 +119,7 @@ const Anchor = styled("a", {
     }
 });
 
-export const FinalAnswerComponent = ({ intermediates }) => {
+const FinalAnswerComponent = ({ intermediates }) => {
     return (
         <WrapperDiv>
             <b>March 2024</b>
