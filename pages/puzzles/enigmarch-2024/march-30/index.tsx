@@ -3,6 +3,8 @@ import Image from "../../../../components/Image";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { styled } from "../../../../styles/stitches";
 
+// adapted from https://codemyui.com/css-only-magazine-page-turning-animation/
+
 const Book = styled("div", {
     marginTop: "30px",
     width: "300px",
