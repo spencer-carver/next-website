@@ -323,22 +323,26 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-3": {
         title: "March 3: MUSICAL",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Do these notes even match the song? What could they mean?"
+        description: "Do these notes even match the song? What could they mean?",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-4": {
         title: "March 4: SHIFT",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "You'll need Alan's Angel Lamp if you want to illuminate this puzzle."
+        description: "You'll need Alan's Angel Lamp if you want to illuminate this puzzle.",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-5": {
         title: "March 5: SIGN",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: ""
+        description: "",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-6": {
         title: "March 6: ROUND",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "How difficult can it be to be a monkey in a ball?"
+        description: "How difficult can it be to be a monkey in a ball?",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-7": {
         title: "March 7: WATCH",
@@ -350,32 +354,38 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-8": {
         title: "March 8: ROCK",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Let the food guide you from smallest to largest!"
+        description: "Let the food guide you from smallest to largest!",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-9": {
         title: "March 9: THREAD",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Help Tim rebuild the ladder."
+        description: "Help Tim rebuild the ladder.",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-10": {
         title: "March 10: ZERO",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "MissingNo may be the most famous, but there's a family of other glitches in the original 151!"
+        description: "MissingNo may be the most famous, but there's a family of other glitches in the original 151!",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-11": {
         title: "March 11: BRIDGE",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "This doesn't look like a Hashi puzzle. There's certainly no islands here, and what can the bridges even tell us?"
+        description: "This doesn't look like a Hashi puzzle. There's certainly no islands here, and what can the bridges even tell us?",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-12": {
         title: "March 12: SHIELD",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "What is HE protecting?"
+        description: "What is HE protecting?",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-13": {
         title: "March 13: WAVE",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "What sort of acrostic fish did Dave catch?"
+        description: "What sort of acrostic fish did Dave catch?",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-14": {
         title: "March 14: SPIRIT",
@@ -386,12 +396,14 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-15": {
         title: "March 15: 3D",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Alligator Memorial Park looks a little odd today, what are all the family members doing?"
+        description: "Alligator Memorial Park looks a little odd today, what are all the family members doing?",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-16": {
         title: "March 16: HAND",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "What three Jokers help make this hand?"
+        description: "What three Jokers help make this hand?",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-17": {
         title: "March 17: ANCIENT",
