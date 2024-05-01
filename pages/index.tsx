@@ -60,6 +60,8 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>April 2024</SubHeading>
+                <P>While I was hoping to get solutions for all of this year&apos;s puzzles up this month, I did finally get through all of 2023&apos;s, and about half of 2024. Take a look if you don&apos;t mind spoilers!</P>
                 <SubHeading>March 2024</SubHeading>
                 <P>Happy #Enigmarch! Each day I&apos;ll be adding a <Link href="/puzzles/enigmarch-2024" component={ A }>new puzzle</Link> from the inspirational prompts posted on the <Link href="https://enigmarch.com/prompts/" component={ A }>Enigmarch website</Link>.</P>
                 <P>Additionally the solution for the corresponding day will be added to <Link href="/puzzles/enigmarch-2023" component={ A }>#Enigmarch 2023</Link>!</P>

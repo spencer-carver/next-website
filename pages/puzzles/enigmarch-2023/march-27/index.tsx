@@ -1,6 +1,16 @@
 import React, { FunctionComponent } from "react";
+import Notification from "../../../../components/Notification";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { styled } from "../../../../styles/stitches";
+
+const P = styled("p", {
+    color: "$onBackground",
+    margin: "0",
+    display: "block",
+    marginBottom: "5px",
+    paddingLeft: "5px",
+    textAlign: "left"
+});
 
 const Table = styled("table", {
     margin: "20px auto 0",
@@ -34,13 +44,16 @@ const ListItem = styled("li", {
 const PuzzleComponent: FunctionComponent = () => {
     return (
         <PuzzleWrapperComponent name="enigmarch-2023:march-27">
+            <Notification css={{ marginBottom: "10px" }}>
+                <P>Erattum (4/28/24): Corrected which portion of the coordinates [15] and [16] reference.</P>
+            </Notification>
             <Table>
                 <tbody>
                     <tr><Datum>[ ].[ ],[13].[ ]</Datum><Datum css={{ width: "20px" }}>=</Datum><Datum>[1].[2].[3]</Datum></tr>
                     <tr><Datum>[ ].[14],[ ].[ ]</Datum><Datum css={{ width: "20px" }}>=</Datum><Datum>[4].[5].[6]</Datum></tr>
-                    <tr><Datum>[ ].[ ],[15].[ ]</Datum><Datum css={{ width: "20px" }}>=</Datum><Datum>[7].[8].[9]</Datum></tr>
-                    <tr><Datum>[ ].[16],[ ].[ ]</Datum><Datum css={{ width: "20px" }}>=</Datum><Datum>[10].[11].[12]</Datum></tr>
-                    <tr><Datum>[13].[14],[15].[16]</Datum><Datum css={{ width: "20px" }}>=</Datum><Datum css={{ color: "$primary" }}>[?].[?].[?]</Datum></tr>
+                    <tr><Datum>[ ].[15],[ ].[ ]</Datum><Datum css={{ width: "20px" }}>=</Datum><Datum>[7].[8].[9]</Datum></tr>
+                    <tr><Datum>[ ].[ ],[16].[ ]</Datum><Datum css={{ width: "20px" }}>=</Datum><Datum>[10].[11].[12]</Datum></tr>
+                    <tr><Datum>[13].[14],[16].[15]</Datum><Datum css={{ width: "20px" }}>=</Datum><Datum css={{ color: "$primary" }}>[?].[?].[?]</Datum></tr>
                 </tbody>
             </Table>
             <ul style={{ listStyle: "none", paddingInlineStart: "0" }}>

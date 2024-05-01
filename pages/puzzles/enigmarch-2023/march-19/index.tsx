@@ -1,7 +1,16 @@
 import React, { FunctionComponent } from "react";
+import Notification from "../../../../components/Notification";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
 import { styled } from "../../../../styles/stitches";
-import { CSS } from "@stitches/react";
+
+const P = styled("p", {
+    color: "$onBackground",
+    margin: "0",
+    display: "block",
+    marginBottom: "5px",
+    paddingLeft: "5px",
+    textAlign: "left"
+});
 
 const Table = styled("table", {
     margin: "20px auto 0",
@@ -22,6 +31,9 @@ const Datum = styled("td", {
 const PuzzleComponent: FunctionComponent = () => {
     return (
         <PuzzleWrapperComponent name="enigmarch-2023:march-19">
+            <Notification css={{ marginBottom: "10px" }}>
+                <P>Erattum (4/28/24): Corrected the value equation for THE RIVER.</P>
+            </Notification>
             <Table>
                 <thead>
                     <tr style={{ fontWeight: "bold" }}>
@@ -84,7 +96,7 @@ const PuzzleComponent: FunctionComponent = () => {
                         <Datum>THE RIVER</Datum>
                         <Datum>XY.Z h⁻¹ Mpc</Datum>
                         <Datum>Y+1</Datum>
-                        <Datum>X-Z</Datum>
+                        <Datum>X-Z+1</Datum>
                     </tr>
                     <tr>
                         <Datum>THE HORNED GOAT</Datum>

@@ -236,7 +236,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-19": {
         title: "March 19: SPACE",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "A major reason these stars are visible is because of what isn't there."
+        description: "A major reason these stars are visible is because of what isn't there.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-20": {
         title: "March 20: FISH",
@@ -265,48 +266,57 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2023:march-24": {
         title: "March 24: CRYPT",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "Three tombs, connected by more than just purpose."
+        description: "Three tombs, connected by more than just purpose.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-25": {
         title: "March 25: KNOT",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "The first thing you wonder is, why?"
+        description: "The first thing you wonder is, why?",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-26": {
         title: "March 26: GROW",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "While this may be AI generated, Magic: the Gathering has very talented artists!"
+        description: "While this may be AI generated, Magic: the Gathering has very talented artists!",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-27": {
         title: "March 27: FIRE",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "What three words can help describe these fiery locations?"
+        description: "What three words can help describe these fiery locations?",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-28": {
         title: "March 28: DIAGONAL",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "Your opponent may be on the attack, but if you sound out everything you'll get there!"
+        description: "Your opponent may be on the attack, but if you sound out everything you'll get there!",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-29": {
         title: "March 29: QUOTE",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "Memorable moments and the characters that delivered them. Or close enough anyway."
+        description: "Memorable moments and the characters that delivered them. Or close enough anyway.",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-30": {
         title: "March 30: PUSH",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: "If you push different things together who knows what will come out!"
+        description: "If you push different things together who knows what will come out!",
+        solutionAvailable: true
     },
     "enigmarch-2023:march-31": {
         title: "March 31: REVERSE",
         round: PuzzleRounds.ENIGMARCH2023,
-        description: ""
+        description: "",
+        solutionAvailable: true
     },
     "enigmarch-2023:meta": {
         title: "March: META",
         round: PuzzleRounds.ENIGMARCH2023,
         description: "All the flavors have been mixed up! Can you recover the originals and decipher the message?",
-        isMeta: true
+        isMeta: true,
+        solutionAvailable: true
     },
     "enigmarch-2024:march-1": {
         title: "March 1: DOOR",
@@ -415,7 +425,8 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-18": {
         title: "March 18: CLUB",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Find a special putter and take a walkabout the course."
+        description: "Find a special putter and take a walkabout the course.",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-19": {
         title: "March 19: ODD",
