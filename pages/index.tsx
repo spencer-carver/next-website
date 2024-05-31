@@ -60,6 +60,8 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>May 2024</SubHeading>
+                <P>Eight more solutions for #Enigmarch 2024 are now available, hoping to add the final six in June, before some travel for the year!</P>
                 <SubHeading>April 2024</SubHeading>
                 <P>While I was hoping to get solutions for all of this year&apos;s puzzles up this month, I did finally get through all of 2023&apos;s, and about half of 2024. Take a look if you don&apos;t mind spoilers!</P>
                 <SubHeading>March 2024</SubHeading>

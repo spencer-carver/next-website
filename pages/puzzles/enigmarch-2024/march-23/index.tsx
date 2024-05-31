@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useCallback, useState } from "react";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
+import Notification from "../../../../components/Notification";
 import { styled } from "../../../../styles/stitches";
 
 const FILE_BASE = "/puzzles/enigmarch-2024/the-stanley-parable";
@@ -35,13 +36,13 @@ const TRANSCRIPTS = {
     "any": "Because Stanley made the correct choice, he was confident that any door would take him somewhere he wanted to go.",
     "end-0": "The room was completely empty? How could the room be empty? Stanley actually followed my instructions, and I wouldn't lead him astray.",
     "end-1": "Stanley entered the room and saw a large, brown painting with the letter 'R' on it. Nothing else was in the room.",
-    "end-2": "On the wall opposite Stanley, a brilliant white painting with only the letter 'E'. Stanley could do nothing else but stare at it.",
+    "end-2": "On the wall opposite Stanley, a dull gray painting with only the letter 'E'. Stanley could do nothing else but stare at it.",
     "end-3": "Upon entering the room, Stanley saw only a blackend portrait, perhaps containing the letter 'S', but everything was too dark to tell clearly.",
     "end-4": "A green painting of a lowercase 'L'? No no, it's a capital 'I'. The room was otherwise empty.",
     "end-5": "A black portrait with the letter 'S'. Had Stanley seen this somewhere before? No, this was definitely different.",
     "end-6": "A brilliant yellow background proudly displaying the letter, 'T'. Why anyone would commission such a painting was beyond Stanley, and to be honest I don't quite understand myself.",
-    "end-7": "A ruby red painting with a large, centered 'O'. Stanley was transfixed. 'This is Art!' He proclaimed to the empty room.",
-    "end-8": "Upon entering the room, Stanley saw only a blackened portrait, perhaps containing the letter 'R'. Is this a trend now? Dark backgrounds with a single letter?"
+    "end-7": "A murky brown painting with a large, centered 'O'. Is this a trend now? Dark backgrounds with a single letter?",
+    "end-8": "Upon entering the room, Stanley saw a vibrant green portrait containing the letter 'R'. Stanley was transfixed. 'This is Art!' He proclaimed to the empty room."
 };
 
 function getNextDeterminedChoice(pathChoices, choice) {
@@ -210,6 +211,9 @@ const PuzzleComponent: FunctionComponent = () => {
 
     return (
         <PuzzleWrapperComponent name="enigmarch-2024:march-23">
+            <Notification css={{ marginBottom: "10px" }}>
+                <P>Erattum (5/30/24): Three endings had an incorrrect value in the initial puzzle. It has been corrected.</P>
+            </Notification>
             <div style={{ minHeight: "300px" }}>
                 { pastChoices.map(([isChoice, transcript], index) => <P key={ index } css={ isChoice ? { color: "$primary" } : {} }>{ transcript }</P>) }
             </div>

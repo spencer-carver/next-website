@@ -431,43 +431,51 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-19": {
         title: "March 19: ODD",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Are these Call of Duty facts true about an odd entry in the main series?"
+        description: "Are these Call of Duty facts true about an odd entry in the main series?",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-20": {
         title: "March 20: NEIGHBOR",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Your companions are being dodgy with their details, can you identify who is lying?"
+        description: "Your companions are being dodgy with their details, can you identify who is lying?",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-21": {
         title: "March 21: MIX",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "What ingredient was left out of the game entirely?"
+        description: "What ingredient was left out of the game entirely?",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-22": {
         title: "March 22: CLOUD",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "The floating city of Colombia hides many things."
+        description: "The floating city of Columbia hides many things.",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-23": {
         title: "March 23: NEITHER",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Find your way through this liminal space labyrinth."
+        description: "Find your way through this liminal space labyrinth.",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-24": {
         title: "March 24: POWER",
         round: PuzzleRounds.ENIGMARCH2024,
         description: "",
-        timeLimit: 300
+        timeLimit: 300,
+        solutionAvailable: true
     },
     "enigmarch-2024:march-25": {
         title: "March 25: RAISE",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "If you want to raise your Chao right, you'll need to pass our Kindergarten quiz!"
+        description: "If you want to raise your Chao right, you'll need to pass our Kindergarten quiz!",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-26": {
         title: "March 26: CLUE",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: ""
+        description: "",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-27": {
         title: "March 27: RULE",

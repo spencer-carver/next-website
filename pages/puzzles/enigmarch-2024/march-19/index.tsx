@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { PuzzleWrapperComponent } from "../../../../components/Puzzle/common";
+import Notification from "../../../../components/Notification";
 import { styled } from "../../../../styles/stitches";
 
 const UL = styled("ul", {
@@ -33,6 +34,15 @@ const P = styled("p", {
     fontSize: "20px",
 });
 
+const P2 = styled("p", {
+    color: "$onBackground",
+    margin: "0",
+    display: "block",
+    marginBottom: "5px",
+    paddingLeft: "5px",
+    textAlign: "left"
+});
+
 const CLUES = [
     ["Fact", "True", "False"],
     ["Holds the record for most disliked YouTube video for a video game trailer", "J", "S"],
@@ -45,6 +55,9 @@ const CLUES = [
 const PuzzleComponent: FunctionComponent = () => {
     return (
         <PuzzleWrapperComponent name="enigmarch-2024:march-19">
+            <Notification css={{ marginBottom: "10px" }}>
+                <P2>Erattum (5/30/24): The final hint has been clarified to avoid confusion with certain references being updated after this puzzle was released.</P2>
+            </Notification>
             <UL>
                 { CLUES.map((clue, index) => (
                     <LI key={ index } css={ index === 0 ? { fontWeight: "bold", textDecoration: "underline" } : {} }>
@@ -56,7 +69,7 @@ const PuzzleComponent: FunctionComponent = () => {
                     </LI>
                 )) }
             </UL>
-            <P>Then use your result with the number of odd entries developed by Treyarch and a method attributed to a character from a cancelled Vicarious Visions entry to the franchise!</P>
+            <P>Then use your result with the number of odd entries developed by Treyarch as of March 2024 and a method attributed to a character from a cancelled Vicarious Visions entry to the franchise!</P>
         </PuzzleWrapperComponent>
     );
 };
