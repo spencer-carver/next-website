@@ -60,6 +60,18 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>September 2024</SubHeading>
+                <P>Updates to many Legacy and Commander Magic Decks, and the remaining 6 puzzle solutions from #Enigmarch 2024! With that, all puzzle solutions are now available on the site! 🎉</P>
+                <P>Next planned updates:</P>
+                <List>
+                    <ListItem>Overall puzzle statistics page (per-puzzle stats continue to live on the solution guide)</ListItem>
+                    <ListItem>Legacy deck guidance for the remaining 11 decks of the Battlebox.</ListItem>
+                    <ListItem>More blogposts! I am thinking of putting out a few in December focused on 2024 in retrospective.</ListItem>
+                    <ListItem>New Recipes / updates to <Link href="https://dumpling.academy" component={ A }>Dumpling Academy</Link></ListItem>
+                    <ListItem>Investigating infrastructure enhancements so that dynamic content (e.g. blogs, puzzle answers, magic decks) load quicker if they haven&apos;t been updated.</ListItem>
+                    <ListItem>Perhaps something new...?</ListItem>
+                </List>
+                <P>There isn&apos;t a planned time for all of these items, nor a specified order, but wanted to give an update as it has been a few months!</P>
                 <SubHeading>May 2024</SubHeading>
                 <P>Eight more solutions for #Enigmarch 2024 are now available, hoping to add the final six in June, before some travel for the year!</P>
                 <SubHeading>April 2024</SubHeading>

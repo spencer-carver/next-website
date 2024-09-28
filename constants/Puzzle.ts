@@ -480,32 +480,38 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "enigmarch-2024:march-27": {
         title: "March 27: RULE",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Each assassin worked against the ruling powers, but perhaps a ruler was all they really needed."
+        description: "Each assassin worked against the ruling powers, but perhaps a ruler was all they really needed.",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-28": {
         title: "March 28: COIN",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Partying may be Mario's Legacy, but perhaps it will help here too?"
+        description: "Partying may be Mario's Legacy, but perhaps it will help here too?",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-29": {
         title: "March 29: SURPRISE",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Kiryu and Majima made it everywhere across Kamurocho!"
+        description: "Kiryu and Majima made it everywhere across Kamurocho!",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-30": {
         title: "March 30: BOOK",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: ""
+        description: "",
+        solutionAvailable: true
     },
     "enigmarch-2024:march-31": {
         title: "March 31: SEQUEL",
         round: PuzzleRounds.ENIGMARCH2024,
-        description: "Help Atlas and P-body through the test chambers!"
+        description: "Help Atlas and P-body through the test chambers!",
+        solutionAvailable: true
     },
     "enigmarch-2024:meta": {
         title: "March: META",
         description: "Each day's answer helps reveal a piece of the final puzzle!",
         round: PuzzleRounds.ENIGMARCH2024,
-        isMeta: true
+        isMeta: true,
+        solutionAvailable: true
     },
 };

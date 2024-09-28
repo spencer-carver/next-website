@@ -167,12 +167,21 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     id: "hanna",
     colors: "WU",
     imageUrl: `${ ART_CROP_URL_PREFIX }/e/3/e34e53fc-0c11-4594-b4ca-eaac663040ae.jpg`,
-    classification: DeckClassification.KATHYS
+    classification: DeckClassification.KATHYS,
+    isUnderConstruction: true,
+    link: "/magic/deck/hanna"
 },{
     name: "Karador, Ghost Chieftain",
     id: "karador",
     colors: "WBG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/6/2/6200ac79-b166-43d0-9a0b-5b547625ed57.jpg`
+},{
+    name: "Krark & Sakashima",
+    id: "coinflips",
+    colors: "UR",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/0/6/06a981cd-1951-438e-95c9-68294795638e.jpg`,
+    classification: DeckClassification.KATHYS,
+    isUnderConstruction: true
 },{
     name: "K'rrik, Son of Yawgmoth",
     id: "krrik",
