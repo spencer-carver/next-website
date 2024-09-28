@@ -1,4 +1,4 @@
-import { lightTheme, styled, yahooGeocitiesTheme } from "../../styles/stitches";
+import { styled, yahooGeocitiesTheme } from "../../styles/stitches";
 import Head from "next/head";
 import { FunctionComponent } from "react";
 import { PageProps } from "../../@types/global";
@@ -6,7 +6,7 @@ import BackNavigation from "../../components/BackNavigation";
 import Link from "../../components/Link";
 
 const NAME = "Spencer's Personal Website";
-const DESCRIPTION = "Past updates for Spencer Carver's personal Website.";
+const DESCRIPTION = "Legal details for Spencer's Personal Website.";
 
 const PageDiv = styled("div", {
     maxWidth: "1024px",
@@ -18,23 +18,7 @@ const PageDiv = styled("div", {
     }
 });
 const Heading = styled("h2", {});
-const SubHeading = styled("h3", {});
-const List = styled("ul", {});
-const ListItem = styled("li", {
-    margin: "3px 0"
-});
 const P = styled("p", {});
-const A = styled("a", {
-    color: "$onBackground",
-    textDecoration: "none",
-    borderBottom: "2px dotted $secondary",
-    "&:hover": {
-        backgroundColor: "$secondary"
-    },
-    [`.${ lightTheme } &`]: {
-        borderBottom: "2px dotted $onBackground"
-    }
-});
 
 const Legal: FunctionComponent<PageProps> = ({ theme }) => {
     return (

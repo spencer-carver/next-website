@@ -107,7 +107,7 @@ const CLUES_1 = [
         "4. Stopped slouching",
         "5. Cliched",
         "6. Generic dog name",
-        "7. Amazon Assistant"
+        "7. Amazon assistant"
     ],
     [
         "1. Stars (latin)",
@@ -192,7 +192,7 @@ const PORTALS_4 = {
 const CLUES_4 = [
     [
         "3. Anxious feeling",
-        "6. Aperture's first attempt at a dietetic pudding substitute, made frome a slightly less non-toxic form of fiberglass insulation",
+        "6. Aperture's first attempt at a dietetic pudding substitute, made from a slightly less non-toxic form of fiberglass insulation",
         "7. Messy types"
     ],
     [
