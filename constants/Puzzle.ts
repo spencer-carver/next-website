@@ -35,7 +35,7 @@ export interface PuzzleDetails {
     solutionAvailable?: boolean;
 }
 
-export const NEWEST_PUZZLE = "speed-climbing";
+export const NEWEST_PUZZLE = "enigmarch-2025";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -513,5 +513,11 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         round: PuzzleRounds.ENIGMARCH2024,
         isMeta: true,
         solutionAvailable: true
+    },
+    "enigmarch-2025": {
+        title: "#Enigmarch 2025",
+        description: "A puzzle a day; best for collegiate play!",
+        isMeta: false,
+        solutionAvailable: false
     },
 };
