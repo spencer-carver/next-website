@@ -8,7 +8,7 @@ import Link from "../../../components/Link";
 
 const NAME = "enigmarch-2025";
 
-const LATEST_PUZZLE_MADE = 15;
+const LATEST_PUZZLE_MADE = 16;
 
 const MARCH_2025 = [
     [0,0,0,0,0,0,1],
@@ -23,7 +23,7 @@ const MARCH_2025_VALUES = [
     ["","","","","","","🌀"],
     ["🐴","🦚","🐂","🐆","🦉","🐱","🎖️"],
     ["🏖️","🦡","👷","🐻","🤠","🃏","🐮"],
-    ["","","","","","",""],
+    ["🤵","","","","","",""],
     ["","","","","","",""],
     ["","","","","","",""]
 ];
@@ -43,7 +43,8 @@ const PUZZLE_LINKS = [
     ["FLAG", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=12"],
     ["POINT", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=13"],
     ["JOKER", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=14"],
-    ["STAR", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=15"]
+    ["STAR", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=15"],
+    ["BOW", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=16"]
 ];
 
 const P = styled("p", {
