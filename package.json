@@ -1,6 +1,6 @@
 {
   "name": "next-website",
-  "version": "1.15.26",
+  "version": "1.15.27",
   "description": "Personal website leveraging Next.js",
   "private": true,
   "main": "index.js",
