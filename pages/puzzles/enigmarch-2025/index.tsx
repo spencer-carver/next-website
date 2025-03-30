@@ -8,7 +8,8 @@ import Link from "../../../components/Link";
 
 const NAME = "enigmarch-2025";
 
-const LATEST_PUZZLE_MADE = 29;
+const LATEST_PUZZLE_MADE = 30;
+const META_VALUE = 32;
 
 const MARCH_2025 = [
     [0,0,0,0,0,0,1],
@@ -16,7 +17,7 @@ const MARCH_2025 = [
     [9,10,11,12,13,14,15],
     [16,17,18,19,20,21,22],
     [23,24,25,26,27,28,29],
-    [30,31,0,0,0,0,0]
+    [30,31,0,0,0,0,32]
 ];
 
 const MARCH_2025_VALUES = [
@@ -25,7 +26,7 @@ const MARCH_2025_VALUES = [
     ["🏖️","🦡","👷","🐻","🤠","🃏","🐮"],
     ["🤵","☘️","🐃","🚂","🤐","🐇","✈️"],
     ["🦆","🐺","🐎","🌽","🦌","👿","🐻"],
-    ["","","","","","",""]
+    ["🐦","","","","","",""]
 ];
 
 const PUZZLE_LINKS = [
@@ -57,7 +58,8 @@ const PUZZLE_LINKS = [
     ["PLAY", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=26"],
     ["LOOP", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=27"],
     ["DRAW", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=28"],
-    ["COMPASS", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=29"]
+    ["COMPASS", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=29"],
+    ["ROUTE", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=30"]
 ];
 
 const P = styled("p", {
@@ -89,6 +91,14 @@ const FinalAnswerComponent = ({ intermediates, activeDay, onClickDate, }) => {
                                         row.map((cell, columnIndex) => {
                                             if (!cell) {
                                                 return <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } />
+                                            }
+
+                                            if (cell === META_VALUE) {
+                                                return (
+                                                    <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` }>
+                                                        <DayOfMonth>META</DayOfMonth>
+                                                    </TableCell>
+                                                );
                                             }
 
                                             if (cell > LATEST_PUZZLE_MADE) {
