@@ -8,7 +8,7 @@ import Link from "../../../components/Link";
 
 const NAME = "enigmarch-2025";
 
-const LATEST_PUZZLE_MADE = 30;
+const LATEST_PUZZLE_MADE = 31;
 const META_VALUE = 32;
 
 const MARCH_2025 = [
@@ -26,7 +26,7 @@ const MARCH_2025_VALUES = [
     ["🏖️","🦡","👷","🐻","🤠","🃏","🐮"],
     ["🤵","☘️","🐃","🚂","🤐","🐇","✈️"],
     ["🦆","🐺","🐎","🌽","🦌","👿","🐻"],
-    ["🐦","","","","","",""]
+    ["🐦","🧥","","","","",""]
 ];
 
 const PUZZLE_LINKS = [
@@ -59,7 +59,8 @@ const PUZZLE_LINKS = [
     ["LOOP", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=27"],
     ["DRAW", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=28"],
     ["COMPASS", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=29"],
-    ["ROUTE", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=30"]
+    ["ROUTE", "https://spencer-carver.github.io/diagram/enigmarch-2025?day=30"],
+    ["PUZZLE", "https://crosshare.org/crosswords/SfftQcBd6SCPYWJCgMt4/enigmarch-2025-day-31"]
 ];
 
 const P = styled("p", {
