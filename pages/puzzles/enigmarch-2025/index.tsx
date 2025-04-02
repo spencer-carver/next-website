@@ -8,7 +8,6 @@ import Link from "../../../components/Link";
 
 const NAME = "enigmarch-2025";
 
-const LATEST_PUZZLE_MADE = 31;
 const META_VALUE = 32;
 
 const MARCH_2025 = [
@@ -67,6 +66,30 @@ const P = styled("p", {
     color: "$onBackground"
 });
 
+const Note = styled("div", {
+    backgroundColor: "#E4D6A0",
+    padding: "5px",
+    color: "black"
+});
+
+const StackedLetters = styled("div", {
+    display: "inline-flex",
+    flexDirection: "column"
+});
+
+const UnderlinedLetter = styled("div", {
+    display: "inline-block",
+    width: "32px",
+    paddingBottom: "1px",
+    borderBottom: "1px solid black",
+    margin: "10px 4px 0 0"
+});
+
+const BottomLetter = styled("div", {
+    display: "inline-block",
+    width: "32px"
+});
+
 const FinalAnswerComponent = ({ intermediates, activeDay, onClickDate, }) => {
     return (
         <WrapperDiv>
@@ -94,27 +117,19 @@ const FinalAnswerComponent = ({ intermediates, activeDay, onClickDate, }) => {
                                                 return <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } />
                                             }
 
-                                            if (cell === META_VALUE) {
-                                                return (
-                                                    <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` }>
-                                                        <DayOfMonth>META</DayOfMonth>
-                                                    </TableCell>
-                                                );
-                                            }
-
-                                            if (cell > LATEST_PUZZLE_MADE) {
-                                                return (
-                                                    <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` }>
-                                                        <DayOfMonth>{cell}</DayOfMonth>
-                                                    </TableCell>
-                                                );
-                                            }
-
                                             const additionalStyles = {
                                                 ...buttonCellStyles,
                                                 ...(intermediates[cell] ? { backgroundColor: "$secondary", color: "$onSecondary" } : {}),
                                                 ...(activeDay === cell ? { backgroundColor: "$primary", color: "$onPrimary", "&:hover": undefined } : {}),
                                             };
+
+                                            if (cell === META_VALUE) {
+                                                return (
+                                                    <TableCell key={ `cell-${ rowIndex }-${ columnIndex }` } role="button" onClick={ () => onClickDate(cell) } title={ `March ${ cell }` } css={ additionalStyles }>
+                                                        <DayOfMonth>META</DayOfMonth>
+                                                    </TableCell>
+                                                );
+                                            }
 
                                             const intermediateValue = intermediates[cell]?.split("|").length > 1 ? intermediates[cell].split("|")[1] : intermediates[cell];
 
@@ -132,6 +147,31 @@ const FinalAnswerComponent = ({ intermediates, activeDay, onClickDate, }) => {
                 </tbody>
             </Calendar>
         </WrapperDiv>
+    );
+};
+
+const MetaPrompt = () => {
+    return (
+        <>
+            <P>
+                While many men go bonkers for basketball during this month, I instead focus on my birthday!
+                That isn&apos;t to say the two events are unrelated though, as I&apos;ve asked a baker to build me a bracket of desserts to see how I&apos;ll celebrate!
+                Frusturatingly, they sent over the following note in place of the winning treat!
+            </P>
+            <Note>
+                I was inspired by your idea from last year, and wanted to make this year special! Find each position occupied in both cases, and take their difference to seed the blanks below.
+                <div>
+                    <StackedLetters><UnderlinedLetter>L</UnderlinedLetter><BottomLetter>&nbsp;</BottomLetter></StackedLetters>
+                    <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>S</BottomLetter></StackedLetters>
+                    <StackedLetters><UnderlinedLetter>V</UnderlinedLetter><BottomLetter>&nbsp;</BottomLetter></StackedLetters>
+                    <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>MW</BottomLetter></StackedLetters>
+                    <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>E</BottomLetter></StackedLetters>
+                    <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>MW</BottomLetter></StackedLetters>
+                    <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>E</BottomLetter></StackedLetters>
+                    <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>MW</BottomLetter></StackedLetters>
+                </div>
+            </Note>
+        </>
     );
 };
 
@@ -171,12 +211,13 @@ const PuzzleComponent: FunctionComponent = () => {
             <div style={{ position: "relative", maxWidth: "740px", paddingLeft: "10px" }}>
                 <FinalAnswerComponent intermediates={ intermediates } activeDay={ activeDay } onClickDate={ (date) => setActiveDay(date) } />
             </div>
-            <P>Each day a puzzle will be created at some external location! If you solve it, make sure to come back and enter the final answer for the meta puzzle!</P>
+            { activeDay !== META_VALUE && <P>Each day a puzzle will be created at some external location! If you solve it, make sure to come back and enter the final answer for the meta puzzle!</P> }
             <div style={{ marginTop: "50px" }}>
-                { activeDay !== 0 && <Link href={ PUZZLE_LINKS[activeDay - 1][1] }>March { activeDay }: { PUZZLE_LINKS[activeDay - 1][0] }</Link> }
+                { (activeDay !== 0 && activeDay !== META_VALUE) && <Link href={ PUZZLE_LINKS[activeDay - 1][1] }>March { activeDay }: { PUZZLE_LINKS[activeDay - 1][0] }</Link> }
+                { activeDay === META_VALUE && <MetaPrompt />}
             </div>
             <div style={{ marginTop: "50px" }}>
-                { activeDay !== 0 && <PartialAnswerCheck puzzleName={ NAME } step={ activeDay } completeStep={ completeStep } placeholderText="Today's Answer Here" partialAnswer={ intermediates[activeDay]?.split("|")[0] } /> }
+                { (activeDay !== 0 && activeDay !== META_VALUE) && <PartialAnswerCheck puzzleName={ NAME } step={ activeDay } completeStep={ completeStep } placeholderText="Today's Answer Here" partialAnswer={ intermediates[activeDay]?.split("|")[0] } /> }
             </div>
         </PuzzleWrapperComponent>
     );
