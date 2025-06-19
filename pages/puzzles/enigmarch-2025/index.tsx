@@ -155,20 +155,20 @@ const MetaPrompt = () => {
         <>
             <P>
                 While many men go bonkers for basketball during this month, I instead focus on my birthday!
-                That isn&apos;t to say the two events are unrelated though, as I&apos;ve asked a baker to build me a bracket of desserts to see how I&apos;ll celebrate!
-                Frusturatingly, they sent over the following note in place of the winning treat!
+                That isn&apos;t to say the two events are unrelated though, as I&apos;ve asked a baker to build me a bracket of desserts!
+                Frusturatingly, they sent over the following note instead of any celebratory sweet.
             </P>
             <Note>
-                I was inspired by your idea from last year, and wanted to make this year special! Find each position occupied in both cases, and take their difference to seed the blanks below.
+                I was inspired by your idea from last year, and wanted to make this year special! Find each position occupied in both cases, take their difference, and extract from the appropriate team to seed the blanks below to learn when you&apos;ll recieve your winning treat!
                 <div>
-                    <StackedLetters><UnderlinedLetter>L</UnderlinedLetter><BottomLetter>&nbsp;</BottomLetter></StackedLetters>
-                    <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>S</BottomLetter></StackedLetters>
-                    <StackedLetters><UnderlinedLetter>V</UnderlinedLetter><BottomLetter>&nbsp;</BottomLetter></StackedLetters>
+                    <StackedLetters><UnderlinedLetter>P</UnderlinedLetter><BottomLetter>&nbsp;</BottomLetter></StackedLetters>
+                    <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>E→S</BottomLetter></StackedLetters>
                     <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>MW</BottomLetter></StackedLetters>
-                    <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>E</BottomLetter></StackedLetters>
                     <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>MW</BottomLetter></StackedLetters>
-                    <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>E</BottomLetter></StackedLetters>
+                    <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>E→S</BottomLetter></StackedLetters>
+                    <StackedLetters><UnderlinedLetter>A</UnderlinedLetter><BottomLetter>&nbsp;</BottomLetter></StackedLetters>
                     <StackedLetters><UnderlinedLetter>&nbsp;</UnderlinedLetter><BottomLetter>MW</BottomLetter></StackedLetters>
+                    <StackedLetters><UnderlinedLetter>E</UnderlinedLetter><BottomLetter>&nbsp;</BottomLetter></StackedLetters>
                 </div>
             </Note>
         </>
