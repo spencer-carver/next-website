@@ -518,6 +518,6 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         title: "#Enigmarch 2025",
         description: "A puzzle a day; best for collegiate play!",
         isMeta: false,
-        solutionAvailable: false
+        solutionAvailable: true
     },
 };

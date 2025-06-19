@@ -174,6 +174,7 @@ const SiteNav: FunctionComponent<SiteNavProps> = ({ expanded, toggleMenu }) => {
                 <Link href="/" component={ SiteNavLinkAnchor }>Home</Link>
                 <Link href="/about" component={ SiteNavLinkAnchor }>About Me</Link>
                 <Link href="/blog" component={ SiteNavLinkAnchor }>Blog</Link>
+                <Link href="/games" component={ SiteNavLinkAnchor }>Games</Link>
                 <Link href="/puzzles" component={ SiteNavLinkAnchor }>Puzzles</Link>
                 <Link href="/magic" component={ SiteNavLinkAnchor }>Magic</Link>
                 <Link href="https://dumpling.academy/recipes" component={ SiteNavLinkAnchor }>Recipes</Link>
@@ -219,7 +220,7 @@ const PageNavDiv = styled("div", {
 const SiteNavBackgroundDiv = styled("div", {
     backgroundColor: "$surface01",
     width: "120px",
-    height: "172px",
+    height: "187px",
     marginLeft: "-50px",
     borderBottomRightRadius: "$borderRadius",
     borderBottom: "1px solid $onBackground",

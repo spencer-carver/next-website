@@ -60,6 +60,14 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>June 2025</SubHeading>
+                <List>
+                    <ListItem>New Puzzle Solution: <Link href="/puzzles/enigmarch-2025" component={ A }>#Enigmarch 2025</Link></ListItem>
+                    <ListItem>New Section: <Link href="/games" component={ A }>Games</Link></ListItem>
+                    <ListItem>New Life Milestone: Fatherhood</ListItem>
+                </List>
+                <P>With the solution to #Enigmarch 2025, all puzzles have solutions once again! Unfortunately there was a pretty big error in the construction of that puzzle, so it was only just now corrected. Apologies to anyone who attempted it in the past 2.5 months.</P>
+                <P>Additionally, I have created a landing page for games! I&apos;ve been trying to make some fun daily and weekly NYT-style games for Kathy, and decided to commit keeping it going long-term!</P>
                 <SubHeading>March 2025</SubHeading>
                 <P>Happy #Enigmarch! Each day I&apos;ll be adding a <Link href="/puzzles/enigmarch-2025" component={ A }>new puzzle</Link> from the inspirational prompts posted on the <Link href="https://enigmarch.com/prompts/" component={ A }>Enigmarch website</Link>.</P>
                 <P>Over the past several months there are many new recipes on <Link href="https://dumpling.academy" component={ A }>Dumpling Academy</Link>, as well as a lot of new things in the works (one of which you can preview with this Month&apos;s #Enigmarch content!).</P>
