@@ -35,7 +35,7 @@ export interface PuzzleDetails {
     solutionAvailable?: boolean;
 }
 
-export const NEWEST_PUZZLE = "enigmarch-2025";
+export const NEWEST_PUZZLE = "emerald-princess";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -520,4 +520,10 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
         isMeta: false,
         solutionAvailable: true
     },
+    "emerald-princess": {
+        title: "Emerald Princess",
+        description: "",
+        isMeta: false,
+        solutionAvailable: true
+    }
 };
