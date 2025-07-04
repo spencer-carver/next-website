@@ -60,6 +60,11 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>July 2025</SubHeading>
+                <List>
+                    <ListItem>New Puzzle: <Link href="/puzzles/emerald-princess" component={ A }>Emerald Princess</Link></ListItem>
+                </List>
+                <P>For several weeks earlier this year I was captivated by the game <Link href="https://www.blueprincegame.com/" component={ A }>Blue Prince</Link>, a first-person puzzle roguelite with incredible charm and cohesiveness. This latest puzzle is a tribute using mechanics found in the normal progression of the game.</P>
                 <SubHeading>June 2025</SubHeading>
                 <List>
                     <ListItem>New Puzzle Solution: <Link href="/puzzles/enigmarch-2025" component={ A }>#Enigmarch 2025</Link></ListItem>
