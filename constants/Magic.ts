@@ -198,6 +198,11 @@ export const COMMANDER_DECKS: DeckLinkProps[] = [{
     colors: "UBG",
     imageUrl: `${ ART_CROP_URL_PREFIX }/c/6/c654737d-34ac-42ff-ae27-3a3bbb930fc1.jpg`
 },{
+    name: "Nahiri, Forged in Fury",
+    id: "nahiri-equipment",
+    colors: "WR",
+    imageUrl: `${ ART_CROP_URL_PREFIX }/9/0/90eb0859-d24e-4703-8930-1cd4ac1fb3b6.jpg`,
+},{
     name: "Nahiri, the Lithomancer",
     id: "nahiri",
     colors: "W",

@@ -107,6 +107,14 @@ const Games: FunctionComponent<PageProps> = ({ theme }) => {
                         <P>A category overlap deduction game</P>
                     </Card>
                 </Link>
+                <Link href="https://spencer-carver.github.io/pareamid" component={ LinkWrapper }>
+                    <Card>
+                        <Banner>Early Access</Banner>
+                        <Image src="https://spencer-carver.github.io/pareamid/launcher-icon-192.png" height={ 192 } width={ 192 } alt="A Pyramid" />
+                        <Heading as="h3"><i>Pare</i>amid</Heading>
+                        <P>A pyramidal word chain game from two-word phrases</P>
+                    </Card>
+                </Link>
                 </CardContainer>
             </PageDiv>
         </>

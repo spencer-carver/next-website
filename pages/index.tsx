@@ -60,6 +60,11 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>October 2025</SubHeading>
+                <List>
+                    <ListItem>New Game: <Link href="/games" component={ A }><i>Pare</i>amid</Link></ListItem>
+                </List>
+                <P>I&apos;m going to say this game is in &quot;Early Access&quot;. I think it can definitely be a daily game, but I am not certain I want to commit to that yet. If you want to play it, let me know any thoughts!</P>
                 <SubHeading>July 2025</SubHeading>
                 <List>
                     <ListItem>New Puzzle: <Link href="/puzzles/emerald-princess" component={ A }>Emerald Princess</Link></ListItem>
