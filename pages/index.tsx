@@ -61,6 +61,9 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
                 <SubHeading>October 2025</SubHeading>
+                <P><Link href="/games" component={ A }><i>Pare</i>amid</Link> is now a weekly game, but there&apos;s a handful available already to start from the Early Access period! I think if my full time job was coming up with puzzles I could do it daily, but alas, that is not the case</P>
+                <P>Weirdly in the past month I have heard from various recruiters that someone who is NOT me is trying to pass off my website, LinkedIn, and github with a modified resume for job interviews? I&apos;m a little flattered, but mostly confused how that helps the person at all, since you know... they are not me and even if they pass the job interviews none of their official documents would be correct? Anyway, if you are the person doing this, I do not believe it will help you in any capacity, other than waste the time many people, but you made me add a disclaimer on all of my pages, so thanks for that I guess. I do also occasionally mentor folks entering the CS/Engineering job markets, so perhaps you could have just asked for assistance rather than tried to impersonate?</P>
+                <SubHeading>September 2025</SubHeading>
                 <List>
                     <ListItem>New Game: <Link href="/games" component={ A }><i>Pare</i>amid</Link></ListItem>
                 </List>
