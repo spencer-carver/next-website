@@ -101,7 +101,7 @@ const Games: FunctionComponent<PageProps> = ({ theme }) => {
                 </Link>
                 <Link href="https://spencer-carver.github.io/diagram" component={ LinkWrapper }>
                     <Card>
-                        <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly</Banner>
+                        <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Sunday</Banner>
                         <Image src="https://spencer-carver.github.io/diagram/launcher-icon-192.png" height={ 192 } width={ 192 } alt="A Venn Diagram" />
                         <Heading as="h3">Diagram</Heading>
                         <P>A category overlap deduction game</P>
@@ -109,10 +109,18 @@ const Games: FunctionComponent<PageProps> = ({ theme }) => {
                 </Link>
                 <Link href="https://spencer-carver.github.io/pareamid" component={ LinkWrapper }>
                     <Card>
-                        <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly</Banner>
+                        <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Monday</Banner>
                         <Image src="https://spencer-carver.github.io/pareamid/launcher-icon-192.png" height={ 192 } width={ 192 } alt="A Pyramid" />
                         <Heading as="h3"><i>Pare</i>amid</Heading>
                         <P>A pyramidal word chain game from two-word phrases</P>
+                    </Card>
+                </Link>
+                <Link href="https://spencer-carver.github.io/prefix-pareamid" component={ LinkWrapper }>
+                    <Card>
+                        <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Friday</Banner>
+                        <Image src="https://spencer-carver.github.io/prefix-pareamid/launcher-icon-192.png" height={ 192 } width={ 192 } alt="An Inverted Pyramid" />
+                        <Heading as="h3">Prefix <i>Pare</i>amid</Heading>
+                        <P>Another pyramidal word chain game from two-word phrases</P>
                     </Card>
                 </Link>
                 </CardContainer>
