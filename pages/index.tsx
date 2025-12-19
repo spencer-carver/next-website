@@ -60,6 +60,13 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>End of 2025</SubHeading>
+                <List>
+                    <ListItem>New Game: <Link href="/games" component={ A }>Light up the Room</Link></ListItem>
+                    <ListItem>Updated Section: <Link href="/games" component={ A }>Games</Link></ListItem>
+                </List>
+                <P>Continuing on the game idea trend, my first logic puzzle, <Link href="/games" component={ A }>Light up the Room</Link> is now available! This is a variation of "Light Up" (or Akari) but not close enough where they work the same! This game is starting in the Wednesday slot, but may become promted to daily if I find them easy to generate.</P>
+                <P>I also have an <Link href="/blog" component={ A }>End of year blog post</Link> out, recapping many of things I tried this year, both successful and otherwise, and also laying out some goals both for myself and the site coming into 2026!</P>
                 <SubHeading>December 2025</SubHeading>
                 <List>
                     <ListItem>New Game: <Link href="/games" component={ A }>Prefix <i>Pare</i>amid</Link></ListItem>
@@ -67,7 +74,6 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 </List>
                 <P>The reversed version of <i>Pare</i>amid is now in the weekly rotation as well! I find this variation to be much more challenging, so I&apos;ve put it on Friday, and assigned the normal one to Monday, but there isn&apos;t really a difficulty progression, it&apos;s more to keep similar games spread out.</P>
                 <P>What do I mean by that? I have decided to try and reach the point of seven weekly games (and at least the daily Cryptex), each releasing on a different day of the week, by the end of 2026! More on that in my new year entry, with hopefully the fourth of seven games as well!</P>
-                
                 <SubHeading>October 2025</SubHeading>
                 <P><Link href="/games" component={ A }><i>Pare</i>amid</Link> is now a weekly game, but there&apos;s a handful available already to start from the Early Access period! I think if my full time job was coming up with puzzles I could do it daily, but alas, that is not the case</P>
                 <P>Weirdly in the past month I have heard from various recruiters that someone who is NOT me is trying to pass off my website, LinkedIn, and github with a modified resume for job interviews? I&apos;m a little flattered, but mostly confused how that helps the person at all, since you know... they are not me and even if they pass the job interviews none of their official documents would be correct? Anyway, if you are the person doing this, I do not believe it will help you in any capacity, other than waste the time many people, but you made me add a disclaimer on all of my pages, so thanks for that I guess. I do also occasionally mentor folks entering the CS/Engineering job markets, so perhaps you could have just asked for assistance rather than tried to impersonate?</P>

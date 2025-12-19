@@ -11,7 +11,7 @@ const DESCRIPTION = "Games on Spencer's Personal Website.";
 
 const PageDiv = styled("div", {
     maxWidth: "1024px",
-    minHeight: "calc(100vh - 131px)",
+    minHeight: "calc(100vh - 111px)",
     margin: "0 auto",
     padding: "10px 20px 0",
     color: "$onBackground",
@@ -49,9 +49,21 @@ const CardContainer = styled("div", {
     flexDirection: "column",
     gap: "20px",
     justifyContent: "center",
+    alignItems: "center",
     margin: "40px 0",
     "@lg": {
-        flexDirection: "row"
+        display: "grid",
+        gridTemplateRows: "repeat(4, 1fr)",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        placeItems: "center"
+    },
+    "@xl": {
+        gridTemplateRows: "repeat(3, 1fr)",
+        gridTemplateColumns: "repeat(3, 1fr)"
+    },
+    "@xxxl": {
+        gridTemplateRows: "repeat(2, 1fr)",
+        gridTemplateColumns: "repeat(4, 1fr)"
     }
 });
 
@@ -91,38 +103,61 @@ const Games: FunctionComponent<PageProps> = ({ theme }) => {
                 <BackNavigation to="/" />
                 <Heading css={{ margin: "40px 0" }}>Games</Heading>
                 <CardContainer>
-                <Link href="https://spencer-carver.github.io/cryptex" component={ LinkWrapper }>
+                    <Link href="https://spencer-carver.github.io/cryptex" component={ LinkWrapper }>
+                        <Card>
+                            <Banner>Daily</Banner>
+                            <Image src="https://spencer-carver.github.io/cryptex/launcher-icon-192.png" height={ 192 } width={ 192 } alt="A Cylinder" />
+                            <Heading as="h3">Cryptex</Heading>
+                            <P>A cylindrical word guessing game</P>
+                        </Card>
+                    </Link>
+                    <Link href="https://spencer-carver.github.io/pareamid" component={ LinkWrapper }>
+                        <Card>
+                            <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Monday</Banner>
+                            <Image src="https://spencer-carver.github.io/pareamid/launcher-icon-192.png" height={ 192 } width={ 192 } alt="A Pyramid" />
+                            <Heading as="h3"><i>Pare</i>amid</Heading>
+                            <P>A pyramidal word chain game from two-word phrases</P>
+                        </Card>
+                    </Link>
                     <Card>
-                        <Banner>Daily</Banner>
-                        <Image src="https://spencer-carver.github.io/cryptex/launcher-icon-192.png" height={ 192 } width={ 192 } alt="A Cylinder" />
-                        <Heading as="h3">Cryptex</Heading>
-                        <P>A cylindrical word guessing game</P>
+                        <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Tuesday</Banner>
+                        <Heading as="h3" css={{ marginTop: "192px" }}>???</Heading>
+                        <P>A new weekly game in 2026?</P>
                     </Card>
-                </Link>
-                <Link href="https://spencer-carver.github.io/diagram" component={ LinkWrapper }>
+                    <Link href="https://spencer-carver.github.io/light-up-the-room" component={ LinkWrapper }>
+                        <Card>
+                            <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Wednesday</Banner>
+                            <Image src="https://spencer-carver.github.io/light-up-the-room/launcher-icon-192.png" height={ 192 } width={ 192 } alt="A Lantern" />
+                            <Heading as="h3">Light up the Room</Heading>
+                            <P>A light-based logic puzzle</P>
+                        </Card>
+                    </Link>
                     <Card>
-                        <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Sunday</Banner>
-                        <Image src="https://spencer-carver.github.io/diagram/launcher-icon-192.png" height={ 192 } width={ 192 } alt="A Venn Diagram" />
-                        <Heading as="h3">Diagram</Heading>
-                        <P>A category overlap deduction game</P>
+                        <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Thursday</Banner>
+                        <Heading as="h3" css={{ marginTop: "192px" }}>???</Heading>
+                        <P>A new weekly game in 2026?</P>
                     </Card>
-                </Link>
-                <Link href="https://spencer-carver.github.io/pareamid" component={ LinkWrapper }>
+                    <Link href="https://spencer-carver.github.io/prefix-pareamid" component={ LinkWrapper }>
+                        <Card>
+                            <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Friday</Banner>
+                            <Image src="https://spencer-carver.github.io/prefix-pareamid/launcher-icon-192.png" height={ 192 } width={ 192 } alt="An Inverted Pyramid" />
+                            <Heading as="h3">Prefix <i>Pare</i>amid</Heading>
+                            <P>Another pyramidal word chain game from two-word phrases</P>
+                        </Card>
+                    </Link>
                     <Card>
-                        <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Monday</Banner>
-                        <Image src="https://spencer-carver.github.io/pareamid/launcher-icon-192.png" height={ 192 } width={ 192 } alt="A Pyramid" />
-                        <Heading as="h3"><i>Pare</i>amid</Heading>
-                        <P>A pyramidal word chain game from two-word phrases</P>
+                        <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Saturday</Banner>
+                        <Heading as="h3" css={{ marginTop: "192px" }}>???</Heading>
+                        <P>A new weekly game in 2026?</P>
                     </Card>
-                </Link>
-                <Link href="https://spencer-carver.github.io/prefix-pareamid" component={ LinkWrapper }>
-                    <Card>
-                        <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Friday</Banner>
-                        <Image src="https://spencer-carver.github.io/prefix-pareamid/launcher-icon-192.png" height={ 192 } width={ 192 } alt="An Inverted Pyramid" />
-                        <Heading as="h3">Prefix <i>Pare</i>amid</Heading>
-                        <P>Another pyramidal word chain game from two-word phrases</P>
-                    </Card>
-                </Link>
+                    <Link href="https://spencer-carver.github.io/diagram" component={ LinkWrapper }>
+                        <Card>
+                            <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Sunday</Banner>
+                            <Image src="https://spencer-carver.github.io/diagram/launcher-icon-192.png" height={ 192 } width={ 192 } alt="A Venn Diagram" />
+                            <Heading as="h3">Diagram</Heading>
+                            <P>A category overlap deduction game</P>
+                        </Card>
+                    </Link>
                 </CardContainer>
             </PageDiv>
         </>
