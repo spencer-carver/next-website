@@ -124,11 +124,11 @@ const Games: FunctionComponent<PageProps> = ({ theme }) => {
                         <Heading as="h3" css={{ marginTop: "192px" }}>???</Heading>
                         <P>A new weekly game in 2026?</P>
                     </Card>
-                    <Link href="https://spencer-carver.github.io/light-up-the-room" component={ LinkWrapper }>
+                    <Link href="https://spencer-carver.github.io/lanterns" component={ LinkWrapper }>
                         <Card>
                             <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Wednesday</Banner>
-                            <Image src="https://spencer-carver.github.io/light-up-the-room/launcher-icon-192.png" height={ 192 } width={ 192 } alt="A Lantern" />
-                            <Heading as="h3">Light up the Room</Heading>
+                            <Image src="https://spencer-carver.github.io/lanterns/launcher-icon-192.png" height={ 192 } width={ 192 } alt="A Lantern" />
+                            <Heading as="h3">Lanterns</Heading>
                             <P>A light-based logic puzzle</P>
                         </Card>
                     </Link>

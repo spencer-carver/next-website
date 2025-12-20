@@ -62,11 +62,11 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <Heading>Site News:</Heading>
                 <SubHeading>End of 2025</SubHeading>
                 <List>
-                    <ListItem>New Game: <Link href="/games" component={ A }>Light up the Room</Link></ListItem>
+                    <ListItem>New Game: <Link href="/games" component={ A }>Lanterns</Link></ListItem>
                     <ListItem>Updated Section: <Link href="/games" component={ A }>Games</Link></ListItem>
                 </List>
-                <P>Continuing on the game idea trend, my first logic puzzle, <Link href="/games" component={ A }>Light up the Room</Link> is now available! This is a variation of "Light Up" (or Akari) but not close enough where they work the same! This game is starting in the Wednesday slot, but may become promted to daily if I find them easy to generate.</P>
-                <P>I also have an <Link href="/blog" component={ A }>End of year blog post</Link> out, recapping many of things I tried this year, both successful and otherwise, and also laying out some goals both for myself and the site coming into 2026!</P>
+                <P>Continuing on the game idea trend, my first logic puzzle, <Link href="/games" component={ A }>Lanterns</Link> is now available! This is a variation of &quot;Light Up&quot; (also known as Akari) but not close enough where they work the same! This game is starting in the Wednesday slot, but may become promted to daily if I find them easy to generate.</P>
+                <P>I also have a few <Link href="/blog" component={ A }>End of year blog posts</Link> coming out just before the New Year, recapping many of things I tried this year, both successful and otherwise, and also laying out some goals both for myself and the site coming into 2026!</P>
                 <SubHeading>December 2025</SubHeading>
                 <List>
                     <ListItem>New Game: <Link href="/games" component={ A }>Prefix <i>Pare</i>amid</Link></ListItem>
