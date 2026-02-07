@@ -60,6 +60,12 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>February 2026</SubHeading>
+                <List>
+                    <ListItem>New Game: <Link href="/games" component={ A }>Rows Bouquet</Link></ListItem>
+                    <ListItem>Updated Section: <Link href="/games" component={ A }>Games</Link></ListItem>
+                </List>
+                <P>Ever since I saw one for the first time, I thought the Rows Garden crossword variant was really cool, but also sort of tedious. With the NYT mini crossword (the only one I really tried) becoming subscriber only, I realized I can make my own mini crossword, and revist the alternative format I liked! I actually did quite a bit of research on existing Rows Garden players (and even bought an app), and I had some serious issues with some of the ways they engage, so I hope all of that is resolved with my version. There are still some pending updates in the future (settings to customize behavior rather than just the way I like playing), but this should be a solid new weekly addition!</P>
                 <SubHeading>End of 2025</SubHeading>
                 <List>
                     <ListItem>New Game: <Link href="/games" component={ A }>Lanterns</Link></ListItem>
