@@ -145,11 +145,14 @@ const Games: FunctionComponent<PageProps> = ({ theme }) => {
                             <P>Another pyramidal word chain game from two-word phrases</P>
                         </Card>
                     </Link>
-                    <Card>
-                        <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Saturday</Banner>
-                        <Heading as="h3" css={{ marginTop: "192px" }}>???</Heading>
-                        <P>A new weekly game in 2026?</P>
-                    </Card>
+                    <Link href="https://spencer-carver.github.io/rows-bouquet" component={ LinkWrapper }>
+                        <Card>
+                            <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Saturday</Banner>
+                            <Image src="https://spencer-carver.github.io/rows-bouquet/launcher-icon-192.png" height={ 192 } width={ 192 } alt="A Geometric Rose" />
+                            <Heading as="h3">Rows Bouquet</Heading>
+                            <P>A hexagonal word game</P>
+                        </Card>
+                    </Link>
                     <Link href="https://spencer-carver.github.io/diagram" component={ LinkWrapper }>
                         <Card>
                             <Banner css={{ backgroundColor: "$secondary", color: "$onSecondary" }}>Weekly - Sunday</Banner>
