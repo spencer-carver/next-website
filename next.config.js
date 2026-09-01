@@ -11,22 +11,34 @@ const imgixImageLoader = {
 };
 
 module.exports = (phase, { defaultConfig }) => {
+    const isDev = phase === PHASE_DEVELOPMENT_SERVER;
+    const devPageExtensions = [
+        "dev.tsx",
+        "tsx",
+        "dev.ts",
+        "ts",
+        "dev.jsx",
+        "jsx",
+        "dev.js",
+        "js",
+    ];
+
     const config = withBundleAnalyzer({
         ...defaultConfig,
         images: imgixImageLoader,
-        ...(phase === PHASE_DEVELOPMENT_SERVER ? {
-            pageExtensions: defaultConfig.pageExtensions.map((extension) => [`dev\.${ extension }`, extension]).flat(),
-            webpack: (config) => {
-                config.module.rules.push({
-                    test: /\.md/,
-                    type: "asset/source"
-                });
-    
-                return config;
-            }
+        ...(isDev ? {
+            pageExtensions: devPageExtensions,
         } : {
-            pageExtensions: defaultConfig.pageExtensions.map((extension) => `(?<!dev\.)${ extension }`),
-        })
+            output: "export",
+        }),
+        webpack: (config) => {
+            config.module.rules.push({
+                test: /\.md$/,
+                type: "asset/source",
+            });
+
+            return config;
+        },
     });
 
     // @next/bundle-analyzer adds values which next complains about
@@ -35,9 +47,13 @@ module.exports = (phase, { defaultConfig }) => {
     delete config.target;
 
     // next itself adds some defaults that it complains about
-    delete config.amp.canonicalBase;
+    if (config.amp) {
+        delete config.amp.canonicalBase;
+    }
     delete config.assetPrefix;
-    delete config.experimental.outputFileTracingRoot;
+    if (config.experimental) {
+        delete config.experimental.outputFileTracingRoot;
+    }
     delete config.i18n;
     delete config.reactStrictMode;
 

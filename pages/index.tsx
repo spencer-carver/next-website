@@ -60,6 +60,13 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>August 2026</SubHeading>
+                <List>
+                    <ListItem>New Puzzle: <Link href="/puzzles/franca-lingua" component={ A }>Franca Lingua</Link></ListItem>
+                </List>
+                <P>This is NOT the puzzle I've been working on for a while. That one will hopefully release before the end of the year and likely needs a standalone website for it. This one was an exploration with ChatGPT about a domain I really like (languages), but am notoriously bad at to where I would never write something like this on my own. I know ChatGPT can make mistakes, but hoping this is sound to the point of clean for puzzle purposes!</P>
+                <SubHeading>March 2026</SubHeading>
+                <P>Happy #Enigmarch! Each day I&apos;ll be adding a <Link href="https://spencer-carver.github.io/rows-bouquet/enigmarch-2026" component={ A }>new puzzle</Link> from the inspirational prompts posted on the <Link href="https://enigmarch.com/prompts/" component={ A }>Enigmarch website</Link>.</P>
                 <SubHeading>February 2026</SubHeading>
                 <List>
                     <ListItem>New Game: <Link href="/games" component={ A }>Rows Bouquet</Link></ListItem>
@@ -104,52 +111,6 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <SubHeading>March 2025</SubHeading>
                 <P>Happy #Enigmarch! Each day I&apos;ll be adding a <Link href="/puzzles/enigmarch-2025" component={ A }>new puzzle</Link> from the inspirational prompts posted on the <Link href="https://enigmarch.com/prompts/" component={ A }>Enigmarch website</Link>.</P>
                 <P>Over the past several months there are many new recipes on <Link href="https://dumpling.academy" component={ A }>Dumpling Academy</Link>, as well as a lot of new things in the works (one of which you can preview with this Month&apos;s #Enigmarch content!).</P>
-                <SubHeading>September 2024</SubHeading>
-                <P>Updates to many Legacy and Commander Magic Decks, and the remaining 6 puzzle solutions from #Enigmarch 2024! With that, all puzzle solutions are now available on the site! 🎉</P>
-                <P>Next planned updates:</P>
-                <List>
-                    <ListItem>Overall puzzle statistics page (per-puzzle stats continue to live on the solution guide)</ListItem>
-                    <ListItem>Legacy deck guidance for the remaining 11 decks of the Battlebox.</ListItem>
-                    <ListItem>More blogposts! I am thinking of putting out a few in December focused on 2024 in retrospective.</ListItem>
-                    <ListItem>New Recipes / updates to <Link href="https://dumpling.academy" component={ A }>Dumpling Academy</Link></ListItem>
-                    <ListItem>Investigating infrastructure enhancements so that dynamic content (e.g. blogs, puzzle answers, magic decks) load quicker if they haven&apos;t been updated.</ListItem>
-                    <ListItem>Perhaps something new...?</ListItem>
-                </List>
-                <P>There isn&apos;t a planned time for all of these items, nor a specified order, but wanted to give an update as it has been a few months!</P>
-                <SubHeading>May 2024</SubHeading>
-                <P>Eight more solutions for #Enigmarch 2024 are now available, hoping to add the final six in June, before some travel for the year!</P>
-                <SubHeading>April 2024</SubHeading>
-                <P>While I was hoping to get solutions for all of this year&apos;s puzzles up this month, I did finally get through all of 2023&apos;s, and about half of 2024. Take a look if you don&apos;t mind spoilers!</P>
-                <SubHeading>March 2024</SubHeading>
-                <P>Happy #Enigmarch! Each day I&apos;ll be adding a <Link href="/puzzles/enigmarch-2024" component={ A }>new puzzle</Link> from the inspirational prompts posted on the <Link href="https://enigmarch.com/prompts/2024-archive/" component={ A }>Enigmarch website</Link>.</P>
-                <P>Additionally the solution for the corresponding day will be added to <Link href="/puzzles/enigmarch-2023" component={ A }>#Enigmarch 2023</Link>!</P>
-                <SubHeading>February 29, 2024</SubHeading>
-                <List>
-                    <ListItem>New Magic Deck: <Link href="/magic/deck/krrik" component={ A }>K&apos;rrik</Link></ListItem>
-                    <ListItem>New Magic Deck: <Link href="/magic/deck/zhulodok" component={ A }>Zhulodok</Link> (replacing <Link href="/magic/deck/liberator" component={ A }>Liberator</Link> in the Commander section)</ListItem>
-                    <ListItem>New Puzzle Solution: <Link href="/puzzles/speed-climbing" component={ A }>Speed Climbing</Link></ListItem>
-                </List>
-                <P>Continuing our magic mood one month more! A new commander deck (K&apos;rrik), and a re-imagining of the colorless deck as ideas had stalled.</P>
-                <SubHeading>January 28, 2024</SubHeading>
-                <List>
-                    <ListItem>New Puzzle Solution: <Link href="/puzzles/alchemy/four-elements" component={ A }>Alchemy: Four Elements</Link></ListItem>
-                    <ListItem>New Puzzle Solution: <Link href="/puzzles/alchemy/five-elements" component={ A }>Alchemy: Five Elements</Link></ListItem>
-                    <ListItem>New Puzzle Solution: <Link href="/puzzles/alchemy/six-elements" component={ A }>Alchemy: Six Elements</Link></ListItem>
-                    <ListItem>New Puzzle Solution: <Link href="/puzzles/alchemy/seven-elements" component={ A }>Alchemy: Seven Elements</Link></ListItem>
-                    <ListItem>New Puzzle Solution: Alchemy Meta</ListItem>
-                    <ListItem>New Puzzle Solution: <Link href="/puzzles/130-bpm" component={ A }>130 BPM</Link></ListItem>
-                </List>
-                <P>End of the month update, 6 new puzzle solutions! I am currently planning to release the solutions for each day of #Enigmarch 2023 with the puzzle for this years challenge. If I can stick to that plan, almost every puzzle on the site will have a solution available!</P>
-                <SubHeading>January 15, 2024</SubHeading>
-                <List>
-                    <ListItem>New Magic Deck: <Link href="/magic/deck/shrines" component={ A }>Go-Shintai of Life&apos;s Origin</Link> (a.k.a. Shrines)</ListItem>
-                    <ListItem>New Magic Deck: <Link href="/magic/deck/initiative" component={ A }>Initiative</Link> (replacing <Link href="/magic/deck/burn" component={ A }>Burn</Link> in the Legacy Battle Box)</ListItem>
-                    <ListItem>Updated Magic Deck: <Link href="/magic/deck/lord-windgrace" component={ A }>Lord Windgrace</Link></ListItem>
-                    <ListItem>New Puzzle Solution: <Link href="/puzzles/x-marks-the-spot" component={ A }>❌ Marks the Spot</Link></ListItem>
-                </List>
-                <P>Continuing our magic mood going coming into 2024, A new commander deck (shrines) and new legacy deck (initiative) appear along with a finalization of the long &quot;under construction&quot; Windgrace.</P>
-                <P>Additionally, I&apos;m continuing the slow-burn of releasing puzzle answers with one more! I have released many music-themed puzzles, but this one was one of the first where I really loved the idea, and tried to force it to work. If you never tried solving it and have no interest, check out the solution and see if you would have found it interesting!</P>
-                <hr />
                 <P>See even older site updates <Link href="/past-updates" component={ A }>here</Link></P>
             </PageDiv>
         </>

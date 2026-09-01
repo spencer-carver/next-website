@@ -35,7 +35,7 @@ export interface PuzzleDetails {
     solutionAvailable?: boolean;
 }
 
-export const NEWEST_PUZZLE = "emerald-princess";
+export const NEWEST_PUZZLE = "franca-lingua";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -523,6 +523,12 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "emerald-princess": {
         title: "Emerald Princess",
         description: "",
+        isMeta: false,
+        solutionAvailable: true
+    },
+    "franca-lingua": {
+        title: "Franca Lingua",
+        description: "They may look strange, but these descriptions are sound. What do they have in common?",
         isMeta: false,
         solutionAvailable: true
     }
