@@ -1,6 +1,5 @@
 import { ReactElement } from "react";
-import { HeadingComponent, TableDataCellComponent, TableHeaderCellComponent } from "react-markdown/lib/ast-to-react";
-import { NormalComponents } from "react-markdown/lib/complex-types";
+import type { Components } from "react-markdown";
 import { styled } from "../../styles/stitches";
 import Link from "../Link";
 
@@ -99,18 +98,18 @@ const Image = styled("img", {
     maxWidth: "100%"
 });
 
-const components = {
-    h1: Heading1 as unknown as HeadingComponent,
-    h2: Heading2 as unknown as HeadingComponent,
-    h3: Heading3 as unknown as HeadingComponent,
-    table: Table as unknown as NormalComponents["table"],
-    th: TableHeading as unknown as TableHeaderCellComponent,
-    td: TableCell as unknown as TableDataCellComponent,
-    a: BlogLink as unknown as NormalComponents["a"],
-    pre: Pre as unknown as NormalComponents["pre"],
-    code: Code as unknown as NormalComponents["code"],
-    blockquote: BlockQuote as unknown as NormalComponents["blockquote"],
-    img: Image as unknown as NormalComponents["img"]
+const components: Components = {
+    h1: Heading1 as unknown as Components["h1"],
+    h2: Heading2 as unknown as Components["h2"],
+    h3: Heading3 as unknown as Components["h3"],
+    table: Table as unknown as Components["table"],
+    th: TableHeading as unknown as Components["th"],
+    td: TableCell as unknown as Components["td"],
+    a: BlogLink as unknown as Components["a"],
+    pre: Pre as unknown as Components["pre"],
+    code: Code as unknown as Components["code"],
+    blockquote: BlockQuote as unknown as Components["blockquote"],
+    img: Image as unknown as Components["img"]
 };
 
 export default components;

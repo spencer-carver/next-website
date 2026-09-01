@@ -2,12 +2,12 @@ import React, { FunctionComponent, useEffect, useCallback, useState, ReactElemen
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { CSS } from "@stitches/react";
+import type { Components } from "react-markdown";
 import { styled } from "../../../styles/stitches";
 import { Post } from "../../../pages/blog";
 import MarkdownComponents from "../../../components/Markdown";
 import Tooltip from "../../Tooltip";
 import CardComponent from "../Card";
-import { CodeComponent } from "react-markdown/lib/ast-to-react";
 import fetchData from "../../../utils/fetch";
 import { API_URL } from "../../../constants/ExternalUrls";
 import { Card } from "../../../pages/magic/deck/[deck]";
@@ -174,7 +174,7 @@ const Guidance: FunctionComponent<GuidanceProps> = ({ deckName, format, cards, h
                     remarkPlugins={ [remarkGfm] }
                     components={{
                         ...MarkdownComponents,
-                        code: CardPreview as unknown as CodeComponent
+                        code: CardPreview as unknown as Components["code"]
                     }}>
                     {post.content}
                 </ReactMarkdown>

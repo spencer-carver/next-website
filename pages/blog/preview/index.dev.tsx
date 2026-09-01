@@ -7,7 +7,6 @@ import ErrorPage from "../../404";
 import BackNavigation from "../../../components/BackNavigation";
 import { styled } from "../../../styles/stitches";
 import { Post } from "..";
-import previewPost from "./post.md";
 import MarkdownComponents from "../../../components/Markdown";
 
 function formatName(name: string): string {
@@ -64,15 +63,22 @@ const BlogPost: FunctionComponent<PageProps> = ({ setLoading }) => {
     useEffect(() => {
         setLoading(true);
 
-        setPost({
-            name: "Preview Post",
-            createdTime: (new Date()).getTime(),
-            modifiedTime: (new Date()).getTime(),
-            content: previewPost,
-            author: "Spencer Carver"
-        });
-        setLoading(false);
-        setLoaded(true);
+        const loadPreview = async () => {
+            const response = await fetch("/content/blog/preview/post.md");
+            const content = await response.text();
+
+            setPost({
+                name: "Preview Post",
+                createdTime: (new Date()).getTime(),
+                modifiedTime: (new Date()).getTime(),
+                content,
+                author: "Spencer Carver"
+            });
+            setLoading(false);
+            setLoaded(true);
+        };
+
+        loadPreview();
     }, [setLoading]);
 
     if (!loaded) {
