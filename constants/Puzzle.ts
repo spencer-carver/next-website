@@ -35,7 +35,7 @@ export interface PuzzleDetails {
     solutionAvailable?: boolean;
 }
 
-export const NEWEST_PUZZLE = "franca-lingua";
+export const NEWEST_PUZZLE = "nesting-birds";
 
 export const PUZZLES: Record<string, PuzzleDetails> = {
     "tutorial": {
@@ -529,6 +529,12 @@ export const PUZZLES: Record<string, PuzzleDetails> = {
     "franca-lingua": {
         title: "Franca Lingua",
         description: "They may look strange, but these descriptions are sound. What do they have in common?",
+        isMeta: false,
+        solutionAvailable: true
+    },
+    "nesting-birds": {
+        title: "Nesting Birds",
+        description: "The birds arriving for nesting season seem a little mixed up. Help identify each one and match them to their mates. Then trace each bird's route and count their clutches to figure out what disrupted their journey.",
         isMeta: false,
         solutionAvailable: true
     }

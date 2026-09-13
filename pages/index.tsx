@@ -60,6 +60,11 @@ const Homepage: FunctionComponent<PageProps & { lastUpdate: number; }> = ({ them
                 <FirstTimeVisitor lastUpdate={ lastUpdate } />
                 <ConstructionGif theme={ theme } />
                 <Heading>Site News:</Heading>
+                <SubHeading>September 2026</SubHeading>
+                <List>
+                    <ListItem>New Puzzle: <Link href="/puzzles/nesting-birds" component={ A }>Nesting Birds</Link></ListItem>
+                </List>
+                <P>This is also NOT the puzzle I've been working on for a while. This puzzle was another ChatGPT-powered idea that I've had for a while, but seemed too tedious to construct on my own (I probably could have written a script for it, but changed approaches 3-4x during brainstorming and that would have been miserable to do manually)!</P>
                 <SubHeading>August 2026</SubHeading>
                 <List>
                     <ListItem>New Puzzle: <Link href="/puzzles/franca-lingua" component={ A }>Franca Lingua</Link></ListItem>
